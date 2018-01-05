@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8" />
+    <title>Beeble</title>
+    <!--For refresh to work, base href must be right after the title tag-->
+    <base href="/" />
+
+    <script src="scripts/vendor/angular.js"></script>
+    <script src="scripts/vendor/angular-ui-router.js"></script>
+
+    <script src="scripts/app/app.js"></script>
+    <script src="scripts/app/app.config.js"></script>
+    
+    <script src="scripts/app/routes/home/home.route.js"></script>
+    <script src="scripts/app/routes/home/home.controller.js"></script>
+    
+    <script src="scripts/app/routes/login/login.route.js"></script>
+    <script src="scripts/app/routes/login/login.controller.js"></script>
+    
+    <script src="scripts/app/services/AuthService.js"></script>
+    <script src="scripts/app/services/authInterceptorService.js"></script>
+    <script src="scripts/app/services/authInterceptorService.js"></script>
+
+</head>
+<body>
+<div ui-view></div>
+
+</body>
+</html>

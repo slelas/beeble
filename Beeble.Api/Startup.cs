@@ -9,6 +9,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 
+[assembly: OwinStartup(typeof(Beeble.Api.Startup))]
 namespace Beeble.Api
 {
     public class Startup
