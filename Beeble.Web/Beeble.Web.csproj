@@ -79,6 +79,8 @@
     <None Include="packages.config" />
     <Content Include="scripts\app\abstract\user.loggedin.js" />
     <Content Include="scripts\app\constants\serviceBase.js" />
+    <Content Include="scripts\app\directives\customHeader\customHeader.directive.js" />
+    <Content Include="scripts\app\directives\customHeader\customHeader.template.html" />
     <Content Include="scripts\app\routes\home\home.template.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -101,6 +103,7 @@
     <Content Include="scripts\app\routes\signup\signup.template.html" />
     <Content Include="scripts\app\services\authInterceptorService.js" />
     <Content Include="scripts\app\services\AuthService.js" />
+    <Content Include="scripts\app\services\bookSearchService.js" />
     <Content Include="scripts\vendor\angular-ui-router.js" />
     <Content Include="scripts\vendor\angular.js" />
     <Content Include="Web.config" />

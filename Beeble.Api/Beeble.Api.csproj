@@ -129,6 +129,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AuthRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\SimpleAuthorizationServerProvider.cs" />
@@ -153,6 +154,10 @@
     <ProjectReference Include="..\Beeble.Data\Beeble.Data.csproj">
       <Project>{21805e5e-9c49-469a-988e-3bcce3197e26}</Project>
       <Name>Beeble.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Beeble.Domain\Beeble.Domain.csproj">
+      <Project>{7bdec77e-dd9e-4b57-a4b4-5f41e5cf1f3f}</Project>
+      <Name>Beeble.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

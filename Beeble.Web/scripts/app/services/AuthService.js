@@ -8,7 +8,6 @@ app.factory('authService', function ($http, $q, serviceBase) {
 
     function register(registration) {
         logOut();
-        console.log(serviceBase);
         return $http.post(serviceBase + 'api/account/register', registration).then(function (response) {
             return response;
         });
