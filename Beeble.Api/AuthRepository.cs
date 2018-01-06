@@ -6,6 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Beeble.Api.Models;
+using Beeble.Api.UserManager;
+using Beeble.Data;
+using Beeble.Data.Models;
 
 namespace Beeble.Api
 {
@@ -13,17 +16,17 @@ namespace Beeble.Api
     {
         private AuthContext _ctx;
 
-        private UserManager<IdentityUser> _userManager;
+        private UserManager<OnlineUser> _userManager;
 
         public AuthRepository()
         {
             _ctx = new AuthContext();
-            _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
+            _userManager = new UserManager<OnlineUser>(new UserStore<OnlineUser>(_ctx));
         }
 
         public async Task<IdentityResult> RegisterUser(UserModel userModel)
         {
-            IdentityUser user = new IdentityUser
+            OnlineUser user = new OnlineUser
             {
                 UserName = userModel.UserName
             };
@@ -35,9 +38,9 @@ namespace Beeble.Api
             return result;
         }
 
-        public async Task<IdentityUser> FindUser(string userName, string password)
+        public async Task<OnlineUser> FindUser(string userName, string password)
         {
-            IdentityUser user = await _userManager.FindAsync(userName, password);
+            OnlineUser user = await _userManager.FindAsync(userName, password);
 
             return user;
         }

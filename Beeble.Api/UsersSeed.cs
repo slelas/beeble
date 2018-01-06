@@ -4,6 +4,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Web;
+using Beeble.Data;
+using Beeble.Data.Models;
 
 namespace Beeble.Api
 {
@@ -13,12 +15,12 @@ namespace Beeble.Api
         {
             using (var context = new AuthContext())
             {
-                var store = new UserStore<IdentityUser>(context);
-                var _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
+                var store = new UserStore<OnlineUser>(context);
+                var _userManager = new UserManager<OnlineUser>(new UserStore<OnlineUser>(context));
 
                 if (!context.Users.Any())
                 {
-                    var adminUser = new IdentityUser()
+                    var adminUser = new OnlineUser()
                     {
                         Email = "zvonimird@dump.hr",
                         UserName = "zdelas",
@@ -27,7 +29,7 @@ namespace Beeble.Api
                     _userManager.Create(adminUser, "123456");
                     _userManager.AddToRole(adminUser.Id, "Admin");
 
-                    var regularUser = new IdentityUser()
+                    var regularUser = new OnlineUser()
                     {
                         Email = "josip@dump.hr",
                         UserName = "jsvalina",

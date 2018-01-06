@@ -11,7 +11,7 @@ namespace Beeble.Api
         public AuthContext()
             : base("AuthContext")
         {
-
+            
         }
     }
 }

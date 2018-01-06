@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using Beeble.Data.Models;
 using Microsoft.Owin.Security.OAuth;
 
 namespace Beeble.Api.Providers
@@ -22,7 +23,7 @@ namespace Beeble.Api.Providers
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
             string role;
-            IdentityUser user;
+            OnlineUser user;
 
             using (AuthRepository _repo = new AuthRepository())
             {
