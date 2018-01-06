@@ -1,79 +1,61 @@
 ﻿'use strict';
-app.factory('authService', ['$http', '$q', function ($http, $q) {
+app.factory('authService', function ($http, $q, serviceBase) {
 
-    var serviceBase = 'http://localhost:58718/';
-    var authServiceFactory = {};
-
-    var _authentication = {
+    var authentication = {
         isAuth: false,
         userName: ""
     };
 
-    var _saveRegistration = function (registration) {
-
-        _logOut();
-
+    function register(registration) {
+        logOut();
+        console.log(serviceBase);
         return $http.post(serviceBase + 'api/account/register', registration).then(function (response) {
-            console.log(response);
             return response;
-
         });
-
     };
 
-    var _login = function (loginData) {
+    function login(loginData) {
 
         var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
 
         var deferred = $q.defer();
 
-        $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).then(function (response) {
-            console.log(response);
+        $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+        .then(function (response) {
             localStorage.setItem('authorizationData', JSON.stringify({ token: response.data.access_token, userName: loginData.userName }));
 
-            _authentication.isAuth = true;
-            _authentication.userName = loginData.userName;
+            authentication.isAuth = true;
+            authentication.userName = loginData.userName;
 
             deferred.resolve(response);
-
-        }).catch(function (err, status) {
-            // auto log out kod errora
-            _logOut();
-            console.log('test');
-            console.log(err)
-            deferred.reject(err);
         });
 
         return deferred.promise;
-
     };
 
-    var _logOut = function () {
+    function logOut() {
 
         localStorage.removeItem('authorizationData');
 
-        _authentication.isAuth = false;
-        _authentication.userName = "";
-
-        console.log('LOGGED OUT');
-
+        authentication.isAuth = false;
+        authentication.userName = "";
     };
 
-    var _fillAuthData = function () {
-
+    function fillAuthData() {
         var authData = JSON.parse(localStorage.getItem('authorizationData'));
         if (authData) {
-            _authentication.isAuth = true;
-            _authentication.userName = authData.userName;
+            authentication.isAuth = true;
+            authentication.userName = authData.userName;
         }
-
     }
 
-    authServiceFactory.saveRegistration = _saveRegistration;
-    authServiceFactory.login = _login;
-    authServiceFactory.logOut = _logOut;
-    authServiceFactory.fillAuthData = _fillAuthData;
-    authServiceFactory.authentication = _authentication;
+
+    var authServiceFactory = {};
+    authServiceFactory.saveRegistration = register;
+    authServiceFactory.login = login;
+    authServiceFactory.logOut = logOut;
+    authServiceFactory.fillAuthData = fillAuthData;
+    authServiceFactory.authentication = authentication;
 
     return authServiceFactory;
-}]);
+});

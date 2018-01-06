@@ -77,6 +77,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="scripts\app\abstract\user.loggedin.js" />
+    <Content Include="scripts\app\constants\serviceBase.js" />
     <Content Include="scripts\app\routes\home\home.template.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

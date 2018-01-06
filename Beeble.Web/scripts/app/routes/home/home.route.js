@@ -3,6 +3,7 @@
         .state('home', {
             url: '/',
             controller: 'homeController',
-            templateUrl: 'scripts/app/routes/home/home.template.html'
-        });
+            templateUrl: 'scripts/app/routes/home/home.template.html',
+            parent: 'userLoggedIn'
+});
 });
