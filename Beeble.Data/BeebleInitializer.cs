@@ -12,7 +12,11 @@ namespace Beeble.Data
     {
         protected override void Seed(AuthContext context)
         {
-            
+            // seed books
+            var book1 = new Book()
+            {
+                
+            }
 
             base.Seed(context);
         }
