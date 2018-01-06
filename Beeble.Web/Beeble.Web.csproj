@@ -94,6 +94,9 @@
     <Content Include="scripts\app\routes\login\login.route.js" />
     <Content Include="scripts\app\routes\login\login.template.html" />
     <Content Include="scripts\app\routes\login\login.controller.js" />
+    <Content Include="scripts\app\routes\signup\signup.controller.js" />
+    <Content Include="scripts\app\routes\signup\signup.route.js" />
+    <Content Include="scripts\app\routes\signup\signup.template.html" />
     <Content Include="scripts\app\services\authInterceptorService.js" />
     <Content Include="scripts\app\services\AuthService.js" />
     <Content Include="scripts\vendor\angular-ui-router.js" />
@@ -103,9 +106,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="scripts\app\routes\signup\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
