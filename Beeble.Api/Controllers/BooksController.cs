@@ -21,9 +21,16 @@ namespace Beeble.Api.Controllers
 
 		[HttpGet]
 		[Route("byquery")]
-		public List<Book> SearchBooks(int pageNumber, string search)
+		public List<Book> SearchBooks(int pageNumber, string searchQuery)
 		{
-			return repo.SearchBooks(search, pageNumber);
+			return repo.SearchBooks(searchQuery, pageNumber);
 		}
-	}
+
+        [HttpGet]
+        [Route("get-filters")]
+        public List<List<string>> GetFiltersForSearch(string searchQuery)
+        {
+            return repo.GetFilters(searchQuery);
+        }
+    }
 }

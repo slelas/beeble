@@ -13,16 +13,49 @@ namespace Beeble.Domain.Repositories
 	{
 		int numberOfBooksPerSearchQuery = int.Parse(ConfigurationManager.AppSettings["numberOfBooksPerSearchQuery"]);
 
-		public List<Book> SearchBooks(string search, int pageNumber)
+		public List<Book> SearchBooks(string searchQuery, int pageNumber)
 		{
 			using (var context = new AuthContext())
 			{
 				return context.Books
-					.Where(x => x.Name.Contains(search))
+					.Where(x => x.Name.Contains(searchQuery))
 					.OrderBy(x => x.Name)
 					.Skip(numberOfBooksPerSearchQuery * pageNumber)
 					.Take(numberOfBooksPerSearchQuery).ToList();
 			}
 		}
-	}
+
+        public List<List<string>> GetFilters(string searchQuery)
+        {
+            Dictionary<string, int> nationalitiesCount = new Dictionary<string, int>();
+
+            using (var context = new AuthContext())
+            {
+                var nationalitiesOfBooks = context.Books
+                    .Where(x => x.Name.Contains(searchQuery))
+                    .Select(x => x.Nationality).ToList();
+
+                nationalitiesOfBooks.ForEach(x =>
+                {
+                    if (!nationalitiesCount.Keys.Contains(x.Name))
+                            nationalitiesCount.Add(x.Name, 1);
+                    else
+                        nationalitiesCount[x.Name]++;
+                });
+            }
+
+            var listOfValuesAsStrings = new List<string>();
+
+            foreach (var value in nationalitiesCount.Values)
+            {
+                listOfValuesAsStrings.Add(value.ToString());
+            }
+
+            return new List<List<string>>
+            {
+                nationalitiesCount.Keys.ToList(),
+                listOfValuesAsStrings
+            };
+        }
+    }
 }
