@@ -8,10 +8,7 @@
     $scope.teset = "dsadas";
 
     $scope.login = function () {
-        console.log('loggin');
         authService.login($scope.loginData).then(function (response) {
-
-                //$location.path('/orders');
                 console.log('login successful');
 
             },

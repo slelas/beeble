@@ -1,3 +1,6 @@
 ﻿<div>HOME TEMPLATE</div>
 <input type="text" ng-model="searchQuery" placeholder="Search"/>
 <button ng-click="search()">-----Search-----</button>
+<div ng-repeat="book in currentBooks">
+    <div>{{book.name}}</div>
+</div>
