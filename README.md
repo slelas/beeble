@@ -1,2 +1,2 @@
 # NOTE: 
-Replace serviceBase in authService.js with localhost address of API
+Replace serviceBase in authService.js with localhost address of API.
