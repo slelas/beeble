@@ -10,4 +10,5 @@
 		{{filter}} ({{searchFilters[1][$index]}}) <input type="checkbox" ng-click="changeFilterStatus($index)" checked/>
 	</div>
 </div>
-<button ng-click="applyFilters()">Apply filters</button>
+<button ng-click="applyFilters()" ng-show="currentBooks.length>0">Apply filters</button>
+<button ng-click="showMoreResults()" ng-show="currentBooks.length>0" ng-disabled="noMoreSearchResults">Show more results</button>
