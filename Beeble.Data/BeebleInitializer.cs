@@ -21,19 +21,50 @@ namespace Beeble.Data
 	        {
 		        Name = "Biografija"
 	        };
-	        var nationality1 = new Nationality()
+            var category3 = new Category()
+            {
+                Name = "Autobiografija"
+            };
+            var category4 = new Category()
+            {
+                Name = "Ep"
+            };
+            var category5 = new Category()
+            {
+                Name = "Drama"
+            };
+            var category6 = new Category()
+            {
+                Name = "Komedija"
+            };
+
+
+            var nationality1 = new Nationality()
 	        {
-		        Name = "HRV"
+		        Name = "Croatia"
 	        };
 	        var nationality2 = new Nationality()
 	        {
-		        Name = "EN"
+		        Name = "England"
 	        };
 	        var nationality3 = new Nationality()
 	        {
-		        Name = "EN"
+		        Name = "USA"
 	        };
-			var localLibrary1 = new LocalLibrary()
+            var nationality4 = new Nationality()
+            {
+                Name = "France"
+            };
+            var nationality5 = new Nationality()
+            {
+                Name = "Germany"
+            };
+            var nationality6 = new Nationality()
+            {
+                Name = "Ireland"
+            };
+
+            var localLibrary1 = new LocalLibrary()
 	        {
 		        Address = "Placeholder adresa",
 		        BookLendLimit = 4,
@@ -53,59 +84,124 @@ namespace Beeble.Data
 	        var book1 = new Book()
 	        {
 		        Name = "Steve Jobs",
-		        NumOfPages = "25",
-		        Author = "Walter Levin",
+		        NumOfPages = "577",
+		        Author = "Walter Isaacson",
 		        YearOfIssue = 2001,
-		        ISBN = "2545642",
+		        ISBN = "1451648537",
 		        DamageLevel = 2,
 		        Description = "desc",
-		        Publisher = "profil",
+		        Publisher = " Simon & Schuster",
 		        LocalLibrary = localLibrary1,
-		        Nationality = nationality1
-	        };
+		        Nationality = nationality3,
+                Categories = new List<Category>() { category2 },
+                ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg"
+            };
 
-	        var book2 = new Book()
-	        {
-		        Name = "Vlak u snijegu",
-		        NumOfPages = "25",
-		        Author = "Walter Levin",
-		        YearOfIssue = 2001,
-		        ISBN = "2545642",
-		        DamageLevel = 2,
-		        Description = "desc",
-		        Publisher = "profil",
-		        LocalLibrary = localLibrary1,
-		        Nationality = nationality2
-	        };
+            var book2 = new Book()
+            {
+                Name = "Vlak u snijegu",
+                NumOfPages = "25",
+                Author = "Mato Lovrak",
+                YearOfIssue = 1931,
+                ISBN = "9531963827",
+                DamageLevel = 3,
+                Description = "desc",
+                Publisher = "Mozaik knjiga",
+                LocalLibrary = localLibrary1,
+                Nationality = nationality1,
+                Categories = new List<Category>() { category1 },
+                ImageUrl = "https://mojtv.hr//images/ff6b3c8b-ba33-4050-9f1f-34d3a35ffbd5.jpg"
+            };
 
-	        var book3 = new Book()
-	        {
-		        Name = "Med i mlijeko",
-		        NumOfPages = "25",
-		        Author = "Walter Levin",
-		        YearOfIssue = 2001,
-		        ISBN = "2545642",
-		        DamageLevel = 2,
-		        Description = "desc",
-		        Publisher = "profil",
-		        LocalLibrary = localLibrary1,
-		        Nationality = nationality2
-	        };
+            var book3 = new Book()
+            {
+                Name = "Hamlet",
+                NumOfPages = "115",
+                Author = "William Shakespeare",
+                YearOfIssue = 2005,
+                ISBN = "0230217867",
+                DamageLevel = 2,
+                Description = "desc",
+                Publisher = "Cambridge Press",
+                LocalLibrary = localLibrary1,
+                Nationality = nationality2,
+                Categories = new List<Category>() { category5 },
+                ImageUrl = "https://static.enotes.com/images/covers%2Fhamlet.jpg"
+            };
 
-	        context.Categories.Add(category1);
+            var book4 = new Book()
+            {
+                Name = "Macbeth",
+                NumOfPages = "89",
+                Author = "William Shakespeare",
+                YearOfIssue = 1993,
+                ISBN = "0486278026",
+                DamageLevel = 1,
+                Description = "desc",
+                Publisher = "Cambridge Press",
+                LocalLibrary = localLibrary1,
+                Nationality = nationality2,
+                Categories = new List<Category>() { category5 },
+                ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/419CMC5SR1L._SX308_BO1,204,203,200_.jpg"
+            };
+
+            var book5 = new Book()
+            {
+                Name = "Romeo i Julija",
+                NumOfPages = "155",
+                Author = "William Shakespeare",
+                YearOfIssue = 2017,
+                ISBN = "1505259568",
+                DamageLevel = 1,
+                Description = "desc",
+                Publisher = "Cambridge Press",
+                LocalLibrary = localLibrary1,
+                Nationality = nationality2,
+                Categories = new List<Category>() { category5 },
+                ImageUrl = "https://static.enotes.com/images/covers%2Fromeo-and-juliet.jpg"
+            };
+
+            var book6 = new Book()
+            {
+                Name = "Romeo i Julija",
+                NumOfPages = "155",
+                Author = "William Shakespeare",
+                YearOfIssue = 2017,
+                ISBN = "1505259568",
+                // only property different from book5:
+                DamageLevel = 3,
+                Description = "desc",
+                Publisher = "Cambridge Press",
+                LocalLibrary = localLibrary1,
+                Nationality = nationality2,
+                Categories = new List<Category>() { category5 },
+                ImageUrl = "https://static.enotes.com/images/covers%2Fromeo-and-juliet.jpg"
+            };
+
+            context.Categories.Add(category1);
 	        context.Categories.Add(category2);
+            context.Categories.Add(category3);
+            context.Categories.Add(category4);
+            context.Categories.Add(category5);
+            context.Categories.Add(category6);
 
-	        context.Nationalities.Add(nationality1);
+            context.Nationalities.Add(nationality1);
 	        context.Nationalities.Add(nationality2);
 	        context.Nationalities.Add(nationality3);
+            context.Nationalities.Add(nationality4);
+            context.Nationalities.Add(nationality5);
+            context.Nationalities.Add(nationality6);
 
-	        context.LocalLibraries.Add(localLibrary1);
+            context.LocalLibraries.Add(localLibrary1);
 
 	        context.Books.Add(book1);
 	        context.Books.Add(book2);
 	        context.Books.Add(book3);
+            context.Books.Add(book4);
+            context.Books.Add(book5);
+            context.Books.Add(book6);
 
-			base.Seed(context);
+            base.Seed(context);
         }
     }
 }

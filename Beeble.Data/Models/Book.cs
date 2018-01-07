@@ -17,6 +17,7 @@ namespace Beeble.Data.Models
         public int DamageLevel { get; set; }
         public string Description { get; set; }
         public string Publisher { get; set; }
+        public string ImageUrl { get; set; }
 
         public List<Category> Categories { get; set; }
         public Nationality Nationality { get; set; }
