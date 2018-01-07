@@ -98,7 +98,7 @@
     <Compile Include="Repositories\BooksRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Repositories\app.config" />
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
