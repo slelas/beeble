@@ -15,7 +15,6 @@ namespace Beeble.Domain.Repositories
 
 		public List<Book> SearchBooks(string searchQuery, int pageNumber, List<string> selectedFilters)
 		{
-			if (selectedFilters == null) ;
 
 			using (var context = new AuthContext())
 			{
@@ -23,12 +22,12 @@ namespace Beeble.Domain.Repositories
 					.Where(x => x.Name.Contains(searchQuery))
 					.OrderBy(x => x.Name);
 
-				if (selectedFilters == null)
+				if (selectedFilters.Count() == 0)
 					return searchResultsQuery
 					.Skip(numberOfBooksPerSearchQuery * pageNumber)
 					.Take(numberOfBooksPerSearchQuery).ToList();
 
-				return searchResultsQuery.Where(x => selectedFilters.Contains(x.Nationality.ToString()))
+				return searchResultsQuery.Where(x => selectedFilters.Contains(x.Nationality.Name))
 					.Skip(numberOfBooksPerSearchQuery * pageNumber)
 					.Take(numberOfBooksPerSearchQuery).ToList();
 			}
