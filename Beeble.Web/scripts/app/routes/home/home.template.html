@@ -2,5 +2,12 @@
 <input type="text" ng-model="searchQuery" placeholder="Search"/>
 <button ng-click="search()">-----Search-----</button>
 <div ng-repeat="book in currentBooks">
-    <div>{{book.name}}</div>
+	<div>{{book.name}}</div>
 </div>
+
+<div ng-repeat="filter in searchFilters[0]">
+	<div>
+		{{filter}} ({{searchFilters[1][$index]}}) <input type="checkbox" ng-click="changeFilterStatus($index)" checked/>
+	</div>
+</div>
+<button ng-click="applyFilters()">Apply filters</button>

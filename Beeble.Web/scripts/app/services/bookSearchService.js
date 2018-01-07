@@ -3,11 +3,11 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
 
 	var searchResults;
 
-    function search(searchQuery, pageNumber) {
+    function search(searchQuery, pageNumber, selectedFilters = null) {
 
         var deferred = $q.defer();
  
-		$http.get(serviceBase + 'api/search/byquery', { params: { pageNumber: pageNumber, searchQuery: searchQuery} }).then(function (response) {
+		$http.get(serviceBase + 'api/search/byquery', { params: { pageNumber: pageNumber, searchQuery: searchQuery, selectedFilters: selectedFilters} }).then(function (response) {
             deferred.resolve(response);
         });
 
@@ -18,16 +18,17 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
 
         var deferred = $q.defer();
 
-        $http.get(serviceBase + 'api/search/get-filters', { params: { search: searchQuery } }).then(function (response) {
+        $http.get(serviceBase + 'api/search/get-filters', { params: { searchQuery: searchQuery } }).then(function (response) {
             deferred.resolve(response);
         });
 
         return deferred.promise;
-    }
+	}
 
 
 	var bookSearchFactory = {};
 	bookSearchFactory.search = search;
+	bookSearchFactory.getFilters = getFilters;
 
 	return bookSearchFactory;
 
