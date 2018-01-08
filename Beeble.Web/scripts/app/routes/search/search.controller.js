@@ -11,44 +11,40 @@
 		pageNumber = 0;
 		bookSearchService.search($scope.searchQuery, pageNumber).then(function(response) {
 			$scope.currentBooks = response.data;
-			console.log($scope.currentBooks);
 
 		});
 
 		$scope.searchFiltersNationality = [];
 		bookSearchService.getFilters($scope.searchQuery).then(function (response) {
 
-			filterStatusList = [];
+            // list of bool values with information which filters have been selected
+            filterStatusList = [];
+
+            // nationality filter
 
 			$scope.searchFiltersNationality = response.data[0];
-
-            for (var i = 0; i < $scope.searchFiltersNationality.length; i++) {
-                console.log($scope.searchFiltersNationality[i]);
-            };
-
 
             $scope.searchFiltersNationality[0].forEach(function () {
                 filterStatusList.push(true);
 			});
 
-            console.log(filterStatusList);
-			pageNumber = 1;
-			$scope.preloadMoreResults();
-
-            //author filter
+            // author filter
 
             $scope.searchFiltersAuthor = response.data[1];
-
-            for (var i = 0; i < $scope.searchFiltersAuthor.length; i++) {
-                console.log($scope.searchFiltersAuthor[i]);
-            };
-
 
             $scope.searchFiltersAuthor[0].forEach(function () {
                 filterStatusList.push(true);
             });
 
-            console.log(filterStatusList);
+            // category filter
+
+            $scope.searchFiltersCategory = response.data[2];
+
+            $scope.searchFiltersCategory[0].forEach(function () {
+                filterStatusList.push(true);
+            });
+
+            //zasto ovo?
             pageNumber = 1;
             $scope.preloadMoreResults();
 		});

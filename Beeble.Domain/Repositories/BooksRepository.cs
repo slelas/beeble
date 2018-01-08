@@ -43,6 +43,7 @@ namespace Beeble.Domain.Repositories
 
             allFilters.Add(GetFilters(searchQuery, "Nationality"));
             allFilters.Add(GetFilters(searchQuery, "Author"));
+            allFilters.Add(GetFilters(searchQuery, "Category"));
 
             return allFilters;
         }
@@ -118,7 +119,7 @@ namespace Beeble.Domain.Repositories
                             filterCount[x]++;
                     });
                 }
-                /*else if (filterName == "Category")
+                else if (filterName == "Category")
                 {
                     var filtersListInBooks = context.Books
                         .Where(x => x.Name.Contains(searchQuery))
@@ -143,7 +144,7 @@ namespace Beeble.Domain.Repositories
                     });
                 }
 
-            }*/
+            }
 
                 var listOfValuesAsStrings = new List<string>();
 
@@ -152,12 +153,11 @@ namespace Beeble.Domain.Repositories
                     listOfValuesAsStrings.Add(value.ToString());
                 }
 
-                return new List<List<string>>
+            return new List<List<string>>
             {
                 filterCount.Keys.ToList(),
                 listOfValuesAsStrings
             };
-            }
 
         }
     }

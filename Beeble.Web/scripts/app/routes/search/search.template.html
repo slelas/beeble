@@ -21,5 +21,12 @@
     </div>
 </div>
 
+<h3>Kategorije</h3>
+<div ng-repeat="filter in searchFiltersCategory[0]">
+    <div>
+        {{filter}} ({{searchFiltersCategory[1][$index]}}) <input type="checkbox" ng-click="changeFilterStatus($index+searchFiltersNationality[1].length+searchFiltersCategory.length[1])" checked />
+    </div>
+</div>
+
 <button ng-click="applyFilters()">Apply filters</button>
 <button ng-click="showMoreResults()" ng-show="currentBooks.length>0" ng-disabled="noMoreSearchResults">Show more results</button>
