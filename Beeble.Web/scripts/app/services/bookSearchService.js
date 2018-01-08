@@ -3,9 +3,9 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
 
 	var searchResults;
 
-    function search(searchQuery, pageNumber, selectedFilters = null) {
+    function search(searchQuery, pageNumber, selectedFilters = ["-1"]) {
 
-        var deferred = $q.defer();
+		var deferred = $q.defer();
  
 		$http.get(serviceBase + 'api/search/byquery', { params: { pageNumber: pageNumber, searchQuery: searchQuery, selectedFilters: selectedFilters} }).then(function (response) {
             deferred.resolve(response);

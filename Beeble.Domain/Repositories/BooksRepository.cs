@@ -22,12 +22,15 @@ namespace Beeble.Domain.Repositories
 					.Where(x => x.Name.Contains(searchQuery))
 					.OrderBy(x => x.Name);
 
-				if (selectedFilters.Count() == 0)
+				// short circuit to prevent Index out of range
+				if (selectedFilters.Any() && selectedFilters[0] == "-1")
+				{
 					return searchResultsQuery
 					.Skip(numberOfBooksPerSearchQuery * pageNumber)
 					.Take(numberOfBooksPerSearchQuery).ToList();
+				}
 
-				return searchResultsQuery.Where(x => selectedFilters.Contains(x.Nationality.Name))
+				return searchResultsQuery.Where(x => selectedFilters.Contains(x.Nationality.Name)).OrderBy(x => x.Name)
 					.Skip(numberOfBooksPerSearchQuery * pageNumber)
 					.Take(numberOfBooksPerSearchQuery).ToList();
 			}
