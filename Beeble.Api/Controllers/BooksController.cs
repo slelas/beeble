@@ -28,9 +28,9 @@ namespace Beeble.Api.Controllers
 
         [HttpGet]
         [Route("get-filters")]
-        public List<List<string>> GetFiltersForSearch(string searchQuery)
+        public List<List<List<string>>> GetFiltersForSearch(string searchQuery)
         {
-            return repo.GetFilters(searchQuery);
+            return repo.GetAllFilters(searchQuery);
         }
     }
 }
