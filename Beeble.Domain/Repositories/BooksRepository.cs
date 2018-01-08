@@ -13,7 +13,7 @@ namespace Beeble.Domain.Repositories
     {
         int numberOfBooksPerSearchQuery = int.Parse(ConfigurationManager.AppSettings["numberOfBooksPerSearchQuery"]);
 
-        public List<Book> SearchBooks(string searchQuery, int pageNumber, List<string> selectedFilters)
+        public List<string> SearchBooks(string searchQuery, int pageNumber, List<string> selectedFilters)
         {
 
             using (var context = new AuthContext())
@@ -26,12 +26,18 @@ namespace Beeble.Domain.Repositories
                 if (selectedFilters.Any() && selectedFilters[0] == "-1")
                 {
                     return searchResultsQuery
+                        .Select(x => x.Name)
+                        .Distinct()
+                        .OrderBy(x => x)
                     .Skip(numberOfBooksPerSearchQuery * pageNumber)
                     .Take(numberOfBooksPerSearchQuery).ToList();
                 }
 
                 return searchResultsQuery
-                    .Where(x => (selectedFilters.Contains(x.Nationality.Name) && (selectedFilters.Contains(x.Author))))
+                    .Where(x => (selectedFilters.Contains(x.Nationality.Name) && (selectedFilters.Contains(x.Author) && (selectedFilters.Intersect(x.Categories.Select(y => y.Name)).Any()))))
+                    .Select(x => x.Name)
+                    .Distinct()
+                    .OrderBy(x => x)
                     .Skip(numberOfBooksPerSearchQuery * pageNumber)
                     .Take(numberOfBooksPerSearchQuery).ToList();
             }
@@ -39,11 +45,12 @@ namespace Beeble.Domain.Repositories
 
         public List<List<List<string>>> GetAllFilters(string searchQuery)
         {
-            var allFilters = new List<List<List<string>>>();
-
-            allFilters.Add(GetFilters(searchQuery, "Nationality"));
-            allFilters.Add(GetFilters(searchQuery, "Author"));
-            allFilters.Add(GetFilters(searchQuery, "Category"));
+            var allFilters = new List<List<List<string>>>
+            {
+                GetFilters(searchQuery, "Nationality"),
+                GetFilters(searchQuery, "Author"),
+                GetFilters(searchQuery, "Category")
+            };
 
             return allFilters;
         }
@@ -95,6 +102,8 @@ namespace Beeble.Domain.Repositories
                 {
                     var filtersInBooks = context.Books
                         .Where(x => x.Name.Contains(searchQuery))
+                        .GroupBy(x => x.Name)
+                        .Select(x => x.FirstOrDefault())
                         .Select(x => x.Nationality).ToList();
 
                     filtersInBooks.ForEach(x =>
@@ -109,6 +118,8 @@ namespace Beeble.Domain.Repositories
                 {
                     var filtersInBooks = context.Books
                         .Where(x => x.Name.Contains(searchQuery))
+                        .GroupBy(x => x.Name)
+                        .Select(x => x.FirstOrDefault())
                         .Select(x => x.Author).ToList();
 
                     filtersInBooks.ForEach(x =>
@@ -123,6 +134,8 @@ namespace Beeble.Domain.Repositories
                 {
                     var filtersListInBooks = context.Books
                         .Where(x => x.Name.Contains(searchQuery))
+                        .GroupBy(x => x.Name)
+                        .Select(x => x.FirstOrDefault())
                         .Select(x => x.Categories).ToList();
 
                     var filtersInBooks = new List<Category>();
