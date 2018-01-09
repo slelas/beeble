@@ -4,6 +4,7 @@
 <h2>Knjige</h2>
 <div ng-repeat="bookName in currentBooks">
 	<div>{{bookName}}</div>
+	<button ui-sref="bookDetails({bookName: bookName})">Details</button>
 </div>
 
 <h2>Filteri</h2>

@@ -81,6 +81,9 @@
     <Content Include="scripts\app\constants\serviceBase.js" />
     <Content Include="scripts\app\directives\customHeader\customHeader.directive.js" />
     <Content Include="scripts\app\directives\customHeader\customHeader.template.html" />
+    <Content Include="scripts\app\routes\bookDetails\bookDetails.controller.js" />
+    <Content Include="scripts\app\routes\bookDetails\bookDetails.route.js" />
+    <Content Include="scripts\app\routes\bookDetails\bookDetails.template.html" />
     <Content Include="scripts\app\routes\search\search.template.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

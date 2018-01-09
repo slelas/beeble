@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Beeble.Data;
 using Beeble.Data.Models;
+using Microsoft.Owin.Security.Provider;
 
 namespace Beeble.Domain.Repositories
 {
@@ -173,5 +176,32 @@ namespace Beeble.Domain.Repositories
             };
 
         }
-    }
+
+		public List<Book> GetBooksByName(string bookName)
+		{
+			using (var context = new AuthContext())
+			{
+				var books = context.Books
+					.Where(x => x.Name == bookName)
+					.Include(x => x.Categories)
+					.Include(x => x.LocalLibrary)
+					.ToList();
+				
+				// preventing circular reference
+				books
+					.Select(x =>
+					{
+						x.Categories =
+							x.Categories
+								.Select(y => new Category() {Name = y.Name, Books = null})
+								.ToList();
+
+						return x;
+					})
+					.ToList();
+
+				return books;
+			}
+		}
+	}
 }

@@ -32,5 +32,12 @@ namespace Beeble.Api.Controllers
         {
             return repo.GetAllFilters(searchQuery);
         }
+
+		[HttpGet]
+		[Route("get-books-byname")]
+		public List<Book> GetBooksByName(string bookName)
+		{
+			return repo.GetBooksByName(bookName);
+		}
     }
 }
