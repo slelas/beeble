@@ -475,7 +475,7 @@ a {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  flex-grow: 0.8;
+  flex-grow: 1;
   margin-right: 25px; }
   .homepage__button:last-child {
     margin-right: 0; }
@@ -491,12 +491,14 @@ a {
     align-items: center;
     justify-content: center; }
 
-.homepage__button.login {
+.homepage__button {
   background-color: #000000; }
-  .homepage__button.login:hover {
+  .homepage__button:hover {
     background-color: #333333; }
 
-.homepage__button.register {
+.homepage__button.register,
+.homepage__button.log-out {
   background-color: #b59a56; }
-  .homepage__button.register:hover {
+  .homepage__button.register:hover,
+  .homepage__button.log-out:hover {
     background-color: #c9ae6b; }

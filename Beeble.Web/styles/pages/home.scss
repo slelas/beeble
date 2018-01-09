@@ -69,7 +69,7 @@
     justify-content: center;
     align-items: center;
     
-    flex-grow: 0.8;
+    flex-grow: 1;
 
     margin-right: 25px;
 
@@ -95,7 +95,7 @@
     }
 }
 
-.homepage__button.login {
+.homepage__button {
     background-color: #000000;
 
     &:hover {
@@ -103,7 +103,8 @@
     }
 }
 
-.homepage__button.register {
+.homepage__button.register,
+.homepage__button.log-out {
     background-color: #b59a56;
 
     &:hover {
