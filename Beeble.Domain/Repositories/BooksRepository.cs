@@ -16,227 +16,151 @@ namespace Beeble.Domain.Repositories
     {
         int numberOfBooksPerSearchQuery = int.Parse(ConfigurationManager.AppSettings["numberOfBooksPerSearchQuery"]);
 
-        public List<Book> SearchBooks(string searchQuery, int pageNumber, List<string> allFilters)
+        public List<Book> SearchBooks(string searchQuery, int pageNumber, List<string> selectedFilters)
         {
-	        using (var context = new AuthContext())
-	        {
-		        var searchResultsQuery = context.Books
-			        .Where(x => x.Name.Contains(searchQuery))
-			        .OrderBy(x => x.Name);
-		        var a = !allFilters.Any();
-
-				var books = searchResultsQuery
-			        .Where(x => (!allFilters.Any() || allFilters.Contains(x.Nationality.Name) || (allFilters.Contains(x.Author) || (allFilters.Intersect(x.Categories.Select(y => y.Name)).Any()) || (allFilters.Contains(x.YearOfIssue.ToString())))))
-			        .GroupBy(x => x.Name)
-			        .Select(x => x.FirstOrDefault())
-			        .Include(x => x.Categories)
-			        .Include(x => x.Language)
-			        .OrderBy(x => x.Name)
-			        .Skip(numberOfBooksPerSearchQuery * pageNumber)
-			        .Take(numberOfBooksPerSearchQuery).ToList();
-
-		        return books;
-	        }
-
-
-
-
-
-
-	        /*using (var context = new AuthContext())
+            using (var context = new AuthContext())
             {
+                var whichFilters = DetermineWhichFilters(selectedFilters);
+                var firstFilter = whichFilters[0];
+                var secondFilter = whichFilters[1];
+                var thirdFilter = whichFilters[2];
+                var fourthFilter = whichFilters[3];
                 var searchResultsQuery = context.Books
                     .Where(x => x.Name.Contains(searchQuery))
-                    .OrderBy(x => x.Name);
+                    .OrderBy(x => x.Name)
+                    .Where(x => 
+                    ((!selectedFilters.Any())
+                    || (
+                    (firstFilter && selectedFilters.Contains(x.Nationality.Name))
+                    || (secondFilter && selectedFilters.Contains(x.Author.Name))
+                    || (thirdFilter && selectedFilters.Intersect(x.Categories.Select(y => y.Name)).Any())
+                    || (fourthFilter && selectedFilters.Contains(x.YearOfIssue.Year.ToString()))
+                    )))
+                    .GroupBy(x => x.Name)
+                    .Select(x => x.FirstOrDefault());
 
-	            List<Book> books = new List<Book>();
 
-                // short circuit to prevent Index out of range
-                if (selectedFilters.Any() && selectedFilters[0] == "-1")
-                {
-                    books = searchResultsQuery
-	                    .GroupBy(x => x.Name)
-	                    .Select(x => x.FirstOrDefault())
-						.Include(x => x.Categories)
-						.Include(x => x.Language)
-						.OrderBy(x => x.Name)
+
+                var books = searchResultsQuery
+                    .GroupBy(x => x.Name)
+                    .Select(x => x.FirstOrDefault())
+                    .Include(x => x.Categories)
+                    .Include(x => x.Language)
+                    .Include(x => x.Author)
+                    .Include(x => x.YearOfIssue)
+                    .OrderBy(x => x.Name)
                     .Skip(numberOfBooksPerSearchQuery * pageNumber)
                     .Take(numberOfBooksPerSearchQuery).ToList();
 
-	                // preventing circular reference
-	                books.Select(x => x.Categories =
-			                x.Categories
-				                .Select(y => new Category() { Name = y.Name, Books = null })
-				                .ToList())
-		                .ToList();
+                // preventing circular reference
+                books.Select(x => x.Categories =
+                x.Categories
+                .Select(y => new Category() { Name = y.Name, Books = null })
+                .ToList())
+                .ToList();
 
-	                return books;
-                }
+                return books;
+            }
 
-                books = searchResultsQuery
-                    .Where(x => (selectedFilters.Contains(x.Nationality.Name) || (selectedFilters.Contains(x.Author) || (selectedFilters.Intersect(x.Categories.Select(y => y.Name)).Any()) || (selectedFilters.Contains(x.YearOfIssue.ToString())))))
-	                .GroupBy(x => x.Name)
-	                .Select(x => x.FirstOrDefault())
-	                .Include(x => x.Categories)
-	                .Include(x => x.Language)
-					.OrderBy(x => x.Name)
-					.Skip(numberOfBooksPerSearchQuery * pageNumber)
-                    .Take(numberOfBooksPerSearchQuery).ToList();
-
-	            // preventing circular reference
-	            books.Select(x => x.Categories =
-			            x.Categories
-				            .Select(y => new Category() { Name = y.Name, Books = null })
-				            .ToList())
-		            .ToList();
-
-	            return books;
-			}*/
         }
-
-	    /*public List<Book> ApplyFilters(string filter)
-	    {
-		    var allFilters = new List<>();
-	    }*/
 
         public List<List<List<string>>> GetAllFilters(string searchQuery, List<string> selectedFilters)
         {
-            var allFilters = new List<List<List<string>>>
-            {
-                GetFilters(searchQuery, "Nationality", selectedFilters),
-                GetFilters(searchQuery, "Author", selectedFilters),
-                GetFilters(searchQuery, "Category", selectedFilters),
-				GetFilters(searchQuery, "Year", selectedFilters)
-            };
-
-            return allFilters;
-        }
-
-        /*public List<List<string>> GetNationalityFilters(string searchQuery)
-        {
-
-            Dictionary<string, int> nationalitiesCount = new Dictionary<string, int>();
-
             using (var context = new AuthContext())
             {
-                var nationalitiesOfBooks = context.Books
+                var searchResultsQuery = context.Books
                     .Where(x => x.Name.Contains(searchQuery))
-                    .Select(x => x.Nationality).ToList();
+                    .OrderBy(x => x.Name)
+                    .Where(x => (!selectedFilters.Any() || selectedFilters.Contains(x.Nationality.Name) || (selectedFilters.Contains(x.Author.Name) || (selectedFilters.Intersect(x.Categories.Select(y => y.Name)).Any()) || (selectedFilters.Contains(x.YearOfIssue.Year.ToString())))))
+                    .GroupBy(x => x.Name)
+                    .Select(x => x.FirstOrDefault());
 
-                nationalitiesOfBooks.ForEach(x =>
-                {
-                    if (!nationalitiesCount.Keys.Contains(x.Name))
-                        nationalitiesCount.Add(x.Name, 1);
-                    else
-                        nationalitiesCount[x.Name]++;
-                });
-
-            }
-
-            var listOfValuesAsStrings = new List<string>();
-
-            foreach (var value in nationalitiesCount.Values)
+                var allFilters = new List<List<List<string>>>
             {
-                listOfValuesAsStrings.Add(value.ToString());
-            }
-
-            return new List<List<string>>
-            {
-                nationalitiesCount.Keys.ToList(),
-                listOfValuesAsStrings
+                GetFilters(searchResultsQuery, "Nationality"),
+                GetFilters(searchResultsQuery, "Author"),
+                GetFilters(searchResultsQuery, "Category"),
+                GetFilters(searchResultsQuery, "Year")
             };
-        }*/
 
-        public List<List<string>> GetFilters(string searchQuery, string filterName, List<string> selectedFilters)
+                return allFilters;
+            }
+        }
+
+        public List<List<string>> GetFilters(IQueryable<Book> searchResultsQuery, string filterName)
         {
 
             Dictionary<string, int> filterCount = new Dictionary<string, int>();
 
-            using (var context = new AuthContext())
+            if (filterName == "Nationality")
             {
+                var filtersInBooks = searchResultsQuery
+                    .Select(x => x.Nationality).ToList();
 
-                if (filterName == "Nationality")
+                filtersInBooks.ForEach(x =>
                 {
-                    var filtersInBooks = SearchBooks(searchQuery, 0, selectedFilters)
-						.GroupBy(x => x.Name)
-                        .Select(x => x.FirstOrDefault())
-                        .Select(x => x.Nationality).ToList();
+                    if (!filterCount.Keys.Contains(x.Name))
+                        filterCount.Add(x.Name, 1);
+                    else
+                        filterCount[x.Name]++;
+                });
+            }
+            if (filterName == "Author")
+            {
+                var filtersInBooks = searchResultsQuery
+                    .Select(x => x.Author.Name).ToList();
 
-                    filtersInBooks.ForEach(x =>
-                    {
-                        if (!filterCount.Keys.Contains(x.Name))
-                            filterCount.Add(x.Name, 1);
-                        else
-                            filterCount[x.Name]++;
-                    });
-                }
-                if (filterName == "Author")
+                filtersInBooks.ForEach(x =>
                 {
-                    var filtersInBooks = context.Books
-                        .Where(x => x.Name.Contains(searchQuery))
-                        .GroupBy(x => x.Name)
-                        .Select(x => x.FirstOrDefault())
-                        .Select(x => x.Author).ToList();
+                    if (!filterCount.Keys.Contains(x))
+                        filterCount.Add(x, 1);
+                    else
+                        filterCount[x]++;
+                });
+            }
+            else if (filterName == "Category")
+            {
+                var filtersListInBooks = searchResultsQuery
+                    .Select(x => x.Categories).ToList();
 
-                    filtersInBooks.ForEach(x =>
-                    {
-                        if (!filterCount.Keys.Contains(x))
-                            filterCount.Add(x, 1);
-                        else
-                            filterCount[x]++;
-                    });
-                }
-                else if (filterName == "Category")
+                var filtersInBooks = new List<Category>();
+
+                foreach (var categoryList in filtersListInBooks)
                 {
-                    var filtersListInBooks = context.Books
-                        .Where(x => x.Name.Contains(searchQuery))
-                        .GroupBy(x => x.Name)
-                        .Select(x => x.FirstOrDefault())
-                        .Select(x => x.Categories).ToList();
-
-                    var filtersInBooks = new List<Category>();
-
-                    foreach (var categoryList in filtersListInBooks)
+                    foreach (var category in categoryList)
                     {
-                        foreach (var category in categoryList)
-                        {
-                            filtersInBooks.Add(category);
-                        }
+                        filtersInBooks.Add(category);
                     }
-
-                    filtersInBooks.ForEach(x =>
-                    {
-                        if (!filterCount.Keys.Contains(x.Name))
-                            filterCount.Add(x.Name, 1);
-                        else
-                            filterCount[x.Name]++;
-                    });
                 }
-	            else if (filterName == "Year")
-	            {
-		            var filtersInBooks = context.Books
-			            .Where(x => x.Name.Contains(searchQuery))
-			            .GroupBy(x => x.Name)
-			            .Select(x => x.FirstOrDefault())
-			            .Select(x => x.YearOfIssue.ToString()).ToList();
 
-		            filtersInBooks.ForEach(x =>
-		            {
-			            if (!filterCount.Keys.Contains(x))
-				            filterCount.Add(x, 1);
-			            else
-				            filterCount[x]++;
-		            });
-	            }
-
-			}
-
-                var listOfValuesAsStrings = new List<string>();
-
-                foreach (var value in filterCount.Values)
+                filtersInBooks.ForEach(x =>
                 {
-                    listOfValuesAsStrings.Add(value.ToString());
-                }
+                    if (!filterCount.Keys.Contains(x.Name))
+                        filterCount.Add(x.Name, 1);
+                    else
+                        filterCount[x.Name]++;
+                });
+            }
+            else if (filterName == "Year")
+            {
+                var filtersInBooks = searchResultsQuery
+                    .Select(x => x.YearOfIssue.Year.ToString()).ToList();
+
+                filtersInBooks.ForEach(x =>
+                {
+                    if (!filterCount.Keys.Contains(x))
+                        filterCount.Add(x, 1);
+                    else
+                        filterCount[x]++;
+                });
+            }
+
+            var listOfValuesAsStrings = new List<string>();
+
+            foreach (var value in filterCount.Values)
+            {
+                listOfValuesAsStrings.Add(value.ToString());
+            }
 
             return new List<List<string>>
             {
@@ -246,25 +170,44 @@ namespace Beeble.Domain.Repositories
 
         }
 
-		public List<Book> GetBooksByName(string bookName)
-		{
-			using (var context = new AuthContext())
-			{
-				var books = context.Books
-					.Where(x => x.Name == bookName)
-					.Include(x => x.Categories)
-					.Include(x => x.LocalLibrary)
-					.ToList();
-				
-				// preventing circular reference
-				books.Select(x => x.Categories =
-							x.Categories
-								.Select(y => new Category() {Name = y.Name, Books = null})
-								.ToList())
-					.ToList();
+        public List<Book> GetBooksByName(string bookName)
+        {
+            using (var context = new AuthContext())
+            {
+                var books = context.Books
+                    .Where(x => x.Name == bookName)
+                    .Include(x => x.Categories)
+                    .Include(x => x.LocalLibrary)
+                    .ToList();
 
-				return books;
-			}
-		}
-	}
+                // preventing circular reference
+                books.Select(x => x.Categories =
+                            x.Categories
+                                .Select(y => new Category() { Name = y.Name, Books = null })
+                                .ToList())
+                    .ToList();
+
+                return books;
+            }
+        }
+
+        public List<bool> DetermineWhichFilters(List<string> selectedFilters)
+        {
+            using (var context = new AuthContext())
+            {
+                var whichFilters = new List<bool>();
+                /*var searchResultsQueryBase = context.Books
+                    .Where(x => x.Name.Contains(searchQuery))
+                    .OrderBy(x => x.Name);*/
+
+                // true if there are any categories in the filter list
+                whichFilters.Add(selectedFilters.Intersect(context.Nationalities.Select(y => y.Name)).Any());
+                whichFilters.Add(selectedFilters.Intersect(context.Authors.Select(y => y.Name)).Any());
+                whichFilters.Add(selectedFilters.Intersect(context.Categories.Select(y => y.Name)).Any());
+                whichFilters.Add(selectedFilters.Intersect(context.YearsOfIssue.Select(y => y.Year.ToString())).Any());
+
+                return whichFilters;
+            }
+        }
+    }
 }

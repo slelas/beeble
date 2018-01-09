@@ -1,40 +1,45 @@
 ﻿<div>search TEMPLATE</div>
 <input type="text" ng-model="searchQuery" placeholder="Search"/>
-<button ng-click="search()">-----Search-----</button>
+<button ng-click="searchButton()">-----Search-----</button>
 <h2>Knjige</h2>
 <div ng-repeat="book in currentBooks">
 	<div>{{book.name}}</div>
 	<button ui-sref="bookDetails({bookName: book.name})">Details</button>
 </div>
 
-<h2>Filteri</h2>
-<h3>Nacionalnosti</h3>
+<h2 ng-show="currentBooks.length">Suzi pretragu</h2>
+<h3 ng-show="selectedFilters.length">Aktivni filteri</h3>
+<div ng-repeat="filter in selectedFilters">
+    <div>{{filter}}</div>
+    <button ng-click="removeAFilter()">Remove filter</button>
+</div>
+
+<h3 ng-show="searchFiltersNationality[0].length">Nacionalnosti</h3>
 <div ng-repeat="filter in searchFiltersNationality[0]">
-	<div>
-		{{filter}} ({{searchFiltersNationality[1][$index]}}) <input type="checkbox" ng-click="changeFilterStatus($index)" checked/>
+	<div ng-click="applyAFilter(filter)">
+		{{filter}} ({{searchFiltersNationality[1][$index]}})
 	</div>
 </div>
 
-<h3>Autori</h3>
+<h3 ng-show="searchFiltersAuthor[0].length">Autori</h3>
 <div ng-repeat="filter in searchFiltersAuthor[0]">
-	<div>
-		{{filter}} ({{searchFiltersAuthor[1][$index]}}) <input type="checkbox" ng-click="changeFilterStatus($index+searchFiltersNationality[1].length)" checked />
+	<div ng-click="applyAFilter(filter)">
+		{{filter}} ({{searchFiltersAuthor[1][$index]}})
 	</div>
 </div>
 
-<h3>Kategorije</h3>
+<h3 ng-show="searchFiltersCategory[0].length">Kategorije</h3>
 <div ng-repeat="filter in searchFiltersCategory[0]">
-	<div>
-		{{filter}} ({{searchFiltersCategory[1][$index]}}) <input type="checkbox" ng-click="changeFilterStatus($index+searchFiltersNationality[1].length+searchFiltersAuthor[1].length)" checked />
+	<div ng-click="applyAFilter(filter)">
+		{{filter}} ({{searchFiltersCategory[1][$index]}})
 	</div>
 </div>
 
-<h3>Godina</h3>
+<h3 ng-show="searchFiltersYear[0].length">Godina</h3>
 <div ng-repeat="filter in searchFiltersYear[0]">
-	<div>
-		{{filter}} ({{searchFiltersYear[1][$index]}}) <input type="checkbox" ng-click="changeFilterStatus($index+searchFiltersNationality[1].length+searchFiltersAuthor[1].length+searchFiltersCategory[1].length)" checked />
+	<div ng-click="applyAFilter(filter)">
+		{{filter}} ({{searchFiltersYear[1][$index]}})
 	</div>
 </div>
 
-<button ng-click="applyFilters()">Apply filters</button>
 <button ng-click="showMoreResults()" ng-show="currentBooks.length>0" ng-disabled="noMoreSearchResults">Show more results</button>

@@ -34,29 +34,32 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
 		});
 
 		return deferred.promise;
-	}
+    }
 
-	function applyAFilter(filter) {
+   // var selectedFilters = new Array();
 
-		if (!filter)
-			allFilters = new Array();
+    function applyAFilter(filter, searchQuery) {
 
-		allFilters.push(filter); // ovo će se slat na api
+		//if (!filter)
+			var selectedFilters = new Array();
 
-		/*var deferred = $q.defer();
+            selectedFilters.push(filter);
 
-		$http.get(serviceBase + 'api/search/get-books-byname', { params: { bookName: bookName } }).then(function (response) {
-			deferred.resolve(response);
+		var deferred = $q.defer();
+        
+        $http.get(serviceBase + 'api/search/byquery', { params: { pageNumber: 0, searchQuery: searchQuery, selectedFilters: selectedFilters} }).then(function (response) {
+            deferred.resolve(response);
 		});
 
-		return deferred.promise;*/
+		return deferred.promise;
 	}
 
 
 	var bookSearchFactory = {};
 	bookSearchFactory.search = search;
 	bookSearchFactory.getFilters = getFilters;
-	bookSearchFactory.getBooksByName = getBooksByName;
+    bookSearchFactory.getBooksByName = getBooksByName;
+    bookSearchFactory.applyAFilter = applyAFilter;
 
 	return bookSearchFactory;
 

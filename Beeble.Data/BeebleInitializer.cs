@@ -89,7 +89,42 @@ namespace Beeble.Data
 		        Name = "Ireland"
 	        };
 
-			var localLibrary1 = new LocalLibrary()
+            var year1 = new YearOfIssue()
+            {
+                Year = 2001
+            };
+
+            var year2 = new YearOfIssue()
+            {
+                Year = 2005
+            };
+
+            var year3 = new YearOfIssue()
+            {
+                Year = 2017
+            };
+
+            var year4 = new YearOfIssue()
+            {
+                Year = 1931
+            };
+
+            var author1 = new Author()
+            {
+                Name = "Walter Isaacson"
+            };
+
+            var author2 = new Author()
+            {
+                Name = "Shakespeare"
+            };
+
+            var author3 = new Author()
+            {
+                Name = "Mato Lovrak"
+            };
+
+            var localLibrary1 = new LocalLibrary()
 	        {
 		        Address = "Placeholder adresa",
 		        BookLendLimit = 4,
@@ -110,8 +145,8 @@ namespace Beeble.Data
 	        {
 		        Name = "Steve Jobs",
 		        NumOfPages = "577",
-		        Author = "Walter Isaacson",
-		        YearOfIssue = 2001,
+		        Author = author1,
+		        YearOfIssue = year1,
 		        ISBN = "1451648537",
 		        DamageLevel = 2,
 		        Description = "desc",
@@ -127,8 +162,8 @@ namespace Beeble.Data
             {
                 Name = "Vlak u snijegu",
                 NumOfPages = "25",
-                Author = "Mato Lovrak",
-                YearOfIssue = 1931,
+                Author = author3,
+                YearOfIssue = year4,
                 ISBN = "9531963827",
                 DamageLevel = 3,
                 Description = "desc",
@@ -144,8 +179,8 @@ namespace Beeble.Data
             {
                 Name = "Hamlet",
                 NumOfPages = "115",
-                Author = "William Shakespeare",
-                YearOfIssue = 2005,
+                Author = author2,
+                YearOfIssue = year2,
                 ISBN = "0230217867",
                 DamageLevel = 2,
                 Description = "desc",
@@ -161,8 +196,8 @@ namespace Beeble.Data
             {
                 Name = "Macbeth",
                 NumOfPages = "89",
-                Author = "William Shakespeare",
-                YearOfIssue = 1993,
+                Author = author2,
+                YearOfIssue = year2,
                 ISBN = "0486278026",
                 DamageLevel = 1,
                 Description = "desc",
@@ -178,8 +213,8 @@ namespace Beeble.Data
             {
                 Name = "Romeo i Julija",
                 NumOfPages = "155",
-                Author = "William Shakespeare",
-                YearOfIssue = 2017,
+                Author = author2,
+                YearOfIssue = year3,
                 ISBN = "1505259568",
                 DamageLevel = 1,
                 Description = "desc",
@@ -195,8 +230,8 @@ namespace Beeble.Data
             {
                 Name = "Romeo i Julija",
                 NumOfPages = "155",
-                Author = "William Shakespeare",
-                YearOfIssue = 2017,
+                Author = author2,
+                YearOfIssue = year3,
                 ISBN = "1505259568",
                 // only property different from book5:
                 DamageLevel = 3,

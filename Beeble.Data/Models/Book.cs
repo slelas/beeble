@@ -11,14 +11,15 @@ namespace Beeble.Data.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string NumOfPages { get; set; }
-        public string Author { get; set; }
-        public int YearOfIssue { get; set; }
         public string ISBN { get; set; }
         public int DamageLevel { get; set; }
         public string Description { get; set; }
         public string Publisher { get; set; }
         public string ImageUrl { get; set; }
 
+
+        public Author Author { get; set; }
+        public YearOfIssue YearOfIssue { get; set; }
         public List<Category> Categories { get; set; }
         public LocalLibrary LocalLibrary { get; set; }
 	    public Nationality Nationality { get; set; }

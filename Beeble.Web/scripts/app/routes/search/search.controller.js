@@ -4,60 +4,47 @@
     $scope.searchQuery = "A";
     var filterStatusList = new Array();
     var preloadedResults = new Array();
-	$scope.noMoreSearchResults = false;
+    $scope.selectedFilters = new Array();
+    $scope.noMoreSearchResults = false;
+
+    $scope.searchButton = function () {
+        $scope.selectedFilters = new Array();
+        $scope.search();
+    }
 
 	$scope.search = function() {
 
-		pageNumber = 0;
+        pageNumber = 0;
 		bookSearchService.search($scope.searchQuery, pageNumber, $scope.selectedFilters).then(function(response) {
 
-			$scope.currentBooks = response.data;
+            $scope.currentBooks = response.data;
+        });
 
-		});
+        bookSearchService.getFilters($scope.searchQuery, $scope.selectedFilters).then(function (response) {
+            $scope.searchFiltersNationality = response.data[0];
+            $scope.searchFiltersAuthor = response.data[1];
+            $scope.searchFiltersCategory = response.data[2];
+            $scope.searchFiltersYear = response.data[3];
 
-		bookSearchService.getFilters($scope.searchQuery, $scope.selectedFilters).then(function (response) {
+            // remove selected filters from available ones
+            $scope.searchFiltersNationality[0] = $scope.searchFiltersNationality[0].filter(function (element) {
+                return !($scope.selectedFilters.includes(element));
+            });
+            $scope.searchFiltersAuthor[0] = $scope.searchFiltersAuthor[0].filter(function (element) {
+                return !($scope.selectedFilters.includes(element));
+            });
+            $scope.searchFiltersCategory[0] = $scope.searchFiltersCategory[0].filter(function (element) {
+                return !($scope.selectedFilters.includes(element));
+            });
+            $scope.searchFiltersYear[0] = $scope.searchFiltersYear[0].filter(function (element) {
+                return !($scope.selectedFilters.includes(element));
+            });
 
-			// list of bool values with information which filters have been selected
-			filterStatusList = [];
+            pageNumber = 1;
+            $scope.preloadMoreResults();
+        });
 
-			// nationality filter
-
-			$scope.searchFiltersNationality = response.data[0];
-			console.log($scope.searchFiltersNationality);
-			$scope.searchFiltersNationality[0].forEach(function() {
-				filterStatusList.push(true);
-			});
-
-			// author filter
-
-			$scope.searchFiltersAuthor = response.data[1];
-
-			$scope.searchFiltersAuthor[0].forEach(function() {
-				filterStatusList.push(true);
-			});
-
-			// category filter
-
-			$scope.searchFiltersCategory = response.data[2];
-
-			$scope.searchFiltersCategory[0].forEach(function() {
-				filterStatusList.push(true);
-			});
-
-			// year filter
-			console.log(response.data);
-			$scope.searchFiltersYear = response.data[3];
-
-			$scope.searchFiltersYear[0].forEach(function () {
-				filterStatusList.push(true);
-			});
-
-			//zasto ovo?
-			pageNumber = 1;
-			$scope.preloadMoreResults();
-		});
-
-	};
+    };
 
 	$scope.preloadMoreResults = function() {
 
@@ -78,34 +65,14 @@
 
         };
 
+    $scope.applyAFilter = function (filterName) {
+        $scope.selectedFilters.push(filterName);
+        $scope.search();
+    }
 
-	// called when a user unticks a filter
-	$scope.changeFilterStatus = function(index) {
-		filterStatusList[index] = !filterStatusList[index];
-		console.log(filterStatusList);
-	};
-
-	$scope.applyFilters = function() {
-
-		var allFilters = $scope.searchFiltersNationality[0].concat($scope.searchFiltersAuthor[0])
-			.concat($scope.searchFiltersCategory[0].concat($scope.searchFiltersYear[0]));
-
-		// selectedFilters takes filters from allFilters which have a checked checkbox
-		$scope.selectedFilters = allFilters.filter(function(item, index) {
-			return filterStatusList[index];
-		});
-
-		console.log(allFilters);
-		console.log('selected' + $scope.selectedFilters);
-
-
-		pageNumber = 0;
-		$scope.search();
-	};
-
-	$scope.selectFilterAuthor = function(authorName) {
-
-		
-	}
-
+    $scope.removeAFilter = function (filterName) {
+        var index = $scope.selectedFilters.indexOf(filterName);
+        $scope.selectedFilters.splice(index, 1);
+        $scope.search();
+    }
 }]);
