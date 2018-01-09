@@ -9,7 +9,8 @@
 	$scope.search = function () {
 
 		pageNumber = 0;
-		bookSearchService.search($scope.searchQuery, pageNumber).then(function(response) {
+        bookSearchService.search($scope.searchQuery, pageNumber).then(function (response) {
+            
 			$scope.currentBooks = response.data;
 
 		});
@@ -67,6 +68,7 @@
 	    pageNumber++;
 
         $scope.preloadMoreResults();
+        console.log($scope.currentBooks);
 
         };
 
@@ -79,7 +81,7 @@
 
     $scope.applyFilters = function () {
 
-        var allFilters = $scope.searchFiltersNationality[0].concat($scope.searchFiltersAuthor[0]);
+        var allFilters = $scope.searchFiltersNationality[0].concat($scope.searchFiltersAuthor[0]).concat($scope.searchFiltersCategory[0]);
 
         // selectedFilters takes filters from allFilters which have a checked checkbox
         $scope.selectedFilters = allFilters.filter(function (item, index) {

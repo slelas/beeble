@@ -25,10 +25,22 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
         return deferred.promise;
 	}
 
+	function getBooksByName(bookName) {
+
+		var deferred = $q.defer();
+
+		$http.get(serviceBase + 'api/search/get-books-byname', { params: { bookName: bookName } }).then(function (response) {
+			deferred.resolve(response);
+		});
+
+		return deferred.promise;
+	}
+
 
 	var bookSearchFactory = {};
 	bookSearchFactory.search = search;
 	bookSearchFactory.getFilters = getFilters;
+	bookSearchFactory.getBooksByName = getBooksByName;
 
 	return bookSearchFactory;
 
