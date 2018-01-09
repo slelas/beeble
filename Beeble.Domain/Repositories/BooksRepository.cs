@@ -188,16 +188,10 @@ namespace Beeble.Domain.Repositories
 					.ToList();
 				
 				// preventing circular reference
-				books
-					.Select(x =>
-					{
-						x.Categories =
+				books.Select(x => x.Categories =
 							x.Categories
 								.Select(y => new Category() {Name = y.Name, Books = null})
-								.ToList();
-
-						return x;
-					})
+								.ToList())
 					.ToList();
 
 				return books;
