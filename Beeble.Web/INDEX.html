@@ -1,45 +1,50 @@
 ﻿<!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-    <meta charset="utf-8" />
-    <title>Beeble</title>
-    <!--For refresh to work, base href must be right after the title tag-->
-    <base href="/" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Beeble</title>
+	<base href="/" />
+	<link rel="stylesheet" href="styles/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900&amp;subset=latin-ext" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,900&amp;subset=latin-ext" rel="stylesheet">
 
-    <script src="scripts/vendor/angular.js"></script>
-    <script src="scripts/vendor/angular-ui-router.js"></script>
+	<script src="scripts/vendor/angular.js"></script>
+	<script src="scripts/vendor/angular-ui-router.js"></script>
 
-    <script src="scripts/app/app.js"></script>
-    <script src="scripts/app/app.config.js"></script>
-    
-    <script src="scripts/app/routes/search/search.route.js"></script>
-    <script src="scripts/app/routes/search/search.controller.js"></script>
-    
-    <script src="scripts/app/routes/login/login.route.js"></script>
-    <script src="scripts/app/routes/login/login.controller.js"></script>
-    
-    <script src="scripts/app/routes/signup/signup.route.js"></script>
-    <script src="scripts/app/routes/signup/signup.controller.js"></script>
-    
-    <script src="scripts/app/services/AuthService.js"></script>
-    <script src="scripts/app/services/authInterceptorService.js"></script>
-    <script src="scripts/app/services/authInterceptorService.js"></script>
-    
-    <script src="scripts/app/constants/serviceBase.js"></script>
+	<script src="scripts/app/app.js"></script>
+	<script src="scripts/app/app.config.js"></script>
+        
+	<script src="scripts/app/routes/search/search.route.js"></script>
+	<script src="scripts/app/routes/search/search.controller.js"></script>
+        
+	<script src="scripts/app/routes/login/login.route.js"></script>
+	<script src="scripts/app/routes/login/login.controller.js"></script>
+        
+	<script src="scripts/app/routes/signup/signup.route.js"></script>
+	<script src="scripts/app/routes/signup/signup.controller.js"></script>
+
+	<script src="scripts/app/routes/home/home.route.js"></script>
+	<script src="scripts/app/routes/home/home.controller.js"></script>
+        
+	<script src="scripts/app/services/AuthService.js"></script>
+	<script src="scripts/app/services/authInterceptorService.js"></script>
+	<script src="scripts/app/services/authInterceptorService.js"></script>
+        
+	<script src="scripts/app/constants/serviceBase.js"></script>
 	<script src="scripts/app/abstract/user.loggedin.js"></script>
 
 	<script src="scripts/app/directives/customHeader/customHeader.directive.js"></script>
-	
+        
 	<script src="scripts/app/services/bookSearchService.js"></script>
 	
 	<script src="scripts/app/routes/bookDetails/bookDetails.controller.js"></script>
 	<script src="scripts/app/routes/bookDetails/bookDetails.route.js"></script>
-
-
 </head>
 <body>
-	<customheader></customheader>
-<div ui-view></div>
-
+<customheader></customheader>
+<div class="background__image">
+	<div ui-view></div>
+</div>
 </body>
 </html>
