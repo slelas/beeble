@@ -13,7 +13,7 @@ gulp.task('compileSass', function () {
     return gulp.src('./styles/main.scss')
         .pipe(plumber())
         .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer({ browsers: ['> 0%']}))
+        // .pipe(autoprefixer({ browsers: ['> 0%']}))
         .pipe(gulp.dest('./dist/'))
         .pipe(cleanCSS())
         .pipe(rename('main.min.css'))

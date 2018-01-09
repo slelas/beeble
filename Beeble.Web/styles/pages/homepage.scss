@@ -1,3 +1,11 @@
+%every-box {
+    height: 40px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
+}
+
 .homepage {
     height: 100vh;
     display: flex;
@@ -20,12 +28,8 @@
 
 .homepage__search-bar {
     width: 100%;
-    height: 40px;
-    border-radius: 5px;
     text-align: left;
-    -webkit-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
-    -moz-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
-    box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
+    @extend %every-box;
 }
 
 .search-bar__input {
@@ -69,11 +73,7 @@
     display: inline-flex;
     justify-content: center;
     width: 48%;
-    height: 40px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
-    -moz-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
-    box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
+    @extend %every-box;
     background-color: #000000;
     color: white;
     transition-duration: 0.25s;
@@ -104,11 +104,7 @@
     justify-content: center;
     width: 48%;
     float: right;
-    height: 40px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
-    -moz-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
-    box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
+    @extend %every-box;
     background-color: #b59a56;
     color: white;
     transition-duration: 0.25s;
