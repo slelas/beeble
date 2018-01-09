@@ -483,7 +483,7 @@ a {
     width: 15px;
     margin-right: 5px; }
   .homepage__button span {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 17px;
     color: white; }
   .homepage__button .wrapper {
@@ -502,3 +502,15 @@ a {
   .homepage__button.register:hover,
   .homepage__button.log-out:hover {
     background-color: #c9ae6b; }
+
+@media screen and (max-width: 700px) {
+  .homepage__logo {
+    font-size: 40px; }
+  .homepage__container {
+    width: 75%; }
+  .homepage__button {
+    margin-right: 15px; }
+    .homepage__button span {
+      font-size: 12px; }
+    .homepage__button img {
+      width: 10px; } }

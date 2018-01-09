@@ -83,7 +83,7 @@
     }
 
     span {
-        font-weight: 500;
+        font-weight: 700;
         font-size: 17px;
         color: white;
     }
@@ -109,5 +109,27 @@
 
     &:hover {
         background-color: #c9ae6b;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .homepage__logo {
+        font-size: 40px;
+    }
+
+    .homepage__container {
+        width: 75%;
+    }
+
+    .homepage__button {
+        margin-right: 15px;
+
+        span {
+            font-size: 12px;
+        }
+
+        img {
+            width: 10px;
+        }
     }
 }
