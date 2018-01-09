@@ -17,16 +17,23 @@
 
 <h3>Autori</h3>
 <div ng-repeat="filter in searchFiltersAuthor[0]">
-    <div>
-        {{filter}} ({{searchFiltersAuthor[1][$index]}}) <input type="checkbox" ng-click="changeFilterStatus($index+searchFiltersNationality[1].length)" checked />
-    </div>
+	<div>
+		{{filter}} ({{searchFiltersAuthor[1][$index]}}) <input type="checkbox" ng-click="changeFilterStatus($index+searchFiltersNationality[1].length)" checked />
+	</div>
 </div>
 
 <h3>Kategorije</h3>
 <div ng-repeat="filter in searchFiltersCategory[0]">
-    <div>
-        {{filter}} ({{searchFiltersCategory[1][$index]}}) <input type="checkbox" ng-click="changeFilterStatus($index+searchFiltersNationality[1].length+searchFiltersCategory.length[1])" checked />
-    </div>
+	<div>
+		{{filter}} ({{searchFiltersCategory[1][$index]}}) <input type="checkbox" ng-click="changeFilterStatus($index+searchFiltersNationality[1].length+searchFiltersAuthor[1].length)" checked />
+	</div>
+</div>
+
+<h3>Godina</h3>
+<div ng-repeat="filter in searchFiltersYear[0]">
+	<div>
+		{{filter}} ({{searchFiltersYear[1][$index]}}) <input type="checkbox" ng-click="changeFilterStatus($index+searchFiltersNationality[1].length+searchFiltersAuthor[1].length+searchFiltersCategory[1].length)" checked />
+	</div>
 </div>
 
 <button ng-click="applyFilters()">Apply filters</button>
