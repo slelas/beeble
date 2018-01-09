@@ -411,7 +411,7 @@ body {
 a {
   text-decoration: none; }
 
-.homepage__search-bar, .homepage__login, .homepage__register {
+.homepage__search-bar, .homepage__button {
   height: 40px;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 50px 10px rgba(0, 0, 0, 0.1);
@@ -465,47 +465,31 @@ a {
 .homepage__buttons {
   width: 100%;
   margin-top: 25px;
-  text-align: left; }
+  display: flex;
+  justify-content: space-between; }
 
-.homepage__login {
+.homepage__button {
   display: inline-flex;
   justify-content: center;
-  width: 48%;
-  background-color: #000000;
-  color: white;
-  transition-duration: 0.25s; }
-  .homepage__login:hover {
-    background-color: #333333; }
-
-.login__wrapper {
-  display: flex;
   align-items: center;
-  justify-content: center; }
-  .login__wrapper img {
+  flex-grow: 1;
+  margin-right: 30px; }
+  .homepage__button:nth-child(2) {
+    margin-right: 0px; }
+  .homepage__button img {
     width: 15px;
     margin-right: 5px; }
-  .login__wrapper span {
+  .homepage__button span {
     font-weight: 500;
-    font-size: 17px; }
+    font-size: 17px;
+    color: white; }
+  .homepage__button .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
 
-.homepage__register {
-  display: inline-flex;
-  justify-content: center;
-  width: 48%;
-  float: right;
-  background-color: #b59a56;
-  color: white;
-  transition-duration: 0.25s; }
-  .homepage__register:hover {
-    background-color: #ceb16a; }
+.homepage__button.login {
+  background-color: #000000; }
 
-.register__wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-  .register__wrapper img {
-    width: 15px;
-    margin-right: 5px; }
-  .register__wrapper span {
-    font-weight: 500;
-    font-size: 17px; }
+.homepage__button.register {
+  background-color: #b59a56; }
