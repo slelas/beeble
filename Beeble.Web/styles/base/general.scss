@@ -4,6 +4,10 @@
     clear: both;
 }
 
+* {
+    transition-duration: 0.25s;
+}
+
 body {
     height: 100vh;
     background-image: url('/images/paper-background.jpg');
@@ -22,4 +26,11 @@ body {
 
 a {
     text-decoration: none;
+}
+
+.homepage__logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    font-weight: 900;
+    margin-bottom: 30px;
 }

@@ -394,6 +394,9 @@ template {
   display: table;
   clear: both; }
 
+* {
+  transition-duration: 0.25s; }
+
 body {
   height: 100vh;
   background-image: url("/images/paper-background.jpg");
@@ -410,6 +413,12 @@ body {
 
 a {
   text-decoration: none; }
+
+.homepage__logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 80px;
+  font-weight: 900;
+  margin-bottom: 30px; }
 
 .homepage__search-bar, .homepage__button {
   height: 40px;
@@ -428,12 +437,6 @@ a {
 .homepage__container {
   width: 50%;
   text-align: center; }
-
-.homepage__logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 80px;
-  font-weight: 900;
-  margin-bottom: 30px; }
 
 .homepage__search-bar {
   width: 100%;
@@ -472,10 +475,10 @@ a {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  flex-grow: 1;
-  margin-right: 30px; }
-  .homepage__button:nth-child(2) {
-    margin-right: 0px; }
+  flex-grow: 0.8;
+  margin-right: 25px; }
+  .homepage__button:last-child {
+    margin-right: 0; }
   .homepage__button img {
     width: 15px;
     margin-right: 5px; }
@@ -490,6 +493,10 @@ a {
 
 .homepage__button.login {
   background-color: #000000; }
+  .homepage__button.login:hover {
+    background-color: #333333; }
 
 .homepage__button.register {
   background-color: #b59a56; }
+  .homepage__button.register:hover {
+    background-color: #c9ae6b; }
