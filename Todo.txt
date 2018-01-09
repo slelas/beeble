@@ -1,3 +1,4 @@
 Napravit details rutu za svaku knjigu
 Grupirat po imenu u search rezultatima +
 dodat ui-sref sa svakog search rezultata na details +
+lazy loading na nationality i language

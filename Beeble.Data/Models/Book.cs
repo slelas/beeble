@@ -20,8 +20,9 @@ namespace Beeble.Data.Models
         public string ImageUrl { get; set; }
 
         public List<Category> Categories { get; set; }
-        public Nationality Nationality { get; set; }
         public LocalLibrary LocalLibrary { get; set; }
+	    public Nationality Nationality { get; set; }
+	    public Language Language { get; set; }
 
-    }
+	}
 }

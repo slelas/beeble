@@ -99,6 +99,7 @@
     <Compile Include="Models\BorrowedBooks.cs" />
     <Compile Include="Models\BorrowedBooksHistory.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Language.cs" />
     <Compile Include="Models\LocalLibrary.cs" />
     <Compile Include="Models\LocalLibraryMember.cs" />
     <Compile Include="Models\Nationality.cs" />

@@ -4,68 +4,68 @@
     $scope.searchQuery = "A";
     var filterStatusList = new Array();
     var preloadedResults = new Array();
-    $scope.noMoreSearchResults = false
+	$scope.noMoreSearchResults = false;
 
-	$scope.search = function () {
+	$scope.search = function() {
 
 		pageNumber = 0;
-        bookSearchService.search($scope.searchQuery, pageNumber).then(function (response) {
-            
+		bookSearchService.search($scope.searchQuery, pageNumber).then(function(response) {
+
 			$scope.currentBooks = response.data;
 
 		});
 
 		$scope.searchFiltersNationality = [];
-		bookSearchService.getFilters($scope.searchQuery).then(function (response) {
+		bookSearchService.getFilters($scope.searchQuery).then(function(response) {
 
-            // list of bool values with information which filters have been selected
-            filterStatusList = [];
+			// list of bool values with information which filters have been selected
+			filterStatusList = [];
 
-            // nationality filter
+			// nationality filter
 
 			$scope.searchFiltersNationality = response.data[0];
 
-            $scope.searchFiltersNationality[0].forEach(function () {
-                filterStatusList.push(true);
+			$scope.searchFiltersNationality[0].forEach(function() {
+				filterStatusList.push(true);
 			});
 
-            // author filter
+			// author filter
 
-            $scope.searchFiltersAuthor = response.data[1];
+			$scope.searchFiltersAuthor = response.data[1];
 
-            $scope.searchFiltersAuthor[0].forEach(function () {
-                filterStatusList.push(true);
-            });
+			$scope.searchFiltersAuthor[0].forEach(function() {
+				filterStatusList.push(true);
+			});
 
-            // category filter
+			// category filter
 
-            $scope.searchFiltersCategory = response.data[2];
+			$scope.searchFiltersCategory = response.data[2];
 
-            $scope.searchFiltersCategory[0].forEach(function () {
-                filterStatusList.push(true);
-            });
+			$scope.searchFiltersCategory[0].forEach(function() {
+				filterStatusList.push(true);
+			});
 
-            //zasto ovo?
-            pageNumber = 1;
-            $scope.preloadMoreResults();
+			//zasto ovo?
+			pageNumber = 1;
+			$scope.preloadMoreResults();
 		});
 
-	}
+	};
 
-    $scope.preloadMoreResults = function () {
+	$scope.preloadMoreResults = function() {
 
-        bookSearchService.search($scope.searchQuery, pageNumber, $scope.selectedFilters).then(function (response) {
+		bookSearchService.search($scope.searchQuery, pageNumber, $scope.selectedFilters).then(function(response) {
 			preloadedResults = $scope.currentBooks.concat(response.data);
 
-            $scope.noMoreSearchResults = !response.data.length;
-        });
+			$scope.noMoreSearchResults = !response.data.length;
+		});
 
-    }
+	};
 
     $scope.showMoreResults = function () {
 
 		$scope.currentBooks = preloadedResults;
-	    pageNumber++;
+		pageNumber++;
 
         $scope.preloadMoreResults();
         console.log($scope.currentBooks);
@@ -77,26 +77,27 @@
 	$scope.changeFilterStatus = function(index) {
 		filterStatusList[index] = !filterStatusList[index];
 		console.log(filterStatusList);
-	}
+	};
 
-    $scope.applyFilters = function () {
+	$scope.applyFilters = function() {
 
-        var allFilters = $scope.searchFiltersNationality[0].concat($scope.searchFiltersAuthor[0]).concat($scope.searchFiltersCategory[0]);
+		var allFilters = $scope.searchFiltersNationality[0].concat($scope.searchFiltersAuthor[0])
+			.concat($scope.searchFiltersCategory[0]);
 
-        // selectedFilters takes filters from allFilters which have a checked checkbox
-        $scope.selectedFilters = allFilters.filter(function (item, index) {
+		// selectedFilters takes filters from allFilters which have a checked checkbox
+		$scope.selectedFilters = allFilters.filter(function(item, index) {
 			return filterStatusList[index];
-        });
+		});
 
-        console.log(allFilters);
+		console.log(allFilters);
 
 
 		pageNumber = 0;
-        bookSearchService.search($scope.searchQuery, pageNumber, $scope.selectedFilters).then(function (response) {
-            $scope.currentBooks = response.data;
-            pageNumber++;
-            $scope.preloadMoreResults();
+		bookSearchService.search($scope.searchQuery, pageNumber, $scope.selectedFilters).then(function(response) {
+			$scope.currentBooks = response.data;
+			pageNumber++;
+			$scope.preloadMoreResults();
 		});
-	}
+	};
 
 }]);

@@ -16,7 +16,7 @@ namespace Beeble.Domain.Repositories
     {
         int numberOfBooksPerSearchQuery = int.Parse(ConfigurationManager.AppSettings["numberOfBooksPerSearchQuery"]);
 
-        public List<string> SearchBooks(string searchQuery, int pageNumber, List<string> selectedFilters)
+        public List<Book> SearchBooks(string searchQuery, int pageNumber, List<string> selectedFilters)
         {
 
             using (var context = new AuthContext())
@@ -25,25 +25,49 @@ namespace Beeble.Domain.Repositories
                     .Where(x => x.Name.Contains(searchQuery))
                     .OrderBy(x => x.Name);
 
+	            List<Book> books = new List<Book>();
+
                 // short circuit to prevent Index out of range
                 if (selectedFilters.Any() && selectedFilters[0] == "-1")
                 {
-                    return searchResultsQuery
-                        .Select(x => x.Name)
-                        .Distinct()
-                        .OrderBy(x => x)
+                    books = searchResultsQuery
+	                    .GroupBy(x => x.Name)
+	                    .Select(x => x.FirstOrDefault())
+						.Include(x => x.Categories)
+						.Include(x => x.Language)
+						.OrderBy(x => x.Name)
                     .Skip(numberOfBooksPerSearchQuery * pageNumber)
                     .Take(numberOfBooksPerSearchQuery).ToList();
+
+	                // preventing circular reference
+	                books.Select(x => x.Categories =
+			                x.Categories
+				                .Select(y => new Category() { Name = y.Name, Books = null })
+				                .ToList())
+		                .ToList();
+
+	                return books;
                 }
 
-                return searchResultsQuery
+                books = searchResultsQuery
                     .Where(x => (selectedFilters.Contains(x.Nationality.Name) && (selectedFilters.Contains(x.Author) && (selectedFilters.Intersect(x.Categories.Select(y => y.Name)).Any()))))
-                    .Select(x => x.Name)
-                    .Distinct()
-                    .OrderBy(x => x)
-                    .Skip(numberOfBooksPerSearchQuery * pageNumber)
+	                .GroupBy(x => x.Name)
+	                .Select(x => x.FirstOrDefault())
+	                .Include(x => x.Categories)
+	                .Include(x => x.Language)
+					.OrderBy(x => x.Name)
+					.Skip(numberOfBooksPerSearchQuery * pageNumber)
                     .Take(numberOfBooksPerSearchQuery).ToList();
-            }
+
+	            // preventing circular reference
+	            books.Select(x => x.Categories =
+			            x.Categories
+				            .Select(y => new Category() { Name = y.Name, Books = null })
+				            .ToList())
+		            .ToList();
+
+	            return books;
+			}
         }
 
         public List<List<List<string>>> GetAllFilters(string searchQuery)

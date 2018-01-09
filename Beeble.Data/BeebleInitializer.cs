@@ -39,7 +39,32 @@ namespace Beeble.Data
             };
 
 
-            var nationality1 = new Nationality()
+            var language1 = new Language()
+	        {
+		        Name = "Croatian"
+	        };
+	        var language2 = new Language()
+	        {
+		        Name = "English"
+	        };
+	        var language3 = new Language()
+	        {
+		        Name = "French"
+	        };
+            var language4 = new Language()
+            {
+                Name = "Spanish"
+            };
+            var language5 = new Language()
+            {
+                Name = "Bosnian"
+            };
+            var language6 = new Language()
+            {
+                Name = "Chinese"
+            };
+
+	        var nationality1 = new Nationality()
 	        {
 		        Name = "Croatia"
 	        };
@@ -51,20 +76,20 @@ namespace Beeble.Data
 	        {
 		        Name = "USA"
 	        };
-            var nationality4 = new Nationality()
-            {
-                Name = "France"
-            };
-            var nationality5 = new Nationality()
-            {
-                Name = "Germany"
-            };
-            var nationality6 = new Nationality()
-            {
-                Name = "Ireland"
-            };
+	        var nationality4 = new Nationality()
+	        {
+		        Name = "France"
+	        };
+	        var nationality5 = new Nationality()
+	        {
+		        Name = "Germany"
+	        };
+	        var nationality6 = new Nationality()
+	        {
+		        Name = "Ireland"
+	        };
 
-            var localLibrary1 = new LocalLibrary()
+			var localLibrary1 = new LocalLibrary()
 	        {
 		        Address = "Placeholder adresa",
 		        BookLendLimit = 4,
@@ -92,6 +117,7 @@ namespace Beeble.Data
 		        Description = "desc",
 		        Publisher = " Simon & Schuster",
 		        LocalLibrary = localLibrary1,
+				Language = language1,
 		        Nationality = nationality3,
                 Categories = new List<Category>() { category2 },
                 ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg"
@@ -108,7 +134,8 @@ namespace Beeble.Data
                 Description = "desc",
                 Publisher = "Mozaik knjiga",
                 LocalLibrary = localLibrary1,
-                Nationality = nationality1,
+	            Language = language1,
+				Nationality = nationality1,
                 Categories = new List<Category>() { category1 },
                 ImageUrl = "https://mojtv.hr//images/ff6b3c8b-ba33-4050-9f1f-34d3a35ffbd5.jpg"
             };
@@ -125,7 +152,8 @@ namespace Beeble.Data
                 Publisher = "Cambridge Press",
                 LocalLibrary = localLibrary1,
                 Nationality = nationality2,
-                Categories = new List<Category>() { category5 },
+	            Language = language1,
+				Categories = new List<Category>() { category5 },
                 ImageUrl = "https://static.enotes.com/images/covers%2Fhamlet.jpg"
             };
 
@@ -141,7 +169,8 @@ namespace Beeble.Data
                 Publisher = "Cambridge Press",
                 LocalLibrary = localLibrary1,
                 Nationality = nationality2,
-                Categories = new List<Category>() { category5 },
+	            Language = language1,
+				Categories = new List<Category>() { category5 },
                 ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/419CMC5SR1L._SX308_BO1,204,203,200_.jpg"
             };
 
@@ -157,7 +186,8 @@ namespace Beeble.Data
                 Publisher = "Cambridge Press",
                 LocalLibrary = localLibrary1,
                 Nationality = nationality2,
-                Categories = new List<Category>() { category5 },
+	            Language = language1,
+				Categories = new List<Category>() { category5 },
                 ImageUrl = "https://static.enotes.com/images/covers%2Fromeo-and-juliet.jpg"
             };
 
@@ -174,7 +204,8 @@ namespace Beeble.Data
                 Publisher = "Cambridge Press",
                 LocalLibrary = localLibrary1,
                 Nationality = nationality2,
-                Categories = new List<Category>() { category5 },
+	            Language = language1,
+				Categories = new List<Category>() { category5 },
                 ImageUrl = "https://static.enotes.com/images/covers%2Fromeo-and-juliet.jpg"
             };
 
