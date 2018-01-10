@@ -608,6 +608,7 @@ a {
     font-weight: 500; }
 
 .book-details__reserve {
+  margin-top: 35px;
   width: 100%;
   height: auto; }
 
@@ -648,6 +649,17 @@ a {
   color: white;
   padding: 10px;
   border-radius: 5px; }
+
+.library__button-one-time {
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+  height: auto;
+  background-color: #333333;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  right: 110px;
+  top: 0; }
 
 .navbar {
   width: 80%;
