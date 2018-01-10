@@ -84,6 +84,9 @@
     <Content Include="scripts\app\routes\bookDetails\bookDetails.controller.js" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.route.js" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.template.html" />
+    <Content Include="scripts\app\routes\home\home.controller.js" />
+    <Content Include="scripts\app\routes\home\home.route.js" />
+    <Content Include="scripts\app\routes\home\home.template.html" />
     <Content Include="scripts\app\routes\search\search.template.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

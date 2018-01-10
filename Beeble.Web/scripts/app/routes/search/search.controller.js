@@ -1,16 +1,16 @@
-﻿angular.module('myApp').controller('searchController', ['$scope', '$location', 'authService', 'bookSearchService', function ($scope, $location, authService, bookSearchService) {
+﻿angular.module('myApp').controller('searchController', ['$scope', '$location', '$stateParams', 'authService', 'bookSearchService', function ($scope, $location, $stateParams, authService, bookSearchService) {
 
     var pageNumber = 0;
-    $scope.searchQuery = "A";
+	$scope.searchQuery;
     var filterStatusList = new Array();
     var preloadedResults = new Array();
     $scope.selectedFilters = new Array();
     $scope.noMoreSearchResults = false;
 
-    $scope.searchButton = function () {
-        $scope.selectedFilters = new Array();
-        $scope.search();
-    }
+	$scope.searchButton = function () {
+		$scope.selectedFilters = new Array();
+		$scope.search();
+	};
 
 	$scope.search = function() {
 
@@ -65,14 +65,28 @@
 
         };
 
-    $scope.applyAFilter = function (filterName) {
-        $scope.selectedFilters.push(filterName);
-        $scope.search();
-    }
+	$scope.applyAFilter = function (filterName) {
+		$scope.selectedFilters.push(filterName);
+		$scope.search();
+	};
 
-    $scope.removeAFilter = function (filterName) {
-        var index = $scope.selectedFilters.indexOf(filterName);
-        $scope.selectedFilters.splice(index, 1);
-        $scope.search();
-    }
+	$scope.removeAFilter = function (filterName) {
+		var index = $scope.selectedFilters.indexOf(filterName);
+		$scope.selectedFilters.splice(index, 1);
+		$scope.search();
+	};
+
+	// invoked upon route loading
+	($scope.init = function () {
+
+		if ($scope.searchQuery) {
+			$scope.searchQuery = $stateParams.searchQuery;
+			$scope.search();
+		}
+		// for debugging purposes:
+		else {
+			$scope.searchQuery = 'A';
+		}
+
+	})();
 }]);

@@ -1,7 +1,7 @@
-var app = angular.module('myApp');
+var app = angular.module('myApp').controller("homeController", function ($scope, $state) {
 
-app.controller("homeController", HomeControllerFunction);
-
-function HomeControllerFunction($scope, $state) {
-    
-}
+	$scope.search = function () {
+		if ($scope.searchQuery)
+			$state.go('search', { searchQuery: $scope.searchQuery });
+	};
+});
