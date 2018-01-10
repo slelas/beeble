@@ -178,7 +178,11 @@ namespace Beeble.Domain.Repositories
                     .Where(x => x.Name == bookName)
                     .Include(x => x.Categories)
                     .Include(x => x.LocalLibrary)
-                    .ToList();
+					.Include(x => x.Author)
+					.Include(x => x.Language)
+					.Include(x => x.YearOfIssue)
+					.Include(x => x.Nationality)
+					.ToList();
 
                 // preventing circular reference
                 books.Select(x => x.Categories =
