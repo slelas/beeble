@@ -13,7 +13,7 @@
 }
 
 .navbar__items {
-    align-self: flex-end;
+    align-self: baseline;
 }
 
 .navbar__item {
@@ -23,5 +23,24 @@
 
     &:last-child {
         margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .navbar {
+        width: 100%;
+        height: 75px;
+        padding: 0;
+        background-color: #fff;
+        box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar .logo {
+        font-size: 24px;
+        color: #000;
+    }
+
+    .navbar__item {
+        
     }
 }

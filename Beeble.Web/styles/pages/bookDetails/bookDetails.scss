@@ -2,7 +2,7 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    padding: 50px;
+    padding-top: 50px;
     padding-bottom: 0px;
 }
 
@@ -187,4 +187,10 @@
     position: absolute;
     right: 110px;
     top: 0;
+}
+
+@media screen and (max-width: 980px) {
+    .book-details {
+        width: 100%;
+    }
 }
