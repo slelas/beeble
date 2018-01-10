@@ -79,7 +79,7 @@
 	// invoked upon route loading
 	($scope.init = function () {
 
-		if ($scope.searchQuery) {
+		if ($stateParams.searchQuery) {
 			$scope.searchQuery = $stateParams.searchQuery;
 			$scope.search();
 		}

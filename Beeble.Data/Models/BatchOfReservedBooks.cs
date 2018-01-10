@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Beeble.Data.Models
 {
-    public class ReservedBooks
+    public class BatchOfReservedBooks
     {
         public int Id { get; set; }
         public LocalLibraryMember LibraryMember { get; set; }

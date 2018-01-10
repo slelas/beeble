@@ -87,6 +87,9 @@
     <Content Include="scripts\app\routes\home\home.controller.js" />
     <Content Include="scripts\app\routes\home\home.route.js" />
     <Content Include="scripts\app\routes\home\home.template.html" />
+    <Content Include="scripts\app\routes\libraryHub\libraryHub.controller.js" />
+    <Content Include="scripts\app\routes\libraryHub\libraryHub.route.js" />
+    <Content Include="scripts\app\routes\libraryHub\libraryHub.template.html" />
     <Content Include="scripts\app\routes\search\search.template.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -110,6 +113,7 @@
     <Content Include="scripts\app\services\authInterceptorService.js" />
     <Content Include="scripts\app\services\AuthService.js" />
     <Content Include="scripts\app\services\bookSearchService.js" />
+    <Content Include="scripts\app\services\getLibrariesService.js" />
     <Content Include="scripts\vendor\angular-ui-router.js" />
     <Content Include="scripts\vendor\angular.js" />
     <Content Include="Web.config" />

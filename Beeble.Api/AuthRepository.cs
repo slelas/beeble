@@ -9,6 +9,9 @@ using Beeble.Api.Models;
 using Beeble.Api.UserManager;
 using Beeble.Data;
 using Beeble.Data.Models;
+using Microsoft.Owin.Security;
+using System.Security.Claims;
+using System.Web.Http;
 
 namespace Beeble.Api
 {
@@ -61,5 +64,6 @@ namespace Beeble.Api
             _userManager.Dispose();
 
         }
-    }
+
+	}
 }

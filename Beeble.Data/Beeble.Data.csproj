@@ -97,15 +97,15 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
-    <Compile Include="Models\BorrowedBooks.cs" />
-    <Compile Include="Models\BorrowedBooksHistory.cs" />
+    <Compile Include="Models\BatchOfBorrowedBooks.cs" />
+    <Compile Include="Models\BatchOfBorrowedBooksHistory.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\LocalLibrary.cs" />
     <Compile Include="Models\LocalLibraryMember.cs" />
     <Compile Include="Models\Nationality.cs" />
     <Compile Include="Models\OnlineUser.cs" />
-    <Compile Include="Models\ReservedBooks.cs" />
+    <Compile Include="Models\BatchOfReservedBooks.cs" />
     <Compile Include="Models\YearOfIssue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

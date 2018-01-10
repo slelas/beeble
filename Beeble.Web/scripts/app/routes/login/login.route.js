@@ -3,6 +3,6 @@
         .state('login', {
             url: '/login',
             controller: 'loginController',
-            templateUrl: 'scripts/app/routes/login/login.template.html'
+			templateUrl: 'scripts/app/routes/login/login.template.html'
         });
 });

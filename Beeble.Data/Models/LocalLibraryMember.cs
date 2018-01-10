@@ -8,7 +8,7 @@ namespace Beeble.Data.Models
 {
     public class LocalLibraryMember
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string  PhoneNumber { get; set; }
@@ -18,9 +18,11 @@ namespace Beeble.Data.Models
         public bool IsGuest { get; set; }
         public DateTime? MembershipExpiryDate { get; set; }
 
-        public OnlineUser OnlineUser { get; set; }
+		public OnlineUser OnlineUser { get; set; }
         public LocalLibrary LocalLibrary { get; set; }
 
+		public ICollection<BatchOfBorrowedBooks> BatchesOfBorrowedBooks { get; set; }
+		public ICollection<BatchOfReservedBooks> BatchesOfReservedBooks { get; set; }
 
-    }
+	}
 }

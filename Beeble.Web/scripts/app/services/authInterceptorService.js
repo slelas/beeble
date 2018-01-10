@@ -11,7 +11,6 @@
         if (authData) {
             config.headers.Authorization = 'Bearer ' + authData.token;
         }
-        console.log(config.headers.Authorization);
         return config;
     }
 
