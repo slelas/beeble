@@ -40,10 +40,11 @@ namespace Beeble.Domain.Repositories
 					.Include("BatchesOfBorrowedBooks")
 					.Include("BatchesOfReservedBooks")
 					.Include("BatchesOfBorrowedBooks.Books")
-					.Include("BatchesOfReservedBooks.Books")
-					.Where(localLibraryMember => localLibraryMember.OnlineUser.Id == userId.ToString() &&
+                    .Include("BatchesOfBorrowedBooks.Books.Author")
+                    .Include("BatchesOfReservedBooks.Books")
+                    .Where(localLibraryMember => localLibraryMember.OnlineUser.Id == userId.ToString() &&
 					                             localLibraryMember.LocalLibrary.Id == libraryId)
-					.ToList().Select(LongLLMemberUserDTO.FromData)
+					.ToList().Select(x => LongLLMemberUserDTO.FromData(x))
 					.FirstOrDefault();
 			}
 		}

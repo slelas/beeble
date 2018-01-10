@@ -1,5 +1,5 @@
 ﻿<div ng-repeat="library in libraries">
-	<div>{{library.name}}</div>
+	<div ui-sref="libraryDetails({libraryId: library.libraryId})">{{library.libraryName}}</div>
 
 
 </div>

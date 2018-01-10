@@ -38,117 +38,41 @@ namespace Beeble.Api
                     _userManager.Create(regularUser, "123456");
                     _userManager.AddToRole(regularUser.Id, "User");
 
-					// seed categories
-					var category1 = new Category()
-					{
-						Name = "Roman"
-					};
-					var category2 = new Category()
-					{
-						Name = "Biografija"
-					};
-					var category3 = new Category()
-					{
-						Name = "Autobiografija"
-					};
-					var category4 = new Category()
-					{
-						Name = "Ep"
-					};
-					var category5 = new Category()
-					{
-						Name = "Drama"
-					};
-					var category6 = new Category()
-					{
-						Name = "Komedija"
-					};
+                    // seed categories
+                    var category1 = new Category() { Name = "Roman" };
+                    var category2 = new Category() { Name = "Biografija" };
+                    var category3 = new Category() { Name = "Autobiografija" };
+                    var category4 = new Category() { Name = "Ep" };
+                    var category5 = new Category() { Name = "Drama" };
+					var category6 = new Category() {Name = "Komedija"};
 
-
-					var language1 = new Language()
-					{
-						Name = "Croatian"
-					};
-					var language2 = new Language()
-					{
-						Name = "English"
-					};
-					var language3 = new Language()
-					{
-						Name = "French"
-					};
-					var language4 = new Language()
-					{
-						Name = "Spanish"
-					};
-					var language5 = new Language()
-					{
-						Name = "Bosnian"
-					};
-					var language6 = new Language()
-					{
-						Name = "Chinese"
-					};
+                    var language1 = new Language() {Name = "Croatian"};
+					var language2 = new Language() {Name = "English"};
+					var language3 = new Language() {Name = "French"};
+					var language4 = new Language() {Name = "Spanish"};
+					var language5 = new Language() {Name = "Bosnian"};
+					var language6 = new Language() {Name = "Chinese"};
 
 					var nationality1 = new Nationality()
-					{
-						Name = "Croatia"
-					};
+					{Name = "Croatia"};
 					var nationality2 = new Nationality()
-					{
-						Name = "England"
-					};
-					var nationality3 = new Nationality()
-					{
-						Name = "USA"
-					};
+					{Name = "England"};
+					var nationality3 = new Nationality(){Name = "USA"};
 					var nationality4 = new Nationality()
-					{
-						Name = "France"
-					};
+					{Name = "France"};
 					var nationality5 = new Nationality()
-					{
-						Name = "Germany"
-					};
+					{Name = "Germany"};
 					var nationality6 = new Nationality()
-					{
-						Name = "Ireland"
-					};
+					{Name = "Ireland"};
 
-					var year1 = new YearOfIssue()
-					{
-						Year = 2001
-					};
+					var year1 = new YearOfIssue(){Year = 2001};
+                    var year2 = new YearOfIssue() { Year = 2005 };
+					var year3 = new YearOfIssue(){Year = 2017};
+					var year4 = new YearOfIssue(){Year = 1931};
 
-					var year2 = new YearOfIssue()
-					{
-						Year = 2005
-					};
-
-					var year3 = new YearOfIssue()
-					{
-						Year = 2017
-					};
-
-					var year4 = new YearOfIssue()
-					{
-						Year = 1931
-					};
-
-					var author1 = new Author()
-					{
-						Name = "Walter Isaacson"
-					};
-
-					var author2 = new Author()
-					{
-						Name = "Shakespeare"
-					};
-
-					var author3 = new Author()
-					{
-						Name = "Mato Lovrak"
-					};
+					var author1 = new Author(){Name = "Walter Isaacson"};
+                    var author2 = new Author() { Name = "Shakespeare" };
+					var author3 = new Author(){Name = "Mato Lovrak"};
 
 					var localLibrary1 = new LocalLibrary()
 					{
@@ -277,7 +201,30 @@ namespace Beeble.Api
 						Id = Guid.NewGuid()
 					};
 
-					context.Categories.Add(category1);
+                    var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
+                    {
+                        LibraryMember = localLibraryMember1,
+                        PickupDate = new DateTime(2018, 1, 2),
+                        ReturnDeadline = new DateTime(2018, 3, 2),
+                        Books = new List<Book> { book1, book2 },
+                    };
+
+                    var batchOfBorrowedBooks2 = new BatchOfBorrowedBooks()
+                    {
+                        LibraryMember = localLibraryMember1,
+                        PickupDate = new DateTime(2018, 1, 2),
+                        ReturnDeadline = new DateTime(2020, 5, 5),
+                        Books = new List<Book> { book3 },
+                    };
+
+                    var batchOfReservedBooks1 = new BatchOfReservedBooks()
+                    {
+                        LibraryMember = localLibraryMember1,
+                        PickupDeadline = new DateTime(2018, 1, 2),
+                        Books = new List<Book> { book5 }
+                    };
+
+                    context.Categories.Add(category1);
 					context.Categories.Add(category2);
 					context.Categories.Add(category3);
 					context.Categories.Add(category4);
@@ -300,7 +247,12 @@ namespace Beeble.Api
 					context.Books.Add(book5);
 					context.Books.Add(book6);
 
-					context.LocalLibraryMembers.Add(localLibraryMember1);
+                    context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
+                    context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);
+
+                    context.BatchesOfReservedBooks.Add(batchOfReservedBooks1);
+
+                    context.LocalLibraryMembers.Add(localLibraryMember1);
 					context.SaveChanges();
 				}
 

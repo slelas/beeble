@@ -58,8 +58,14 @@ namespace Beeble.Domain.DTOs
 					.BatchesOfBorrowedBooks
 					.Select(batchOfBorrowedBooks => batchOfBorrowedBooks.Books.Select(book => ShortBookDTO.FromData(book, batchOfBorrowedBooks.ReturnDeadline)))
 					.SelectMany(book => book)
-					.ToList()
-			};
+					.ToList(),
+  
+                ReservedBooks = member
+                    .BatchesOfReservedBooks
+                    .Select(batchOfReservedBooks => batchOfReservedBooks.Books.Select(book => ShortBookDTO.FromData(book, batchOfReservedBooks.PickupDeadline)))
+                    .SelectMany(book => book)
+                    .ToList()
+            };
 		}
 
 	}

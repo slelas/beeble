@@ -27,11 +27,9 @@ namespace Beeble.Api.Controllers
 	    [HttpGet]
 	    [Authorize]
 	    [Route("get-byid")]
-	    public LongLLMemberUserDTO GetLibraryById(int libraryId = 1)
+	    public LongLLMemberUserDTO GetLibraryById(int libraryId)
 	    {
-		    var userId = Guid.Parse("ae00135b-d69f-4e1b-bc6c-f57fd919b015");
-			var a = repo.GetLibraryById(libraryId, userId);
-			return repo.GetLibraryById(libraryId, userId);
+			return repo.GetLibraryById(libraryId, UserId);
 	    }
 	}
 }

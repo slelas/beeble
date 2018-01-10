@@ -87,6 +87,9 @@
     <Content Include="scripts\app\routes\home\home.controller.js" />
     <Content Include="scripts\app\routes\home\home.route.js" />
     <Content Include="scripts\app\routes\home\home.template.html" />
+    <Content Include="scripts\app\routes\libraryDetails\libraryDetails.controller.js" />
+    <Content Include="scripts\app\routes\libraryDetails\libraryDetails.route.js" />
+    <Content Include="scripts\app\routes\libraryDetails\libraryDetails.template.html" />
     <Content Include="scripts\app\routes\libraryHub\libraryHub.controller.js" />
     <Content Include="scripts\app\routes\libraryHub\libraryHub.route.js" />
     <Content Include="scripts\app\routes\libraryHub\libraryHub.template.html" />
