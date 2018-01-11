@@ -404,7 +404,8 @@ body {
 
 .background__image {
   background-color: rgba(255, 255, 255, 0.8);
-  width: 100%; }
+  width: 100%;
+  height: 100%; }
 
 a {
   text-decoration: none; }
@@ -627,7 +628,8 @@ a {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: relative; }
+  position: relative;
+  text-align: center; }
 
 .library__name {
   font-weight: 600; }
@@ -637,8 +639,7 @@ a {
   font-weight: 500;
   position: absolute;
   left: 0;
-  right: 0;
-  text-align: center; }
+  right: 0; }
   .library__book-status span {
     color: #333333; }
 
@@ -648,7 +649,8 @@ a {
   background-color: #b59a56;
   color: white;
   padding: 10px;
-  border-radius: 5px; }
+  border-radius: 5px;
+  z-index: 10; }
 
 .library__button-one-time {
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);

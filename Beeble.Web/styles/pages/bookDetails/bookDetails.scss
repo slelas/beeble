@@ -149,6 +149,7 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
+    text-align: center
 }
 
 .library__name {
@@ -161,7 +162,6 @@
     position: absolute;
     left: 0;
     right: 0;
-    text-align: center;
 
     span {
         color: #333333;
@@ -175,6 +175,7 @@
     color: white;
     padding: 10px;
     border-radius: 5px;
+    z-index: 10;
 }
 
 .library__button-one-time {
