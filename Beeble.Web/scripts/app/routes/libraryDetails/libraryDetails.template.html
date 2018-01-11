@@ -9,3 +9,23 @@
 <div>Kontakt broj {{library.libraryNumber}}</div>
 <div>E-mail adresa {{library.libraryEmail}}</div>
 <img ng-src="{{barcodeGeneratorFull}}" alt="{{barcodeGeneratorFull}}"/>
+
+<h4>Posuđeno</h4>
+<div ng-repeat="book in library.borrowedBooks">
+	<img ng-src="{{book.imageUrl}} " height="150"/>
+	<div>{{book.name}}</div>
+	<div>{{book.author}}</div>
+	<div>Posuđeno do {{book.returnDeadline | convertDate}}</div>
+	<!-- nemoj stavljat details botun za knjigu, nema smisla -->
+
+</div>
+
+<h4 ng-show="library.reservations">Rezervirano</h4>
+<div ng-repeat="reservation in library.reservations">
+	<img ng-src="{{reservation.book.imageUrl}} " height="150" />
+	<div>{{reservation.book.name}}</div>
+	<div>{{reservation.book.author.name}}</div>
+	<div>Posuđeno do {{reservation.pickupDeadline | convertDate}}</div>
+	<!-- nemoj stavljat details botun za knjigu, nema smisla -->
+
+</div>

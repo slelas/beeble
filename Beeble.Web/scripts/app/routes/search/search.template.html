@@ -3,6 +3,7 @@
 <button ng-click="searchButton()">-----Search-----</button>
 <h2>Knjige</h2>
 <div ng-repeat="book in currentBooks">
+	<img ng-src="{{book.imageUrl}}" />
 	<div>{{book.name}}</div>
 	<button ui-sref="bookDetails({bookName: book.name})">Details</button>
 </div>
