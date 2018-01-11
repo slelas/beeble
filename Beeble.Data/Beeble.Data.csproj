@@ -105,7 +105,7 @@
     <Compile Include="Models\LocalLibraryMember.cs" />
     <Compile Include="Models\Nationality.cs" />
     <Compile Include="Models\OnlineUser.cs" />
-    <Compile Include="Models\BatchOfReservedBooks.cs" />
+    <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\YearOfIssue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

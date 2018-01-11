@@ -19,7 +19,7 @@ namespace Beeble.Data
         public virtual DbSet<LocalLibrary> LocalLibraries { get; set; }
         public virtual DbSet<LocalLibraryMember> LocalLibraryMembers { get; set; }
         public virtual DbSet<Nationality> Nationalities { get; set; }
-        public virtual DbSet<BatchOfReservedBooks> BatchesOfReservedBooks { get; set; }
+        public virtual DbSet<Reservation> Reservations { get; set; }
 	    public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<YearOfIssue> YearsOfIssue { get; set; }

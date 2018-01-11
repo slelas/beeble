@@ -19,7 +19,7 @@ namespace Beeble.Domain.Repositories
 				var localLibraryMembers = context.LocalLibraryMembers
 					.Include(localLibraryMember => localLibraryMember.LocalLibrary)
 					.Include(localLibraryMember => localLibraryMember.BatchesOfBorrowedBooks)
-					.Include(localLibraryMember => localLibraryMember.BatchesOfReservedBooks)
+					.Include(localLibraryMember => localLibraryMember.Reservations)
 					.Where(localLibraryMember => localLibraryMember.OnlineUser.Id == userId.ToString());
 
 				var localLibraries = localLibraryMembers
@@ -38,13 +38,13 @@ namespace Beeble.Domain.Repositories
 				return context.LocalLibraryMembers
 					.Include("LocalLibrary")
 					.Include("BatchesOfBorrowedBooks")
-					.Include("BatchesOfReservedBooks")
+					.Include("Reservations")
 					.Include("BatchesOfBorrowedBooks.Books")
                     .Include("BatchesOfBorrowedBooks.Books.Author")
-                    .Include("BatchesOfReservedBooks.Books")
+                    .Include("Reservations.Book")
                     .Where(localLibraryMember => localLibraryMember.OnlineUser.Id == userId.ToString() &&
 					                             localLibraryMember.LocalLibrary.Id == libraryId)
-					.ToList().Select(x => LongLLMemberUserDTO.FromData(x))
+					.ToList().Select(LongLLMemberUserDTO.FromData)
 					.FirstOrDefault();
 			}
 		}

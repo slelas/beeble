@@ -19,8 +19,10 @@ namespace Beeble.Data.Models
         public int BookLendLimit { get; set; }
         public int GuestBorrowPrice { get; set; }
         public TimeSpan ReservationDuration { get; set; }
+	    public string Number { get; set; }
+	    public string Email { get; set; }
 
-        public List<LocalLibraryMember> Members { get; set; }
+		public List<LocalLibraryMember> Members { get; set; }
 
     }
 }

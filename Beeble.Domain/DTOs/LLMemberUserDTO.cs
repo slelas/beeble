@@ -25,7 +25,7 @@ namespace Beeble.Domain.DTOs
 				LibraryId = member.LocalLibrary.Id,
 				MembershipExpiryDate = member.MembershipExpiryDate,
 				NumberOfBorrowedBooks = member.BatchesOfBorrowedBooks.Count,
-				NumberOfReservedBooks = member.BatchesOfReservedBooks.Count,
+				NumberOfReservedBooks = member.Reservations.Count,
 				LastBorrowDate = member.BatchesOfBorrowedBooks.OrderBy(book => book.PickupDate).LastOrDefault()?.PickupDate
 			};
 		}
@@ -34,37 +34,41 @@ namespace Beeble.Domain.DTOs
 
 	public class LongLLMemberUserDTO : ShortLLMemberUserDTO
 	{
-		public string OpenHours { get; set; }
-		public string Address { get; set; }
+		public long MemberId { get; set; }
+		public string LibraryOpenHours { get; set; }
+		public string LibraryAddress { get; set; }
 		public IEnumerable<ShortBookDTO> BorrowedBooks { get; set; }
-		public IEnumerable<ShortBookDTO> ReservedBooks { get; set; }
-		//public string Number { get; set; } //first add to models library
-		//public string Email { get; set; } //first add to models library
+		public IEnumerable<Reservation> Reservations { get; set; }
+		public string LibraryNumber { get; set; }
+		public string LibraryEmail { get; set; }
 
 		public static LongLLMemberUserDTO FromData(LocalLibraryMember member)
 		{
 
 			return new LongLLMemberUserDTO()
 			{
+				MemberId = member.Id,
 				LibraryName = member.LocalLibrary.Name,
 				LibraryId = member.LocalLibrary.Id,
 				MembershipExpiryDate = member.MembershipExpiryDate,
-				NumberOfBorrowedBooks = member.BatchesOfBorrowedBooks.Count,
-				NumberOfReservedBooks = member.BatchesOfReservedBooks.Count,
+				NumberOfBorrowedBooks = member.BatchesOfBorrowedBooks.SelectMany(batch => batch.Books).ToList().Count,
+				NumberOfReservedBooks = member.Reservations.Count,
 				LastBorrowDate = member.BatchesOfBorrowedBooks.OrderBy(book => book.PickupDate).LastOrDefault()?.PickupDate,
-				OpenHours = member.LocalLibrary.OpenHours,
-				Address = member.LocalLibrary.Address,
+				LibraryOpenHours = member.LocalLibrary.OpenHours,
+				LibraryAddress = member.LocalLibrary.Address,
+				LibraryEmail = member.LocalLibrary.Email,
+				LibraryNumber = member.LocalLibrary.Number,
 				BorrowedBooks = member
 					.BatchesOfBorrowedBooks
 					.Select(batchOfBorrowedBooks => batchOfBorrowedBooks.Books.Select(book => ShortBookDTO.FromData(book, batchOfBorrowedBooks.ReturnDeadline)))
 					.SelectMany(book => book)
 					.ToList(),
   
-                ReservedBooks = member
-                    .BatchesOfReservedBooks
-                    .Select(batchOfReservedBooks => batchOfReservedBooks.Books.Select(book => ShortBookDTO.FromData(book, batchOfReservedBooks.PickupDeadline)))
-                    .SelectMany(book => book)
-                    .ToList()
+                Reservations = member.Reservations
+                    //.BatchesOfReservedBooks
+                    //.Select(batchOfReservedBooks => batchOfReservedBooks.Books.Select(book => ShortBookDTO.FromData(book, batchOfReservedBooks.PickupDeadline)))
+                    //.SelectMany(book => book)
+                    //.ToList()
             };
 		}
 

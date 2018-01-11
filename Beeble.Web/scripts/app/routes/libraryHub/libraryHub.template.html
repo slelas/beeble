@@ -1,5 +1,11 @@
 ﻿<div ng-repeat="library in libraries">
-	<div ui-sref="libraryDetails({libraryId: library.libraryId})">{{library.libraryName}}</div>
+	<h4>{{library.libraryName}}</h4>
+	<div>Član do {{library.membershipExpiryDate | convertDate}}</div>
+	<div>Broj posuđenih knjiga{{library.numberOfBorrowedBooks}}</div>
+	<div>Broj rezerviranih knjiga{{library.numberOfReservedBooks}}</div>
+	<div>Datum zadnje posudbe {{library.lastBorrowDate | convertDate}}</div>
+	<button ui-sref="libraryDetails({libraryId: library.libraryId})">Detalji</button>
 
 
 </div>
+<div ui-sref="addNewLibraryMembership">Dodaj novu knjižnicu</div>

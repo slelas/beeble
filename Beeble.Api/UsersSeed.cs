@@ -46,29 +46,24 @@ namespace Beeble.Api
                     var category5 = new Category() { Name = "Drama" };
 					var category6 = new Category() {Name = "Komedija"};
 
-                    var language1 = new Language() {Name = "Croatian"};
-					var language2 = new Language() {Name = "English"};
-					var language3 = new Language() {Name = "French"};
-					var language4 = new Language() {Name = "Spanish"};
-					var language5 = new Language() {Name = "Bosnian"};
-					var language6 = new Language() {Name = "Chinese"};
+                    var language1 = new Language() {Name = "Hrvatski"};
+					var language2 = new Language() {Name = "Engleski"};
+					var language3 = new Language() {Name = "Francuski"};
+					var language4 = new Language() {Name = "Spanjolski"};
+					var language5 = new Language() {Name = "Talijanski"};
+					var language6 = new Language() {Name = "Kineski"};
 
-					var nationality1 = new Nationality()
-					{Name = "Croatia"};
-					var nationality2 = new Nationality()
-					{Name = "England"};
-					var nationality3 = new Nationality(){Name = "USA"};
-					var nationality4 = new Nationality()
-					{Name = "France"};
-					var nationality5 = new Nationality()
-					{Name = "Germany"};
-					var nationality6 = new Nationality()
-					{Name = "Ireland"};
+	                var nationality1 = new Nationality() {Name = "Croatia"};
+	                var nationality2 = new Nationality() {Name = "England"};
+	                var nationality3 = new Nationality() {Name = "USA"};
+	                var nationality4 = new Nationality() {Name = "France"};
+	                var nationality5 = new Nationality() {Name = "Germany"};
+	                var nationality6 = new Nationality() {Name = "Ireland"};
 
 					var year1 = new YearOfIssue(){Year = 2001};
                     var year2 = new YearOfIssue() { Year = 2005 };
-					var year3 = new YearOfIssue(){Year = 2017};
-					var year4 = new YearOfIssue(){Year = 1931};
+	                var year3 = new YearOfIssue() {Year = 2017};
+	                var year4 = new YearOfIssue() {Year = 1931};
 
 					var author1 = new Author(){Name = "Walter Isaacson"};
                     var author2 = new Author() { Name = "Shakespeare" };
@@ -87,8 +82,26 @@ namespace Beeble.Api
 						OIB = "2456",
 						OpenHours = "2-2",
 						ReservationDuration = new TimeSpan(3, 0, 0),
-
+						Email = "test@test.hr",
+						Number = "0215678456"
 					};
+
+	                var localLibrary2 = new LocalLibrary()
+	                {
+		                Address = "Placeholder adresa 222",
+		                BookLendLimit = 5,
+		                DefaultLendDuration = new TimeSpan(3, 0, 0),
+		                GuestBorrowPrice = 20,
+		                IBAN = "456",
+		                Members = null,
+		                MembershipPrice = 20,
+		                Name = "GK Solin",
+		                OIB = "2456",
+		                OpenHours = "2-2",
+		                ReservationDuration = new TimeSpan(3, 0, 0),
+		                Email = "test@test.hr",
+		                Number = "0215678456"
+	                };
 
 					// seed books
 					var book1 = new Book()
@@ -194,14 +207,41 @@ namespace Beeble.Api
 						ImageUrl = "https://static.enotes.com/images/covers%2Fromeo-and-juliet.jpg"
 					};
 
+	                var book7 = new Book()
+	                {
+		                Name = "Romeo i Julija",
+		                NumOfPages = "155",
+		                Author = author2,
+		                YearOfIssue = year3,
+		                ISBN = "1505259568",
+		                DamageLevel = 3,
+		                Description = "desc",
+		                Publisher = "Cambridge Press",
+						// only differing property from book6
+		                LocalLibrary = localLibrary2,
+		                Nationality = nationality2,
+		                Language = language1,
+		                Categories = new List<Category>() { category5 },
+		                ImageUrl = "https://static.enotes.com/images/covers%2Fromeo-and-juliet.jpg"
+	                };
+
 					var localLibraryMember1 = new LocalLibraryMember()
 					{
 						LocalLibrary = localLibrary1,
 						OnlineUser = regularUser,
-						Id = Guid.NewGuid()
+						Id = 4654654654,
+						MembershipExpiryDate = new DateTime(2020,5,1)
 					};
 
-                    var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
+	                var localLibraryMember2 = new LocalLibraryMember()
+	                {
+		                LocalLibrary = localLibrary2,
+		                OnlineUser = regularUser,
+		                Id = 9999999999,
+						MembershipExpiryDate = new DateTime(2025, 5, 1)
+	                };
+
+					var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
                     {
                         LibraryMember = localLibraryMember1,
                         PickupDate = new DateTime(2018, 1, 2),
@@ -217,11 +257,19 @@ namespace Beeble.Api
                         Books = new List<Book> { book3 },
                     };
 
-                    var batchOfReservedBooks1 = new BatchOfReservedBooks()
+	                var batchOfBorrowedBooks3 = new BatchOfBorrowedBooks()
+	                {
+		                LibraryMember = localLibraryMember2,
+		                PickupDate = new DateTime(2018, 1, 2),
+		                ReturnDeadline = new DateTime(2020, 5, 5),
+		                Books = new List<Book> { book4 },
+	                };
+
+					var reservation1 = new Reservation()
                     {
                         LibraryMember = localLibraryMember1,
                         PickupDeadline = new DateTime(2018, 1, 2),
-                        Books = new List<Book> { book5 }
+                        Book = book5
                     };
 
                     context.Categories.Add(category1);
@@ -239,6 +287,7 @@ namespace Beeble.Api
 					context.Nationalities.Add(nationality6);
 
 					context.LocalLibraries.Add(localLibrary1);
+	                context.LocalLibraries.Add(localLibrary2);
 
 					context.Books.Add(book1);
 					context.Books.Add(book2);
@@ -246,11 +295,13 @@ namespace Beeble.Api
 					context.Books.Add(book4);
 					context.Books.Add(book5);
 					context.Books.Add(book6);
+	                context.Books.Add(book7);
 
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);
+	                context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks3);
 
-                    context.BatchesOfReservedBooks.Add(batchOfReservedBooks1);
+					context.Reservations.Add(reservation1);
 
                     context.LocalLibraryMembers.Add(localLibraryMember1);
 					context.SaveChanges();

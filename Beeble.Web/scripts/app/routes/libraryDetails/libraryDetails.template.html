@@ -1,1 +1,11 @@
-﻿<div>{{book.name}}</div>
+﻿<div>{{library.libraryName}}</div>
+<div>Član do {{library.membershipExpiryDate | convertDate}}</div>
+<div>Broj posuđenih knjiga{{library.numberOfBorrowedBooks}}</div>
+<div>Broj rezerviranih knjiga{{library.numberOfReservedBooks}}</div>
+<div>Datum zadnje posudbe {{library.lastBorrowDate | convertDate}}</div>
+
+<div>Otvoreno {{library.libraryOpenHours}}</div>
+<div>Adresa {{library.libraryAddress}}</div>
+<div>Kontakt broj {{library.libraryNumber}}</div>
+<div>E-mail adresa {{library.libraryEmail}}</div>
+<img ng-src="{{barcodeGeneratorFull}}" alt="{{barcodeGeneratorFull}}"/>
