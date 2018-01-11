@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Web.Http.Results;
 
 namespace Beeble.Domain.Repositories
 {
@@ -46,6 +47,14 @@ namespace Beeble.Domain.Repositories
 					                             localLibraryMember.LocalLibrary.Id == libraryId)
 					.ToList().Select(LongLLMemberUserDTO.FromData)
 					.FirstOrDefault();
+			}
+		}
+
+		public LocalLibrary GetLibraryByIdForMembership(int libraryId, Guid userId)
+		{
+			using (var context = new AuthContext())
+			{
+				return context.LocalLibraries.FirstOrDefault(library => library.Id == libraryId);
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using Beeble.Data.Models;
 using Beeble.Domain.Repositories;
 using Beeble.Domain.DTOs;
 
@@ -30,6 +31,14 @@ namespace Beeble.Api.Controllers
 	    public LongLLMemberUserDTO GetLibraryById(int libraryId)
 	    {
 			return repo.GetLibraryById(libraryId, UserId);
+	    }
+
+	    [HttpGet]
+	    [Authorize]
+	    [Route("get-byid-membership")]
+	    public LocalLibrary GetLibraryByIdForMembership(int libraryId)
+	    {
+		    return repo.GetLibraryByIdForMembership(libraryId, UserId);
 	    }
 	}
 }

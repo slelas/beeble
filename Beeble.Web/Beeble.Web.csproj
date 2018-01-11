@@ -86,6 +86,9 @@
     <Content Include="scripts\app\routes\bookDetails\bookDetails.controller.js" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.route.js" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.template.html" />
+    <Content Include="scripts\app\routes\getMembership\getMembership.controller.js" />
+    <Content Include="scripts\app\routes\getMembership\getMembership.route.js" />
+    <Content Include="scripts\app\routes\getMembership\getMembership.template.html" />
     <Content Include="scripts\app\routes\home\home.controller.js" />
     <Content Include="scripts\app\routes\home\home.route.js" />
     <Content Include="scripts\app\routes\home\home.template.html" />

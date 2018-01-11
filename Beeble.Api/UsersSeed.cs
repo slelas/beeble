@@ -60,10 +60,10 @@ namespace Beeble.Api
 	                var nationality5 = new Nationality() {Name = "Germany"};
 	                var nationality6 = new Nationality() {Name = "Ireland"};
 
-					var year1 = new YearOfIssue(){Year = 2001};
-                    var year2 = new YearOfIssue() { Year = 2005 };
-	                var year3 = new YearOfIssue() {Year = 2017};
-	                var year4 = new YearOfIssue() {Year = 1931};
+					var year1 = new YearOfIssue(){Year = "2001"};
+                    var year2 = new YearOfIssue() { Year = "2005" };
+	                var year3 = new YearOfIssue() {Year = "2017"};
+	                var year4 = new YearOfIssue() {Year = "1931"};
 
 					var author1 = new Author(){Name = "Walter Isaacson"};
                     var author2 = new Author() { Name = "Shakespeare" };
@@ -133,7 +133,7 @@ namespace Beeble.Api
 						Publisher = "Mozaik knjiga",
 						LocalLibrary = localLibrary1,
 						Language = language1,
-						Nationality = nationality1,
+						Nationality = nationality2,
 						Categories = new List<Category>() { category1 },
 						ImageUrl = "https://mojtv.hr//images/ff6b3c8b-ba33-4050-9f1f-34d3a35ffbd5.jpg"
 					};

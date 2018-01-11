@@ -34,7 +34,7 @@ namespace Beeble.Domain.Repositories
                     (firstFilter && selectedFilters.Contains(x.Nationality.Name))
                     || (secondFilter && selectedFilters.Contains(x.Author.Name))
                     || (thirdFilter && selectedFilters.Intersect(x.Categories.Select(y => y.Name)).Any())
-                    || (fourthFilter && selectedFilters.Contains(x.YearOfIssue.Year.ToString()))
+                    || (fourthFilter && selectedFilters.Contains(x.YearOfIssue.Year))
                     )))
                     .GroupBy(x => x.Name)
                     .Select(x => x.FirstOrDefault());
@@ -71,7 +71,7 @@ namespace Beeble.Domain.Repositories
                 var searchResultsQuery = context.Books
                     .Where(x => x.Name.Contains(searchQuery))
                     .OrderBy(x => x.Name)
-                    .Where(x => (!selectedFilters.Any() || selectedFilters.Contains(x.Nationality.Name) || (selectedFilters.Contains(x.Author.Name) || (selectedFilters.Intersect(x.Categories.Select(y => y.Name)).Any()) || (selectedFilters.Contains(x.YearOfIssue.Year.ToString())))))
+                    .Where(x => (!selectedFilters.Any() || selectedFilters.Contains(x.Nationality.Name) || (selectedFilters.Contains(x.Author.Name) || (selectedFilters.Intersect(x.Categories.Select(y => y.Name)).Any()) || (selectedFilters.Contains(x.YearOfIssue.Year)))))
                     .GroupBy(x => x.Name)
                     .Select(x => x.FirstOrDefault());
 
@@ -144,7 +144,7 @@ namespace Beeble.Domain.Repositories
             else if (filterName == "Year")
             {
                 var filtersInBooks = searchResultsQuery
-                    .Select(x => x.YearOfIssue.Year.ToString()).ToList();
+                    .Select(x => x.YearOfIssue.Year).ToList();
 
                 filtersInBooks.ForEach(x =>
                 {
