@@ -1,6 +1,8 @@
-﻿<div>LOGIN TEMPLATE</div>
-<button ui-sref="signup">Goto signup</button>
-<button ui-sref="search">Goto search</button>
-<input type="text" placeholder="Username" ng-model="loginData.userName">
+﻿<input type="text" placeholder="Username" ng-model="loginData.userName">
 <input type="text" placeholder="Password" ng-model="loginData.password">
+
+<div>
+	<input type="checkbox" ng-model="isUserRemembered" checked /> Remember me
+</div>
+
 <button ng-click="login()">Log in</button>

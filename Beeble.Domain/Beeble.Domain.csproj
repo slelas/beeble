@@ -96,6 +96,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="DTOs\BookDTO.cs" />
     <Compile Include="DTOs\LLMemberUserDTO.cs" />
+    <Compile Include="DTOs\OnlineUserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BooksRepository.cs" />
     <Compile Include="Repositories\LibrariesRepository.cs" />

@@ -6,7 +6,13 @@
     $scope.registration = {
         userName: "",
         password: "",
-        confirmPassword: ""
+		confirmPassword: "",
+		name: "",
+		lastName: "",
+		oib: "",
+		address: "",
+		city: "",
+		phoneNumber: ""
     };
 
     $scope.signUp = function () {

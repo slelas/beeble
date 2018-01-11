@@ -5,16 +5,14 @@
         password: "123456"
     };
 
-    $scope.teset = "dsadas";
+	$scope.login = function() {
+		authService.login($scope.loginData, $scope.isUserRemembered).then(function(response) {
+				console.log('login successful');
 
-    $scope.login = function () {
-        authService.login($scope.loginData).then(function (response) {
-                console.log('login successful');
-
-            },
-            function (err) {
-                console.log(err.error_description);
-            });
-    };
+			},
+			function(err) {
+				console.log(err.error_description);
+			});
+	};
 
 }]);

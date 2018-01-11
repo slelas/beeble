@@ -13,15 +13,20 @@ app.factory('authService', function ($http, $q, serviceBase) {
         });
     };
 
-    function login(loginData) {
+    function login(loginData, isUserRemembered) {
 
         var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
 
         var deferred = $q.defer();
 
         $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-        .then(function (response) {
-            localStorage.setItem('authorizationData', JSON.stringify({ token: response.data.access_token, userName: loginData.userName }));
+			.then(function(response) {
+
+		        // session storage is temporary; isUserRemembered is user's preference
+		        if (isUserRemembered) 
+			        localStorage.setItem('authorizationData', JSON.stringify({ token: response.data.access_token, userName: loginData.userName }));
+				else
+					sessionStorage.setItem('authorizationData', JSON.stringify({ token: response.data.access_token, userName: loginData.userName }));
 
             authentication.isAuth = true;
             authentication.userName = loginData.userName;
@@ -34,15 +39,17 @@ app.factory('authService', function ($http, $q, serviceBase) {
 
     function logOut() {
 
-        localStorage.removeItem('authorizationData');
+		localStorage.removeItem('authorizationData');
+		sessionStorage.removeItem('authorizationData');
 
         authentication.isAuth = false;
         authentication.userName = "";
     };
 
     function fillAuthData() {
-        var authData = JSON.parse(localStorage.getItem('authorizationData'));
-        if (authData) {
+	    var authData = JSON.parse(localStorage.getItem('authorizationData')) || JSON.parse(sessionStorage.getItem('authorizationData'));
+
+		if (authData) {
             authentication.isAuth = true;
             authentication.userName = authData.userName;
         }

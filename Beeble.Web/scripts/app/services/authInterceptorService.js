@@ -6,7 +6,10 @@
 
         config.headers = config.headers || {};
 
-        var authData = JSON.parse(localStorage.getItem('authorizationData'));
+		var authData = JSON.parse(localStorage.getItem('authorizationData'));
+
+		if (!authData)
+			authData = JSON.parse(sessionStorage.getItem('authorizationData'));
 
         if (authData) {
             config.headers.Authorization = 'Bearer ' + authData.token;

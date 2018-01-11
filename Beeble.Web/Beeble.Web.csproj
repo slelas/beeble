@@ -118,10 +118,14 @@
     <Content Include="scripts\app\routes\signup\signup.controller.js" />
     <Content Include="scripts\app\routes\signup\signup.route.js" />
     <Content Include="scripts\app\routes\signup\signup.template.html" />
+    <Content Include="scripts\app\routes\userProfile\userProfile.controller.js" />
+    <Content Include="scripts\app\routes\userProfile\userProfile.route.js" />
+    <Content Include="scripts\app\routes\userProfile\userProfile.template.html" />
     <Content Include="scripts\app\services\authInterceptorService.js" />
     <Content Include="scripts\app\services\AuthService.js" />
     <Content Include="scripts\app\services\bookSearchService.js" />
     <Content Include="scripts\app\services\getLibrariesService.js" />
+    <Content Include="scripts\app\services\userService.js" />
     <Content Include="scripts\vendor\angular-ui-router.js" />
     <Content Include="scripts\vendor\angular.js" />
     <Content Include="Web.config" />

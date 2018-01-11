@@ -31,8 +31,12 @@ namespace Beeble.Api
         {
             OnlineUser user = new OnlineUser
             {
-                UserName = userModel.UserName
-            };
+                UserName = userModel.UserName,
+	            Name = userModel.Name,
+				LastName = userModel.Lastname,
+	            //Oib = 
+
+			};
 
             var result = await _userManager.CreateAsync(user, userModel.Password);
 
@@ -58,7 +62,14 @@ namespace Beeble.Api
             }
         }
 
-        public void Dispose()
+	    public async Task<OnlineUser> GetUser(Guid userId)
+	    {
+			    OnlineUser user = await _userManager.FindByIdAsync(userId.ToString());
+
+			    return user;
+	    }
+
+		public void Dispose()
         {
             _ctx.Dispose();
             _userManager.Dispose();

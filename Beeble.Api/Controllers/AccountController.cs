@@ -11,17 +11,27 @@ using System.Security.Claims;
 using System.Web;
 using Microsoft.AspNet.Identity.Owin;
 using Beeble.Api.UserManager;
+using Beeble.Data.Models;
 
 namespace Beeble.Api.Controllers
 {
 	[RoutePrefix("api/Account")]
-	public class AccountController : ApiController
+	public class AccountController : AuthorizationController
 	{
 		private AuthRepository _repo = null;
 
 		public AccountController()
 		{
 			_repo = new AuthRepository();
+		}
+
+
+		[HttpGet]
+		[Authorize]
+		[Route("get")]
+		public  OnlineUser GetUser()
+		{
+			return _repo.GetUser(UserId);
 		}
 
 		// POST api/Account/Register
