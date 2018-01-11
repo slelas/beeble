@@ -2,7 +2,10 @@
 
 <form name="signUpForm" novalidate>
     <div class="form-group">
-        <input type="text" placeholder="E-mail" name="email" ng-model="registration.username">
+        <input type="email" placeholder="E-mail" name="email" ng-model="registration.username">
+        <div class="help-block" ng-messages="signUpForm.email.$error" ng-if="signUpForm.email.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
     </div>
     <div class="form-group">
         <input type="text" placeholder="Password" name="password" ng-model="registration.password" ng-minlength="6">
