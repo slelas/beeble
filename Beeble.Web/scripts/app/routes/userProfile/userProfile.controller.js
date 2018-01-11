@@ -6,12 +6,6 @@
 
 	$scope.save = function () {
 
-		if (($scope.user.email && $scope.user.name && $scope.user.lastname && $scope.user.oib && $scope.user.address && $scope.user.city && $scope.user.phoneNumber) || $scope.user.password !== $scope.user.confirmPassword || ($scope.user.password && $scope.user.password.length < 6))
-		{
-			alert('nedobri podatci');
-			return null;
-		}
-
 		$scope.user.userName = $scope.user.email;
 
 		userService.editUser($scope.user)

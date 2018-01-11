@@ -1,4 +1,4 @@
-﻿<input type="text" placeholder="E-mail" ng-model="registration.username">
+﻿<!--<input type="text" placeholder="E-mail" ng-model="registration.username">
 <input type="text" placeholder="Password" ng-model="registration.password">
 <input type="text" placeholder="Confirm password" ng-model="registration.confirmPassword">
 <input type="text" placeholder="Ime" ng-model="registration.name">
@@ -7,4 +7,67 @@
 <input type="text" placeholder="Adresa" ng-model="registration.address">
 <input type="text" placeholder="Grad" ng-model="registration.city">
 <input type="text" placeholder="Broj mobitela" ng-model="registration.phoneNumber">
-<button ng-click="signUp()">Sign up</button>
+<button ng-click="signUp()">Sign up</button>-->
+
+<form name="signUpForm" novalidate>
+    <div class="form-group">
+        <input type="text" placeholder="E-mail" name="email" ng-model="registration.username">
+    </div>
+    <div class="form-group">
+        <input type="text" placeholder="Password" name="password" ng-model="registration.password" ng-minlength="6">
+        <div class="help-block" ng-messages="signUpForm.password.$error">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="text" placeholder="Confirm password" name="confirmPassword" ng-model="registration.confirmPassword" ng-pattern="{{registration.password}}">
+        <div class="help-block" ng-messages="signUpForm.confirmPassword.$error" ng-if="signUpForm.confirmPassword.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Ime" name="name" ng-model="registration.name" required>
+        <div class="help-block" ng-messages="signUpForm.name.$error" ng-if="signUpForm.name.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Prezime" name="lastname" ng-model="registration.lastname" required>
+        <div class="help-block" ng-messages="signUpForm.lastname.$error" ng-if="signUpForm.lastname.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="OIB" name="oib" ng-model="registration.oib" required>
+        <div class="help-block" ng-messages="signUpForm.oib.$error" ng-if="signUpForm.oib.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Adresa" name="address" ng-model="registration.address" required>
+        <div class="help-block" ng-messages="signUpForm.address.$error" ng-if="signUpForm.address.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Grad" name="city" ng-model="registration.city" required>
+        <div class="help-block" ng-messages="signUpForm.city.$error" ng-if="signUpForm.city.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Broj mobitela" name="number" ng-model="registration.phoneNumber" required>
+        <div class="help-block" ng-messages="signUpForm.number.$error" ng-if="signUpForm.number.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <button ng-click="signUp()" ng-disabled="signUpForm.$invalid">Registriraj se</button>
+
+</form>

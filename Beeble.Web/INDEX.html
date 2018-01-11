@@ -15,6 +15,7 @@
 	    <script src="scripts/vendor/angular.js"></script>
 	    <script src="scripts/vendor/angular-ui-router.js"></script>
 	    <script src="scripts/vendor/angular-ui-bootstrap-modal.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
 		
 	    <script src="scripts/vendor/ngDialog.js"></script>
 		
@@ -82,10 +83,16 @@
 
 	    </script>
 
+        <script type="text/ng-template" id="validation-messages">
+            <div ng-message="required">Ovo polje je obavezno</div>
+            <div ng-message="minlength">Lozinka je prekratka</div>
+            <div ng-message="pattern">Lozinke se ne podudaraju</div>
+        </script>
+
     </head>
 <body>
 	<div class="background__image">
-		<customheader ng-if="!isHomePage"></customheader>
+		<!--<customheader ng-if="!isHomePage"></customheader>-->
 		<div ui-view></div>
 	</div>
 </body>

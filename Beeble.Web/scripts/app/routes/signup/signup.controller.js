@@ -18,7 +18,7 @@
     $scope.signUp = function () {
 
         authService.saveRegistration($scope.registration).then(function (response) {
-
+            console.log($scope.registration.password);
                 $scope.savedSuccessfully = true;
                 console.log('signup successful');
 
