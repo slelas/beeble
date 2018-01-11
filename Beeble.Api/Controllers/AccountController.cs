@@ -29,7 +29,7 @@ namespace Beeble.Api.Controllers
 		[HttpGet]
 		[Authorize]
 		[Route("get")]
-		public  OnlineUser GetUser()
+		public Task<OnlineUser> GetUser()
 		{
 			return _repo.GetUser(UserId);
 		}

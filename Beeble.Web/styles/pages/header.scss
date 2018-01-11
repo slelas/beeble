@@ -1,0 +1,42 @@
+.navbar {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo {
+    display: inline-block;
+    font-size: 36px;
+}
+
+.navbar__items {
+    align-self: flex-end;
+}
+
+.navbar__item {
+    color: black;
+    margin-right: 50px;
+    font-weight: 600;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.navbar__menu {
+    display: none;
+}
+
+@media screen and (max-width: 980px) {
+    .navbar__items {
+        display: none;
+    }
+
+    .navbar__menu {
+        display: inline-block;
+        width: 25px;
+    }
+}
