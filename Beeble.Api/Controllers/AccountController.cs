@@ -12,6 +12,7 @@ using System.Web;
 using Microsoft.AspNet.Identity.Owin;
 using Beeble.Api.UserManager;
 using Beeble.Data.Models;
+using Beeble.Domain.DTOs;
 
 namespace Beeble.Api.Controllers
 {
@@ -29,7 +30,7 @@ namespace Beeble.Api.Controllers
 		[HttpGet]
 		[Authorize]
 		[Route("get")]
-		public Task<OnlineUser> GetUser()
+		public Task<OnlineUserDTO> GetUser()
 		{
 			return _repo.GetUser(UserId);
 		}
@@ -54,6 +55,20 @@ namespace Beeble.Api.Controllers
 			}
 
 			return Ok();
+		}
+
+		[HttpPost]
+		[Authorize]
+		[Route("edit")]
+		public async Task<IHttpActionResult> Edit(UserModel userModel)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			var result = await _repo.EditUser(userModel, UserId);
+			return Ok(result);
 		}
 
 		protected override void Dispose(bool disposing)

@@ -73,7 +73,7 @@ namespace Beeble.Api
 					{
 						Address = "Placeholder adresa",
 						BookLendLimit = 4,
-						DefaultLendDuration = new TimeSpan(3, 0, 0),
+						DefaultLendDuration = 48,
 						GuestBorrowPrice = 20,
 						IBAN = "456",
 						Members = null,
@@ -81,7 +81,7 @@ namespace Beeble.Api
 						Name = "Marko Marulic",
 						OIB = "2456",
 						OpenHours = "2-2",
-						ReservationDuration = new TimeSpan(3, 0, 0),
+						ReservationDuration = 48,
 						Email = "test@test.hr",
 						Number = "0215678456"
 					};
@@ -90,7 +90,7 @@ namespace Beeble.Api
 	                {
 		                Address = "Placeholder adresa 222",
 		                BookLendLimit = 5,
-		                DefaultLendDuration = new TimeSpan(3, 0, 0),
+		                DefaultLendDuration = 48,
 		                GuestBorrowPrice = 20,
 		                IBAN = "456",
 		                Members = null,
@@ -98,7 +98,7 @@ namespace Beeble.Api
 		                Name = "GK Solin",
 		                OIB = "2456",
 		                OpenHours = "2-2",
-		                ReservationDuration = new TimeSpan(3, 0, 0),
+		                ReservationDuration = 48,
 		                Email = "test@test.hr",
 		                Number = "0215678456"
 	                };

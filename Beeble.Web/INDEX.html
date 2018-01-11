@@ -4,15 +4,22 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Beeble</title>
-        <base href="/" />
+	    <base href="/" />
         <link rel="stylesheet" href="dist/main.min.css">
         <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900&amp;subset=latin-ext" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=latin-ext" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=latin-ext" rel="stylesheet">
 
-        <script src="scripts/vendor/angular.js"></script>
-        <script src="scripts/vendor/angular-ui-router.js"></script>
+        <link href="scripts/css/ngDialog.min.css" rel="stylesheet">
+        <link href="scripts/css/ngDialog-theme-default.css" rel="stylesheet">
+		
+	    <script src="scripts/vendor/angular.js"></script>
+	    <script src="scripts/vendor/angular-ui-router.js"></script>
+	    <script src="scripts/vendor/angular-ui-bootstrap-modal.js"></script>
+		
+	    <script src="scripts/vendor/ngDialog.js"></script>
+		
 
-        <script src="scripts/app/app.js"></script>
+	    <script src="scripts/app/app.js"></script>
         <script src="scripts/app/app.config.js"></script>
         
         <script src="scripts/app/routes/search/search.route.js"></script>
@@ -56,13 +63,30 @@
 		
 	    <script src="scripts/app/filters/dateFilter.js"></script>
 		
+		<script src="scripts/app/services/userService.js"></script>
+		
 	    <script src="scripts/app/constants/barcodeGeneratorBase.js"></script>
+		
+		
+	    <script type="text/ng-template" id="resolveDialog">
+		    <div>
+				<h4>REZERVACIJA</h4>
+				<p>
+					Knjiga te ceka u {{libraryName}}
+					Rezervacija vrijedi do {{reservationDuration}}
+				</p>
+			</div>
+				<div class="ngdialog-buttons">
+					<button class="ngdialog-button" ng-click="confirm()">U redu</button>
+				</div>
+
+	    </script>
 
     </head>
-    <body>
-        <div class="background__image">
-            <customheader></customheader>
-            <div ui-view></div>
-        </div>
-    </body>
+<body>
+	<div class="background__image">
+		<customheader ng-if="!isHomePage"></customheader>
+		<div ui-view></div>
+	</div>
+</body>
 </html>

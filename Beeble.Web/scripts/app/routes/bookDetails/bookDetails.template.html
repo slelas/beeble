@@ -1,71 +1,79 @@
-﻿<div class="book-details">
-    <div class="homepage__search-bar">
-        <input class="search-bar__input" type="text" placeholder="Pretraži...">
-        <a href="#" class="search-bar__button">
-            <img src="./images/search-icon.png" alt="">
-        </a>
-    </div>
-    <div class="book-details__container">
-        <div class="book-details__book-bar">
-            <div class="book-bar__name">
-                {{book.name}}
-            </div>
-            <div class="book-bar__dash">_____</div>
-            <div class="book-bar__author">
-                {{book.author}}
-            </div>
-        </div>
-        <div class="book-details__content">
-            <h1>INFORMACIJE</h1>
-            <div class="book-details__content-wrapper">
-                <img src="./images/steve-jobs-cover.png" alt="">
-                <div class="book-details__information">
-                    <span>Broj dostupnih knjiga:</span> 3<br>
-                    <span>Broj rezerviranih knjiga:</span> 1<br>
-                    <span>Nakladnik:</span> {{book.publisher}}<br>
-                    <span>Broj stranica:</span> {{book.numOfPages}}<br>
-                    <span>Žanr:</span> biografija<br>
-                    <span>Jezik:</span> {{book.language}}<br>
-                    <span>Standardni broj:</span> {{book.ISBN}}<br>
-                </div>
-            </div>
-            <h1 class="book-details__content-second-header">OPIS KNJIGE</h1>
-            <p>Na osnovi više od četrdeset intervjua s Jobsom vodenih u dvije godine — kao i razgovora s više od stotinu članova obitelji, prijatelja, suparnika, konkurenata i kolega -Walter Isaacson napisao je uzbudljivu priču o vrtoglavom životu i žestokom karakteru kreativnog poduzetnika čiji su strastveni perfekcionizam i bespoštedna energija revolucionalizirali šest industrija: kompjutore, animirane filmove, glazbu, mobitele, tabletne kompjutore i digitalno izdavaštvo.</p>
-            <div class="book-details__reserve">
-                <div class="book-details__reserve-wrapper">
-                    <div class="reserve__header">STATUS KNJIGE</div>
-                    <div class="reserve__library">
-                        <div class="library__name">GK Marko Marulić</div>
-                        <div class="library__book-status">odmah dostupno</div>
-                        <div class="library__button" ui-sref="">REZERVIRAJ</div>
-                    </div>
-                    <div class="reserve__library">
-                        <div class="library__name">GK Marko Marulić</div>
-                        <div class="library__book-status">odmah dostupno</div>
-                        <div class="library__button" ui-sref="">REZERVIRAJ</div>
-                    </div>
-                    <div class="reserve__library">
-                        <div class="library__name">GK Solin</div>
-                        <div class="library__book-status">dostupno od <span>12.01.</span></div>
-                        <div class="library__button" ui-sref="">REZERVIRAJ</div>
-                    </div>
-                </div>
-            </div>
-            <div class="book-details__reserve">
-                <div class="book-details__reserve-wrapper">
-                    <div class="reserve__header">JEDNOKRATNO POSUĐIVANJE</div>
-                    <div class="reserve__library">
-                        <div class="library__name">GK Marko Marulić</div>
-                        <div class="library__book-status">odmah dostupno</div>
-                        <div class="library__button" ui-sref="">JEDNOKRATNO</div>
-                    </div>
-                    <div class="reserve__library">
-                        <div class="library__name">GK Marko Marulić</div>
-                        <div class="library__book-status">dostupno od <span>17.01.</span></div>
-                        <div class="library__button" ui-sref="">JEDNOKRATNO</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+﻿<!--MODAL-->
+<!--<div modal="showModal" close="cancel()">
+	<div class="modal-header">
+		<h4>REZERVACIJA</h4>
+	</div>
+	<div class="modal-body">
+		<p>
+			Knjiga te čeka u <b>{{libraryName}}.</b>
+	Rezervacija vrijedi <b>{{reservationDuration}}h.</b>
+</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="ok()">Okay</button>
+	</div>
+</div>-->
+
+
+<div class="book-details">
+	<div class="homepage__search-bar">
+		<input class="search-bar__input" type="text" placeholder="Pretraži...">
+		<a href="#" class="search-bar__button">
+			<img src="./images/search-icon.png" alt="">
+		</a>
+	</div>
+	<div class="book-details__container">
+		<div class="book-details__book-bar">
+			<div class="book-bar__name">
+				{{book.name}}
+			</div>
+			<div class="book-bar__dash">_____</div>
+			<div class="book-bar__author">
+				{{book.author.name}}
+			</div>
+		</div>
+		<div class="book-details__content">
+			<h1>INFORMACIJE</h1>
+			<div class="book-details__content-wrapper">
+				<img src="./images/steve-jobs-cover.png" alt="">
+				<div class="book-details__information">
+					<span>Broj dostupnih knjiga:</span> 3<br>
+					<span>Broj rezerviranih knjiga:</span> 1<br>
+					<span>Nakladnik:</span> {{book.publisher}}<br>
+					<span>Broj stranica:</span> {{book.numOfPages}}<br>
+					<span>Žanr:</span> biografija<br>
+					<span>Jezik:</span> {{book.language.name}}<br>
+					<span>Standardni broj:</span> {{book.isbn}}<br>
+				</div>
+			</div>
+			<h1 class="book-details__content-second-header">OPIS KNJIGE</h1>
+			<p>Na osnovi više od četrdeset intervjua s Jobsom vodenih u dvije godine — kao i razgovora s više od stotinu članova obitelji, prijatelja, suparnika, konkurenata i kolega -Walter Isaacson napisao je uzbudljivu priču o vrtoglavom životu i žestokom karakteru kreativnog poduzetnika čiji su strastveni perfekcionizam i bespoštedna energija revolucionalizirali šest industrija: kompjutore, animirane filmove, glazbu, mobitele, tabletne kompjutore i digitalno izdavaštvo.</p>
+			<div class="book-details__reserve">
+				<div class="book-details__reserve-wrapper">
+					<div class="reserve__header">STATUS KNJIGE</div>
+					<div class="reserve__library" ng-repeat="book in books">
+						<div class="library__name">{{book.localLibrary.name}}</div>
+						<div class="library__book-status">odmah dostupno</div>
+						<div ng-click="reserveBook(book.localLibrary.name, book.localLibrary.reservationDuration, book.localLibrary.id)" class="library__button">REZERVIRAJ</div>
+					</div>
+				</div>
+			</div>
+			<div class="book-details__reserve">
+				<div class="book-details__reserve-wrapper">
+					<div class="reserve__header">JEDNOKRATNO POSUĐIVANJE</div>
+					<div class="reserve__library">
+						<div class="library__name">GK Marko Marulić</div>
+						<div class="library__book-status">odmah dostupno</div>
+						<div class="library__button" ui-sref="">JEDNOKRATNO</div>
+					</div>
+					<div class="reserve__library">
+						<div class="library__name">GK Marko Marulić</div>
+						<div class="library__book-status">dostupno od <span>17.01.</span>
+						</div>
+						<div class="library__button" ui-sref="">JEDNOKRATNO</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

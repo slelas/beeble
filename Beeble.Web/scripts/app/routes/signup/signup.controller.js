@@ -3,16 +3,16 @@
     // currently unused
     $scope.savedSuccessfully = false;
 
-    $scope.registration = {
-        userName: "",
-        password: "",
-		confirmPassword: "",
-		name: "",
-		lastName: "",
-		oib: "",
-		address: "",
-		city: "",
-		phoneNumber: ""
+	$scope.registration = {
+		username: "test@test.hr",
+        password: "123456",
+		confirmPassword: "123456",
+		name: "test ime",
+		lastname: "test prezime",
+		oib: "123456789",
+		address: "test adresa",
+		city: "test grad",
+		phoneNumber: "123456"
     };
 
     $scope.signUp = function () {
