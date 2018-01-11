@@ -398,14 +398,9 @@ template {
   transition-duration: 0.25s; }
 
 body {
-  background-image: url("/images/paper-background.jpg");
   background-size: cover;
-  font-family: 'Roboto', sans-serif; }
-
-.background__image {
-  background-color: rgba(255, 255, 255, 0.8);
-  width: 100%;
-  height: 100%; }
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("/images/paper-background.jpg"); }
 
 a {
   text-decoration: none; }
@@ -415,7 +410,7 @@ a {
   font-size: 80px;
   font-weight: 900; }
 
-.homepage__search-bar, .homepage__button, .book-details__container, .book-details__reserve {
+.homepage__search-bar, .homepage__button, .book-details__container, .book-details__reserve, .library-hub__add-button, .library-hub__library {
   height: 40px;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 50px 10px rgba(0, 0, 0, 0.1);
@@ -742,3 +737,67 @@ a {
   .navbar__menu {
     display: inline-block;
     width: 25px; } }
+
+.library-hub {
+  width: 80%;
+  margin: 50px auto; }
+
+.library-hub__add-button {
+  width: 20%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px 10px 20px; }
+  .library-hub__add-button img {
+    width: 25px; }
+  .library-hub__add-button span {
+    color: black;
+    font-weight: 600; }
+
+.library-hub__libraries {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start; }
+
+.library-hub__library {
+  width: 300px;
+  height: 250px;
+  background-color: white;
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 60px; }
+
+.library-hub__library .library__bar {
+  width: 100%;
+  height: 50px;
+  background-color: #b59a56;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .library-hub__library .library__bar span {
+    font-weight: 600;
+    color: white;
+    font-size: 20px; }
+
+.library-hub__library .library__info {
+  margin: 20px;
+  font-weight: 500;
+  line-height: 1.8; }
+  .library-hub__library .library__info span {
+    color: #888888; }
+
+.library-hub__library a {
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #b59a56;
+  padding: 10px 15px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px; }
