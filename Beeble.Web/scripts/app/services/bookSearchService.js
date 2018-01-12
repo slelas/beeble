@@ -25,16 +25,31 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
         return deferred.promise;
 	}
 
-	function getBooksByName(bookName) {
+	function getBooksByName(bookName, booksOfLibrariesWithMembership) {
 
 		var deferred = $q.defer();
 
-		$http.get(serviceBase + 'api/search/get-books-byname', { params: { bookName: bookName } }).then(function (response) {
+		$http.get(serviceBase + 'api/search/get-books-byname', { params: { bookName: bookName, booksOfLibrariesWithMembership: booksOfLibrariesWithMembership } })
+			.then(function (response) {
+
 			deferred.resolve(response);
 		});
 
 		return deferred.promise;
-    }
+	}
+
+	function getBookNumbers(bookName) {
+
+		var deferred = $q.defer();
+
+		$http.get(serviceBase + 'api/search/get-book-numbers', { params: { bookName: bookName } })
+			.then(function (response) {
+
+				deferred.resolve(response);
+			});
+
+		return deferred.promise;
+	}
 
    // var selectedFilters = new Array();
 
@@ -59,7 +74,8 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
 	bookSearchFactory.search = search;
 	bookSearchFactory.getFilters = getFilters;
     bookSearchFactory.getBooksByName = getBooksByName;
-    bookSearchFactory.applyAFilter = applyAFilter;
+	bookSearchFactory.applyAFilter = applyAFilter;
+	bookSearchFactory.getBookNumbers = getBookNumbers;
 
 	return bookSearchFactory;
 

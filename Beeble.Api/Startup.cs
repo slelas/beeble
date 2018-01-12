@@ -38,7 +38,7 @@ namespace Beeble.Api
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
             CreateRoles.Execute();
-            UsersSeed.Execute();
+            Seed.Execute();
 
 
         }

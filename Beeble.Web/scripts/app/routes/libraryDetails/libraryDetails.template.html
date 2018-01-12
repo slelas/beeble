@@ -1,8 +1,8 @@
 ﻿<div>{{library.libraryName}}</div>
-<div>Član do {{library.membershipExpiryDate | convertDate}}</div>
+<div>Član do {{library.membershipExpiryDate | convertDateLong}}</div>
 <div>Broj posuđenih knjiga{{library.numberOfBorrowedBooks}}</div>
 <div>Broj rezerviranih knjiga{{library.numberOfReservedBooks}}</div>
-<div>Datum zadnje posudbe {{library.lastBorrowDate | convertDate}}</div>
+<div>Datum zadnje posudbe {{library.lastBorrowDate | convertDateLong}}</div>
 
 <div>Otvoreno {{library.libraryOpenHours}}</div>
 <div>Adresa {{library.libraryAddress}}</div>
@@ -15,7 +15,7 @@
 	<img ng-src="{{book.imageUrl}} " height="150"/>
 	<div>{{book.name}}</div>
 	<div>{{book.author}}</div>
-	<div>Posuđeno do {{book.returnDeadline | convertDate}}</div>
+	<div>Posuđeno do {{book.returnDeadline | convertDateLong}}</div>
 	<!-- nemoj stavljat details botun za knjigu, nema smisla -->
 
 </div>
@@ -25,7 +25,7 @@
 	<img ng-src="{{reservation.book.imageUrl}} " height="150" />
 	<div>{{reservation.book.name}}</div>
 	<div>{{reservation.book.author.name}}</div>
-	<div>Posuđeno do {{reservation.pickupDeadline | convertDate}}</div>
+	<div>Posuđeno do {{reservation.pickupDeadline | convertDateLong}}</div>
 	<!-- nemoj stavljat details botun za knjigu, nema smisla -->
 
 </div>

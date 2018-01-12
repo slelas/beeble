@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using Beeble.Data;
 using Beeble.Data.Models;
+using Beeble.Domain.DTOs;
 using Beeble.Domain.Repositories;
 
 namespace Beeble.Api.Controllers
@@ -35,9 +36,16 @@ namespace Beeble.Api.Controllers
 
 		[HttpGet]
 		[Route("get-books-byname")]
-		public List<Book> GetBooksByName(string bookName)
+		public List<List<LongBookDTO>> GetBooksByName(string bookName, bool booksOfLibrariesWithMembership)
 		{
-			return repo.GetBooksByName(bookName, true, UserId);
+			return repo.GetBooksByName(bookName, booksOfLibrariesWithMembership, UserId);
+		}
+
+		[HttpGet]
+		[Route("get-book-numbers")]
+		public List<int> GetNumberOfAvailableAndReservedBooks(string bookName)
+		{
+			return repo.GetNumberOfAvailableAndReservedBooks(bookName);
 		}
 
 		/*[HttpGet]

@@ -17,64 +17,16 @@
 			<img src="./images/add-icon.png" alt="">
 		</div>
 	</a>
-	<div class="library-hub__libraries">
+	<div class="library-hub__libraries" ng-repeat="library in libraries">
 		<div class="library-hub__library">
 			<div class="library__bar">
-				<span>GK Marko Marulić</span>
+				<span>{{library.libraryName}}</span>
 			</div>
 			<div class="library__info">
-				<span>Član do</span> 27.01.2018.<br>
-				<span>Broj posuđenih knjiga:</span> 2<br>
-				<span>Broj rezerviranih knjiga:</span> 1<br>
-				<span>Datum zadnje posudbe:</span> 07.01.2018.<br>
-			</div>
-			<a ui-sref="libraryDetails({libraryId: library.libraryId})">DETALJI</a>
-		</div>
-		<div class="library-hub__library">
-			<div class="library__bar">
-				<span>GK Marko Marulić</span>
-			</div>
-			<div class="library__info">
-				<span>Član do</span> 27.01.2018.<br>
-				<span>Broj posuđenih knjiga:</span> 2<br>
-				<span>Broj rezerviranih knjiga:</span> 1<br>
-				<span>Datum zadnje posudbe:</span> 07.01.2018.<br>
-			</div>
-			<a ui-sref="libraryDetails({libraryId: library.libraryId})">DETALJI</a>
-		</div>
-		<div class="library-hub__library">
-			<div class="library__bar">
-				<span>GK Marko Marulić</span>
-			</div>
-			<div class="library__info">
-				<span>Član do</span> 27.01.2018.<br>
-				<span>Broj posuđenih knjiga:</span> 2<br>
-				<span>Broj rezerviranih knjiga:</span> 1<br>
-				<span>Datum zadnje posudbe:</span> 07.01.2018.<br>
-			</div>
-			<a ui-sref="libraryDetails({libraryId: library.libraryId})">DETALJI</a>
-		</div>
-		<div class="library-hub__library">
-			<div class="library__bar">
-				<span>GK Marko Marulić</span>
-			</div>
-			<div class="library__info">
-				<span>Član do</span> 27.01.2018.<br>
-				<span>Broj posuđenih knjiga:</span> 2<br>
-				<span>Broj rezerviranih knjiga:</span> 1<br>
-				<span>Datum zadnje posudbe:</span> 07.01.2018.<br>
-			</div>
-			<a ui-sref="libraryDetails({libraryId: library.libraryId})">DETALJI</a>
-		</div>
-		<div class="library-hub__library">
-			<div class="library__bar">
-				<span>GK Marko Marulić</span>
-			</div>
-			<div class="library__info">
-				<span>Član do</span> 27.01.2018.<br>
-				<span>Broj posuđenih knjiga:</span> 2<br>
-				<span>Broj rezerviranih knjiga:</span> 1<br>
-				<span>Datum zadnje posudbe:</span> 07.01.2018.<br>
+				<span>Član do</span> {{library.membershipExpiryDate | convertDate}}<br>
+				<span>Broj posuđenih knjiga:</span> {{library.numberOfBorrowedBooks}}<br>
+				<span>Broj rezerviranih knjiga:</span> {{library.numberOfReservedBooks}}<br>
+				<span>Datum zadnje posudbe:</span> {{library.lastBorrowDate | convertDate}}<br>
 			</div>
 			<a ui-sref="libraryDetails({libraryId: library.libraryId})">DETALJI</a>
 		</div>

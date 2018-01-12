@@ -138,7 +138,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="UserManager\ApplicationUserManager.cs" />
     <Compile Include="UserRoles\CreateRoles.cs" />
-    <Compile Include="UsersSeed.cs" />
+    <Compile Include="Seed.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

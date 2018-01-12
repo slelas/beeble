@@ -1,4 +1,4 @@
-﻿angular.module('myApp').filter('convertDate', function () {
+﻿angular.module('myApp').filter('convertDateLong', function () {
 	return function(date) {
 
 		date = new Date(date);

@@ -9,7 +9,7 @@ using Beeble.Data.Models;
 
 namespace Beeble.Api
 {
-    public class UsersSeed
+    public class Seed
     {
         public static void Execute()
         {
@@ -35,11 +35,20 @@ namespace Beeble.Api
                         UserName = "jsvalina",
                     };
 
-                    _userManager.Create(regularUser, "123456");
+	                var regularUser2 = new OnlineUser()
+	                {
+		                Email = "stipe@dump.hr",
+		                UserName = "slelas",
+	                };
+
+					_userManager.Create(regularUser, "123456");
                     _userManager.AddToRole(regularUser.Id, "User");
 
-                    // seed categories
-                    var category1 = new Category() { Name = "Roman" };
+	                _userManager.Create(regularUser2, "123456");
+	                _userManager.AddToRole(regularUser2.Id, "User");
+
+					// seed categories
+					var category1 = new Category() { Name = "Roman" };
                     var category2 = new Category() { Name = "Biografija" };
                     var category3 = new Category() { Name = "Autobiografija" };
                     var category4 = new Category() { Name = "Ep" };
@@ -225,6 +234,24 @@ namespace Beeble.Api
 		                ImageUrl = "https://static.enotes.com/images/covers%2Fromeo-and-juliet.jpg"
 	                };
 
+	                var book8 = new Book()
+	                {
+		                Name = "Hamlet",
+		                NumOfPages = "115",
+		                Author = author2,
+		                YearOfIssue = year2,
+		                ISBN = "0230217867",
+		                DamageLevel = 2,
+		                Description = "desc",
+		                Publisher = "Cambridge Press",
+		                LocalLibrary = localLibrary2,
+		                Nationality = nationality2,
+		                Language = language1,
+		                Categories = new List<Category>() { category5 },
+		                ImageUrl = "https://static.enotes.com/images/covers%2Fhamlet.jpg",
+						IsAvailable = true
+	                };
+
 					var localLibraryMember1 = new LocalLibraryMember()
 					{
 						LocalLibrary = localLibrary1,
@@ -236,7 +263,7 @@ namespace Beeble.Api
 	                var localLibraryMember2 = new LocalLibraryMember()
 	                {
 		                LocalLibrary = localLibrary2,
-		                OnlineUser = regularUser,
+		                OnlineUser = regularUser2,
 		                Id = 9999999999,
 						MembershipExpiryDate = new DateTime(2025, 5, 1)
 	                };
@@ -296,6 +323,7 @@ namespace Beeble.Api
 					context.Books.Add(book5);
 					context.Books.Add(book6);
 	                context.Books.Add(book7);
+	                context.Books.Add(book8);
 
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);

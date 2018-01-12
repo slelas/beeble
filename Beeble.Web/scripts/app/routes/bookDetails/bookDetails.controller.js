@@ -2,14 +2,25 @@
 	function($scope, $stateParams, bookSearchService, ngDialog, $rootScope) {
 
 		$scope.loadBooksOfMemberLibraries = function () {
-			bookSearchService.getBooksByName($stateParams.bookName).then(function (response) {
+			bookSearchService.getBooksByName($stateParams.bookName, true).then(function (response) {
 			console.log(response.data);
-			$scope.memberBooks = response.data;
-			$scope.book = $scope.memberBooks[0];
+			$scope.memberBooks = response.data[0];
+			$scope.nonMemberBooks = response.data[1];
+			$scope.book = $scope.nonMemberBooks[0] || $scope.memberBooks[0];
+			});
+		}
+
+		$scope.getBookNumbers = function() {
+			bookSearchService.getBookNumbers($stateParams.bookName).then(function (response) {
+
+				$scope.numberOfAvailableBooks = response.data[0];
+				$scope.numberOfReservedBooks = response.data[1];
 			});
 		}
 
 		$scope.loadBooksOfMemberLibraries();
+		$scope.getBookNumbers();
+		//$scope.loadBooksOfNonMemberLibraries();
 
 
 		$scope.reserveBook = function(libraryName, reservationDuration, libraryId) {
