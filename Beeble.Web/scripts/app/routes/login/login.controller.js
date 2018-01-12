@@ -6,13 +6,7 @@
     };
 
 	$scope.login = function() {
-		authService.login($scope.loginData, $scope.isUserRemembered).then(function(response) {
-				console.log('login successful');
-
-			},
-			function(err) {
-				console.log(err.error_description);
-			});
+		authService.login($scope.loginData, $scope.isUserRemembered);
 	};
 
 }]);

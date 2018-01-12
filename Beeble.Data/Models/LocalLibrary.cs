@@ -15,10 +15,10 @@ namespace Beeble.Data.Models
         public string OpenHours { get; set; }
         public string IBAN { get; set; }
         public int MembershipPrice { get; set; }
-        public TimeSpan DefaultLendDuration  { get; set; }
+        public int DefaultLendDuration  { get; set; }
         public int BookLendLimit { get; set; }
         public int GuestBorrowPrice { get; set; }
-        public TimeSpan ReservationDuration { get; set; }
+        public int ReservationDuration { get; set; }
 	    public string Number { get; set; }
 	    public string Email { get; set; }
 

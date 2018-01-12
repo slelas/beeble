@@ -11,6 +11,10 @@ namespace Beeble.Data.Models
     {
         public string Name { get; set; }
         public string LastName { get; set; }
+		public string Oib { get; set; }
+		public string Address { get; set; }
+		public string City { get; set; }
+		public string PhoneNumber { get; set; }
         //payment option
         public bool IsVerifiedLocal { get; set; }
         public bool IsGuest { get; set; }

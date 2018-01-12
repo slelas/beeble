@@ -12,6 +12,7 @@ using Beeble.Data.Models;
 using Microsoft.Owin.Security;
 using System.Security.Claims;
 using System.Web.Http;
+using Beeble.Domain.DTOs;
 
 namespace Beeble.Api
 {
@@ -32,9 +33,13 @@ namespace Beeble.Api
             OnlineUser user = new OnlineUser
             {
                 UserName = userModel.UserName,
+				Email = userModel.UserName,
 	            Name = userModel.Name,
 				LastName = userModel.Lastname,
-	            //Oib = 
+	            Oib = userModel.Oib,
+	            Address = userModel.Address,
+	            City = userModel.City,
+	            PhoneNumber = userModel.PhoneNumber
 
 			};
 
@@ -44,6 +49,25 @@ namespace Beeble.Api
 
             return result;
         }
+
+	    public async Task<bool> EditUser(UserModel userModel, Guid userId)
+	    {
+		    var user = await _userManager.FindByIdAsync(userId.ToString());
+		    var isOkPassword = await _userManager.PasswordValidator.ValidateAsync(userModel.Password);
+			if (isOkPassword.Succeeded)
+		    {
+				user.PasswordHash = _userManager.PasswordHasher.HashPassword(userModel.Password);
+			}
+
+			user.Address = userModel.Address;
+		    user.City = userModel.City;
+		    user.LastName = userModel.Lastname;
+		    user.Name = userModel.Lastname;
+		    user.PhoneNumber = userModel.PhoneNumber;
+		    user.Oib = userModel.Oib;
+
+		    return _ctx.SaveChanges() > 0; //vraca broj promjenjenih linija
+	    }
 
         public async Task<OnlineUser> FindUser(string userName, string password)
         {
@@ -62,11 +86,11 @@ namespace Beeble.Api
             }
         }
 
-	    public async Task<OnlineUser> GetUser(Guid userId)
+	    public async Task<OnlineUserDTO> GetUser(Guid userId)
 	    {
-			    OnlineUser user = await _userManager.FindByIdAsync(userId.ToString());
+			    var user = await _userManager.FindByIdAsync(userId.ToString());
 
-			    return user;
+			    return OnlineUserDTO.FromData(user);
 	    }
 
 		public void Dispose()

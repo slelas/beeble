@@ -3,6 +3,12 @@
 		.state('userProfile', {
             url: '/profile',
 			controller: 'userProfileController',
-			templateUrl: 'scripts/app/routes/userProfile/userProfile.template.html'
+            templateUrl: 'scripts/app/routes/userProfile/userProfile.template.html',
+            onEnter: function ($rootScope) {
+                $rootScope.isPageWithValidation = true;
+            },
+            onExit: function ($rootScope) {
+                $rootScope.isPageWithValidation = false;
+            }
         });
 });

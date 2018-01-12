@@ -77,6 +77,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="dist\main.css" />
+    <Content Include="dist\main.min.css" />
+    <Content Include="images\libraries-icon.png" />
+    <Content Include="images\log-out-icon.png" />
+    <Content Include="images\login-icon.png" />
+    <Content Include="images\menu-icon.png" />
+    <Content Include="images\paper-background.jpg" />
+    <Content Include="images\profile-icon.png" />
+    <Content Include="images\register-icon.png" />
+    <Content Include="images\search-icon.png" />
+    <Content Include="images\steve-jobs-cover.png" />
     <Content Include="scripts\app\abstract\user.loggedin.js" />
     <Content Include="scripts\app\constants\barcodeGeneratorBase.js" />
     <Content Include="scripts\app\constants\serviceBase.js" />
@@ -99,6 +110,21 @@
     <Content Include="scripts\app\routes\libraryHub\libraryHub.route.js" />
     <Content Include="scripts\app\routes\libraryHub\libraryHub.template.html" />
     <Content Include="scripts\app\routes\search\search.template.html" />
+    <Content Include="scripts\css\ngDialog-theme-default.css" />
+    <Content Include="scripts\css\ngDialog.min.css" />
+    <Content Include="scripts\vendor\angular-ui-bootstrap-modal.js" />
+    <Content Include="scripts\vendor\ngDialog.js" />
+    <Content Include="scripts\vendor\ngDialog.min.js" />
+    <Content Include="styles\.DS_Store" />
+    <Content Include="styles\base\general.scss" />
+    <Content Include="styles\base\module.scss" />
+    <Content Include="styles\main.scss" />
+    <Content Include="styles\pages\bookDetails\bookDetails.scss" />
+    <Content Include="styles\pages\header.scss" />
+    <Content Include="styles\pages\home\home.scss" />
+    <Content Include="styles\pages\module.scss" />
+    <Content Include="styles\vendor\module.scss" />
+    <Content Include="styles\vendor\normalize.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

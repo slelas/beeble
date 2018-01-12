@@ -1,11 +1,64 @@
-﻿<input type="text" placeholder="Username" ng-model="user.userName">
-<input type="text" placeholder="E-mail" ng-model="user.email">
-<input type="text" placeholder="Password" ng-model="user.password">
-<input type="text" placeholder="Confirm password" ng-model="user.confirmPassword">
-<input type="text" placeholder="Ime" ng-model="user.name">
-<input type="text" placeholder="Prezime" ng-model="user.lastname">
-<input type="text" placeholder="OIB" ng-model="user.oib">
-<input type="text" placeholder="Adresa" ng-model="user.address">
-<input type="text" placeholder="Grad" ng-model="user.city">
-<input type="text" placeholder="Broj mobitela" ng-model="user.number">
-<button ng-click="submitChanges()">Potvrdi promjene</button>
+﻿<customheader></customheader>
+
+<form name="userForm" novalidate>
+    <div class="form-group">
+        <input type="email" placeholder="E-mail" name="email" ng-model="user.email" readonly>
+    </div>
+    <div class="form-group">
+        <input type="text" placeholder="Password" name="password" ng-model="user.password" ng-minlength="6">
+        <div class="help-block" ng-messages="userForm.password.$error">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="text" placeholder="Confirm password" name="confirmPassword" ng-model="user.confirmPassword" ng-pattern="{{user.password}}">
+        <div class="help-block" ng-messages="userForm.confirmPassword.$error" ng-if="userForm.confirmPassword.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Ime" name="name" ng-model="user.name" required>
+        <div class="help-block" ng-messages="userForm.name.$error" ng-if="userForm.name.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Prezime" name="lastname" ng-model="user.lastName" required>
+        <div class="help-block" ng-messages="userForm.lastname.$error" ng-if="userForm.lastname.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="OIB" name="oib" ng-model="user.oib" required>
+        <div class="help-block" ng-messages="userForm.oib.$error" ng-if="userForm.oib.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Adresa" name="address" ng-model="user.address" required>
+        <div class="help-block" ng-messages="userForm.address.$error" ng-if="userForm.address.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Grad" name="city" ng-model="user.city" required>
+        <div class="help-block" ng-messages="userForm.city.$error" ng-if="userForm.city.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Broj mobitela" name="number" ng-model="user.phoneNumber" required>
+        <div class="help-block" ng-messages="userForm.number.$error" ng-if="userForm.number.$touched">
+            <div ng-messages-include="validation-messages"></div>
+        </div>
+    </div>
+
+    <button ng-click="save()" ng-disabled="userForm.$invalid">Potvrdi promjene</button>
+
+</form>
