@@ -743,10 +743,10 @@ a {
   margin: 50px auto; }
 
 .library-hub__add-button {
-  width: 20%;
+  width: 200px;
   height: 100%;
   background-color: white;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px 10px 20px; }
@@ -762,7 +762,8 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-content: flex-start; }
+  align-content: flex-start;
+  margin-left: -10px; }
 
 .library-hub__library {
   width: 300px;
@@ -770,7 +771,9 @@ a {
   background-color: white;
   display: inline-block;
   text-align: center;
-  margin-bottom: 60px; }
+  margin-bottom: 60px;
+  margin-left: 10px;
+  margin-right: 10px; }
 
 .library-hub__library .library__bar {
   width: 100%;
@@ -801,3 +804,19 @@ a {
   padding: 10px 15px;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px; }
+
+@media screen and (max-width: 450px) {
+  .library-hub__libraries {
+    display: block;
+    width: 100%;
+    margin-left: 0px; }
+  .library-hub__library {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0; } }
+
+@media screen and (max-width: 375px) {
+  .library-hub__library {
+    height: 280px; }
+  .library-hub__add-button {
+    width: 150px; } }
