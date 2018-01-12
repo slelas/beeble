@@ -1,6 +1,6 @@
 ﻿<customheader></customheader>
 
-<form name="userForm" novalidate>
+<!-- <form name="userForm" novalidate>
     <div class="form-group">
         <input type="email" placeholder="E-mail" name="email" ng-model="user.email" readonly>
     </div>
@@ -61,4 +61,58 @@
 
     <button ng-click="save()" ng-disabled="userForm.$invalid">Potvrdi promjene</button>
 
-</form>
+</form> -->
+
+<div class="profile">
+    <div class="profile__bar">
+        <button ui-sref="" class="profile__bar-category">
+            <img src="./images/profile-icon-v2.png" alt="">
+            <span>PROFIL</span>
+        </button>
+        <button ui-sref="" class="profile__bar-category">
+            <img src="./images/borrowed-icon.png" alt="">
+            <span>POSUĐENO</span>
+        </button>
+        <button ui-sref="" class="profile__bar-category">
+            <img class="profile__bar-category-image" src="./images/reserved-icon.png" alt="">
+            <span>REZERVIRANO</span>
+        </button>
+    </div>
+    <div class="profile__information">
+        <div class="profile__information-wrapper">
+            <div class="information__photo">
+                <div class="profile__information-header">PROFILNA SLIKA</div>
+                <img src="./images/profile-photo.jpg" alt="">
+            </div>
+            <div class="information__container">
+                <div class="information__basic">
+                    <div class="profile__information-header">OSOBNI PODATCI</div>
+                    <label>IME</label>
+                    <input type="text" name="name" ng-model="user.name" required>
+                    <span>Ova lozinka je prekratka!</span>
+                    <label>PREZIME</label>
+                    <input type="text" name="lastname" ng-model="user.lastName" required>
+                    <label>OIB</label>
+                    <input type="text" name="oib" ng-model="user.oib" required>
+                    <label>ADRESA</label>
+                    <input type="text" name="address" ng-model="user.address" required>
+                    <label>GRAD</label>
+                    <input type="text" name="city" ng-model="user.city" required>
+                    <label>BROJ MOBITELA</label>
+                    <input type="text" name="number" ng-model="user.phoneNumber" required>
+                    <button ng-click="save()">POTVRDI</button>
+                </div>
+                <div class="information__account">
+                    <div class="profile__information-header">PROMJENA E-MAIL ADRESE I LOZINKE</div>
+                    <label>NOVA E-MAIL ADRESA</label>
+                    <input type="text" name="name" ng-model="user.name" required>
+                    <label>NOVA LOZINKA</label>
+                    <input type="text" name="name" ng-model="user.name" required>
+                    <label>PONOVI LOZINKU</label>
+                    <input type="text" name="name" ng-model="user.name" required>
+                    <button ng-click="save()">POTVRDI</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
