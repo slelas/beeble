@@ -1,11 +1,16 @@
 ﻿angular.module('myApp').controller('bookDetailsController',
-	function ($scope, $stateParams, bookSearchService, ngDialog, $rootScope) {
+	function($scope, $stateParams, bookSearchService, ngDialog, $rootScope) {
 
-		$scope.loadBooks = bookSearchService.getBooksByName($stateParams.bookName).then(function(response) {
+		$scope.loadBooksOfMemberLibraries = function () {
+			bookSearchService.getBooksByName($stateParams.bookName).then(function (response) {
 			console.log(response.data);
-			$scope.books = response.data;
-			$scope.book = $scope.books[0];
-		});
+			$scope.memberBooks = response.data;
+			$scope.book = $scope.memberBooks[0];
+			});
+		}
+
+		$scope.loadBooksOfMemberLibraries();
+
 
 		$scope.reserveBook = function(libraryName, reservationDuration, libraryId) {
 			//libraryId po indexu i poslat u backend sa imenom knjige
@@ -22,7 +27,7 @@
 				closeByNavigation: true
 			});
 
-			$scope.loadBooks();
+			$scope.loadBooksOfMemberLibraries();
 
 		};
 

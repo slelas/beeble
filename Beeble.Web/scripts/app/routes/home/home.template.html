@@ -2,7 +2,7 @@
     <div class="homepage__container">
         <div class="logo">Beeble</div>
         <div class="homepage__search-bar">
-            <input class="search-bar__input" type="text" placeholder="Pretraži..." ng-model="searchQuery">
+            <input class="search-bar__input" type="text" placeholder="Pretraži..." ng-model="searchQuery" ng-keyup="$event.keyCode == 13 && search()" ng-submit="search()">
             <a ng-click="search()" class="search-bar__button">
                 <img src="./images/search-icon.png" alt="">
             </a>

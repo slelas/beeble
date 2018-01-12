@@ -37,7 +37,7 @@ namespace Beeble.Api.Controllers
 		[Route("get-books-byname")]
 		public List<Book> GetBooksByName(string bookName)
 		{
-			return repo.GetBooksByName(bookName);
+			return repo.GetBooksByName(bookName, true, UserId);
 		}
 
 		/*[HttpGet]

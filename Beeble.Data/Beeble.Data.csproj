@@ -94,7 +94,6 @@
   <ItemGroup>
     <Compile Include="AuthContext.cs" />
     <Compile Include="BeebleInitializer.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BatchOfBorrowedBooks.cs" />
