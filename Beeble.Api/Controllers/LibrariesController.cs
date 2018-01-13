@@ -48,5 +48,13 @@ namespace Beeble.Api.Controllers
 	    {
 		    return repo.GetAll(UserId);
 	    }
-	}
+
+        [HttpGet]
+        [Authorize]
+        [Route("enroll-with-barcode")]
+        public bool EnrollToLibraryWithBarcode(int libraryId, long barcodeNumber)
+        {
+            return repo.EnrollToLibraryWithBarcode(libraryId, barcodeNumber, UserId);
+        }
+    }
 }

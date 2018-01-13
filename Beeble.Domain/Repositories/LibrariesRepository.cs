@@ -67,5 +67,35 @@ namespace Beeble.Domain.Repositories
 					.ToList();
 			}
 		}
-	}
+
+        public bool EnrollToLibraryWithBarcode(int libraryId, long barcodeNumber, Guid? userId)
+        {
+            using (var context = new AuthContext())
+            {
+                var onlineUser = context.Users.FirstOrDefault(user => user.Id == userId.ToString());
+
+                // library members' id is the number his barcode represents
+                var localLibraryMember = context.LocalLibraryMembers.FirstOrDefault(member => member.Id == barcodeNumber && member.OnlineUser.Id != userId.ToString());
+
+                // if the barcode inputted is incorrect
+                if (localLibraryMember == null)
+                    return false;
+
+                localLibraryMember.OnlineUser = onlineUser;
+
+                if (onlineUser.LocalLibraryMembers == null)
+                    onlineUser.LocalLibraryMembers = new List<LocalLibraryMember>();
+
+                onlineUser.LocalLibraryMembers.Add(localLibraryMember);
+
+                context.Entry(localLibraryMember).State = EntityState.Modified;
+                context.Entry(onlineUser).State = EntityState.Modified;
+                context.SaveChanges();
+
+                // return information that the method successfuly completed
+                return true;
+            }
+        }
+
+    }
 }

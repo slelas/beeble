@@ -9,6 +9,13 @@ var app = angular.module('myApp').controller("getMembershipController", function
 		$scope.library = response.data;
 		console.log(response.data);
 
-	});
+    });
+
+    $scope.submitBarcode = function () {
+        console.log($stateParams.libraryId, $scope.barcodeNumber);
+        getLibrariesService.submitBarcode($stateParams.libraryId, $scope.barcodeNumber).then(function (response) {
+            console.log(response.data);
+        });
+    };
 
 });

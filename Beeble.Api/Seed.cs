@@ -33,13 +33,15 @@ namespace Beeble.Api
                     {
                         Email = "josip@dump.hr",
                         UserName = "jsvalina",
+                        LocalLibraryMembers = new List<LocalLibraryMember>()
                     };
 
 	                var regularUser2 = new OnlineUser()
 	                {
 		                Email = "stipe@dump.hr",
 		                UserName = "slelas",
-	                };
+                        LocalLibraryMembers = new List<LocalLibraryMember>()
+                    };
 
 					_userManager.Create(regularUser, "123456");
                     _userManager.AddToRole(regularUser.Id, "User");
@@ -268,7 +270,15 @@ namespace Beeble.Api
 						MembershipExpiryDate = new DateTime(2025, 5, 1)
 	                };
 
-					var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
+                    var localLibraryMember3 = new LocalLibraryMember()
+                    {
+                        LocalLibrary = localLibrary2,
+                        OnlineUser = null,
+                        Id = 1234554321,
+                        MembershipExpiryDate = new DateTime(2025, 5, 1)
+                    };
+
+                    var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
                     {
                         LibraryMember = localLibraryMember1,
                         PickupDate = new DateTime(2018, 1, 2),
@@ -332,8 +342,11 @@ namespace Beeble.Api
 					context.Reservations.Add(reservation1);
 
                     context.LocalLibraryMembers.Add(localLibraryMember1);
-					context.SaveChanges();
-				}
+                    context.LocalLibraryMembers.Add(localLibraryMember2);
+                    context.LocalLibraryMembers.Add(localLibraryMember3);
+
+                    context.SaveChanges();
+                }
 
             }
         }

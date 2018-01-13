@@ -97,9 +97,9 @@
     <Content Include="scripts\app\filters\bookStatusFilter.js" />
     <Content Include="scripts\app\filters\dateFilterShort.js" />
     <Content Include="scripts\app\filters\dateFilterLong.js" />
-    <Content Include="scripts\app\routes\addExistingLibrary\addExistingLibrary.controller.js" />
-    <Content Include="scripts\app\routes\addExistingLibrary\addExistingLibrary.route.js" />
-    <Content Include="scripts\app\routes\addExistingLibrary\addExistingLibrary.template.html" />
+    <Content Include="scripts\app\routes\addLibrary\addLibrary.controller.js" />
+    <Content Include="scripts\app\routes\addLibrary\addLibrary.route.js" />
+    <Content Include="scripts\app\routes\addLibrary\addLibrary.template.html" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.controller.js" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.route.js" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.template.html" />

@@ -1,4 +1,4 @@
-﻿angular.module('myApp').controller('addExistingLibraryController',
+﻿angular.module('myApp').controller('addLibraryController',
 	function ($scope, $stateParams, $state, bookSearchService, ngDialog, $rootScope, authService, getLibrariesService) {
 
 		var allLibraries = [];
