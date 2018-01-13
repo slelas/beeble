@@ -1,9 +1,9 @@
 ﻿<!-- <div ng-repeat="library in libraries">
 	<h4>{{library.libraryName}}</h4>
-	<div>Član do {{library.membershipExpiryDate | convertDate}}</div>
+	<div>Član do {{library.membershipExpiryDate | convertDateLong}}</div>
 	<div>Broj posuđenih knjiga{{library.numberOfBorrowedBooks}}</div>
 	<div>Broj rezerviranih knjiga{{library.numberOfReservedBooks}}</div>
-	<div>Datum zadnje posudbe {{library.lastBorrowDate | convertDate}}</div>
+	<div>Datum zadnje posudbe {{library.lastBorrowDate | convertDateLong}}</div>
 	<button ui-sref="libraryDetails({libraryId: library.libraryId})">Detalji</button>
 
 
@@ -23,10 +23,10 @@
 				<span>{{library.libraryName}}</span>
 			</div>
 			<div class="library__info">
-				<span>Član do</span> {{library.membershipExpiryDate | convertDate}}<br>
+				<span>Član do</span> {{library.membershipExpiryDate | convertDateLong}}<br>
 				<span>Broj posuđenih knjiga:</span> {{library.numberOfBorrowedBooks}}<br>
 				<span>Broj rezerviranih knjiga:</span> {{library.numberOfReservedBooks}}<br>
-				<span>Datum zadnje posudbe:</span> {{library.lastBorrowDate | convertDate}}<br>
+				<span>Datum zadnje posudbe:</span> {{library.lastBorrowDate | convertDateLong}}<br>
 			</div>
 			<a ui-sref="libraryDetails({libraryId: library.libraryId})">DETALJI</a>
 		</div>

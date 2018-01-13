@@ -1,7 +1,7 @@
 ﻿<div class="book-details">
     <div class="homepage__search-bar">
-        <input class="search-bar__input" type="text" placeholder="Pretraži...">
-        <a href="#" class="search-bar__button">
+        <input class="search-bar__input" type="text" placeholder="Pretraži..." ng-model="searchQuery" ng-keyup="$event.keyCode == 13 && search()" ng-submit="search()" />
+        <a ng-click="search()" class="search-bar__button">
             <img src="./images/search-icon.png" alt="">
         </a>
     </div>
@@ -18,7 +18,7 @@
         <div class="book-details__content">
             <h1>INFORMACIJE</h1>
             <div class="book-details__content-wrapper">
-                <img src="./images/steve-jobs-cover.png" alt="">
+                <img ng-src="{{book.imageUrl}}" alt="">
                 <div class="book-details__information">
                     <span>Broj dostupnih knjiga:</span> {{numberOfAvailableBooks}}<br>
                     <span>Broj rezerviranih knjiga:</span> {{numberOfReservedBooks}}<br>
@@ -33,7 +33,9 @@
             <p>Na osnovi više od četrdeset intervjua s Jobsom vodenih u dvije godine — kao i razgovora s više od stotinu članova obitelji, prijatelja, suparnika, konkurenata i kolega -Walter Isaacson napisao je uzbudljivu priču o vrtoglavom životu i žestokom karakteru kreativnog poduzetnika čiji su strastveni perfekcionizam i bespoštedna energija revolucionalizirali šest industrija: kompjutore, animirane filmove, glazbu, mobitele, tabletne kompjutore i digitalno izdavaštvo.</p>
             <div class="book-details__reserve">
                 <div class="book-details__reserve-wrapper">
-                    <div class="reserve__header">STATUS KNJIGE</div>
+                    <div class="reserve__header">MOJE KNJIŽNICE</div>
+                    <div ng-hide="memberBooks">Ova knjiga nije dostupna u nijednoj knjižnici u kojoj ste učlanjeni</div>
+                    <div ng-hide="isLoggedIn">Prijavite se da biste vidjeli knjige iz učlanjenih knjižnica</div>
                     <div class="reserve__library" ng-repeat="book in memberBooks">
                         <div class="library__name">{{book.localLibrary.name}}</div>
                         <div class="library__book-status">{{book.returnDeadline | convertBookStatusPartOne}}<span>{{book.returnDeadline | convertBookStatusPartTwo}}</span></div>
@@ -43,7 +45,8 @@
             </div>
             <div class="book-details__reserve">
                 <div class="book-details__reserve-wrapper">
-                    <div class="reserve__header">JEDNOKRATNO POSUĐIVANJE</div>
+                    <div class="reserve__header">OSTALE KNJIŽNICE</div>
+                    <div ng-hide="nonMemberBooks">Ova knjiga nije dostupna u nijednoj knjižnici koje niste član</div>
                     <div class="reserve__library" ng-repeat="book in nonMemberBooks">
                         <div class="library__name">{{book.localLibrary.name}}</div>
                         <div class="library__book-status">dostupno odmah</div>

@@ -1,5 +1,5 @@
 ﻿<div>search TEMPLATE</div>
-<input type="text" ng-model="searchQuery" placeholder="Search"/>
+<input type="text" ng-model="searchQuery" placeholder="Search" ng-keyup="$event.keyCode == 13 && search()" ng-submit="search()" />
 <button ng-click="searchButton()">-----Search-----</button>
 <h2>Knjige</h2>
 <div ng-repeat="book in currentBooks">

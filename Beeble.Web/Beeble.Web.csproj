@@ -93,6 +93,7 @@
     <Content Include="scripts\app\constants\serviceBase.js" />
     <Content Include="scripts\app\directives\customHeader\customHeader.directive.js" />
     <Content Include="scripts\app\directives\customHeader\customHeader.template.html" />
+    <Content Include="scripts\app\directives\customHeader\customHeader.controller.js" />
     <Content Include="scripts\app\filters\bookStatusFilter.js" />
     <Content Include="scripts\app\filters\dateFilterShort.js" />
     <Content Include="scripts\app\filters\dateFilterLong.js" />

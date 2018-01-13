@@ -50,7 +50,7 @@ namespace Beeble.Api
             return result;
         }
 
-	    public async Task<bool> EditUser(UserModel userModel, Guid userId)
+	    public async Task<bool> EditUser(UserModel userModel, Guid? userId)
 	    {
 		    var user = await _userManager.FindByIdAsync(userId.ToString());
 		    var isOkPassword = await _userManager.PasswordValidator.ValidateAsync(userModel.Password);
@@ -86,7 +86,7 @@ namespace Beeble.Api
             }
         }
 
-	    public async Task<OnlineUserDTO> GetUser(Guid userId)
+	    public async Task<OnlineUserDTO> GetUser(Guid? userId)
 	    {
 			    var user = await _userManager.FindByIdAsync(userId.ToString());
 

@@ -1,7 +1,7 @@
 ﻿angular.module('myApp').controller('bookDetailsController',
-	function($scope, $stateParams, bookSearchService, ngDialog, $rootScope) {
+	function($scope, $stateParams, $state, bookSearchService, ngDialog, $rootScope, authService) {
 
-		$scope.loadBooksOfMemberLibraries = function () {
+		$scope.loadBooks = function () {
 			bookSearchService.getBooksByName($stateParams.bookName, true).then(function (response) {
 			console.log(response.data);
 			$scope.memberBooks = response.data[0];
@@ -16,11 +16,18 @@
 				$scope.numberOfAvailableBooks = response.data[0];
 				$scope.numberOfReservedBooks = response.data[1];
 			});
-		}
+        }
 
-		$scope.loadBooksOfMemberLibraries();
+        $scope.search = function () {
+            if ($scope.searchQuery) {
+                $state.go('search', { searchQuery: $scope.searchQuery });
+            }
+        };
+
+		$scope.loadBooks();
 		$scope.getBookNumbers();
-		//$scope.loadBooksOfNonMemberLibraries();
+
+        $scope.isLoggedIn = authService.isAuth;
 
 
 		$scope.reserveBook = function(libraryName, reservationDuration, libraryId) {
@@ -38,7 +45,7 @@
 				closeByNavigation: true
 			});
 
-			$scope.loadBooksOfMemberLibraries();
+			$scope.loadBooks();
 
 		};
 

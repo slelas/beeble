@@ -171,7 +171,7 @@ namespace Beeble.Domain.Repositories
 
         }
 
-        public List<List<LongBookDTO>> GetBooksByName(string bookName, bool booksOfLibrariesWithMembership, Guid userId)
+        public List<List<LongBookDTO>> GetBooksByName(string bookName, bool booksOfLibrariesWithMembership, Guid? userId)
         {
             using (var context = new AuthContext())
 			{
@@ -237,6 +237,13 @@ namespace Beeble.Domain.Repositories
 					.Where(book => book.Name == bookName && book.IsAvailable)
 					.ToList();
 
+                if (userId == null)
+                {
+                    result.Add(allAvailableBooksWithName.Select(book => LongBookDTO.FromData(book, null)).ToList());
+
+                    return result;
+                }
+
 				var booksFromOtherLibraries = allAvailableBooksWithName
 					.Where(book =>
 					{
@@ -281,7 +288,7 @@ namespace Beeble.Domain.Repositories
             }
         }
 
-	    public void MakeABookReservation(int libraryId, string bookName, string authorName, Guid UserId)
+	    public void MakeABookReservation(int libraryId, string bookName, string authorName, Guid? UserId)
 	    {
 		    using (var context = new AuthContext())
 		    {

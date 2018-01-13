@@ -13,7 +13,7 @@ namespace Beeble.Domain.Repositories
 {
 	public class LibrariesRepository
 	{
-		public List<ShortLLMemberUserDTO> GetLocalLibraries(Guid userId)
+		public List<ShortLLMemberUserDTO> GetLocalLibraries(Guid? userId)
 		{
 			using (var context = new AuthContext())
 			{
@@ -32,7 +32,7 @@ namespace Beeble.Domain.Repositories
 			}
 		}
 
-		public LongLLMemberUserDTO GetLibraryById(int libraryId, Guid userId)
+		public LongLLMemberUserDTO GetLibraryById(int libraryId, Guid? userId)
 		{
 			using (var context = new AuthContext())
 			{
@@ -50,7 +50,7 @@ namespace Beeble.Domain.Repositories
 			}
 		}
 
-		public LocalLibrary GetLibraryByIdForMembership(int libraryId, Guid userId)
+		public LocalLibrary GetLibraryByIdForMembership(int libraryId, Guid? userId)
 		{
 			using (var context = new AuthContext())
 			{
