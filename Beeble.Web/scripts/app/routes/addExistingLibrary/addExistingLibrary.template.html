@@ -1,0 +1,4 @@
+﻿<input type="text" ng-model="searchQuery" />
+<div ng-repeat="library in allSearchLibraries | filter:searchQuery">
+	<div>{{library.name}} Cijena clanstva: {{library.membershipPrice}} <button ui-sref="getMembership({libraryId: library.id})">Učlani se</button></div>
+</div>

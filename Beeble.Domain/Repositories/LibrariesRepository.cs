@@ -57,5 +57,15 @@ namespace Beeble.Domain.Repositories
 				return context.LocalLibraries.FirstOrDefault(library => library.Id == libraryId);
 			}
 		}
+
+		public List<LocalLibrary> GetAll(Guid? userId)
+		{
+			using (var context = new AuthContext())
+			{
+				return context.LocalLibraries
+					.Where(library => library.Members.All(member => member.OnlineUser.Id != userId.ToString()))
+					.ToList();
+			}
+		}
 	}
 }

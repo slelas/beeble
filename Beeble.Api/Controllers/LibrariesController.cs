@@ -40,5 +40,13 @@ namespace Beeble.Api.Controllers
 	    {
 		    return repo.GetLibraryByIdForMembership(libraryId, UserId);
 	    }
+
+	    [HttpGet]
+	    [Authorize]
+	    [Route("get-all")]
+	    public List<LocalLibrary> GetAll()
+	    {
+		    return repo.GetAll(UserId);
+	    }
 	}
 }

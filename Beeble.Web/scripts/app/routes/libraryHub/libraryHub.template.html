@@ -1,17 +1,5 @@
-﻿<!-- <div ng-repeat="library in libraries">
-	<h4>{{library.libraryName}}</h4>
-	<div>Član do {{library.membershipExpiryDate | convertDateLong}}</div>
-	<div>Broj posuđenih knjiga{{library.numberOfBorrowedBooks}}</div>
-	<div>Broj rezerviranih knjiga{{library.numberOfReservedBooks}}</div>
-	<div>Datum zadnje posudbe {{library.lastBorrowDate | convertDateLong}}</div>
-	<button ui-sref="libraryDetails({libraryId: library.libraryId})">Detalji</button>
-
-
-</div>
-<div ui-sref="addNewLibraryMembership">Dodaj novu knjižnicu</div> -->
-
-<div class="library-hub">
-	<a href="#">
+﻿<div class="library-hub">
+	<a ui-sref="addExistingLibrary">
 		<div class="library-hub__add-button">
 			<span>Dodaj novu knjižnicu</span>
 			<img src="./images/add-icon.png" alt="">

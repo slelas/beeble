@@ -21,10 +21,18 @@
 		});
 	};
 
+	function getAllLibraries() {
+
+		return $http.get(serviceBase + 'api/libraries/get-all').then(function (results) {
+			return results;
+		});
+	};
+
 	var getLibrariesServiceFactory = {};
 	getLibrariesServiceFactory.getLibraries = getLibraries;
 	getLibrariesServiceFactory.getLibraryById = getLibraryById;
 	getLibrariesServiceFactory.getLibraryByIdForMembership = getLibraryByIdForMembership;
+	getLibrariesServiceFactory.getAllLibraries = getAllLibraries;
 
 	return getLibrariesServiceFactory;
 
