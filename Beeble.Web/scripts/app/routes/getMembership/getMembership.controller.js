@@ -6,8 +6,14 @@ var app = angular.module('myApp').controller("getMembershipController", function
 	};
 
 	getLibrariesService.getLibraryByIdForMembership($stateParams.libraryId).then(function(response) {
-		$scope.library = response.data;
-		console.log(response.data);
+        $scope.library = response.data;
+
+        // Paypal information
+        $scope.paymentName =
+            'Library: ' + $scope.library.name +
+            ' (ID: ' + $scope.library.id +
+            ') - MEMBERSHIP';
+        $scope.price = $scope.library.membershipPrice;
 
     });
 
