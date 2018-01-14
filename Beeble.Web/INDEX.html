@@ -99,7 +99,7 @@
     </head>
 <body>
 	<div class="background__image">
-		<customheader ng-if="false"></customheader>
+		<customheader ng-if="!isHomePage && !isPageWithValidation"></customheader>
 		<div ui-view></div>
 	</div>
 </body>

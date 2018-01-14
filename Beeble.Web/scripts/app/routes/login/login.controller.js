@@ -5,7 +5,8 @@
         password: "123456"
     };
 
-	$scope.login = function() {
+	$scope.login = function () {
+		console.log($scope.isUserRemembered);
 		authService.login($scope.loginData, $scope.isUserRemembered);
 	};
 

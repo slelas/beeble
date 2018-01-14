@@ -15,74 +15,85 @@ namespace Beeble.Domain.Repositories
 {
     public class BooksRepository
     {
-        int numberOfBooksPerSearchQuery = int.Parse(ConfigurationManager.AppSettings["numberOfBooksPerSearchQuery"]);
+	    private readonly int _numberOfBooksPerSearchQuery = int.Parse(ConfigurationManager.AppSettings["numberOfBooksPerSearchQuery"]);
 
         public List<Book> SearchBooks(string searchQuery, int pageNumber, List<string> selectedFilters)
         {
             using (var context = new AuthContext())
             {
-                var whichFilters = DetermineWhichFilters(selectedFilters);
-                var firstFilter = whichFilters[0];
-                var secondFilter = whichFilters[1];
-                var thirdFilter = whichFilters[2];
-                var fourthFilter = whichFilters[3];
-                var searchResultsQuery = context.Books
-                    .Where(x => x.Name.Contains(searchQuery))
-                    .OrderBy(x => x.Name)
-                    .Where(x => 
-                    ((!selectedFilters.Any())
-                    || (
-                    (firstFilter && selectedFilters.Contains(x.Nationality.Name))
-                    || (secondFilter && selectedFilters.Contains(x.Author.Name))
-                    || (thirdFilter && selectedFilters.Intersect(x.Categories.Select(y => y.Name)).Any())
-                    || (fourthFilter && selectedFilters.Contains(x.YearOfIssue.Year))
-                    )))
-                    .GroupBy(x => x.Name)
-                    .Select(x => x.FirstOrDefault());
+				var searchResultsQuery = context.Books
+		            .Where(x => x.Name.Contains(searchQuery))
+		            .OrderBy(x => x.Name)
+		            .GroupBy(x => x.Name)
+		            .Select(x => x.FirstOrDefault())
+		            .Include(x => x.Categories)
+		            .Include(x => x.Language)
+		            .Include(x => x.Author)
+		            .Include(x => x.YearOfIssue);
 
+	            // only apply a filter if it is listed in the selected filters
+	            // Nationalities
+	            if (selectedFilters.Intersect(context.Nationalities.Select(y => y.Name)).Any())
+		            searchResultsQuery = searchResultsQuery.Where(book => selectedFilters.Contains(book.Nationality.Name));
 
+	            // Authors
+	            if (selectedFilters.Intersect(context.Authors.Select(y => y.Name)).Any())
+		            searchResultsQuery = searchResultsQuery.Where(book => selectedFilters.Contains(book.Author.Name));
 
-                var books = searchResultsQuery
-                    .GroupBy(x => x.Name)
-                    .Select(x => x.FirstOrDefault())
-                    .Include(x => x.Categories)
-                    .Include(x => x.Language)
-                    .Include(x => x.Author)
-                    .Include(x => x.YearOfIssue)
-                    .OrderBy(x => x.Name)
-                    .Skip(numberOfBooksPerSearchQuery * pageNumber)
-                    .Take(numberOfBooksPerSearchQuery).ToList();
+	            // Categories
+	            if (selectedFilters.Intersect(context.Categories.Select(y => y.Name)).Any())
+		            searchResultsQuery = searchResultsQuery.Where(book => selectedFilters.Intersect(book.Categories.Select(y => y.Name)).Any());
 
-                // preventing circular reference
-                books.Select(x => x.Categories =
-                x.Categories
-                .Select(y => new Category() { Name = y.Name, Books = null })
-                .ToList())
-                .ToList();
+	            // Years
+	            if (selectedFilters.Intersect(context.YearsOfIssue.Select(y => y.Year.ToString())).Any())
+		            searchResultsQuery = searchResultsQuery.Where((book => selectedFilters.Contains(book.YearOfIssue.Year)));
+
+				var books = searchResultsQuery.OrderBy(x => x.Name).Skip(_numberOfBooksPerSearchQuery * pageNumber)
+					.Take(_numberOfBooksPerSearchQuery).ToList();
 
                 return books;
             }
 
         }
 
-        public List<List<List<string>>> GetAllFilters(string searchQuery, List<string> selectedFilters)
+		public List<List<List<string>>> GetAllFilters(string searchQuery, List<string> selectedFilters)
         {
             using (var context = new AuthContext())
             {
-                var searchResultsQuery = context.Books
-                    .Where(x => x.Name.Contains(searchQuery))
-                    .OrderBy(x => x.Name)
-                    .Where(x => (!selectedFilters.Any() || selectedFilters.Contains(x.Nationality.Name) || (selectedFilters.Contains(x.Author.Name) || (selectedFilters.Intersect(x.Categories.Select(y => y.Name)).Any()) || (selectedFilters.Contains(x.YearOfIssue.Year)))))
-                    .GroupBy(x => x.Name)
-                    .Select(x => x.FirstOrDefault());
+				var searchResultsQuery = context.Books
+		            .Where(x => x.Name.Contains(searchQuery))
+		            .OrderBy(x => x.Name)
+		            .GroupBy(x => x.Name)
+		            .Select(x => x.FirstOrDefault())
+		            .Include(x => x.Categories)
+		            .Include(x => x.Language)
+		            .Include(x => x.Author)
+		            .Include(x => x.YearOfIssue);
 
-                var allFilters = new List<List<List<string>>>
-            {
-                GetFilters(searchResultsQuery, "Nationality"),
-                GetFilters(searchResultsQuery, "Author"),
-                GetFilters(searchResultsQuery, "Category"),
-                GetFilters(searchResultsQuery, "Year")
-            };
+	            // only apply a filter if it is listed in the selected filters
+	            // Nationalities
+	            if (selectedFilters.Intersect(context.Nationalities.Select(y => y.Name)).Any())
+		            searchResultsQuery = searchResultsQuery.Where(book => selectedFilters.Contains(book.Nationality.Name));
+
+	            // Authors
+	            if (selectedFilters.Intersect(context.Authors.Select(y => y.Name)).Any())
+		            searchResultsQuery = searchResultsQuery.Where(book => selectedFilters.Contains(book.Author.Name));
+
+	            // Categories
+	            if (selectedFilters.Intersect(context.Categories.Select(y => y.Name)).Any())
+		            searchResultsQuery = searchResultsQuery.Where(book => selectedFilters.Intersect(book.Categories.Select(y => y.Name)).Any());
+
+	            // Years
+	            if (selectedFilters.Intersect(context.YearsOfIssue.Select(y => y.Year.ToString())).Any())
+		            searchResultsQuery = searchResultsQuery.Where((book => selectedFilters.Contains(book.YearOfIssue.Year)));
+
+				var allFilters = new List<List<List<string>>>
+	            {
+		            GetFilters(searchResultsQuery, "Nationality"),
+		            GetFilters(searchResultsQuery, "Author"),
+		            GetFilters(searchResultsQuery, "Category"),
+		            GetFilters(searchResultsQuery, "Year")
+	            };
 
                 return allFilters;
             }
@@ -267,25 +278,6 @@ namespace Beeble.Domain.Repositories
 			    return new List<int>() {totalAvailableBooks, totalReservedBooks};
 		    }
 	    }
-
-        public List<bool> DetermineWhichFilters(List<string> selectedFilters)
-        {
-            using (var context = new AuthContext())
-            {
-                var whichFilters = new List<bool>();
-                /*var searchResultsQueryBase = context.Books
-                    .Where(x => x.Name.Contains(searchQuery))
-                    .OrderBy(x => x.Name);*/
-
-                // true if there are any categories in the filter list
-                whichFilters.Add(selectedFilters.Intersect(context.Nationalities.Select(y => y.Name)).Any());
-                whichFilters.Add(selectedFilters.Intersect(context.Authors.Select(y => y.Name)).Any());
-                whichFilters.Add(selectedFilters.Intersect(context.Categories.Select(y => y.Name)).Any());
-                whichFilters.Add(selectedFilters.Intersect(context.YearsOfIssue.Select(y => y.Year.ToString())).Any());
-
-                return whichFilters;
-            }
-        }
 
 	    public void MakeAReservation(int libraryId, string bookName, string authorName)
 	    {
