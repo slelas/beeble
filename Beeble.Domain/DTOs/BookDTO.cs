@@ -27,4 +27,42 @@ namespace Beeble.Domain.DTOs
 			};
 		}
 	}
+
+	public class LongBookDTO
+	{
+		public string ImageUrl { get; set; }
+		public string Name { get; set; }
+		public string Author { get; set; }
+		public string NumOfPages { get; set; }
+		public string Publisher { get; set; }
+		public string Language { get; set; }
+		public string Isbn { get; set; }
+		public string Categories { get; set; }
+		public int BookId { get; set; }
+		public LocalLibrary LocalLibrary { get; set; }
+		public DateTime? ReturnDeadline { get; set; }
+
+		public static LongBookDTO FromData(Book book, DateTime? returnDeadline)
+		{
+			return new LongBookDTO()
+			{
+				ImageUrl = book.ImageUrl,
+				Name = book.Name,
+				Author = book.Author.Name,
+				BookId = book.Id,
+				NumOfPages = book.NumOfPages,
+				Publisher = book.Publisher,
+				Language = book.Language.Name,
+				Isbn = book.ISBN,
+				Categories = book.Categories.Select(category => category.Name).Aggregate((sum, ele) => $"{sum} , {ele}"),
+
+				LocalLibrary = new LocalLibrary()
+				{
+					Name = book.LocalLibrary.Name,
+					Id = book.LocalLibrary.Id
+				},
+				ReturnDeadline = returnDeadline 
+			};
+		}
+	}
 }

@@ -2,4 +2,9 @@
 <div>Adresa: {{library.address}}</div>
 <div>Ogranicenje posudivanja: {{library.bookLendLimit}}</div>
 <div>Cijena: {{library.membershipPrice}}</div>
+
 <button>Plati</button>
+
+<div>Ukoliko ste clan ove knjiznice, upisite broj ispod barkoda na svojoj iskaznici kako bi besplatno digitalizirali svoje clanstvo</div>
+<input type="text" ng-model="barcodeNumber"/>
+<button ng-click="submitBarcode()">Potvrdi</button>

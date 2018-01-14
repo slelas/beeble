@@ -13,7 +13,7 @@ namespace Beeble.Domain.Repositories
 {
 	public class LibrariesRepository
 	{
-		public List<ShortLLMemberUserDTO> GetLocalLibraries(Guid userId)
+		public List<ShortLLMemberUserDTO> GetLocalLibraries(Guid? userId)
 		{
 			using (var context = new AuthContext())
 			{
@@ -32,7 +32,7 @@ namespace Beeble.Domain.Repositories
 			}
 		}
 
-		public LongLLMemberUserDTO GetLibraryById(int libraryId, Guid userId)
+		public LongLLMemberUserDTO GetLibraryById(int libraryId, Guid? userId)
 		{
 			using (var context = new AuthContext())
 			{
@@ -50,12 +50,52 @@ namespace Beeble.Domain.Repositories
 			}
 		}
 
-		public LocalLibrary GetLibraryByIdForMembership(int libraryId, Guid userId)
+		public LocalLibrary GetLibraryByIdForMembership(int libraryId, Guid? userId)
 		{
 			using (var context = new AuthContext())
 			{
 				return context.LocalLibraries.FirstOrDefault(library => library.Id == libraryId);
 			}
 		}
-	}
+
+		public List<LocalLibrary> GetAll(Guid? userId)
+		{
+			using (var context = new AuthContext())
+			{
+				return context.LocalLibraries
+					.Where(library => library.Members.All(member => member.OnlineUser.Id != userId.ToString()))
+					.ToList();
+			}
+		}
+
+        public bool EnrollToLibraryWithBarcode(int libraryId, long barcodeNumber, Guid? userId)
+        {
+            using (var context = new AuthContext())
+            {
+                var onlineUser = context.Users.FirstOrDefault(user => user.Id == userId.ToString());
+
+                // library members' id is the number his barcode represents
+                var localLibraryMember = context.LocalLibraryMembers.FirstOrDefault(member => member.Id == barcodeNumber && member.OnlineUser.Id != userId.ToString());
+
+                // if the barcode inputted is incorrect
+                if (localLibraryMember == null)
+                    return false;
+
+                localLibraryMember.OnlineUser = onlineUser;
+
+                if (onlineUser.LocalLibraryMembers == null)
+                    onlineUser.LocalLibraryMembers = new List<LocalLibraryMember>();
+
+                onlineUser.LocalLibraryMembers.Add(localLibraryMember);
+
+                context.Entry(localLibraryMember).State = EntityState.Modified;
+                context.Entry(onlineUser).State = EntityState.Modified;
+                context.SaveChanges();
+
+                // return information that the method successfuly completed
+                return true;
+            }
+        }
+
+    }
 }

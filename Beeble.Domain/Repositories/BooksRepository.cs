@@ -171,83 +171,102 @@ namespace Beeble.Domain.Repositories
 
         }
 
-        public List<Book> GetBooksByName(string bookName, bool booksOfLibrariesWithMembership, Guid userId)
+        public List<List<LongBookDTO>> GetBooksByName(string bookName, bool booksOfLibrariesWithMembership, Guid? userId)
         {
             using (var context = new AuthContext())
 			{
-				//if(booksOfLibrariesWithMembership)
-				//	var booksQuery = context.Books
-				//		.Where(x => x.Name == bookName && x.IsAvailable)
+				var result = new List<List<LongBookDTO>>();
 
 				var usedIdAsString = userId.ToString();
-				var llid = 1;
 
-				var test = context.Users
-					.Include(user => user.LocalLibraryMembers)
-					.Include("LocalLibraryMembers.LocalLibrary")
-					//.FirstOrDefault(user => user.Id == usedIdAsString)
-					.Where(user => user.LocalLibraryMembers.Any(member => member.OnlineUser.Id == usedIdAsString &&
-					                                                      user.Id == usedIdAsString))
-					.FirstOrDefault();
-					//.LocalLibraryMembers.Contains(user);
+                var allBooksWithName = context.Books
+                    .Include(book => book.Author)
+                    .Include(book => book.Categories)
+                    .Include(book => book.Language)
+                    .Include(book => book.Nationality)
+                    .Include(book => book.YearOfIssue)
+                    .Include(book => book.LocalLibrary)
+                    .Include("LocalLibrary.Members")
+                    .Include("LocalLibrary.Members.OnlineUser")
+                    .Where(book => book.Name == bookName)
+                    .ToList();
 
-				/*var books = context.Books
-					.Where(book => book.Name == bookName &&
-					               book.IsAvailable &&
-					               context.Users
-						               .FirstOrDefault(user => user.Id == usedIdAsString)
-						               .LocalLibraryMembers.Any(member => member.LocalLibrary.Id == book.LocalLibrary.Id))
-					.GroupBy(book => book.LocalLibrary)
-					.Select(bookGroup => bookGroup.FirstOrDefault())
-					.Include(x => x.Categories)
-					.Include(x => x.LocalLibrary)
-					.Include(x => x.Author)
-					.Include(x => x.Language)
-					.Include(x => x.YearOfIssue)
-					.Include(x => x.Nationality)
-					.ToList();*/
+                if (userId != null)
+                {
+                    var booksFromUsersLibraries = allBooksWithName
+                        .Where(book =>
+                        {
+                            return book.LocalLibrary.Members.Any(member =>
+                            {
+                                if (member.OnlineUser == null)
+                                    return false;
 
-				
-				List<Book> books = null;/*context.Books
-					.Where(book => book.Name == bookName &&
-					               true &&
-						               //.Include(user => user.LocalLibraryMembers)
-						               //.FirstOrDefault(user => user.Id == usedIdAsString)
-						               test2
-						               /*.LocalLibraryMembers.Any(member => member.LocalLibrary.Id == book.LocalLibrary.Id))
-					.GroupBy(book => book.LocalLibrary)
-					.Select(bookGroup => bookGroup.FirstOrDefault())
-					.Include(x => x.Categories)
-					.Include(x => x.LocalLibrary)
-					.Include(x => x.Author)
-					.Include(x => x.Language)
-					.Include(x => x.YearOfIssue)
-					.Include(x => x.Nationality)
-					.ToList();*/
+                                return member.OnlineUser.Id == usedIdAsString;
+                            });
+                        }).ToList();
 
-				var localLibraryMembers = test.LocalLibraryMembers;
-				var allBooksWithName = context.Books
-					.Include(book => book.Author)
-					.Include(book => book.Categories)
-					.Include(book => book.Language)
-					.Include(book => book.Nationality)
-					.Include(book => book.YearOfIssue)
-					.Where(book => book.Name == bookName).ToList();
-				var booksFromUsersLibraries = allBooksWithName
-					.Where(book => localLibraryMembers.Any(member => member.LocalLibrary.Id == book.LocalLibrary.Id)).ToList();
 
-				/*// preventing circular reference
-                books.Select(x => x.Categories =
-                            x.Categories
-                                .Select(y => new Category() { Name = y.Name, Books = null })
-                                .ToList())
-                    .ToList();*/
 
-				booksFromUsersLibraries = booksFromUsersLibraries.Select(x => new Book() {Author = x.Author}).ToList();
-				
-				return booksFromUsersLibraries;
-            }
+                    var booksThatAreBorrowed = booksFromUsersLibraries.Where(
+                            book => context.BatchesOfBorrowedBooks.Any(batch => batch.Books.Select(x => x.Id).Contains(book.Id)) && !book.IsReserved)
+                        .Select(book => LongBookDTO.FromData(book,
+                            context.BatchesOfBorrowedBooks.FirstOrDefault(batch => batch.Books.Select(x => x.Id).Contains(book.Id))
+                                .ReturnDeadline))
+                        .OrderBy(borrowedBook => borrowedBook.ReturnDeadline)
+                        .ToList();
+
+                    var booksThatAreAvailable = booksFromUsersLibraries
+                        .Where(book => !booksThatAreBorrowed.Select(borrowedBook => borrowedBook.BookId).Contains(book.Id) && !book.IsReserved)
+                        .Select(book => LongBookDTO.FromData(book, null))
+                        .ToList();
+
+                    result.Add(booksThatAreBorrowed.Concat(booksThatAreAvailable)
+                        .GroupBy(book => book.LocalLibrary.Name)
+                        .Select(bookGroup => bookGroup.LastOrDefault())
+                        .ToList());
+                }
+
+				var allAvailableBooksWithName = allBooksWithName
+					.Where(book => book.Name == bookName && !book.IsBorrowed && !book.IsReserved)
+					.ToList();
+
+                if (userId == null)
+                {
+                    result.Add(null);
+                    result.Add(allAvailableBooksWithName.Select(book => LongBookDTO.FromData(book, null)).ToList());
+
+                    return result;
+                }
+
+				var booksFromOtherLibraries = allAvailableBooksWithName
+					.Where(book =>
+					{
+						return book.LocalLibrary.Members.All(member =>
+                        {
+                            if (member.OnlineUser == null)
+                                return false;
+
+                            return member.OnlineUser.Id != usedIdAsString;
+                        });
+					}).ToList();
+
+				result.Add(booksFromOtherLibraries.Select(book => LongBookDTO.FromData(book, null)).ToList());
+
+				return result;
+			}
         }
+
+	    public List<int> GetNumberOfAvailableAndReservedBooks(string bookName)
+	    {
+		    using (var context = new AuthContext())
+		    {
+
+			    var totalAvailableBooks = context.Books.Count(book => book.Name == bookName && !book.IsBorrowed && !book.IsReserved);
+			    var totalReservedBooks = context.Reservations.Count();
+
+			    return new List<int>() {totalAvailableBooks, totalReservedBooks};
+		    }
+	    }
 
         public List<bool> DetermineWhichFilters(List<string> selectedFilters)
         {
@@ -268,7 +287,7 @@ namespace Beeble.Domain.Repositories
             }
         }
 
-	    public void MakeABookReservation(int libraryId, string bookName, string authorName, Guid UserId)
+	    public void MakeAReservation(int libraryId, string bookName, string authorName)
 	    {
 		    using (var context = new AuthContext())
 		    {
@@ -276,17 +295,20 @@ namespace Beeble.Domain.Repositories
 				    .FirstOrDefault(book => book.Name == bookName && book.Author.Name == authorName && book.LocalLibrary.Id == libraryId);
 
 			    var libraryMember = context.LocalLibraryMembers
+                    .Include(member => member.LocalLibrary)
 					.FirstOrDefault(member => member.LocalLibrary.Id == libraryId);
 
-			    context.Reservations.Add(new Reservation()
-			    {
-				    Book = bookToReserve,
-				    LibraryMember = libraryMember,
-					PickupDeadline = DateTime.Now.Add(TimeSpan.FromHours(libraryMember.LocalLibrary.ReservationDuration)),
-					IsGuestMember = libraryMember == null
-			    });
+                context.Reservations.Add(new Reservation()
+                {
+                    Book = bookToReserve,
+                    LibraryMember = libraryMember,
+                    PickupDeadline = DateTime.Now.Add(TimeSpan.FromHours(libraryMember.LocalLibrary.ReservationDuration)),
+                    IsGuestMember = libraryMember == null
+                });
 
-			    bookToReserve.IsAvailable = false;
+			    bookToReserve.IsReserved = true;
+
+                context.SaveChanges();
 		    }
 	    }
     }

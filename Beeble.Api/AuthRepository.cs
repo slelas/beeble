@@ -33,14 +33,14 @@ namespace Beeble.Api
             OnlineUser user = new OnlineUser
             {
                 UserName = userModel.UserName,
-				Email = userModel.UserName,
-	            Name = userModel.Name,
-				LastName = userModel.Lastname,
-	            Oib = userModel.Oib,
-	            Address = userModel.Address,
-	            City = userModel.City,
-	            PhoneNumber = userModel.PhoneNumber
-
+                Email = userModel.UserName,
+                Name = userModel.Name,
+                LastName = userModel.Lastname,
+                Oib = userModel.Oib,
+                Address = userModel.Address,
+                City = userModel.City,
+                PhoneNumber = userModel.PhoneNumber,
+                LocalLibraryMembers = new List<LocalLibraryMember>()
 			};
 
             var result = await _userManager.CreateAsync(user, userModel.Password);
@@ -50,7 +50,7 @@ namespace Beeble.Api
             return result;
         }
 
-	    public async Task<bool> EditUser(UserModel userModel, Guid userId)
+	    public async Task<bool> EditUser(UserModel userModel, Guid? userId)
 	    {
 		    var user = await _userManager.FindByIdAsync(userId.ToString());
 		    var isOkPassword = await _userManager.PasswordValidator.ValidateAsync(userModel.Password);
@@ -86,7 +86,7 @@ namespace Beeble.Api
             }
         }
 
-	    public async Task<OnlineUserDTO> GetUser(Guid userId)
+	    public async Task<OnlineUserDTO> GetUser(Guid? userId)
 	    {
 			    var user = await _userManager.FindByIdAsync(userId.ToString());
 

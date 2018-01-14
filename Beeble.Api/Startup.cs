@@ -8,6 +8,7 @@ using Beeble.Api.UserRoles;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+using Beeble.Api.Scheduler;
 
 [assembly: OwinStartup(typeof(Beeble.Api.Startup))]
 namespace Beeble.Api
@@ -37,10 +38,12 @@ namespace Beeble.Api
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+
             CreateRoles.Execute();
-            UsersSeed.Execute();
+            Seed.Execute();
 
-
+            // One minute = 60 000 milliseconds
+            //SchedulerService.StartAction(60000, Actions.DeleteExpiredRegistrations);
         }
 
     }

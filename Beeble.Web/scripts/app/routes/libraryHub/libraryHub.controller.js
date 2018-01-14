@@ -5,7 +5,6 @@
 		($scope.init = function () {
 			getLibrariesService.getLibraries().then(function (response) {
 				$scope.libraries = response.data;
-				console.log(response.data);
 			});
         })();
 

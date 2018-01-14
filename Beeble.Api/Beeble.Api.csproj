@@ -135,10 +135,13 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\SimpleAuthorizationServerProvider.cs" />
+    <Compile Include="Scheduler\Actions.cs" />
+    <Compile Include="Scheduler\SchedulerService.cs" />
+    <Compile Include="Scheduler\TimerSchedule.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="UserManager\ApplicationUserManager.cs" />
     <Compile Include="UserRoles\CreateRoles.cs" />
-    <Compile Include="UsersSeed.cs" />
+    <Compile Include="Seed.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

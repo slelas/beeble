@@ -1,80 +1,20 @@
-﻿<!-- <div ng-repeat="library in libraries">
-	<h4>{{library.libraryName}}</h4>
-	<div>Član do {{library.membershipExpiryDate | convertDate}}</div>
-	<div>Broj posuđenih knjiga{{library.numberOfBorrowedBooks}}</div>
-	<div>Broj rezerviranih knjiga{{library.numberOfReservedBooks}}</div>
-	<div>Datum zadnje posudbe {{library.lastBorrowDate | convertDate}}</div>
-	<button ui-sref="libraryDetails({libraryId: library.libraryId})">Detalji</button>
-
-
-</div>
-<div ui-sref="addNewLibraryMembership">Dodaj novu knjižnicu</div> -->
-
-<div class="library-hub">
-	<a href="#">
+﻿<div class="library-hub">
+	<a ui-sref="addExistingLibrary">
 		<div class="library-hub__add-button">
 			<span>Dodaj novu knjižnicu</span>
 			<img src="./images/add-icon.png" alt="">
 		</div>
 	</a>
-	<div class="library-hub__libraries">
+	<div class="library-hub__libraries" ng-repeat="library in libraries">
 		<div class="library-hub__library">
 			<div class="library__bar">
-				<span>GK Marko Marulić</span>
+				<span>{{library.libraryName}}</span>
 			</div>
 			<div class="library__info">
-				<span>Član do</span> 27.01.2018.<br>
-				<span>Broj posuđenih knjiga:</span> 2<br>
-				<span>Broj rezerviranih knjiga:</span> 1<br>
-				<span>Datum zadnje posudbe:</span> 07.01.2018.<br>
-			</div>
-			<a ui-sref="libraryDetails({libraryId: library.libraryId})">DETALJI</a>
-		</div>
-		<div class="library-hub__library">
-			<div class="library__bar">
-				<span>GK Marko Marulić</span>
-			</div>
-			<div class="library__info">
-				<span>Član do</span> 27.01.2018.<br>
-				<span>Broj posuđenih knjiga:</span> 2<br>
-				<span>Broj rezerviranih knjiga:</span> 1<br>
-				<span>Datum zadnje posudbe:</span> 07.01.2018.<br>
-			</div>
-			<a ui-sref="libraryDetails({libraryId: library.libraryId})">DETALJI</a>
-		</div>
-		<div class="library-hub__library">
-			<div class="library__bar">
-				<span>GK Marko Marulić</span>
-			</div>
-			<div class="library__info">
-				<span>Član do</span> 27.01.2018.<br>
-				<span>Broj posuđenih knjiga:</span> 2<br>
-				<span>Broj rezerviranih knjiga:</span> 1<br>
-				<span>Datum zadnje posudbe:</span> 07.01.2018.<br>
-			</div>
-			<a ui-sref="libraryDetails({libraryId: library.libraryId})">DETALJI</a>
-		</div>
-		<div class="library-hub__library">
-			<div class="library__bar">
-				<span>GK Marko Marulić</span>
-			</div>
-			<div class="library__info">
-				<span>Član do</span> 27.01.2018.<br>
-				<span>Broj posuđenih knjiga:</span> 2<br>
-				<span>Broj rezerviranih knjiga:</span> 1<br>
-				<span>Datum zadnje posudbe:</span> 07.01.2018.<br>
-			</div>
-			<a ui-sref="libraryDetails({libraryId: library.libraryId})">DETALJI</a>
-		</div>
-		<div class="library-hub__library">
-			<div class="library__bar">
-				<span>GK Marko Marulić</span>
-			</div>
-			<div class="library__info">
-				<span>Član do</span> 27.01.2018.<br>
-				<span>Broj posuđenih knjiga:</span> 2<br>
-				<span>Broj rezerviranih knjiga:</span> 1<br>
-				<span>Datum zadnje posudbe:</span> 07.01.2018.<br>
+				<span>Član do</span> {{library.membershipExpiryDate | convertDateLong}}<br>
+				<span>Broj posuđenih knjiga:</span> {{library.numberOfBorrowedBooks}}<br>
+				<span>Broj rezerviranih knjiga:</span> {{library.numberOfReservedBooks}}<br>
+				<span>Datum zadnje posudbe:</span> {{library.lastBorrowDate | convertDateLong}}<br>
 			</div>
 			<a ui-sref="libraryDetails({libraryId: library.libraryId})">DETALJI</a>
 		</div>
