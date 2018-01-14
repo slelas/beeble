@@ -1,8 +1,17 @@
-﻿<input type="text" placeholder="Username" ng-model="loginData.userName">
-<input type="text" placeholder="Password" ng-model="loginData.password">
-
-<div>
-	<input type="checkbox" ng-model="isUserRemembered" checked /> Remember me
+﻿<div class="login">
+	<div class="login__content">
+		<div class="logo">Beeble</div>
+		<input class="login__username" type="text" placeholder="Username" ng-model="loginData.userName">
+		<div class="login__password-wrapper">
+			<input class="login__password-input" type="text" placeholder="Lozinka" ng-model="loginData.password">
+			<button class="login__button" ng-click="login()">PRIJAVA</button>
+		</div>
+		<div class="login__wrapper">
+			<div class="login__remember-me" ng-model="isUserRemembered">
+				<input type="checkbox">
+				<span>Zapamti me</span>
+			</div>
+			<a class="login__forgot-password" ui-sref="">Zaboravljena lozinka?</a>
+		</div>
+	</div>
 </div>
-
-<button ng-click="login()">Log in</button>
