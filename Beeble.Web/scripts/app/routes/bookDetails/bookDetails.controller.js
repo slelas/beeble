@@ -27,8 +27,7 @@
 		$scope.loadBooks();
 		$scope.getBookNumbers();
 
-        $scope.isLoggedIn = authService.isAuth;
-
+        $scope.isLoggedIn = authService.authentication.isAuth;
 
 		$scope.reserveBook = function(libraryName, reservationDuration, libraryId) {
 			//libraryId po indexu i poslat u backend sa imenom knjige
@@ -44,9 +43,11 @@
 				showClose: false,
 				closeByNavigation: true
 			});
+            console.log(libraryId, $scope.book.name, reservationDuration, $scope.book.author);
+            bookSearchService.makeAReservation(libraryId, $scope.book.name, $scope.book.author).then(function (result) {
 
-			$scope.loadBooks();
-
+                $scope.loadBooks();
+            });
 		};
 
 	});

@@ -67,15 +67,23 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
 		});
 
 		return deferred.promise;
-	}
+    }
 
+    function makeAReservation(libraryId, bookName, authorName) {
+
+        //PRETVORIT U POST
+        return $http.get(serviceBase + 'api/search/reserve', { params: { libraryId: libraryId, bookName: bookName, authorName: authorName } }).then(function (results) {
+            return results;
+        });
+    }
 
 	var bookSearchFactory = {};
 	bookSearchFactory.search = search;
 	bookSearchFactory.getFilters = getFilters;
     bookSearchFactory.getBooksByName = getBooksByName;
 	bookSearchFactory.applyAFilter = applyAFilter;
-	bookSearchFactory.getBookNumbers = getBookNumbers;
+    bookSearchFactory.getBookNumbers = getBookNumbers;
+    bookSearchFactory.makeAReservation = makeAReservation;
 
 	return bookSearchFactory;
 

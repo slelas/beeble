@@ -48,6 +48,13 @@ namespace Beeble.Api.Controllers
 			return repo.GetNumberOfAvailableAndReservedBooks(bookName);
 		}
 
+        [HttpGet]
+        [Route("reserve")]
+        public void MakeAReservation(int libraryId, string bookName, string authorName)
+        {
+            repo.MakeAReservation(libraryId, bookName, authorName);
+        }
+
 		/*[HttpGet]
 		[Authorize]
 		[Route("get-libraries")]

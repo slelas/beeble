@@ -251,7 +251,8 @@ namespace Beeble.Api
 		                Language = language1,
 		                Categories = new List<Category>() { category5 },
 		                ImageUrl = "https://static.enotes.com/images/covers%2Fhamlet.jpg",
-						IsAvailable = true
+						IsBorrowed = false,
+                        IsReserved = false
 	                };
 
 					var localLibraryMember1 = new LocalLibraryMember()

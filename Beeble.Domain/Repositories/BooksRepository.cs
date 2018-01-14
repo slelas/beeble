@@ -179,66 +179,60 @@ namespace Beeble.Domain.Repositories
 
 				var usedIdAsString = userId.ToString();
 
-				var allBooksWithName = context.Books
-					.Include(book => book.Author)
-					.Include(book => book.Categories)
-					.Include(book => book.Language)
-					.Include(book => book.Nationality)
-					.Include(book => book.YearOfIssue)
-					.Include(book => book.LocalLibrary)
-					.Include("LocalLibrary.Members")
-					.Include("LocalLibrary.Members.OnlineUser")
-					.Where(book => book.Name == bookName)
-					.ToList();
+                var allBooksWithName = context.Books
+                    .Include(book => book.Author)
+                    .Include(book => book.Categories)
+                    .Include(book => book.Language)
+                    .Include(book => book.Nationality)
+                    .Include(book => book.YearOfIssue)
+                    .Include(book => book.LocalLibrary)
+                    .Include("LocalLibrary.Members")
+                    .Include("LocalLibrary.Members.OnlineUser")
+                    .Where(book => book.Name == bookName)
+                    .ToList();
 
-				var booksFromUsersLibraries = allBooksWithName
-					.Where(book =>
-					{
-						return book.LocalLibrary.Members.Any(member => member.OnlineUser.Id == usedIdAsString);
-					}).ToList();
+                if (userId != null)
+                {
+                    var booksFromUsersLibraries = allBooksWithName
+                        .Where(book =>
+                        {
+                            return book.LocalLibrary.Members.Any(member =>
+                            {
+                                if (member.OnlineUser == null)
+                                    return false;
+
+                                return member.OnlineUser.Id == usedIdAsString;
+                            });
+                        }).ToList();
 
 
 
-				var booksThatAreBorrowed = booksFromUsersLibraries.Where(
-						book => context.BatchesOfBorrowedBooks.Any(batch => batch.Books.Select(x => x.Id).Contains(book.Id)))
-					.Select(book => LongBookDTO.FromData(book,
-						context.BatchesOfBorrowedBooks.FirstOrDefault(batch => batch.Books.Select(x => x.Id).Contains(book.Id))
-							.ReturnDeadline))
-					.OrderBy(borrowedBook => borrowedBook.ReturnDeadline)
-					.ToList();
+                    var booksThatAreBorrowed = booksFromUsersLibraries.Where(
+                            book => context.BatchesOfBorrowedBooks.Any(batch => batch.Books.Select(x => x.Id).Contains(book.Id)) && !book.IsReserved)
+                        .Select(book => LongBookDTO.FromData(book,
+                            context.BatchesOfBorrowedBooks.FirstOrDefault(batch => batch.Books.Select(x => x.Id).Contains(book.Id))
+                                .ReturnDeadline))
+                        .OrderBy(borrowedBook => borrowedBook.ReturnDeadline)
+                        .ToList();
 
-				var booksThatAreAvailable = booksFromUsersLibraries
-					.Where(book => !booksThatAreBorrowed.Select(borrowedBook => borrowedBook.BookId).Contains(book.Id))
-					.Select(book => LongBookDTO.FromData(book, null))
-					.ToList();
+                    var booksThatAreAvailable = booksFromUsersLibraries
+                        .Where(book => !booksThatAreBorrowed.Select(borrowedBook => borrowedBook.BookId).Contains(book.Id) && !book.IsReserved)
+                        .Select(book => LongBookDTO.FromData(book, null))
+                        .ToList();
 
-				result.Add(booksThatAreBorrowed.Concat(booksThatAreAvailable)
-					.GroupBy(book => book.LocalLibrary.Name)
-					.Select(bookGroup => bookGroup.LastOrDefault())
-					.ToList());
-
-				/*var booksFromOtherLibraries = context.Books
-					.Include(book => book.Author)
-					.Include(book => book.Categories)
-					.Include(book => book.Language)
-					.Include(book => book.Nationality)
-					.Include(book => book.YearOfIssue)
-					.Where(book => book.Name == bookName && book.IsAvailable && context.Users
-						               .Include(user => user.LocalLibraryMembers)
-						               .Include("LocalLibraryMembers.LocalLibrary")
-						               .FirstOrDefault(user => user.LocalLibraryMembers.Any(
-							               member => member.OnlineUser.Id == userId.ToString() &&
-							                         user.Id == userId.ToString()))
-						               .LocalLibraryMembers
-						               .Any(member => member.LocalLibrary.Id != book.LocalLibrary.Id))
-					.ToList();*/
+                    result.Add(booksThatAreBorrowed.Concat(booksThatAreAvailable)
+                        .GroupBy(book => book.LocalLibrary.Name)
+                        .Select(bookGroup => bookGroup.LastOrDefault())
+                        .ToList());
+                }
 
 				var allAvailableBooksWithName = allBooksWithName
-					.Where(book => book.Name == bookName && book.IsAvailable)
+					.Where(book => book.Name == bookName && !book.IsBorrowed && !book.IsReserved)
 					.ToList();
 
                 if (userId == null)
                 {
+                    result.Add(null);
                     result.Add(allAvailableBooksWithName.Select(book => LongBookDTO.FromData(book, null)).ToList());
 
                     return result;
@@ -247,8 +241,13 @@ namespace Beeble.Domain.Repositories
 				var booksFromOtherLibraries = allAvailableBooksWithName
 					.Where(book =>
 					{
-						return book.LocalLibrary.Members.All(member => member.OnlineUser.Id != usedIdAsString);
+						return book.LocalLibrary.Members.All(member =>
+                        {
+                            if (member.OnlineUser == null)
+                                return false;
 
+                            return member.OnlineUser.Id != usedIdAsString;
+                        });
 					}).ToList();
 
 				result.Add(booksFromOtherLibraries.Select(book => LongBookDTO.FromData(book, null)).ToList());
@@ -262,7 +261,7 @@ namespace Beeble.Domain.Repositories
 		    using (var context = new AuthContext())
 		    {
 
-			    var totalAvailableBooks = context.Books.Count(book => book.Name == bookName && book.IsAvailable);
+			    var totalAvailableBooks = context.Books.Count(book => book.Name == bookName && !book.IsBorrowed && !book.IsReserved);
 			    var totalReservedBooks = context.Reservations.Count();
 
 			    return new List<int>() {totalAvailableBooks, totalReservedBooks};
@@ -288,7 +287,7 @@ namespace Beeble.Domain.Repositories
             }
         }
 
-	    public void MakeABookReservation(int libraryId, string bookName, string authorName, Guid? UserId)
+	    public void MakeAReservation(int libraryId, string bookName, string authorName)
 	    {
 		    using (var context = new AuthContext())
 		    {
@@ -296,17 +295,20 @@ namespace Beeble.Domain.Repositories
 				    .FirstOrDefault(book => book.Name == bookName && book.Author.Name == authorName && book.LocalLibrary.Id == libraryId);
 
 			    var libraryMember = context.LocalLibraryMembers
+                    .Include(member => member.LocalLibrary)
 					.FirstOrDefault(member => member.LocalLibrary.Id == libraryId);
 
-			    context.Reservations.Add(new Reservation()
-			    {
-				    Book = bookToReserve,
-				    LibraryMember = libraryMember,
-					PickupDeadline = DateTime.Now.Add(TimeSpan.FromHours(libraryMember.LocalLibrary.ReservationDuration)),
-					IsGuestMember = libraryMember == null
-			    });
+                context.Reservations.Add(new Reservation()
+                {
+                    Book = bookToReserve,
+                    LibraryMember = libraryMember,
+                    PickupDeadline = DateTime.Now.Add(TimeSpan.FromHours(libraryMember.LocalLibrary.ReservationDuration)),
+                    IsGuestMember = libraryMember == null
+                });
 
-			    bookToReserve.IsAvailable = false;
+			    bookToReserve.IsReserved = true;
+
+                context.SaveChanges();
 		    }
 	    }
     }

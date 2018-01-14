@@ -16,10 +16,11 @@ namespace Beeble.Data.Models
         public string Description { get; set; }
         public string Publisher { get; set; }
         public string ImageUrl { get; set; }
-	    public bool IsAvailable { get; set; }
+	    public bool IsBorrowed { get; set; }
+        public bool IsReserved { get; set; }
 
 
-	    public Author Author { get; set; }
+        public Author Author { get; set; }
         public YearOfIssue YearOfIssue { get; set; }
         public List<Category> Categories { get; set; }
         public LocalLibrary LocalLibrary { get; set; }

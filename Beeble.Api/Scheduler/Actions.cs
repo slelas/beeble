@@ -20,7 +20,7 @@ namespace Beeble.Api.Scheduler
 
                 expiredReservations.Select(reservation => reservation.Book)
                     .ToList()
-                    .ForEach(reservedBook => reservedBook.IsAvailable = true);
+                    .ForEach(reservedBook => reservedBook.IsReserved = false);
 
                 expiredReservations.ForEach(reservation =>
                                             context.Entry(reservation).State = EntityState.Deleted);
