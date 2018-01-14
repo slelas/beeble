@@ -307,14 +307,14 @@ namespace Beeble.Api
                     {
                         LibraryMember = localLibraryMember1,
                         PickupDeadline = new DateTime(2016, 1, 2),
-                        Book = book5
+                        Book = book2
                     };
 
                     var reservation2 = new Reservation()
                     {
                         LibraryMember = localLibraryMember1,
                         PickupDeadline = new DateTime(2018, 1, 2),
-                        Book = book1
+                        Book = book7
                     };
 
                     context.Categories.Add(category1);

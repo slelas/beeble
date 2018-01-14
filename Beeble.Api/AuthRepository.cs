@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -30,7 +31,7 @@ namespace Beeble.Api
 
         public async Task<IdentityResult> RegisterUser(UserModel userModel)
         {
-            OnlineUser user = new OnlineUser
+            var user = new OnlineUser
             {
                 UserName = userModel.UserName,
                 Email = userModel.UserName,
@@ -66,12 +67,13 @@ namespace Beeble.Api
 		    user.PhoneNumber = userModel.PhoneNumber;
 		    user.Oib = userModel.Oib;
 
-		    return _ctx.SaveChanges() > 0; //vraca broj promjenjenih linija
+			// returns the number of changed lines
+		    return _ctx.SaveChanges() > 0;
 	    }
 
         public async Task<OnlineUser> FindUser(string userName, string password)
         {
-            OnlineUser user = await _userManager.FindAsync(userName, password);
+            var user = await _userManager.FindAsync(userName, password);
 
             return user;
         }
@@ -81,17 +83,30 @@ namespace Beeble.Api
             using (var context = new AuthContext())
             {
 
-                var roleId = context.Users.Where(x => x.Id == userId).FirstOrDefault().Roles.FirstOrDefault().RoleId;
-                return context.Roles.Where(x => x.Id == roleId).FirstOrDefault().Name;
+                var roleId = context.Users.FirstOrDefault(user => user.Id == userId).Roles.FirstOrDefault().RoleId;
+
+                return context.Roles.FirstOrDefault(role => role.Id == roleId).Name;
             }
         }
 
-	    public async Task<OnlineUserDTO> GetUser(Guid? userId)
-	    {
-			    var user = await _userManager.FindByIdAsync(userId.ToString());
+		public OnlineUserDTO GetUser(Guid? userId)
+		{
+			using (var context = new AuthContext())
+			{
+				var user = context.Users
+					.Include("LocalLibraryMembers")
+					.Include("LocalLibraryMembers.BatchesOfBorrowedBooks")
+					.Include("LocalLibraryMembers.BatchesOfBorrowedBooks.Books")
+					.Include("LocalLibraryMembers.BatchesOfBorrowedBooks.Books.Author")
+					.Include("LocalLibraryMembers.Reservations")
+					.Include("LocalLibraryMembers.Reservations.Book")
+					.SingleOrDefault(onlineUser => onlineUser.Id == userId.ToString());
 
-			    return OnlineUserDTO.FromData(user);
-	    }
+				return OnlineUserDTO.FromData(user);
+			}
+
+
+		}
 
 		public void Dispose()
         {
