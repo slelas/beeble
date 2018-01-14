@@ -55,6 +55,13 @@ namespace Beeble.Api.Controllers
             repo.MakeAReservation(libraryId, bookName, authorName);
         }
 
+		[HttpGet]
+		[Route("get-one-time-borrow")]
+		public LongBookDTO GetBookForOneTimeBorrow(int libraryId, string bookName, string authorName)
+		{
+			return repo.GetBookForOneTimeBorrow(libraryId, bookName, authorName);
+		}
+
 		/*[HttpGet]
 		[Authorize]
 		[Route("get-libraries")]

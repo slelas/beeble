@@ -252,7 +252,7 @@ namespace Beeble.Domain.Repositories
 				var booksFromOtherLibraries = allAvailableBooksWithName
 					.Where(book =>
 					{
-						return book.LocalLibrary.Members.All(member =>
+						return book.LocalLibrary.Members.Any(member =>
                         {
                             if (member.OnlineUser == null)
                                 return false;
@@ -301,6 +301,22 @@ namespace Beeble.Domain.Repositories
 			    bookToReserve.IsReserved = true;
 
                 context.SaveChanges();
+		    }
+	    }
+
+	    public LongBookDTO GetBookForOneTimeBorrow(int libraryId, string bookName, string authorName)
+	    {
+		    using (var context = new AuthContext())
+		    {
+			    return context.Books
+					.Where(book => book.Name == bookName && book.Author.Name == authorName && book.LocalLibrary.Id == libraryId)
+					.Include("Author")
+					.Include("Language")
+					.Include("Categories")
+					.Include("LocalLibrary")
+					.ToList()
+					.Select(book => LongBookDTO.FromData(book, null))
+					.FirstOrDefault();
 		    }
 	    }
     }

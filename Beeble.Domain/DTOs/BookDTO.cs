@@ -58,9 +58,13 @@ namespace Beeble.Domain.DTOs
 
 				LocalLibrary = new LocalLibrary()
 				{
+					Id = book.LocalLibrary.Id,
 					Name = book.LocalLibrary.Name,
-					Id = book.LocalLibrary.Id
+					Address = book.LocalLibrary.Address,
+					DefaultLendDuration = book.LocalLibrary.DefaultLendDuration,
+					GuestBorrowPrice = book.LocalLibrary.GuestBorrowPrice,
 				},
+
 				ReturnDeadline = returnDeadline 
 			};
 		}

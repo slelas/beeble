@@ -30,7 +30,6 @@
         $scope.isLoggedIn = authService.authentication.isAuth;
 
 		$scope.reserveBook = function(libraryName, reservationDuration, libraryId) {
-			//libraryId po indexu i poslat u backend sa imenom knjige
 
 			$rootScope.libraryName = libraryName;
 			$rootScope.reservationDuration = reservationDuration;

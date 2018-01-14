@@ -115,6 +115,9 @@
     <Content Include="scripts\app\routes\libraryHub\libraryHub.controller.js" />
     <Content Include="scripts\app\routes\libraryHub\libraryHub.route.js" />
     <Content Include="scripts\app\routes\libraryHub\libraryHub.template.html" />
+    <Content Include="scripts\app\routes\oneTimeBorrow\oneTimeBorrow.controller.js" />
+    <Content Include="scripts\app\routes\oneTimeBorrow\oneTimeBorrow.route.js" />
+    <Content Include="scripts\app\routes\oneTimeBorrow\oneTimeBorrow.template.html" />
     <Content Include="scripts\app\routes\search\search.template.html" />
     <Content Include="scripts\css\ngDialog-theme-default.css" />
     <Content Include="scripts\css\ngDialog.min.css" />

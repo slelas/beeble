@@ -75,7 +75,14 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
         return $http.get(serviceBase + 'api/search/reserve', { params: { libraryId: libraryId, bookName: bookName, authorName: authorName } }).then(function (results) {
             return results;
         });
-    }
+	}
+
+	function getBookForOneTime(libraryId, bookName, authorName) {
+		console.log(libraryId, bookName, authorName);
+		return $http.get(serviceBase + 'api/search/get-one-time-borrow', { params: { libraryId: libraryId, bookName: bookName, authorName: authorName } }).then(function (results) {
+			return results;
+		});
+	}
 
 	var bookSearchFactory = {};
 	bookSearchFactory.search = search;
@@ -83,7 +90,8 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
     bookSearchFactory.getBooksByName = getBooksByName;
 	bookSearchFactory.applyAFilter = applyAFilter;
     bookSearchFactory.getBookNumbers = getBookNumbers;
-    bookSearchFactory.makeAReservation = makeAReservation;
+	bookSearchFactory.makeAReservation = makeAReservation;
+	bookSearchFactory.getBookForOneTime = getBookForOneTime ;
 
 	return bookSearchFactory;
 

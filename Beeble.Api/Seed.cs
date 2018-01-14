@@ -279,7 +279,7 @@ namespace Beeble.Api
                         MembershipExpiryDate = new DateTime(2025, 5, 1)
                     };
 
-                    var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
+                   /* var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
                     {
                         LibraryMember = localLibraryMember1,
                         PickupDate = new DateTime(2018, 1, 2),
@@ -315,7 +315,7 @@ namespace Beeble.Api
                         LibraryMember = localLibraryMember1,
                         PickupDeadline = new DateTime(2018, 1, 2),
                         Book = book7
-                    };
+                    };*/
 
                     context.Categories.Add(category1);
 					context.Categories.Add(category2);
@@ -343,12 +343,12 @@ namespace Beeble.Api
 	                context.Books.Add(book7);
 	                context.Books.Add(book8);
 
-                    context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
+                    /*context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);
 	                context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks3);
 
 					context.Reservations.Add(reservation1);
-                    context.Reservations.Add(reservation2);
+                    context.Reservations.Add(reservation2);*/
 
                     context.LocalLibraryMembers.Add(localLibraryMember1);
                     context.LocalLibraryMembers.Add(localLibraryMember2);
