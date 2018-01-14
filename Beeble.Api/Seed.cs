@@ -305,8 +305,15 @@ namespace Beeble.Api
 					var reservation1 = new Reservation()
                     {
                         LibraryMember = localLibraryMember1,
-                        PickupDeadline = new DateTime(2018, 1, 2),
+                        PickupDeadline = new DateTime(2016, 1, 2),
                         Book = book5
+                    };
+
+                    var reservation2 = new Reservation()
+                    {
+                        LibraryMember = localLibraryMember1,
+                        PickupDeadline = new DateTime(2018, 1, 2),
+                        Book = book1
                     };
 
                     context.Categories.Add(category1);
@@ -340,6 +347,7 @@ namespace Beeble.Api
 	                context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks3);
 
 					context.Reservations.Add(reservation1);
+                    context.Reservations.Add(reservation2);
 
                     context.LocalLibraryMembers.Add(localLibraryMember1);
                     context.LocalLibraryMembers.Add(localLibraryMember2);
