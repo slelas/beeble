@@ -1,7 +1,7 @@
 ﻿angular.module('myApp').controller('loginController', ['$scope', '$state', '$location', 'authService', function ($scope, $state, $location, authService) {
 
     $scope.loginData = {
-        userName: "jsvalina",
+        userName: "zdelas",
         password: "123456"
     };
 

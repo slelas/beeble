@@ -111,6 +111,9 @@
     <Content Include="scripts\app\routes\home\home.controller.js" />
     <Content Include="scripts\app\routes\home\home.route.js" />
     <Content Include="scripts\app\routes\home\home.template.html" />
+    <Content Include="scripts\app\routes\lendAndReturn\lendAndReturn.controller.js" />
+    <Content Include="scripts\app\routes\lendAndReturn\lendAndReturn.route.js" />
+    <Content Include="scripts\app\routes\lendAndReturn\lendAndReturn.template.html" />
     <Content Include="scripts\app\routes\libraryDetails\libraryDetails.controller.js" />
     <Content Include="scripts\app\routes\libraryDetails\libraryDetails.route.js" />
     <Content Include="scripts\app\routes\libraryDetails\libraryDetails.template.html" />

@@ -8,17 +8,17 @@ app.factory('authService', function ($http, $q, $state, serviceBase) {
 
     function register(registration) {
         logOut();
-		return $http.post(serviceBase + 'api/account/register', registration).then(function successful(response) {
+        return $http.post(serviceBase + 'api/account/register', registration).then(function successful(response) {
 
-			var loginData = {
-				userName: registration.username,
-				password: registration.password
-			};
-			login(loginData, true);
+            var loginData = {
+                userName: registration.username,
+                password: registration.password
+            };
+            login(loginData, true);
 
             return response;
         }, function error(result) {
-	        alert('Email vec postoji');
+            alert('Email vec postoji');
         });
     };
 
@@ -26,44 +26,48 @@ app.factory('authService', function ($http, $q, $state, serviceBase) {
 
         var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
 
-	    return $http.post(serviceBase + 'token',
-			    data,
-			    { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-		    .then(function successful(response) {
+        return $http.post(serviceBase + 'token',
+            data,
+            { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            .then(function successful(response) {
 
-				    // session storage is temporary; isUserRemembered is user's preference
-				    if (isUserRemembered)
-					    localStorage.setItem('authorizationData',
-						    JSON.stringify({ token: response.data.access_token, userName: loginData.userName }));
-				    else
-					    sessionStorage.setItem('authorizationData',
-						    JSON.stringify({ token: response.data.access_token, userName: loginData.userName }));
+                var storageItem = JSON.stringify({ token: response.data.access_token, userName: loginData.userName, role: JSON.parse(response.data.roles)[0] });
 
-				    authentication.isAuth = true;
-				    authentication.userName = loginData.userName;
+                // session storage is temporary; isUserRemembered is user's preference
+                if (isUserRemembered)
+                    localStorage.setItem('authorizationData', storageItem)
+                else
+                    sessionStorage.setItem('authorizationData', storageItem)
 
-				    $state.go('home');
-			    },
-			    function error(result) {
-				    alert('Podatci nisu tocni');
-			    });
+                authentication.isAuth = true;
+                authentication.userName = loginData.userName;
+                authentication.role = JSON.parse(response.data.roles)[0];
+
+                $state.go('home');
+            },
+            function error(result) {
+                alert('Podatci nisu tocni');
+            });
     };
 
     function logOut() {
 
-		localStorage.removeItem('authorizationData');
-		sessionStorage.removeItem('authorizationData');
+        localStorage.removeItem('authorizationData');
+        sessionStorage.removeItem('authorizationData');
 
         authentication.isAuth = false;
         authentication.userName = "";
+        authentication.role = null;
     };
 
     function fillAuthData() {
-	    var authData = JSON.parse(localStorage.getItem('authorizationData')) || JSON.parse(sessionStorage.getItem('authorizationData'));
 
-		if (authData) {
+        var authData = JSON.parse(localStorage.getItem('authorizationData')) || JSON.parse(sessionStorage.getItem('authorizationData'));
+
+        if (authData) {
             authentication.isAuth = true;
             authentication.userName = authData.userName;
+            authentication.role = authData.role;
         }
     }
 
