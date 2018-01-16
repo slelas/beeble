@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,11 @@ namespace Beeble.Domain.DTOs
 	{
 		public string LibraryName { get; set; }
 		public int LibraryId { get; set; }
+		public string MemberName { get; set; }
+		public string MemberLastName { get; set; }
+		public string MemberAddress { get; set; }
+		public string MemberEmail { get; set; }
+		public string MemberOib { get; set; }
 		public DateTime? MembershipExpiryDate { get; set; }
 		public int NumberOfBorrowedBooks { get; set; }
 		public int NumberOfReservedBooks { get; set; }
@@ -23,6 +29,11 @@ namespace Beeble.Domain.DTOs
 			{
 				LibraryName = member.LocalLibrary.Name,
 				LibraryId = member.LocalLibrary.Id,
+				MemberName = member.Name,
+				MemberLastName = member.LastName,
+				MemberAddress = member.Address,
+				MemberEmail = member.Email,
+				MemberOib = member.Oib,
 				MembershipExpiryDate = member.MembershipExpiryDate,
 				NumberOfBorrowedBooks = member.BatchesOfBorrowedBooks.Count,
 				NumberOfReservedBooks = member.Reservations.Count,

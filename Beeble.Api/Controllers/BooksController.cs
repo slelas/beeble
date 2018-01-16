@@ -62,6 +62,13 @@ namespace Beeble.Api.Controllers
 			return repo.GetBookForOneTimeBorrow(libraryId, bookName, authorName);
 		}
 
+		[HttpGet]
+		[Route("get-by-id")]
+		public Book GetBookById(int bookId)
+		{
+			return repo.GetBookById(bookId);
+		}
+
 		/*[HttpGet]
 		[Authorize]
 		[Route("get-libraries")]

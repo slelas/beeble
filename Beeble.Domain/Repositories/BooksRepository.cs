@@ -10,6 +10,7 @@ using Beeble.Data;
 using Beeble.Data.Models;
 using Beeble.Domain.DTOs;
 using Microsoft.Owin.Security.Provider;
+using MoreLinq;
 
 namespace Beeble.Domain.Repositories
 {
@@ -188,7 +189,7 @@ namespace Beeble.Domain.Repositories
 			{
 				var result = new List<List<LongBookDTO>>();
 
-				var usedIdAsString = userId.ToString();
+				var userIdAsString = userId.ToString();
 
                 var allBooksWithName = context.Books
                     .Include(book => book.Author)
@@ -212,7 +213,7 @@ namespace Beeble.Domain.Repositories
                                 if (member.OnlineUser == null)
                                     return false;
 
-                                return member.OnlineUser.Id == usedIdAsString;
+                                return member.OnlineUser.Id == userIdAsString;
                             });
                         }).ToList();
 
@@ -252,16 +253,16 @@ namespace Beeble.Domain.Repositories
 				var booksFromOtherLibraries = allAvailableBooksWithName
 					.Where(book =>
 					{
-						return book.LocalLibrary.Members.Any(member =>
+						return !book.LocalLibrary.Members.Any(member =>
                         {
                             if (member.OnlineUser == null)
                                 return false;
 
-                            return member.OnlineUser.Id != usedIdAsString;
+                            return member.OnlineUser.Id == userIdAsString;
                         });
 					}).ToList();
 
-				result.Add(booksFromOtherLibraries.Select(book => LongBookDTO.FromData(book, null)).ToList());
+				result.Add(booksFromOtherLibraries.Select(book => LongBookDTO.FromData(book, null)).DistinctBy(x => x.LocalLibrary.Id).ToList());
 
 				return result;
 			}
@@ -317,6 +318,16 @@ namespace Beeble.Domain.Repositories
 					.ToList()
 					.Select(book => LongBookDTO.FromData(book, null))
 					.FirstOrDefault();
+		    }
+	    }
+
+	    public Book GetBookById(int bookId)
+	    {
+		    using (var context = new AuthContext())
+		    {
+			    return context.Books
+					.Include("Author")
+					.FirstOrDefault(book => book.Id == bookId);
 		    }
 	    }
     }

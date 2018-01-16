@@ -59,7 +59,7 @@ exports.default = {
     var barcodeLength = _ref.barcodeLength;
     var scanDuration = _ref.scanDuration;
     var scanHandler = arguments[1];
-
+	console.log(scanHandler)
     if (typeof barcodePrefix !== 'string') {
       throw new TypeError('barcodePrefix must be a string');
     }
@@ -72,7 +72,6 @@ exports.default = {
     if (typeof scanHandler !== 'function') {
       throw new TypeError('scanHandler must be a function');
     }
-
     /**
      * SwipeTrack calls this function, if defined, whenever a barcode is scanned
      * within the SwipeTrack browser.  See "SwipeTrack Browser JavaScript Functions" section of

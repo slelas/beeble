@@ -255,6 +255,25 @@ namespace Beeble.Api
                         IsReserved = false
 	                };
 
+	                var book9 = new Book()
+	                {
+		                Name = "Hamlet",
+		                NumOfPages = "115",
+		                Author = author2,
+		                YearOfIssue = year2,
+		                ISBN = "0230217867",
+		                DamageLevel = 2,
+		                Description = "desc",
+		                Publisher = "Cambridge Press",
+		                LocalLibrary = localLibrary2,
+		                Nationality = nationality2,
+		                Language = language1,
+		                Categories = new List<Category>() { category5 },
+		                ImageUrl = "https://static.enotes.com/images/covers%2Fhamlet.jpg",
+		                IsBorrowed = false,
+		                IsReserved = false
+	                };
+
 					var localLibraryMember1 = new LocalLibraryMember()
 					{
 						LocalLibrary = localLibrary1,
@@ -265,6 +284,12 @@ namespace Beeble.Api
 
 	                var localLibraryMember2 = new LocalLibraryMember()
 	                {
+						Name = "Mate",
+						LastName = "Matic",
+						Email = "test@gmail.hr",
+						PhoneNumber = "0915478522",
+						Oib = "12345",
+						Address = "adresa 123",
 		                LocalLibrary = localLibrary2,
 		                OnlineUser = regularUser2,
 		                Id = 9999999999,
@@ -279,45 +304,45 @@ namespace Beeble.Api
                         MembershipExpiryDate = new DateTime(2025, 5, 1)
                     };
 
-                   /* var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
-                    {
-                        LibraryMember = localLibraryMember1,
-                        PickupDate = new DateTime(2018, 1, 2),
-                        ReturnDeadline = new DateTime(2018, 3, 2),
-                        Books = new List<Book> { book1, book2 },
-                    };
+					var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
+					{
+						LibraryMember = localLibraryMember1,
+						PickupDate = new DateTime(2018, 1, 2),
+						ReturnDeadline = new DateTime(2018, 3, 2),
+						Books = new List<Book> { book1, book2 },
+					};
 
-                    var batchOfBorrowedBooks2 = new BatchOfBorrowedBooks()
-                    {
-                        LibraryMember = localLibraryMember1,
-                        PickupDate = new DateTime(2018, 1, 2),
-                        ReturnDeadline = new DateTime(2020, 5, 5),
-                        Books = new List<Book> { book3 },
-                    };
+					var batchOfBorrowedBooks2 = new BatchOfBorrowedBooks()
+					{
+						LibraryMember = localLibraryMember1,
+						PickupDate = new DateTime(2018, 1, 2),
+						ReturnDeadline = new DateTime(2020, 5, 5),
+						Books = new List<Book> { book3 },
+					};
 
-	                var batchOfBorrowedBooks3 = new BatchOfBorrowedBooks()
-	                {
-		                LibraryMember = localLibraryMember2,
-		                PickupDate = new DateTime(2018, 1, 2),
-		                ReturnDeadline = new DateTime(2020, 5, 5),
-		                Books = new List<Book> { book4 },
-	                };
+					var batchOfBorrowedBooks3 = new BatchOfBorrowedBooks()
+					{
+						LibraryMember = localLibraryMember2,
+						PickupDate = new DateTime(2018, 1, 2),
+						ReturnDeadline = new DateTime(2020, 5, 5),
+						Books = new List<Book> { book4 },
+					};
 
 					var reservation1 = new Reservation()
-                    {
-                        LibraryMember = localLibraryMember1,
-                        PickupDeadline = new DateTime(2016, 1, 2),
-                        Book = book2
-                    };
+					{
+						LibraryMember = localLibraryMember1,
+						PickupDeadline = new DateTime(2016, 1, 2),
+						Book = book2
+					};
 
-                    var reservation2 = new Reservation()
-                    {
-                        LibraryMember = localLibraryMember1,
-                        PickupDeadline = new DateTime(2018, 1, 2),
-                        Book = book7
-                    };*/
+					var reservation2 = new Reservation()
+					{
+						LibraryMember = localLibraryMember1,
+						PickupDeadline = new DateTime(2018, 1, 2),
+						Book = book7
+					};
 
-                    context.Categories.Add(category1);
+					context.Categories.Add(category1);
 					context.Categories.Add(category2);
 					context.Categories.Add(category3);
 					context.Categories.Add(category4);
@@ -342,15 +367,16 @@ namespace Beeble.Api
 					context.Books.Add(book6);
 	                context.Books.Add(book7);
 	                context.Books.Add(book8);
+	                context.Books.Add(book9);
 
-                    /*context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
-                    context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);
-	                context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks3);
+					context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
+					context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);
+					context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks3);
 
 					context.Reservations.Add(reservation1);
-                    context.Reservations.Add(reservation2);*/
+					context.Reservations.Add(reservation2);
 
-                    context.LocalLibraryMembers.Add(localLibraryMember1);
+					context.LocalLibraryMembers.Add(localLibraryMember1);
                     context.LocalLibraryMembers.Add(localLibraryMember2);
                     context.LocalLibraryMembers.Add(localLibraryMember3);
 

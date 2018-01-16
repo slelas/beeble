@@ -15,10 +15,11 @@ namespace Beeble.Data.Models
         public string LastName { get; set; }
         public string  PhoneNumber { get; set; }
         public string Email { get; set; }
-        //payment option
         public bool IsVerifiedLocal { get; set; }
         public bool IsGuest { get; set; }
-        public DateTime? MembershipExpiryDate { get; set; }
+	    public string Oib { get; set; }
+	    public string Address { get; set; }
+	    public DateTime? MembershipExpiryDate { get; set; }
 
 		public OnlineUser OnlineUser { get; set; }
         public LocalLibrary LocalLibrary { get; set; }

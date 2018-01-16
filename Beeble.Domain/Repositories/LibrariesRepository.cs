@@ -97,5 +97,19 @@ namespace Beeble.Domain.Repositories
             }
         }
 
+		public ShortLLMemberUserDTO GetMemberById(long memberId)
+		{
+			using (var context = new AuthContext())
+			{
+				return context.LocalLibraryMembers
+					.Include(localLibraryMember => localLibraryMember.LocalLibrary)
+					.Include(localLibraryMember => localLibraryMember.BatchesOfBorrowedBooks)
+					.Include(localLibraryMember => localLibraryMember.Reservations)
+					.Where(member => member.Id == memberId)
+					.Select(ShortLLMemberUserDTO.FromData)
+					.FirstOrDefault(); 
+			}
+		}
+
     }
 }

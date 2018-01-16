@@ -7,3 +7,5 @@ forgot password
 handleat error na promjenu podataka
 maknit hardcoded minimumlenght passworda u frontendu
 neka bude modal za javit da je ista sifra
+
+dodat id unutar local library za knjigu zbog poduplavanja
