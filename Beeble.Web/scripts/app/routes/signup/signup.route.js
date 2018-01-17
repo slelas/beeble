@@ -1,7 +1,7 @@
 ﻿angular.module('myApp').config(function ($stateProvider) {
     $stateProvider
         .state('signup', {
-            url: '/signup',
+            url: '/',
             controller: 'signupController',
             templateUrl: 'scripts/app/routes/signup/signup.template.html',
             onEnter: function ($rootScope) {
