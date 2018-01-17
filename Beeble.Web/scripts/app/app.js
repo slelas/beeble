@@ -1,4 +1,4 @@
-﻿var app = angular.module('myApp', ['ui.router', 'ngDialog', 'ngMessages', 'barcodeListener', 'angular-bar-code-scanner']);
+﻿var app = angular.module('myApp', ['ui.router', 'ngDialog', 'ngMessages', 'angular-hidScanner']);
 
 app.run(function (authService, $http) {
 

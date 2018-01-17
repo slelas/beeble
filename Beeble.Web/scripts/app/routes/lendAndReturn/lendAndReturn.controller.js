@@ -1,4 +1,4 @@
-﻿angular.module('myApp').controller('lendAndReturnController', function ($scope, bookSearchService, getLibrariesService, $window) {
+﻿angular.module('myApp').controller('lendAndReturnController', function ($scope, bookSearchService, getLibrariesService, $window, hidScanner) {
 
 	$scope.barcodeNumberTEST = '1';
 	$scope.memberIdTEST = '9999999999';
@@ -24,10 +24,9 @@
 	$scope.getScannedBook($scope.barcodeNumberTEST);
     $scope.getScannedMember($scope.memberIdTEST);
 
-    $scope.setFocus = function () {
-        console.log('zes');
-        console.log($scope.testInput);
-        var name = $window.document.getElementById('name');
-            name.focus();
-    };
+
+    hidScanner.initialize($scope);
+    $scope.processScannedBarcode = function (barcode) {
+        console.log('BARCODE IS: ' + barcode);
+    }
 });
