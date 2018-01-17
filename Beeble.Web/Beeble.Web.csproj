@@ -126,6 +126,8 @@
     <Content Include="scripts\app\routes\search\search.template.html" />
     <Content Include="scripts\css\ngDialog-theme-default.css" />
     <Content Include="scripts\css\ngDialog.min.css" />
+    <Content Include="scripts\vendor\angular-bar-code-scanner.js" />
+    <Content Include="scripts\vendor\angular-barcode-listener.js" />
     <Content Include="scripts\vendor\angular-barcode-listener.min.js" />
     <Content Include="scripts\vendor\angular-ui-bootstrap-modal.js" />
     <Content Include="scripts\vendor\ngDialog.js" />

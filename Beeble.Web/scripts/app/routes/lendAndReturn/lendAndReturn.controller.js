@@ -1,14 +1,4 @@
-﻿angular.module('myApp').controller('lendAndReturnController', function ($scope, bookSearchService, getLibrariesService) {
-
- //   $scope.test = function () {
- //       console.log('test');
- //   };
-
- //   $scope.var = function () {
- //       console.log(typeof ($scope.test));
- //   };
-
-	//$scope.var();
+﻿angular.module('myApp').controller('lendAndReturnController', function ($scope, bookSearchService, getLibrariesService, $window) {
 
 	$scope.barcodeNumberTEST = '1';
 	$scope.memberIdTEST = '9999999999';
@@ -32,5 +22,12 @@
 	}
 
 	$scope.getScannedBook($scope.barcodeNumberTEST);
-	$scope.getScannedMember($scope.memberIdTEST);
+    $scope.getScannedMember($scope.memberIdTEST);
+
+    $scope.setFocus = function () {
+        console.log('zes');
+        console.log($scope.testInput);
+        var name = $window.document.getElementById('name');
+            name.focus();
+    };
 });
