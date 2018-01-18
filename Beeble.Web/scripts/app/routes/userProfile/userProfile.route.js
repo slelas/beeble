@@ -1,7 +1,7 @@
 ﻿angular.module('myApp').config(function ($stateProvider) {
     $stateProvider
 		.state('userProfile', {
-            url: '/', //profile
+            url: '/profile',
 			controller: 'userProfileController',
             templateUrl: 'scripts/app/routes/userProfile/userProfile.template.html',
             onEnter: function ($rootScope) {

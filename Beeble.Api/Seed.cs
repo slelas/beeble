@@ -114,15 +114,16 @@ namespace Beeble.Api
 		                Number = "0215678456"
 	                };
 
-					// seed books
-					var book1 = new Book()
-					{
+                    // seed books
+                    var book1 = new Book()
+                    {
 						Name = "Steve Jobs",
 						NumOfPages = "577",
 						Author = author1,
 						YearOfIssue = year1,
 						ISBN = "1451648537",
-						DamageLevel = 2,
+                        Id = 1111111111,
+                        DamageLevel = 2,
 						Description = "desc",
 						Publisher = " Simon & Schuster",
 						LocalLibrary = localLibrary1,
@@ -134,6 +135,7 @@ namespace Beeble.Api
 
 					var book2 = new Book()
 					{
+                        Id = 2222222222,
 						Name = "Vlak u snijegu",
 						NumOfPages = "25",
 						Author = author3,
@@ -151,7 +153,8 @@ namespace Beeble.Api
 
 					var book3 = new Book()
 					{
-						Name = "Hamlet",
+                        Id = 1111111112,
+                        Name = "Hamlet",
 						NumOfPages = "115",
 						Author = author2,
 						YearOfIssue = year2,
@@ -168,7 +171,8 @@ namespace Beeble.Api
 
 					var book4 = new Book()
 					{
-						Name = "Macbeth",
+                        Id = 1111111113,
+                        Name = "Macbeth",
 						NumOfPages = "89",
 						Author = author2,
 						YearOfIssue = year2,
@@ -185,7 +189,8 @@ namespace Beeble.Api
 
 					var book5 = new Book()
 					{
-						Name = "Romeo i Julija",
+                        Id = 1111111114,
+                        Name = "Romeo i Julija",
 						NumOfPages = "155",
 						Author = author2,
 						YearOfIssue = year3,
@@ -202,7 +207,8 @@ namespace Beeble.Api
 
 					var book6 = new Book()
 					{
-						Name = "Romeo i Julija",
+                        Id = 1111111115,
+                        Name = "Romeo i Julija",
 						NumOfPages = "155",
 						Author = author2,
 						YearOfIssue = year3,
@@ -220,7 +226,8 @@ namespace Beeble.Api
 
 	                var book7 = new Book()
 	                {
-		                Name = "Romeo i Julija",
+                        Id = 1111111116,
+                        Name = "Romeo i Julija",
 		                NumOfPages = "155",
 		                Author = author2,
 		                YearOfIssue = year3,
@@ -238,7 +245,8 @@ namespace Beeble.Api
 
 	                var book8 = new Book()
 	                {
-		                Name = "Hamlet",
+                        Id = 1111111117,
+                        Name = "Hamlet",
 		                NumOfPages = "115",
 		                Author = author2,
 		                YearOfIssue = year2,
@@ -257,7 +265,8 @@ namespace Beeble.Api
 
 	                var book9 = new Book()
 	                {
-		                Name = "Hamlet",
+                        Id = 1111111118,
+                        Name = "Hamlet",
 		                NumOfPages = "115",
 		                Author = author2,
 		                YearOfIssue = year2,

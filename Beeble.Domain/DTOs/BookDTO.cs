@@ -13,7 +13,7 @@ namespace Beeble.Domain.DTOs
 		public string Name { get; set; }
 		public string Author { get; set; }
 		public DateTime? ReturnDeadline { get; set; }
-		public int BookId { get; set; }
+		public long BookId { get; set; }
 
 		public static ShortBookDTO FromData(Book book, DateTime? returnDeadline)
 		{
@@ -38,7 +38,7 @@ namespace Beeble.Domain.DTOs
 		public string Language { get; set; }
 		public string Isbn { get; set; }
 		public string Categories { get; set; }
-		public int BookId { get; set; }
+		public long BookId { get; set; }
 		public LocalLibrary LocalLibrary { get; set; }
 		public DateTime? ReturnDeadline { get; set; }
 

@@ -321,7 +321,7 @@ namespace Beeble.Domain.Repositories
 		    }
 	    }
 
-	    public Book GetBookById(int bookId)
+	    public Book GetBookById(long bookId)
 	    {
 		    using (var context = new AuthContext())
 		    {

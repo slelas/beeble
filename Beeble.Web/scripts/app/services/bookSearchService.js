@@ -84,8 +84,9 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
 		});
 	}
 
-	function getBookById(bookId) {
-		console.log(bookId);
+    function getBookById(bookId) {
+        console.log('testtt');
+		console.log('bookid ' + bookId);
 		return $http.get(serviceBase + 'api/search/get-by-id', { params: { bookId: bookId } }).then(function (results) {
 			return results;
 		});
@@ -99,7 +100,7 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
     bookSearchFactory.getBookNumbers = getBookNumbers;
 	bookSearchFactory.makeAReservation = makeAReservation;
 	bookSearchFactory.getBookForOneTime = getBookForOneTime;
-	bookSearchFactory.getBookById = getBookById;
+    bookSearchFactory.getBookById = getBookById;
 
 	return bookSearchFactory;
 
