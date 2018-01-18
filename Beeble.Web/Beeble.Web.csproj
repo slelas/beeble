@@ -102,6 +102,9 @@
     <Content Include="scripts\app\routes\addLibrary\addLibrary.controller.js" />
     <Content Include="scripts\app\routes\addLibrary\addLibrary.route.js" />
     <Content Include="scripts\app\routes\addLibrary\addLibrary.template.html" />
+    <Content Include="scripts\app\routes\addNewBook\addNewBook.controller.js" />
+    <Content Include="scripts\app\routes\addNewBook\addNewBook.route.js" />
+    <Content Include="scripts\app\routes\addNewBook\addNewBook.template.html" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.controller.js" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.route.js" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.template.html" />
