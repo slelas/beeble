@@ -1,4 +1,6 @@
-﻿<div>search TEMPLATE</div>
+﻿<customheader></customheader>
+
+<div>search TEMPLATE</div>
 <input type="text" ng-model="searchQuery" placeholder="Search" ng-keyup="$event.keyCode == 13 && search()" ng-submit="search()" />
 <button ng-click="searchButton()">-----Search-----</button>
 <h2>Knjige</h2>
@@ -8,7 +10,7 @@
 	<button ui-sref="bookDetails({bookName: book.name})">Details</button>
 </div>
 
-<h2 ng-show="currentBooks.length">Suzi pretragu</h2>
+<h2 ng-show="currentBooks.length">Suzi pretragu</h2> Ovo moze bit za cili div filtera
 <h3 ng-show="selectedFilters.length">Aktivni filteri</h3>
 <div ng-repeat="filter in selectedFilters">
     <div>{{filter}}</div>
@@ -44,3 +46,163 @@
 </div>
 
 <button ng-click="showMoreResults()" ng-show="currentBooks.length>0" ng-disabled="noMoreSearchResults">Show more results</button>
+
+<!-- <customheader></customheader>
+
+<div class="search">
+	<div class="homepage__search-bar">
+        <input class="search-bar__input" type="text" placeholder="Pretraži..." ng-model="searchQuery" ng-keyup="$event.keyCode == 13 && search()" ng-submit="search()" />
+        <a ng-click="search()" class="search-bar__button">
+            <img src="./images/search-icon.png" alt="">
+        </a>
+	</div>
+	<div class="search__wrapper">
+		<div class="search__filter">
+			<input id="toggle" class="toggle" type="checkbox" >
+			<label for="toggle" class="search__filter-header">
+				<span>FILTERI</span>
+				<img src="./images/triangle.png" alt="">
+			</label>
+			<div class="search__filter-expand">
+				<div class="filter__active">
+					<span class="filter__active-header">AKTIVNI FILTERI</span>
+					<div class="filter__item">
+						<span>Hrvatski</span>
+						<button class="remove-item" ng-click="removeAFilter()"><img src="./images/cross-icon.png" alt=""></button>
+					</div>
+					<div class="filter__item">
+						<span>kurac</span>
+						<button class="remove-item" ng-click="removeAFilter()"><img src="./images/cross-icon.png" alt=""></button>
+					</div>
+					<div class="filter__item">
+						<span>pilka</span>
+						<button class="remove-item" ng-click="removeAFilter()"><img src="./images/cross-icon.png" alt=""></button>
+					</div>
+					<div class="filter__item">
+						<span>sisa</span>
+						<button class="remove-item" ng-click="removeAFilter()"><img src="./images/cross-icon.png" alt=""></button>
+					</div>
+				</div>
+				<div class="search__filter-category">
+					<img src="./images/circle.png" alt="">
+					<div class="filter-category__all">
+						<span>KATEGORIJA</span>
+						<div class="">
+							<div class="filter-category__select-filter" ng-click="">
+								Biografija (2)
+							</div>
+							<div class="filter-category__select-filter" ng-click="">
+								Biografija (2)
+							</div>
+							<div class="filter-category__select-filter" ng-click="">
+								Biografija (2)
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="search__filter-category">
+					<img src="./images/circle.png" alt="">
+					<div class="filter-category__all">
+						<span>KATEGORIJA</span>
+						<div class="">
+							<div class="filter-category__select-filter" ng-click="">
+								Biografija (2)
+							</div>
+							<div class="filter-category__select-filter" ng-click="">
+								Biografija (2)
+							</div>
+							<div class="filter-category__select-filter" ng-click="">
+								Biografija (2)
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="search__filter-category">
+					<img src="./images/circle.png" alt="">
+					<div class="filter-category__all">
+						<span>KATEGORIJA</span>
+						<div class="">
+							<div class="filter-category__select-filter" ng-click="">
+								Biografija (2)
+							</div>
+							<div class="filter-category__select-filter" ng-click="">
+								Biografija (2)
+							</div>
+							<div class="filter-category__select-filter" ng-click="">
+								Biografija (2)
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="search__filter-category">
+					<img src="./images/circle.png" alt="">
+					<div class="filter-category__all">
+						<span>KATEGORIJA</span>
+						<div class="">
+							<div class="filter-category__select-filter" ng-click="">
+								Biografija (2)
+							</div>
+							<div class="filter-category__select-filter" ng-click="">
+								Biografija (2)
+							</div>
+							<div class="filter-category__select-filter" ng-click="">
+								Biografija (2)
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="search__result-wrapper">
+			<div class="search__results-title">REZULTATI</div>
+			<div class="search__result">
+				<div class="search__result-book-name">Steve Jobs</div>
+				<div class="search__result-book-author">Walter Isaacson</div>
+				<div class="book-info-wrapper">
+					<img src="./images/steve-jobs-cover.png" alt="">
+					<div class="book-info-wrapper-second">
+						<div class="search__result-book-info">
+							<span class="left">Nakladnik:</span>
+							<span class="right">Europapress holding, Zagreb, 2011.</span><br>
+							<span class="left">Žanr:</span>
+							<span class="right">biografija</span>
+						</div>
+						<button class="search__result-button">DETALJI</button>
+					</div>
+				</div>
+			</div>
+			<div class="search__result">
+				<div class="search__result-book-name">Steve Jobs</div>
+				<div class="search__result-book-author">Walter Isaacson</div>
+				<div class="book-info-wrapper">
+					<img src="./images/steve-jobs-cover.png" alt="">
+					<div class="book-info-wrapper-second">
+						<div class="search__result-book-info">
+							<span class="left">Nakladnik:</span>
+							<span class="right">Europapress holding, Zagreb, 2011.</span><br>
+							<span class="left">Žanr:</span>
+							<span class="right">biografija</span>
+						</div>
+						<button class="search__result-button">DETALJI</button>
+					</div>
+				</div>
+			</div>
+			<div class="search__result">
+				<div class="search__result-book-name">Steve Jobs</div>
+				<div class="search__result-book-author">Walter Isaacson</div>
+				<div class="book-info-wrapper">
+					<img src="./images/steve-jobs-cover.png" alt="">
+					<div class="book-info-wrapper-second">
+						<div class="search__result-book-info">
+							<span class="left">Nakladnik:</span>
+							<span class="right">Europapress holding, Zagreb, 2011.</span><br>
+							<span class="left">Žanr:</span>
+							<span class="right">biografija</span>
+						</div>
+						<button class="search__result-button">DETALJI</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> -->

@@ -16,8 +16,6 @@
 	<div>{{book.name}}</div>
 	<div>{{book.author}}</div>
 	<div>Posuđeno do {{book.returnDeadline | convertDateLong}}</div>
-	<!-- nemoj stavljat details botun za knjigu, nema smisla -->
-
 </div>
 
 <h4 ng-show="library.reservations">Rezervirano</h4>
@@ -26,6 +24,86 @@
 	<div>{{reservation.book.name}}</div>
 	<div>{{reservation.book.author.name}}</div>
 	<div>Posuđeno do {{reservation.pickupDeadline | convertDateLong}}</div>
-	<!-- nemoj stavljat details botun za knjigu, nema smisla -->
-
 </div>
+
+<!-- 
+<customheader></customheader>
+
+<div class="library-details">
+	<div class="library-details__bar">
+		<span class="library-details__library-name">GK Marko Marulić</span>
+	</div>
+	<div class="library-details__content">
+		<span class="library-details__header">INFORMACIJE</span>
+		<div class="library-details__info">
+			<div class="library-details__info-left">
+				<span>Član do:</span> 23.07.2018.<br>
+				<span>Broj posuđenih knjiga:</span> 3<br>
+				<span>Broj rezerviranih knjiga:</span> 1<br>
+				<span>Datum zadnje posudbe:</span> 01.05.2018.<br>
+			</div>
+			<div class="library-details__info-right">
+				<span>Otvoreno:</span> Pon - Pet: 08:00 - 20:00; Sub: 08:00 - 14:00<br>
+				<span>Adresa:</span> Ulica slobode 2, Split<br>
+				<span>Kontakt broj:</span> (021) 685 028<br>
+				<span>E-mail adresa:</span> gkmm@gkmm.hr<br>
+			</div>
+		</div>
+		<img src="./images/Barcode.png" alt="">
+
+		<div class="library-details__borrowed">
+			<span class="library-details__library-name">POSUĐENO</span>
+			<div class="library-details__borrowed-book">
+				<img src="./images/steve-jobs-cover.png" alt="">
+				<div class="borrowed-book__name">Steve Jobs</div>
+				<div class="borrowed-book__author">Walter Isaacson</div>
+				<div class="borrowed-book__return-date">Posuđeno do <span>23.07.2018.</span></div>
+			</div>
+			<div class="library-details__borrowed-book">
+				<img src="./images/steve-jobs-cover.png" alt="">
+				<div class="borrowed-book__name">Steve Jobs</div>
+				<div class="borrowed-book__author">Walter Isaacson</div>
+				<div class="borrowed-book__return-date">Posuđeno do <span>23.07.2018.</span></div>
+			</div>
+			<div class="library-details__borrowed-book">
+				<img src="./images/steve-jobs-cover.png" alt="">
+				<div class="borrowed-book__name">Steve Jobs</div>
+				<div class="borrowed-book__author">Walter Isaacson</div>
+				<div class="borrowed-book__return-date">Posuđeno do <span>23.07.2018.</span></div>
+			</div>
+			<div class="library-details__borrowed-book">
+				<img src="./images/steve-jobs-cover.png" alt="">
+				<div class="borrowed-book__name">Steve Jobs</div>
+				<div class="borrowed-book__author">Walter Isaacson</div>
+				<div class="borrowed-book__return-date">Posuđeno do <span>23.07.2018.</span></div>
+			</div>
+			<div class="library-details__borrowed-book">
+				<img src="./images/steve-jobs-cover.png" alt="">
+				<div class="borrowed-book__name">Steve Jobs</div>
+				<div class="borrowed-book__author">Walter Isaacson</div>
+				<div class="borrowed-book__return-date">Posuđeno do <span>23.07.2018.</span></div>
+			</div>
+		</div>
+		<div class="library-details__borrowed">
+			<span class="library-details__library-name">REZERVIRANO</span>
+			<div class="library-details__borrowed-book">
+				<img src="./images/steve-jobs-cover.png" alt="">
+				<div class="borrowed-book__name">Steve Jobs</div>
+				<div class="borrowed-book__author">Walter Isaacson</div>
+				<div class="borrowed-book__return-date">Posuđeno do <span>23.07.2018.</span></div>
+			</div>
+			<div class="library-details__borrowed-book">
+				<img src="./images/steve-jobs-cover.png" alt="">
+				<div class="borrowed-book__name">Steve Jobs</div>
+				<div class="borrowed-book__author">Walter Isaacson</div>
+				<div class="borrowed-book__return-date">Posuđeno do <span>23.07.2018.</span></div>
+			</div>
+			<div class="library-details__borrowed-book">
+				<img src="./images/steve-jobs-cover.png" alt="">
+				<div class="borrowed-book__name">Steve Jobs</div>
+				<div class="borrowed-book__author">Walter Isaacson</div>
+				<div class="borrowed-book__return-date">Posuđeno do <span>23.07.2018.</span></div>
+			</div>
+		</div>
+	</div>
+</div> -->
