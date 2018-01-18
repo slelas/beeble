@@ -41,75 +41,78 @@
         <div class="signup__form-header">Registracija</div>
         <div class="signup__form-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
 
-        <div class="form-group">
-            <span>E-MAIL ADRESA</span>
-            <input type="email" placeholder="E-mail" name="email" ng-model="registration.username">
-            <div class="help-block" ng-messages="signUpForm.email.$error" ng-if="signUpForm.email.$touched">
-                <div ng-messages-include="validation-messages"></div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            <span>LOZINKA</span>
-            <input type="text" placeholder="Password" name="password" ng-model="registration.password" ng-minlength="6">
-            <div class="help-block" ng-messages="signUpForm.password.$error">
-                <div ng-messages-include="validation-messages"></div>
+        <div class="signup__container">
+            <div class="form-group">
+                <span>E-MAIL ADRESA</span>
+                <input type="email" placeholder="E-mail" name="email" ng-model="registration.username">
+                <div class="help-block" ng-messages="signUpForm.email.$error" ng-if="signUpForm.email.$touched">
+                    <div ng-messages-include="validation-messages"></div>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <span>PONOVI LOZINKU</span>
-            <input type="text" placeholder="Confirm password" name="confirmPassword" ng-model="registration.confirmPassword" ng-pattern="{{registration.password}}">
-            <div class="help-block" ng-messages="signUpForm.confirmPassword.$error" ng-if="signUpForm.confirmPassword.$touched">
-                <div ng-messages-include="validation-messages"></div>
+            <div class="form-group">
+                <span>LOZINKA</span>
+                <input type="text" placeholder="Password" name="password" ng-model="registration.password" ng-minlength="6">
+                <div class="help-block" ng-messages="signUpForm.password.$error">
+                    <div ng-messages-include="validation-messages"></div>
+                </div>
             </div>
-        </div>
-    
-        <div class="form-group">
-            <span>IME</span>
-            <input type="text" placeholder="Ime" name="name" ng-model="registration.name" required>
-            <div class="help-block" ng-messages="signUpForm.name.$error" ng-if="signUpForm.name.$touched">
-                <div ng-messages-include="validation-messages"></div>
+
+            <div class="form-group">
+                <span>PONOVI LOZINKU</span>
+                <input type="text" placeholder="Confirm password" name="confirmPassword" ng-model="registration.confirmPassword" ng-pattern="{{registration.password}}">
+                <div class="help-block" ng-messages="signUpForm.confirmPassword.$error" ng-if="signUpForm.confirmPassword.$touched">
+                    <div ng-messages-include="validation-messages"></div>
+                </div>
             </div>
-        </div>
-    
-        <div class="form-group">
-            <span>PREZIME</span>
-            <input type="text" placeholder="Prezime" name="lastname" ng-model="registration.lastname" required>
-            <div class="help-block" ng-messages="signUpForm.lastname.$error" ng-if="signUpForm.lastname.$touched">
-                <div ng-messages-include="validation-messages"></div>
+        
+            <div class="form-group">
+                <span>IME</span>
+                <input type="text" placeholder="Ime" name="name" ng-model="registration.name" required>
+                <div class="help-block" ng-messages="signUpForm.name.$error" ng-if="signUpForm.name.$touched">
+                    <div ng-messages-include="validation-messages"></div>
+                </div>
             </div>
-        </div>
-    
-        <div class="form-group">
-            <span>OIB</span>
-            <input type="text" placeholder="OIB" name="oib" ng-model="registration.oib" required>
-            <div class="help-block" ng-messages="signUpForm.oib.$error" ng-if="signUpForm.oib.$touched">
-                <div ng-messages-include="validation-messages"></div>
+        
+            <div class="form-group">
+                <span>PREZIME</span>
+                <input type="text" placeholder="Prezime" name="lastname" ng-model="registration.lastname" required>
+                <div class="help-block" ng-messages="signUpForm.lastname.$error" ng-if="signUpForm.lastname.$touched">
+                    <div ng-messages-include="validation-messages"></div>
+                </div>
             </div>
-        </div>
-    
-        <div class="form-group">
-            <span>ADRESA</span>
-            <input type="text" placeholder="Adresa" name="address" ng-model="registration.address" required>
-            <div class="help-block" ng-messages="signUpForm.address.$error" ng-if="signUpForm.address.$touched">
-                <div ng-messages-include="validation-messages"></div>
+        
+            <div class="form-group">
+                <span>OIB</span>
+                <input type="text" placeholder="OIB" name="oib" ng-model="registration.oib" required>
+                <div class="help-block" ng-messages="signUpForm.oib.$error" ng-if="signUpForm.oib.$touched">
+                    <div ng-messages-include="validation-messages"></div>
+                </div>
             </div>
-        </div>
-    
-        <div class="form-group">
-            <span>GRAD</span>
-            <input type="text" placeholder="Grad" name="city" ng-model="registration.city" required>
-            <div class="help-block" ng-messages="signUpForm.city.$error" ng-if="signUpForm.city.$touched">
-                <div ng-messages-include="validation-messages"></div>
+        
+            <div class="form-group">
+                <span>ADRESA</span>
+                <input type="text" placeholder="Adresa" name="address" ng-model="registration.address" required>
+                <div class="help-block" ng-messages="signUpForm.address.$error" ng-if="signUpForm.address.$touched">
+                    <div ng-messages-include="validation-messages"></div>
+                </div>
             </div>
-        </div>
-    
-        <div class="form-group">
-            <span>BROJ MOBITELA</span>
-            <input type="text" placeholder="Broj mobitela" name="number" ng-model="registration.phoneNumber" required>
-            <div class="help-block" ng-messages="signUpForm.number.$error" ng-if="signUpForm.number.$touched">
-                <div ng-messages-include="validation-messages"></div>
+        
+            <div class="form-group">
+                <span>GRAD</span>
+                <input type="text" placeholder="Grad" name="city" ng-model="registration.city" required>
+                <div class="help-block" ng-messages="signUpForm.city.$error" ng-if="signUpForm.city.$touched">
+                    <div ng-messages-include="validation-messages"></div>
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <span>BROJ MOBITELA</span>
+                <input type="text" placeholder="Broj mobitela" name="number" ng-model="registration.phoneNumber" required>
+                <div class="help-block" ng-messages="signUpForm.number.$error" ng-if="signUpForm.number.$touched">
+                    <div ng-messages-include="validation-messages"></div>
+                </div>
             </div>
         </div>
     

@@ -97,7 +97,6 @@
         }
 
         .help-block {
-            margin-top: 10px;
             color: red;
             font-weight: 500;
         }
@@ -122,7 +121,10 @@
         box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.1);
         margin-top: 125px;
         margin-bottom: -75px;
-        height: 615px;
+    }
+
+    .signup__header {
+        font-size: 36px;
     }
 
     .signup__form {
@@ -133,10 +135,20 @@
         top: -75px;
         border-radius: 5px;
 
+        .signup__container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
         .form-group {
             display: inline-block;
-            width: 45%;
-            margin-right: 25px;
+            width: 48.5%;
+
+            .help-block {
+                position: relative;
+                bottom: -10px;
+            }
         }
 
         .signup__button {
@@ -177,7 +189,57 @@
 
     .signup__form {
         .form-group {
-            width: 29%;
+            width: 31%;
+        }
+
+        .signup__form-header {
+            font-size: 42px;
+        }
+
+        .signup__form-description {
+            margin-top: 25px;
+            margin-bottom: 25px;
+            font-size: 18px;
+        }
+    }
+
+    .signup__benefit {
+        .benefit__content {
+            width: 320px;
+        }
+    }
+
+    .signup__header {
+        font-size: 42px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .signup__header {
+        font-size: 52px;
+    }
+
+    .signup__benefit {
+        img {
+            width: 125px;
+        }
+    }
+
+    .signup__benefit .benefit__header {
+        font-size: 26px;
+    }
+
+    .signup__benefit .benefit__description {
+        font-size: 17px;
+    }
+
+    .signup__benefit .benefit__content {
+        width: 360px;
+    }
+
+    .signup__form {
+        .signup__button {
+            width: 31%;
         }
     }
 }
