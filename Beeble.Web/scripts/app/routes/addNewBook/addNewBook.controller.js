@@ -1,7 +1,6 @@
 ﻿angular.module('myApp').controller('addNewBookController',
 	function($scope, $stateParams, $state, bookSearchService, ngDialog, $rootScope, authService) {
 
-        $scope.names = ["Emil", "Tobias", "Linus"];
 
         bookSearchService.getAllAuthors().then(function (response) {
 
@@ -28,8 +27,8 @@
 
 
         $scope.categoriesModel = []
-        $scope.example1data = $scope.categories;
-        $scope.example1settings = {
+        $scope.categoriesdata = $scope.categories;
+        $scope.categoriessettings = {
             template: '{{option}}',
             checkBoxes: true,
             selectedToTop: true,
@@ -38,5 +37,5 @@
             enableSearch: true,
             showCheckAll: false
         };
-        $scope.example1customTexts = { buttonDefaultText: 'Select Users' };
+        $scope.categoriescustomTexts = { buttonDefaultText: 'Odaberi žanrove' };
 	});
