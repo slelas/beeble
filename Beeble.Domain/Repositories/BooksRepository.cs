@@ -330,5 +330,45 @@ namespace Beeble.Domain.Repositories
 					.FirstOrDefault(book => book.Id == bookId);
 		    }
 	    }
+
+        public List<string> GetAllAuthors()
+        {
+            using (var context = new AuthContext())
+            {
+                return context.Authors
+                    .Select(author => author.Name)
+                    .ToList();
+            }
+        }
+
+        public List<string> GetAllCategories()
+        {
+            using (var context = new AuthContext())
+            {
+                return context.Categories
+                    .Select(category => category.Name)
+                    .ToList();
+            }
+        }
+
+        public List<string> GetAllLanguages()
+        {
+            using (var context = new AuthContext())
+            {
+                return context.Languages
+                    .Select(language => language.Name)
+                    .ToList();
+            }
+        }
+
+        public List<string> GetAllNationalities()
+        {
+            using (var context = new AuthContext())
+            {
+                return context.Nationalities
+                    .Select(nationality => nationality.Name)
+                    .ToList();
+            }
+        }
     }
 }

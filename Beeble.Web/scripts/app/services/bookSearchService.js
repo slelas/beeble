@@ -90,7 +90,35 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
 		return $http.get(serviceBase + 'api/search/get-by-id', { params: { bookId: bookId } }).then(function (results) {
 			return results;
 		});
-	}
+    }
+
+    function getAllAuthors() {
+
+        return $http.get(serviceBase + 'api/search/get-authors').then(function (results) {
+            return results;
+        });
+    }
+
+    function getAllCategories() {
+
+        return $http.get(serviceBase + 'api/search/get-categories').then(function (results) {
+            return results;
+        });
+    }
+
+    function getAllNationalities() {
+
+        return $http.get(serviceBase + 'api/search/get-nationalities').then(function (results) {
+            return results;
+        });
+    }
+
+    function getAllLanguages() {
+
+        return $http.get(serviceBase + 'api/search/get-languages').then(function (results) {
+            return results;
+        });
+    }
 
 	var bookSearchFactory = {};
 	bookSearchFactory.search = search;
@@ -101,6 +129,10 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
 	bookSearchFactory.makeAReservation = makeAReservation;
 	bookSearchFactory.getBookForOneTime = getBookForOneTime;
     bookSearchFactory.getBookById = getBookById;
+    bookSearchFactory.getAllAuthors = getAllAuthors;
+    bookSearchFactory.getAllCategories = getAllCategories;
+    bookSearchFactory.getAllNationalities = getAllNationalities;
+    bookSearchFactory.getAllLanguages = getAllLanguages;
 
 	return bookSearchFactory;
 

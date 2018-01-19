@@ -5,8 +5,20 @@
             <div ng-messages-include="validation-messages"></div>
         </div>
         <div class="form-group">
-            <input type="text" placeholder="Author" name="author" ng-model="book.author" required>
+            <input type="text" placeholder="Autor" name="author" ng-model="book.author" list="authors" required />
+            <datalist id="authors">
+                <option ng-repeat="author in authors" value="{{author}}"></option>
+            </datalist>
             <div class="help-block" ng-messages="bookForm.author.$error" ng-if="bookForm.author.$touched">
+                <div ng-messages-include="validation-messages"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="Jezik" name="language" ng-model="book.language" list="languages" required />
+            <datalist id="languages">
+                <option ng-repeat="language in languages" value="{{language}}"></option>
+            </datalist>
+            <div class="help-block" ng-messages="bookForm.language.$error" ng-if="bookForm.language.$touched">
                 <div ng-messages-include="validation-messages"></div>
             </div>
         </div>
@@ -28,7 +40,6 @@
                 <div ng-messages-include="validation-messages"></div>
             </div>
         </div>
-    </div>
 
     <style>
         /*STIPE: ubaci ovo u ostatak css-a, svrha je da sakrije one strelice sa strane za povecavanje broja*/
@@ -43,3 +54,5 @@
     <button ng-click="save()" ng-disabled="bookForm.$invalid">Potvrdi promjene</button>
 
 </form>
+
+<div ng-dropdown-multiselect="" options="categories" selected-model="categoriesModel" extra-settings="example1settings" translation-texts="example1customTexts"></div>
