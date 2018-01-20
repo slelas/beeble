@@ -10,23 +10,20 @@
         bookSearchService.getAllCategories().then(function (response) {
 
             $scope.categories = response.data;
-            console.log(response.data);
         });
 
         bookSearchService.getAllNationalities().then(function (response) {
 
             $scope.nationalities = response.data;
-            console.log(response.data);
         });
 
         bookSearchService.getAllLanguages().then(function (response) {
 
             $scope.languages = response.data;
-            console.log(response.data);
         });
 
 
-        $scope.categoriesModel = []
+        $scope.categoriesModel = [];
         $scope.categoriesdata = $scope.categories;
         $scope.categoriessettings = {
             template: '{{option}}',
