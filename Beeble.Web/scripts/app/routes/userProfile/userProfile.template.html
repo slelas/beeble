@@ -75,13 +75,13 @@
 	}
 </style>
 
-<div class="profile">
+<div class="profile__container">
     <div class="profile__bar">
         <button ng-click="switchTab('profile')" class="profile__bar-category ">
             <img src="./images/profile-icon-v2.png" alt="">
             <span>PROFIL</span>
         </button>
-        <button ng-click="switchTab('borrowedBooks')" class="profile__bar-category test" ng-class>
+        <button ng-click="switchTab('borrowedBooks')" class="profile__bar-category" ng-class>
             <img src="./images/borrowed-icon.png" alt="">
             <span>POSUĐENO</span>
         </button>
@@ -129,18 +129,19 @@
 	</div>
 	
 	<div ng-show="tabName == 'borrowedBooks'">
-		POSUDENE
-		<div ng-repeat="book in user.borrowedBooks">
-			<img ng-src="{{book.imageUrl}} " height="150"/>
-			<div>{{book.name}}</div>
-			<div>{{book.author}}</div>
-			<div>Posuđeno do {{book.returnDeadline | convertDateLong}}</div>
-
+		<div class="library-details__borrowed">
+			<span class="library-details__library-name">POSUĐENO</span>
+			<div class="library-details__borrowed-book" ng-repeat="book in user.borrowedBooks">
+				<img ng-src="{{book.imageUrl}}">
+				<div class="borrowed-book__name">{{book.name}}</div>
+				<div class="borrowed-book__author">{{book.author}}</div>
+				<div class="borrowed-book__return-date">Posuđeno do <span>{{book.returnDeadline | convertDateLong}}</span></div>
+			</div>
 		</div>
 	</div>
 	
 	<div ng-show="tabName == 'reservedBooks'">
-		REZERVIRANe
+		REZERVIRANE
 		<h4>Rezervirano</h4>
 		<div ng-repeat="reservation in user.reservations">
 			<img ng-src="{{reservation.book.imageUrl}} " height="150" />

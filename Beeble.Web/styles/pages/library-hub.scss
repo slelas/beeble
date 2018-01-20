@@ -34,8 +34,8 @@
 }
 
 .library-hub__library {
-    width: 300px;
-    height: 250px;
+    width: 340px;
+    height: auto;
     background-color: white;
     @extend %every-box;
     display: inline-block;
@@ -74,12 +74,15 @@
 }
 
 .library-hub__library a {
+    display: block;
     color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
     background-color: #b59a56;
-    padding: 10px 15px;
+    padding: 5px 10px;
     box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.1);
+    width: 30%;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 5px;
 }
 

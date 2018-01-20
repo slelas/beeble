@@ -1,13 +1,4 @@
-﻿<!-- 
-<div ng-repeat="book in currentBooks">
-	<img ng-src="{{book.imageUrl}}" />
-	<div>{{book.name}}</div>
-	<button ui-sref="bookDetails({bookName: book.name})">Details</button>
-</div>
-
-<button ng-click="showMoreResults()" ng-show="currentBooks.length>0" ng-disabled="noMoreSearchResults">Show more results</button> -->
-
-<div class="search">
+﻿<div class="search">
 	<div class="homepage__search-bar">
         <input class="search-bar__input" type="text" placeholder="Pretraži..." ng-model="searchQuery" ng-keyup="$event.keyCode == 13 && search()" ng-submit="search()" />
         <a ng-click="searchButton()" class="search-bar__button">
@@ -59,7 +50,7 @@
 				<div class="search__filter-category" ng-show="searchFiltersYear[0].length">
 					<img src="./images/circle.png" alt="">
 					<div class="filter-category__all">
-						<span>NACIONALNOST</span>
+						<span>GODINA</span>
 						<div class="filter-category__select-filter" ng-repeat="filter in searchFiltersYear[0]" ng-click="applyAFilter(filter)">
 							{{filter}} ({{searchFiltersYear[1][$index]}})
 						</div>
@@ -79,14 +70,15 @@
 							<span class="left">Nakladnik:</span>
 							<span class="right">{{book.publisher}}</span><br>
 							<span class="left">Godina:</span>
-							<span class="right">{{book.year}}</span><br>
+							<span class="right">{{book.yearOfIssue.year}}</span><br>
 							<span class="left">Žanr:</span>
-							<span class="right">biografija</span>
+							<span class="right">{{book.categories.name}}</span>
 						</div>
 						<button class="search__result-button" ui-sref="bookDetails({bookName: book.name})">DETALJI</button>
 					</div>
 				</div>
 			</div>
+			<button class="search__result-more" ng-click="showMoreResults()" ng-show="currentBooks.length>0" ng-disabled="noMoreSearchResults">PRIKAŽI VIŠE REZULTATA</button>
 		</div>
 	</div>
 </div>

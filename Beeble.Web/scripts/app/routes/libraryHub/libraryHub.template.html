@@ -15,8 +15,8 @@
 				<span>Broj posuđenih knjiga:</span> {{library.numberOfBorrowedBooks}}<br>
 				<span>Broj rezerviranih knjiga:</span> {{library.numberOfReservedBooks}}<br>
 				<span>Datum zadnje posudbe:</span> {{library.lastBorrowDate | convertDateLong}}<br>
+				<a ui-sref="libraryDetails({libraryId: library.libraryId})">DETALJI</a>
 			</div>
-			<a ui-sref="libraryDetails({libraryId: library.libraryId})">DETALJI</a>
 		</div>
 	</div>
 </div>

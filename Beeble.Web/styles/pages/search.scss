@@ -5,6 +5,8 @@
 .search .homepage__search-bar {
     margin-top: 50px;
     width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .search .search__filter {
@@ -119,14 +121,18 @@
 }
 
 .search__result {
-    width: calc(100% - 50px);
+    width: calc(100% - 40px);
     background-color: white;
     box-shadow: 0 0 10px 1px rgba(0,0,0,.1);
     padding: 15px 20px;
     margin-top: 25px;
 
     img {
+        display: inline-block;
         max-width: 120px;
+        max-height: 250px;
+        width: auto;
+        height: auto;
     }
 }
 
@@ -179,6 +185,22 @@
     font-size: 14px;
     margin-top: 15px;
     border: 0;
+}
+
+.search__result-more {
+    border: 0;
+    padding: 10px;
+    width: 350px;
+    background-color: #333;
+    box-shadow: 0 0 10px 1px rgba(0,0,0,.1);
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
 }
 
 @media screen and (min-width: 375px) {
