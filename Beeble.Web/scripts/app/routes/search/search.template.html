@@ -1,58 +1,16 @@
-﻿<customheader></customheader>
-
-<div>search TEMPLATE</div>
-<input type="text" ng-model="searchQuery" placeholder="Search" ng-keyup="$event.keyCode == 13 && search()" ng-submit="search()" />
-<button ng-click="searchButton()">-----Search-----</button>
-<h2>Knjige</h2>
+﻿<!-- 
 <div ng-repeat="book in currentBooks">
 	<img ng-src="{{book.imageUrl}}" />
 	<div>{{book.name}}</div>
 	<button ui-sref="bookDetails({bookName: book.name})">Details</button>
 </div>
 
-<h2 ng-show="currentBooks.length">Suzi pretragu</h2> Ovo moze bit za cili div filtera
-<h3 ng-show="selectedFilters.length">Aktivni filteri</h3>
-<div ng-repeat="filter in selectedFilters">
-    <div>{{filter}}</div>
-    <button ng-click="removeAFilter()">Remove filter</button>
-</div>
-
-<h3 ng-show="searchFiltersNationality[0].length">Nacionalnosti</h3>
-<div ng-repeat="filter in searchFiltersNationality[0]">
-	<div ng-click="applyAFilter(filter)">
-		{{filter}} ({{searchFiltersNationality[1][$index]}})
-	</div>
-</div>
-
-<h3 ng-show="searchFiltersAuthor[0].length">Autori</h3>
-<div ng-repeat="filter in searchFiltersAuthor[0]">
-	<div ng-click="applyAFilter(filter)">
-		{{filter}} ({{searchFiltersAuthor[1][$index]}})
-	</div>
-</div>
-
-<h3 ng-show="searchFiltersCategory[0].length">Kategorije</h3>
-<div ng-repeat="filter in searchFiltersCategory[0]">
-	<div ng-click="applyAFilter(filter)">
-		{{filter}} ({{searchFiltersCategory[1][$index]}})
-	</div>
-</div>
-
-<h3 ng-show="searchFiltersYear[0].length">Godina</h3>
-<div ng-repeat="filter in searchFiltersYear[0]">
-	<div ng-click="applyAFilter(filter)">
-		{{filter}} ({{searchFiltersYear[1][$index]}})
-	</div>
-</div>
-
-<button ng-click="showMoreResults()" ng-show="currentBooks.length>0" ng-disabled="noMoreSearchResults">Show more results</button>
-
-<!-- <customheader></customheader>
+<button ng-click="showMoreResults()" ng-show="currentBooks.length>0" ng-disabled="noMoreSearchResults">Show more results</button> -->
 
 <div class="search">
 	<div class="homepage__search-bar">
         <input class="search-bar__input" type="text" placeholder="Pretraži..." ng-model="searchQuery" ng-keyup="$event.keyCode == 13 && search()" ng-submit="search()" />
-        <a ng-click="search()" class="search-bar__button">
+        <a ng-click="searchButton()" class="search-bar__button">
             <img src="./images/search-icon.png" alt="">
         </a>
 	</div>
@@ -65,89 +23,45 @@
 			</label>
 			<div class="search__filter-expand">
 				<div class="filter__active">
-					<span class="filter__active-header">AKTIVNI FILTERI</span>
-					<div class="filter__item">
-						<span>Hrvatski</span>
-						<button class="remove-item" ng-click="removeAFilter()"><img src="./images/cross-icon.png" alt=""></button>
-					</div>
-					<div class="filter__item">
-						<span>kurac</span>
-						<button class="remove-item" ng-click="removeAFilter()"><img src="./images/cross-icon.png" alt=""></button>
-					</div>
-					<div class="filter__item">
-						<span>pilka</span>
-						<button class="remove-item" ng-click="removeAFilter()"><img src="./images/cross-icon.png" alt=""></button>
-					</div>
-					<div class="filter__item">
-						<span>sisa</span>
+					<span class="filter__active-header" ng-show="selectedFilters.length">AKTIVNI FILTERI</span>
+					<div class="filter__item" ng-repeat="filter in selectedFilters">
+						<span>{{filter}}</span>
 						<button class="remove-item" ng-click="removeAFilter()"><img src="./images/cross-icon.png" alt=""></button>
 					</div>
 				</div>
-				<div class="search__filter-category">
+				<div class="search__filter-category" ng-show="searchFiltersAuthor[0].length">
 					<img src="./images/circle.png" alt="">
 					<div class="filter-category__all">
-						<span>KATEGORIJA</span>
-						<div class="">
-							<div class="filter-category__select-filter" ng-click="">
-								Biografija (2)
-							</div>
-							<div class="filter-category__select-filter" ng-click="">
-								Biografija (2)
-							</div>
-							<div class="filter-category__select-filter" ng-click="">
-								Biografija (2)
-							</div>
+						<span>AUTOR</span>
+						<div class="filter-category__select-filter" ng-repeat="filter in searchFiltersAuthor[0]" ng-click="applyAFilter(filter)">
+							{{filter}} ({{searchFiltersAuthor[1][$index]}})
 						</div>
 					</div>
 				</div>
-				<div class="search__filter-category">
+				<div class="search__filter-category" ng-show="searchFiltersCategory[0].length">
 					<img src="./images/circle.png" alt="">
 					<div class="filter-category__all">
 						<span>KATEGORIJA</span>
-						<div class="">
-							<div class="filter-category__select-filter" ng-click="">
-								Biografija (2)
-							</div>
-							<div class="filter-category__select-filter" ng-click="">
-								Biografija (2)
-							</div>
-							<div class="filter-category__select-filter" ng-click="">
-								Biografija (2)
-							</div>
+						<div class="filter-category__select-filter" ng-repeat="filter in searchFiltersCategory[0]" ng-click="applyAFilter(filter)">
+							{{filter}} ({{searchFiltersCategory[1][$index]}})
 						</div>
 					</div>
 				</div>
-				<div class="search__filter-category">
+				<div class="search__filter-category" ng-show="searchFiltersNationality[0].length">
 					<img src="./images/circle.png" alt="">
 					<div class="filter-category__all">
-						<span>KATEGORIJA</span>
-						<div class="">
-							<div class="filter-category__select-filter" ng-click="">
-								Biografija (2)
-							</div>
-							<div class="filter-category__select-filter" ng-click="">
-								Biografija (2)
-							</div>
-							<div class="filter-category__select-filter" ng-click="">
-								Biografija (2)
-							</div>
+						<span>NACIONALNOST</span>
+						<div class="filter-category__select-filter" ng-repeat="filter in searchFiltersNationality[0]" ng-click="applyAFilter(filter)">
+							{{filter}} ({{searchFiltersNationality[1][$index]}})
 						</div>
 					</div>
 				</div>
-				<div class="search__filter-category">
+				<div class="search__filter-category" ng-show="searchFiltersYear[0].length">
 					<img src="./images/circle.png" alt="">
 					<div class="filter-category__all">
-						<span>KATEGORIJA</span>
-						<div class="">
-							<div class="filter-category__select-filter" ng-click="">
-								Biografija (2)
-							</div>
-							<div class="filter-category__select-filter" ng-click="">
-								Biografija (2)
-							</div>
-							<div class="filter-category__select-filter" ng-click="">
-								Biografija (2)
-							</div>
+						<span>NACIONALNOST</span>
+						<div class="filter-category__select-filter" ng-repeat="filter in searchFiltersYear[0]" ng-click="applyAFilter(filter)">
+							{{filter}} ({{searchFiltersYear[1][$index]}})
 						</div>
 					</div>
 				</div>
@@ -155,54 +69,24 @@
 		</div>
 		<div class="search__result-wrapper">
 			<div class="search__results-title">REZULTATI</div>
-			<div class="search__result">
-				<div class="search__result-book-name">Steve Jobs</div>
-				<div class="search__result-book-author">Walter Isaacson</div>
+			<div class="search__result" ng-repeat="book in currentBooks">
+				<div class="search__result-book-name">{{book.name}}</div>
+				<div class="search__result-book-author">{{book.author.name}}</div>
 				<div class="book-info-wrapper">
-					<img src="./images/steve-jobs-cover.png" alt="">
+					<img ng-src="{{book.imageUrl}}">
 					<div class="book-info-wrapper-second">
 						<div class="search__result-book-info">
 							<span class="left">Nakladnik:</span>
-							<span class="right">Europapress holding, Zagreb, 2011.</span><br>
+							<span class="right">{{book.publisher}}</span><br>
+							<span class="left">Godina:</span>
+							<span class="right">{{book.year}}</span><br>
 							<span class="left">Žanr:</span>
 							<span class="right">biografija</span>
 						</div>
-						<button class="search__result-button">DETALJI</button>
-					</div>
-				</div>
-			</div>
-			<div class="search__result">
-				<div class="search__result-book-name">Steve Jobs</div>
-				<div class="search__result-book-author">Walter Isaacson</div>
-				<div class="book-info-wrapper">
-					<img src="./images/steve-jobs-cover.png" alt="">
-					<div class="book-info-wrapper-second">
-						<div class="search__result-book-info">
-							<span class="left">Nakladnik:</span>
-							<span class="right">Europapress holding, Zagreb, 2011.</span><br>
-							<span class="left">Žanr:</span>
-							<span class="right">biografija</span>
-						</div>
-						<button class="search__result-button">DETALJI</button>
-					</div>
-				</div>
-			</div>
-			<div class="search__result">
-				<div class="search__result-book-name">Steve Jobs</div>
-				<div class="search__result-book-author">Walter Isaacson</div>
-				<div class="book-info-wrapper">
-					<img src="./images/steve-jobs-cover.png" alt="">
-					<div class="book-info-wrapper-second">
-						<div class="search__result-book-info">
-							<span class="left">Nakladnik:</span>
-							<span class="right">Europapress holding, Zagreb, 2011.</span><br>
-							<span class="left">Žanr:</span>
-							<span class="right">biografija</span>
-						</div>
-						<button class="search__result-button">DETALJI</button>
+						<button class="search__result-button" ui-sref="bookDetails({bookName: book.name})">DETALJI</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div> -->
+</div>
