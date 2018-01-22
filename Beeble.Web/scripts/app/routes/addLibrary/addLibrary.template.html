@@ -1,6 +1,38 @@
-﻿<div>Odaberite knjižnicu koje ste član i upišite barkod sa iskaznice kako bi besplatno povezali svoje članstvo s online profilom ili se online učlanite u novu knjižnicu</div>
-<!-- OVAJ TEKST GORE NEKAKO ULIPŠAJ DA SE VIDI DA MOŽEŠ DODAT ČLANSTVO ILI SE ONLINE UČLANITI -->
-<input type="text" ng-model="searchQuery" />
-<div ng-repeat="library in allSearchLibraries | filter:searchQuery">
-	<div>{{library.name}} Cijena clanstva: {{library.membershipPrice}} <button ui-sref="getMembership({libraryId: library.id})">Učlani se</button></div>
+﻿<button ng-click="togglePopup()" ng-show="!popupActive">Dodaj novu knjižnicu</button>
+<div class="popup" ng-show="popupActive">
+	<div class="popup__container">
+		<div class="popup__header-wrapper">
+			<div class="popup__header">DODAJ NOVU KNJIŽNICU</div>
+			<img ng-click="togglePopup()" src="./images/cross-icon-black.png">
+		</div>
+		<div ng-show="!paymentActive">
+			<div class="popup__description">
+				Odaberite knjižnicu koje ste već član ili želite postati član.
+			</div>
+			<input class="popup__input" type="text" ng-model="searchQuery" placeholder="Pretraga knjižnica...">
+			<div class="popup-library__container" ng-repeat="library in allSearchLibraries | filter:searchQuery">
+				<div class="popup-library__info">
+					<div class="popup-library__name">{{library.name}}</div>
+					<div class="popup-library__price"><span>Cijena članstva:</span> {{library.membershipPrice}}</div>
+				</div>
+				<button ng-click="togglePayment()">UČLANI SE</button>
+			</div>
+		</div>
+		<div ng-show="paymentActive">
+			<div class="library__info">
+				<div><span>Knjižnica:</span> Marko Marulić</div>
+				<div><span>Adresa:</span> Teslina 2, Split</div>
+				<div><span>Ograničenje posuđivanja:</span> 5</div>
+				<div><span>Cijena:</span> 50 kn</div>
+			</div>
+			<paypal></paypal>
+			<div class="library__member">
+				<div class="library__member__description">
+					Ukoliko ste već član ove knjižnice, upišite svoj broj iskaznice i besplatno digitalizirajte svoje članstvo.
+				</div>
+				<input type="text" ng-model="barcodeNumber">
+				<button ng-click="submitBarcode()">POTVRDI</button>
+			</div>
+		</div>
+	</div>
 </div>
