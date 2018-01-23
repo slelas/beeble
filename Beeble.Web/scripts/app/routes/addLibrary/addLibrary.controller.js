@@ -2,10 +2,11 @@
 	function ($scope, $stateParams, $state, bookSearchService, ngDialog, $rootScope, authService, getLibrariesService) {
 
 		var allLibraries = [];
-		var popupActive = false, paymentActive = false;
+		var popupActive, paymentActive = false;
 
 		$scope.togglePopup = function() {
 			$scope.popupActive = !$scope.popupActive;
+			$scope.paymentActive = false;
 		}
 
 		$scope.togglePayment = function() {
