@@ -30,9 +30,37 @@
     display: none;
 }
 
+label {
+    z-index: 100;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+.navbar__items-mobile {
+    display: none;
+}
+
 @media screen and (max-width: 980px) {
     .navbar__items {
         display: none;
+    }
+
+    #navbar__toggle:checked ~ .navbar__items-mobile {
+        display: block;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    #navbar__toggle:checked ~ body {
+        overflow: hidden;
     }
 
     .navbar__menu {

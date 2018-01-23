@@ -19,5 +19,27 @@
             <a class="navbar__item" ng-click="logOut()">ODJAVA</a>
         </span>
     </div>
-    <img class="navbar__menu" src="./images/menu-icon.png">
+    <input type="checkbox" id="navbar__toggle">
+    <label for="navbar__toggle">
+        <img class="navbar__menu" src="./images/menu-icon.png">
+    </label>
+    <div class="navbar__items-mobile">
+        <span ng-hide="isLoggedIn">
+            <a class="navbar__item" ui-sref="login">PRIJAVA</a>
+            <a class="navbar__item" ui-sref="signup">REGISTRACIJA</a>
+        </span>
+
+        <span ng-show="isLoggedIn && role == 'User'">
+            <a class="navbar__item" ui-sref="libraryHub">KNJIŽNICE</a>
+            <a class="navbar__item" ui-sref="userProfile">PROFIL</a>
+            <a class="navbar__item" ng-click="logOut()">ODJAVA</a>
+        </span>
+        <span ng-show="isLoggedIn && role == 'Admin'">
+            <a class="navbar__item" ui-sref="lendAndReturn">POSUDI/VRATI</a>
+            <a class="navbar__item" ui-sref="membersList">ČLANOVI</a>
+            <a class="navbar__item" ui-sref="booksList">KNJIGE</a>
+            <a class="navbar__item" ui-sref="statistics">STATISTIKE</a>
+            <a class="navbar__item" ng-click="logOut()">ODJAVA</a>
+        </span>
+    </div>
 </div>
