@@ -13,7 +13,14 @@ namespace Beeble.Api.Controllers
 	[RoutePrefix("api/search")]
 	public class BooksController : AuthorizationController
 	{
-		private BooksRepository repo = null;
+        [HttpGet, Route("t")]
+        public bool Test()
+        {
+            var a = 5;
+            return true;
+
+        }
+        private BooksRepository repo = null;
 
 		public BooksController()
 		{
