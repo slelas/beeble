@@ -751,13 +751,17 @@ input[type=checkbox] {
   .kurac {
     display: block; }
   .navbar__menu {
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
     width: 25px;
-    height: 25px;
-    background-image: url("../images/menu-icon.png");
-    background-size: contain; }
-  #navbar__toggle:checked + .navbar__menu {
-    background-image: url("../images/menu-icon-white.png"); }
+    height: 25px; }
+  .navbar__menu-bar {
+    width: 100%;
+    background-color: black;
+    height: 5px; }
+  #navbar__toggle:checked ~ .kurac .navbar__menu .navbar__menu-bar {
+    background-color: white; }
   #navbar__toggle:checked ~ .navbar__items-mobile {
     display: flex;
     align-items: center;
