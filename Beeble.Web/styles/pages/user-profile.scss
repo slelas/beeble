@@ -10,6 +10,16 @@
     .library-details__borrowed {
         box-shadow: none;
         margin-top: 0;
+
+        .library-details__library-name {
+            font-size: 18px;
+        }
+    }
+
+    .library-details__borrowed-book {
+        img {
+            width: 100px;
+        }
     }
 }
 
@@ -194,7 +204,7 @@
         display: flex;
 
         .library-details__borrowed {
-            width: 100%;
+             width: calc(75% - 50px);
         }
     }
 

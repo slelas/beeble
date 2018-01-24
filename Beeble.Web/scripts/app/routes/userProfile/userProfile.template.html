@@ -127,26 +127,23 @@
 		</div>
 	</div>
 	
-	<div ng-show="tabName == 'borrowedBooks'">
-		<div class="library-details__borrowed">
-			<span class="library-details__library-name">POSUĐENO</span>
-			<div class="library-details__borrowed-book" ng-repeat="book in user.borrowedBooks">
-				<img ng-src="{{book.imageUrl}}">
-				<div class="borrowed-book__name">{{book.name}}</div>
-				<div class="borrowed-book__author">{{book.author}}</div>
-				<div class="borrowed-book__return-date">Posuđeno do <span>{{book.returnDeadline | convertDateLong}}</span></div>
-			</div>
+	<div class="library-details__borrowed" ng-show="tabName == 'borrowedBooks'">
+		<span class="library-details__library-name">POSUĐENO</span>
+		<div class="library-details__borrowed-book" ng-repeat="book in user.borrowedBooks">
+			<img ng-src="{{book.imageUrl}}">
+			<div class="borrowed-book__name">{{book.name}}</div>
+			<div class="borrowed-book__author">{{book.author}}</div>
+			<div class="borrowed-book__return-date">Posuđeno do <span>{{book.returnDeadline | convertDateLong}}</span></div>
 		</div>
 	</div>
 	
-	<div ng-show="tabName == 'reservedBooks'">
-		REZERVIRANE
-		<h4>Rezervirano</h4>
-		<div ng-repeat="reservation in user.reservations">
-			<img ng-src="{{reservation.book.imageUrl}} " height="150" />
-			<div>{{reservation.book.name}}</div>
-			<div>{{reservation.book.author.name}}</div>
-			<div>Posuđeno do {{reservation.pickupDeadline | convertDateLong}}</div>
+	<div class="library-details__borrowed" ng-show="tabName == 'reservedBooks'">
+		<span class="library-details__library-name">REZERVIRANO</span>
+		<div class="library-details__borrowed-book" ng-repeat="reservation in user.reservations">
+			<img ng-src="{{reservation.book.imageUrl}}">
+			<div class="borrowed-book__name">{{reservation.book.name}}</div>
+			<div class="borrowed-book__author">{{reservation.book.author.name}}</div>
+			<div class="borrowed-book__return-date">Posuđeno do {{reservation.pickupDeadline | convertDateLong}}</div>
 		</div>
 	</div>
 </div>

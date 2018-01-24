@@ -30,7 +30,7 @@
     display: none;
 }
 
-.kurac {
+.navbar__toggle {
     z-index: 100;
     display: none;
 }
@@ -48,12 +48,7 @@ input[type=checkbox] {
         display: none;
     }
 
-    /* .kurac {
-        display: inline-flex;
-        align-items: center;
-    } */
-
-    .kurac {
+    .navbar__toggle {
         display: block;
     }
 
@@ -71,7 +66,7 @@ input[type=checkbox] {
         height: 5px;
     }
 
-    #navbar__toggle:checked ~ .kurac .navbar__menu .navbar__menu-bar {
+    #navbar__toggle:checked ~ .navbar__toggle .navbar__menu .navbar__menu-bar {
         background-color: white;
     }
 
