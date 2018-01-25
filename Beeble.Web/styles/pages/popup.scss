@@ -6,6 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0;
 }
 
 .popup__container {
@@ -92,4 +93,10 @@
 .library__member__description {
     line-height: 1.2;
     font-size: 12px;
+}
+
+@media screen and (min-width: 768px) {
+    .popup__container {
+        width: 550px;
+    }
 }

@@ -175,7 +175,7 @@
 }
 
 .search__result-button {
-    width: 100%;
+    width: 100px;
     margin: 0;
     padding: 5px;
     background-color: #b59a56;
@@ -204,12 +204,8 @@
 }
 
 @media screen and (min-width: 375px) {
-    .search__result-book-info {
-        width: 80%;
-    }
-
     .search__result-button {
-        width: 80%;
+        width: 150px;
     }
 }
 
@@ -316,7 +312,12 @@
 @media screen and (min-width: 1600px) {
     .search__result {
         display: inline-block;
-        width: 41%;
-        margin-right: 25px;
+        width: calc(50% - 54px);
+    }
+    
+    .search__result-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
 }
