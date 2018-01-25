@@ -49,7 +49,7 @@
                     <div class="reserve__warning" ng-hide="nonMemberBooks">Ova knjiga nije dostupna u nijednoj knjižnici koje niste član</div>
                     <div class="reserve__library clearfix" ng-repeat="book in nonMemberBooks">
                         <div class="library__name">{{book.localLibrary.name}}</div>
-                        <div class="library__book-status">dostupno odmah</div>
+                        <div class="library__book-status">odmah dostupno</div>
 	                    <a class="library__button" ui-sref="oneTimeBorrow({libraryId: book.localLibrary.id, bookAuthor: book.author, bookName: book.name})">JEDNOKRATNO</a>
                     </div>
                 </div>

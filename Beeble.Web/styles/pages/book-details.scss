@@ -194,6 +194,18 @@
     top: 0;
 }
 
+.paypal__button {
+    width: 125px;
+}
+
+.library__info {
+    div:nth-of-type(5) {
+        margin-top: 15px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+}
+
 @media screen and (max-width: 980px) {
     .book-details {
         width: 90%;

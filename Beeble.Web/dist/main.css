@@ -660,6 +660,14 @@ a {
   right: 110px;
   top: 0; }
 
+.paypal__button {
+  width: 125px; }
+
+.library__info div:nth-of-type(5) {
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 16px; }
+
 @media screen and (max-width: 980px) {
   .book-details {
     width: 90%; } }
@@ -747,7 +755,7 @@ a {
   z-index: 100;
   display: none; }
 
-input[type=checkbox] {
+#navbar__toggle {
   display: none; }
 
 .navbar__items-mobile {
@@ -1744,3 +1752,7 @@ input[type=checkbox] {
 .library__member__description {
   line-height: 1.2;
   font-size: 12px; }
+
+@media screen and (min-width: 768px) {
+  .popup__container {
+    width: 550px; } }
