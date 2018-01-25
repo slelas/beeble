@@ -26,7 +26,7 @@ namespace Beeble.Domain.Repositories
             using (var context = new AuthContext())
             {
 				var searchResultsQuery = context.Books
-		            .Where(x => x.Name.Contains(searchQuery))
+		            .Where(x => x.Name.Contains(searchQuery) || x.Keyword == searchQuery)
 		            .OrderBy(x => x.Name)
 		            .GroupBy(x => x.Name)
 		            .Select(x => x.FirstOrDefault())
@@ -65,7 +65,7 @@ namespace Beeble.Domain.Repositories
             using (var context = new AuthContext())
             {
 				var searchResultsQuery = context.Books
-		            .Where(x => x.Name.Contains(searchQuery))
+		            .Where(x => x.Name.Contains(searchQuery) || searchQuery == x.Keyword)
 		            .OrderBy(x => x.Name)
 		            .GroupBy(x => x.Name)
 		            .Select(x => x.FirstOrDefault())

@@ -56,6 +56,7 @@ namespace Beeble.Api
                     var category4 = new Category() { Name = "Ep" };
                     var category5 = new Category() { Name = "Drama" };
 					var category6 = new Category() {Name = "Komedija"};
+					var category7 = new Category() {Name = "Kuharica"};
 
                     var language1 = new Language() {Name = "Hrvatski"};
 					var language2 = new Language() {Name = "Engleski"};
@@ -79,10 +80,12 @@ namespace Beeble.Api
 					var author1 = new Author(){Name = "Walter Isaacson"};
                     var author2 = new Author() { Name = "Shakespeare" };
 					var author3 = new Author(){Name = "Mato Lovrak"};
+					var author4 = new Author(){Name = "Jamie Oliver"};
+					var author5 = new Author(){Name = "Adrija Nović"};
 
 					var localLibrary1 = new LocalLibrary()
 					{
-						Address = "Placeholder adresa",
+						Address = "Matice hrvatske 12, Split",
 						BookLendLimit = 4,
 						DefaultLendDuration = 48,
 						GuestBorrowPrice = 20,
@@ -99,7 +102,7 @@ namespace Beeble.Api
 
 	                var localLibrary2 = new LocalLibrary()
 	                {
-		                Address = "Placeholder adresa 222",
+		                Address = "Kralja Zvonimira 105, Solin",
 		                BookLendLimit = 5,
 		                DefaultLendDuration = 48,
 		                GuestBorrowPrice = 20,
@@ -130,7 +133,7 @@ namespace Beeble.Api
 						Language = language1,
 						Nationality = nationality3,
 						Categories = new List<Category>() { category2 },
-						ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg"
+						ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg",
 					};
 
 					var book2 = new Book()
@@ -283,6 +286,46 @@ namespace Beeble.Api
 		                IsReserved = false
 	                };
 
+	                var book10 = new Book()
+	                {
+		                Name = "Super hrana",
+		                NumOfPages = "115",
+		                Author = author4,
+		                YearOfIssue = year2,
+		                ISBN = "0230217867",
+		                DamageLevel = 2,
+		                Description = "Odaberete li samo poneku ideju iz ove knjige, počet ćete drukčije razmišljati o hrani i njezinoj moći da izravno utječe na vas, i tjelesno i mentalno, što će vas nadahnuti da pozitivno promijenite ne samo način na koji jedete, nego i, nadam se, prehrambene navike osoba koje vas okružuju. Hranu treba cijeniti, dijeliti je i u njoj uživati, a zdrava i hranjiva jela trebaju biti šarolika, ukusna i, što je najvažnije, zabavna.",
+		                Publisher = "Profil",
+		                LocalLibrary = localLibrary2,
+		                Nationality = nationality2,
+		                Language = language1,
+		                Categories = new List<Category>() { category7 },
+		                ImageUrl = "http://mozaik-knjiga.hr/wp-content/uploads/2017/10/Superhrana-za-svaki-dan-J.Oliver-234x300.jpg",
+		                IsBorrowed = false,
+		                IsReserved = false,
+						Keyword = "kuhanje"
+	                };
+
+	                var book11 = new Book()
+	                {
+		                Name = "Velika hrvatska kuharica",
+		                NumOfPages = "75",
+		                Author = author5,
+		                YearOfIssue = year3,
+		                ISBN = "0230217867",
+		                DamageLevel = 2,
+		                Description = "Velika hrvatska kuharica donosi vam mnoštvo tradicionalnih hrvatskih recepata za predjela, glavna jela, priloge i salate te deserte. Ovo je kuharica za sve koji uživaju u ukusnoj domaćoj hrani spravljenoj na način naših starih – jednostavno i od namirnica koje se mogu naći u najbližoj trgovini ili na tržnici.",
+		                Publisher = "Profil",
+		                LocalLibrary = localLibrary2,
+		                Nationality = nationality2,
+		                Language = language1,
+		                Categories = new List<Category>() { category7 },
+		                ImageUrl = "http://mozaik-knjiga.hr/wp-content/uploads/2017/09/velika-hrvatska-kuharica.png",
+		                IsBorrowed = false,
+		                IsReserved = false,
+		                Keyword = "kuhanje"
+	                };
+
 					var localLibraryMember1 = new LocalLibraryMember()
 					{
 						LocalLibrary = localLibrary1,
@@ -377,6 +420,8 @@ namespace Beeble.Api
 	                context.Books.Add(book7);
 	                context.Books.Add(book8);
 	                context.Books.Add(book9);
+	                context.Books.Add(book10);
+	                context.Books.Add(book11);
 
 					context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
 					context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);

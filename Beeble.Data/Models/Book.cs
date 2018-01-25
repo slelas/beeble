@@ -21,6 +21,7 @@ namespace Beeble.Data.Models
 	    public bool IsBorrowed { get; set; }
         public bool IsReserved { get; set; }
 		public string BarcodeNumber { get; set; }
+		public string Keyword { get; set; }
 
 
 		public Author Author { get; set; }
