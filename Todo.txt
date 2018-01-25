@@ -10,3 +10,9 @@ keywords za search
 
 
 NAPOMENA: Rezervacija disableana u backendu (books controller)
+
+sredit popup za rezervaciju
+
+paypal botun i detalji od knjige imaju nepotreban ng-click koji pretvara kursor u pointer, tria to nekako s cssom
+
+style iz index.html za ng-click negdi u css

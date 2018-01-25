@@ -64,7 +64,7 @@
 				<div class="search__result" ng-repeat="book in currentBooks">
 					<div></div>
 					<div class="search__result-book-name">{{book.name}}</div>
-					<div class="search__result-book-author">{{book.author.name}}</div>
+					<div class="search__result-book-author">{{book.author}}</div>
 					<div class="book-info-wrapper">
 						<div></div>
 						<img ng-src="{{book.imageUrl}}">
@@ -73,11 +73,12 @@
 								<span class="left">Nakladnik:</span>
 								<span class="right">{{book.publisher}}</span><br>
 								<span class="left">Godina:</span>
-								<span class="right">{{book.yearOfIssue.year}}</span><br>
+								<span class="right">{{book.yearOfIssue}}</span><br>
 								<span class="left">Žanr:</span>
-								<span class="right">{{book.categories.name}}</span>
+								<span class="right">{{book.categories}}</span>
 							</div>
-							<button class="search__result-button" ui-sref="bookDetails({bookName: book.name})">DETALJI</button>
+                            <!-- NG click je tu da se pokaze mouse pointer, smislit nesto bolje -->
+							<button class="search__result-button" ui-sref="bookDetails({bookName: book.name})" ng-click="">DETALJI</button>
 						</div>
 					</div>
 				</div>

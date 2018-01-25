@@ -47,7 +47,13 @@
 
                 $scope.loadBooks();
             });
-		};
+        };
+
+        $scope.showPopup = false;
+
+        $scope.togglePopup = function () {
+            $scope.showPopup = !$scope.showPopup;
+        }
 
 	});
 

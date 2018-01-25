@@ -50,10 +50,30 @@
                     <div class="reserve__library clearfix" ng-repeat="book in nonMemberBooks">
                         <div class="library__name">{{book.localLibrary.name}}</div>
                         <div class="library__book-status">odmah dostupno</div>
-	                    <a class="library__button" ui-sref="oneTimeBorrow({libraryId: book.localLibrary.id, bookAuthor: book.author, bookName: book.name})">JEDNOKRATNO</a>
+	                    <a class="library__button" ng-click="togglePopup()">JEDNOKRATNO</a>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="popup" ng-show="showPopup">
+    <div class="popup__container">
+        <div class="popup__header-wrapper">
+            <div class="popup__header">JEDNOKRATNO POSUĐIVANJE</div>
+            <img ng-click="togglePopup()" src="./images/cross-icon-black.png">
+        </div>
+        <div ng-show="true">
+            <div class="library__info">
+                <div><span>Knjižnica:</span> {{book.localLibrary.name}}</div>
+                <div><span>Adresa:</span> {{book.localLibrary.address}}</div>
+                <div><span>Trajanje posudbe:</span> {{book.localLibrary.defaultLendDuration}}</div>
+                <div><span>Cijena:</span> {{book.localLibrary.guestBorrowPrice}}</div>
+                <div>{{book.author}}</div>
+                <div>{{book.name}}</div>
+            </div>
+            <paypal></paypal>
         </div>
     </div>
 </div>
