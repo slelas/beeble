@@ -34,8 +34,8 @@
             <div class="book-details__reserve">
                 <div class="book-details__reserve-wrapper">
                     <div class="reserve__header">MOJE KNJIŽNICE</div>
-                    <div ng-show="memberBooks.length == 0 && isLoggedIn">Ova knjiga nije dostupna u nijednoj knjižnici u kojoj ste učlanjeni</div>
-                    <div ng-hide="isLoggedIn">Prijavite se da biste vidjeli knjige iz učlanjenih knjižnica</div>
+                    <div class="reserve__warning" ng-show="memberBooks.length == 0 && isLoggedIn">Ova knjiga nije dostupna u nijednoj knjižnici u kojoj ste učlanjeni.</div>
+                    <div class="reserve__warning" ng-hide="isLoggedIn">Prijavite se da biste vidjeli knjige iz učlanjenih knjižnica</div>
                     <div class="reserve__library" ng-repeat="book in memberBooks">
                         <div class="library__name">{{book.localLibrary.name}}</div>
                         <div class="library__book-status">{{book.returnDeadline | convertBookStatusPartOne}}<span>{{book.returnDeadline | convertBookStatusPartTwo}}</span></div>
@@ -46,8 +46,8 @@
             <div class="book-details__reserve">
                 <div class="book-details__reserve-wrapper">
                     <div class="reserve__header">OSTALE KNJIŽNICE</div>
-                    <div ng-hide="nonMemberBooks">Ova knjiga nije dostupna u nijednoj knjižnici koje niste član</div>
-                    <div class="reserve__library" ng-repeat="book in nonMemberBooks">
+                    <div class="reserve__warning" ng-hide="nonMemberBooks">Ova knjiga nije dostupna u nijednoj knjižnici koje niste član</div>
+                    <div class="reserve__library clearfix" ng-repeat="book in nonMemberBooks">
                         <div class="library__name">{{book.localLibrary.name}}</div>
                         <div class="library__book-status">dostupno odmah</div>
 	                    <a class="library__button" ui-sref="oneTimeBorrow({libraryId: book.localLibrary.id, bookAuthor: book.author, bookName: book.name})">JEDNOKRATNO</a>
