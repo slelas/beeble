@@ -2,7 +2,7 @@
 	return function(returnDeadline) {
 
 		if (!returnDeadline)
-			return 'odmah dostupno';
+			return 'dostupno odmah';
 		else
 			return 'dostupno od';
 

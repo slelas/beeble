@@ -1,6 +1,3 @@
-Napravit details rutu za svaku knjigu
-Grupirat po imenu u search rezultatima +
-dodat ui-sref sa svakog search rezultata na details +
 lazy loading na nationality i language
 direktiva za kratke informacije o knjiznici jer se ponavlja na dva mista
 forgot password
@@ -9,3 +6,7 @@ maknit hardcoded minimumlenght passworda u frontendu
 neka bude modal za javit da je ista sifra
 
 dodat id unutar local library za knjigu zbog poduplavanja
+keywords za search
+
+
+NAPOMENA: Rezervacija disableana u backendu (books controller)

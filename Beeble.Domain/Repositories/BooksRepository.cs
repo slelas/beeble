@@ -21,7 +21,7 @@ namespace Beeble.Domain.Repositories
     {
 	    private readonly int _numberOfBooksPerSearchQuery = int.Parse(ConfigurationManager.AppSettings["numberOfBooksPerSearchQuery"]);
 
-        public List<Book> SearchBooks(string searchQuery, int pageNumber, List<string> selectedFilters)
+        public List<LongBookDTO> SearchBooks(string searchQuery, int pageNumber, List<string> selectedFilters)
         {
             using (var context = new AuthContext())
             {
@@ -33,7 +33,8 @@ namespace Beeble.Domain.Repositories
 		            .Include(x => x.Categories)
 		            .Include(x => x.Language)
 		            .Include(x => x.Author)
-		            .Include(x => x.YearOfIssue);
+		            .Include(x => x.YearOfIssue)
+                    .Include(x => x.LocalLibrary);
 
 	            // only apply a filter if it is listed in the selected filters
 	            // Nationalities
@@ -55,7 +56,10 @@ namespace Beeble.Domain.Repositories
 				var books = searchResultsQuery.OrderBy(x => x.Name).Skip(_numberOfBooksPerSearchQuery * pageNumber)
 					.Take(_numberOfBooksPerSearchQuery).ToList();
 
-                return books;
+                return books.Select(book => LongBookDTO.FromData(book, null))
+                    .OrderByDescending(book => book.YearOfIssue)
+                    .ThenByDescending(book => book.Name)
+                    .ToList();
             }
 
         }
@@ -201,6 +205,7 @@ namespace Beeble.Domain.Repositories
                     .Include(book => book.Nationality)
                     .Include(book => book.YearOfIssue)
                     .Include(book => book.LocalLibrary)
+                    .OrderBy(book => book.LocalLibrary.Name)
                     .Include("LocalLibrary.Members")
                     .Include("LocalLibrary.Members.OnlineUser")
                     .Where(book => book.Name == bookName)
@@ -318,6 +323,7 @@ namespace Beeble.Domain.Repositories
 					.Include("Language")
 					.Include("Categories")
 					.Include("LocalLibrary")
+                    .Include("YearOfIssue")
 					.ToList()
 					.Select(book => LongBookDTO.FromData(book, null))
 					.FirstOrDefault();
