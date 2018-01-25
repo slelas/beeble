@@ -28,11 +28,11 @@
 		$scope.getBookNumbers();
 
         $scope.isLoggedIn = authService.authentication.isAuth;
-
 		$scope.reserveBook = function(libraryName, reservationDuration, libraryId) {
 
 			$rootScope.libraryName = libraryName;
 			$rootScope.reservationDuration = reservationDuration;
+			console.log(reservationDuration);
 			ngDialog.openConfirm({
 				template: 'resolveDialog',
 				className: 'ngdialog-theme-default',

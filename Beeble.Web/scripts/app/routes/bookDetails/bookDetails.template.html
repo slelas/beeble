@@ -34,7 +34,7 @@
             <div class="book-details__reserve">
                 <div class="book-details__reserve-wrapper">
                     <div class="reserve__header">MOJE KNJIŽNICE</div>
-                    <div ng-show="memberBooks == null && isLoggedIn">Ova knjiga nije dostupna u nijednoj knjižnici u kojoj ste učlanjeni</div>
+                    <div ng-show="memberBooks.length == 0 && isLoggedIn">Ova knjiga nije dostupna u nijednoj knjižnici u kojoj ste učlanjeni</div>
                     <div ng-hide="isLoggedIn">Prijavite se da biste vidjeli knjige iz učlanjenih knjižnica</div>
                     <div class="reserve__library" ng-repeat="book in memberBooks">
                         <div class="library__name">{{book.localLibrary.name}}</div>

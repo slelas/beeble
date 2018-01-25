@@ -63,6 +63,7 @@ namespace Beeble.Domain.DTOs
 					Address = book.LocalLibrary.Address,
 					DefaultLendDuration = book.LocalLibrary.DefaultLendDuration,
 					GuestBorrowPrice = book.LocalLibrary.GuestBorrowPrice,
+					ReservationDuration = book.LocalLibrary.ReservationDuration
 				},
 
 				ReturnDeadline = returnDeadline 
