@@ -316,7 +316,12 @@
 @media screen and (min-width: 1600px) {
     .search__result {
         display: inline-block;
-        width: 41%;
-        margin-right: 25px;
+        width: calc(50% - 54px);
+    }
+    
+    .search__result-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
 }

@@ -60,23 +60,25 @@
 		</div>
 		<div class="search__result-wrapper">
 			<div class="search__results-title">REZULTATI</div>
-			<div class="search__result" ng-repeat="book in currentBooks">
-				<div></div>
-				<div class="search__result-book-name">{{book.name}}</div>
-				<div class="search__result-book-author">{{book.author.name}}</div>
-				<div class="book-info-wrapper">
+			<div class="search__result-container">
+				<div class="search__result" ng-repeat="book in currentBooks">
 					<div></div>
-					<img ng-src="{{book.imageUrl}}">
-					<div class="book-info-wrapper-second">
-						<div class="search__result-book-info">
-							<span class="left">Nakladnik:</span>
-							<span class="right">{{book.publisher}}</span><br>
-							<span class="left">Godina:</span>
-							<span class="right">{{book.yearOfIssue.year}}</span><br>
-							<span class="left">Žanr:</span>
-							<span class="right">{{book.categories.name}}</span>
+					<div class="search__result-book-name">{{book.name}}</div>
+					<div class="search__result-book-author">{{book.author.name}}</div>
+					<div class="book-info-wrapper">
+						<div></div>
+						<img ng-src="{{book.imageUrl}}">
+						<div class="book-info-wrapper-second">
+							<div class="search__result-book-info">
+								<span class="left">Nakladnik:</span>
+								<span class="right">{{book.publisher}}</span><br>
+								<span class="left">Godina:</span>
+								<span class="right">{{book.yearOfIssue.year}}</span><br>
+								<span class="left">Žanr:</span>
+								<span class="right">{{book.categories.name}}</span>
+							</div>
+							<button class="search__result-button" ui-sref="bookDetails({bookName: book.name})">DETALJI</button>
 						</div>
-						<button class="search__result-button" ui-sref="bookDetails({bookName: book.name})">DETALJI</button>
 					</div>
 				</div>
 			</div>
