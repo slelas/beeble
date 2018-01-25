@@ -12,15 +12,15 @@ namespace Beeble.Domain.DTOs
 		public string ImageUrl { get; set; }
 		public string Name { get; set; }
 		public string Author { get; set; }
-		public DateTime? ReturnDeadline { get; set; }
+        public DateTime? ReturnDeadline { get; set; }
 		public long BookId { get; set; }
 
 		public static ShortBookDTO FromData(Book book, DateTime? returnDeadline)
 		{
-			return new ShortBookDTO()
-			{
-				ImageUrl = book.ImageUrl,
-				Name = book.Name,
+            return new ShortBookDTO()
+            {
+                ImageUrl = book.ImageUrl,
+                Name = book.Name,
 				Author = book.Author.Name,
 				ReturnDeadline = returnDeadline,
 				BookId = book.Id
@@ -39,7 +39,8 @@ namespace Beeble.Domain.DTOs
 		public string Isbn { get; set; }
 		public string Categories { get; set; }
 		public long BookId { get; set; }
-		public LocalLibrary LocalLibrary { get; set; }
+        public string YearOfIssue { get; set; }
+        public LocalLibrary LocalLibrary { get; set; }
 		public DateTime? ReturnDeadline { get; set; }
 
 		public static LongBookDTO FromData(Book book, DateTime? returnDeadline)
@@ -50,7 +51,8 @@ namespace Beeble.Domain.DTOs
 				Name = book.Name,
 				Author = book.Author.Name,
 				BookId = book.Id,
-				NumOfPages = book.NumOfPages,
+                YearOfIssue = book.YearOfIssue.Year,
+                NumOfPages = book.NumOfPages,
 				Publisher = book.Publisher,
 				Language = book.Language.Name,
 				Isbn = book.ISBN,

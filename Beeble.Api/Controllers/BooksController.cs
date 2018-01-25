@@ -22,7 +22,7 @@ namespace Beeble.Api.Controllers
 
 		[HttpGet]
 		[Route("byquery")]
-		public List<Book> SearchBooks(int pageNumber, string searchQuery, [FromUri]List<string> selectedFilters)
+		public List<LongBookDTO> SearchBooks(int pageNumber, string searchQuery, [FromUri]List<string> selectedFilters)
 		{
 			return repo.SearchBooks(searchQuery, pageNumber, selectedFilters);
 		}
@@ -52,7 +52,7 @@ namespace Beeble.Api.Controllers
         [Route("reserve")]
         public void MakeAReservation(int libraryId, string bookName, string authorName)
         {
-            repo.MakeAReservation(libraryId, bookName, authorName);
+            //repo.MakeAReservation(libraryId, bookName, authorName);
         }
 
 		[HttpGet]

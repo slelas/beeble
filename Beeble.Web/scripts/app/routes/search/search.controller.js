@@ -81,7 +81,7 @@
 
 		if ($stateParams.searchQuery) {
 			$scope.searchQuery = $stateParams.searchQuery;
-			$scope.search();
+            $scope.search();
 		}
 		// for debugging purposes:
 		else {
