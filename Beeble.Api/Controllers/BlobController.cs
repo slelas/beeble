@@ -10,20 +10,29 @@ using Microsoft.Azure; //Namespace for CloudConfigurationManager
 using System.Configuration;
 using System.IO;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
+using Beeble.Data.Models;
+using Beeble.Domain.Repositories;
 
 namespace Beeble.Api.Controllers
 {
     [RoutePrefix("blob")]
     public class BlobController : AuthorizationController
     {
+	    private readonly BooksRepository repo = null;
 
-        [HttpPost]
+		public BlobController()
+	    {
+		    repo = new BooksRepository();
+	    }
+
+		[HttpPost]
         [Route("")]
         public async Task<HttpResponseMessage> PostFormData()
         {
             // Parse the connection string and return a reference to the storage account.
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                CloudConfigurationManager.GetSetting("StorageConnectionString"));
+                CloudConfigurationManager.GetSetting("BlobStorageConnectionString"));
 
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
@@ -34,15 +43,17 @@ namespace Beeble.Api.Controllers
 
             try
             {
-                var provider = new BlobStorageMultipartStreamProvider();
-                var result = await Request.Content.ReadAsMultipartAsync(provider);
+                var provider = new MultipartFormDataStreamProvider(Path.GetTempPath());
+                await Request.Content.ReadAsMultipartAsync(provider);
 
                 var fileData = provider.FileData.FirstOrDefault();
-                var b = provider.FormData;
-                var blobUrl = BlobStorageMultipartStreamProvider.BlobUrl;
 
+                var formData = provider.FormData;
 
-            }
+	            var blobUrl = SaveBlob(fileData).Url;
+
+	            repo.AddNewBook(formData, blobUrl);
+			}
             catch (Exception)
             {
                 throw new HttpResponseException(HttpStatusCode.InternalServerError);
@@ -50,49 +61,43 @@ namespace Beeble.Api.Controllers
 
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
+
+	    private CustomBlob SaveBlob(MultipartFileData fileData)
+	    {
+			var container = GetBlobContainer();
+		    var guid = Guid.NewGuid();
+		    var fileName = guid.ToString();
+		    var extension = Path.GetExtension(fileData.Headers.ContentDisposition.FileName.Trim('"')).ToLower();
+
+			var blob = container.GetBlockBlobReference(fileName + extension);
+
+			using (var fs = File.OpenRead(fileData.LocalFileName))
+		    {
+			    blob.UploadFromStream(fs);
+		    }
+
+		    var newBlob = new CustomBlob()
+		    {
+			    Url = blob.Uri.AbsoluteUri,
+		    };
+
+		    return newBlob;
+	    }
+
+		private CloudBlobContainer GetBlobContainer()
+	    {
+		    var blobStorageConnectionString = ConfigurationManager.AppSettings["BlobStorageConnectionString"];
+		    var blobStorageContainerName = ConfigurationManager.AppSettings["BlobStorageContainerName"];
+
+			var blobStorageAccount = CloudStorageAccount.Parse(blobStorageConnectionString);
+		    var blobClient = blobStorageAccount.CreateCloudBlobClient();
+		    var container = blobClient.GetContainerReference(blobStorageContainerName);
+		    container.CreateIfNotExists();
+
+		    container.SetPermissions(
+			    new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+		    return container;
+	    }
     }
 
-    public class BlobStorageMultipartStreamProvider : MultipartFormDataStreamProvider
-    {
-
-        public static string BlobUrl { get; set; }
-
-        public BlobStorageMultipartStreamProvider() : base(Path.GetTempPath())
-        {
-
-        }
-
-        public override Stream GetStream(HttpContent parent, HttpContentHeaders headers)
-        {
-            Stream stream = null;
-            ContentDispositionHeaderValue contentDisposition = headers.ContentDisposition;
-
-            if (contentDisposition != null)
-            {
-                if (!String.IsNullOrWhiteSpace(contentDisposition.FileName) || true)
-                {
-                    string connectionString = ConfigurationManager.AppSettings["StorageConnectionString"];
-                    string containerName = "test22";
-                    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connectionString);
-                    //CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
-                    CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-                    CloudBlobContainer blobContainer = blobClient.GetContainerReference(containerName);
-                    blobContainer.CreateIfNotExists();
-
-                    //zbog ovoga nije bilo radilo
-                    blobContainer.SetPermissions(
-        new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
-
-                    //contentDisposition.FileName = contentDisposition.FileName.Trim('"');
-                    contentDisposition.FileName = contentDisposition.Name;
-                    CloudBlockBlob blob = blobContainer.GetBlockBlobReference(contentDisposition.FileName);
-                    stream = blob.OpenWrite();
-                    var blobUrl = blob.Uri.AbsoluteUri;
-                        BlobUrl = blobUrl;
-
-                }
-            }
-            return stream;
-        }
-    }
 }

@@ -24,6 +24,15 @@
 		</div>
 	</div>
 	<div class="form-group">
+		<input type="text" placeholder="Nacionalnost" name="nationality" ng-model="book.nationality" list="nationalities" required />
+		<datalist id="nationalities">
+			<option ng-repeat="nationality in nationalities" value="{{nationality}}"></option>
+		</datalist>
+		<div class="help-block" ng-messages="bookForm.nationality.$error" ng-if="bookForm.nationality.$touched">
+			<div ng-messages-include="validation-messages"></div>
+		</div>
+	</div>
+	<div class="form-group">
 		<input type="number" placeholder="Number of pages" name="numOfPages" ng-model="book.numOfPages" required>
 		<div class="help-block" ng-messages="bookForm.numOfPages.$error" ng-if="bookForm.numOfPages.$touched">
 			<div ng-messages-include="validation-messages"></div>
@@ -52,9 +61,18 @@
 		}
 	</style>
 
-	<button ng-click="save()" ng-disabled="bookForm.$invalid">Potvrdi promjene</button>
+	<button ng-click="uploadPic()" ng-disabled="bookForm.$invalid">Potvrdi promjene</button>
 
 </form>
 <div class="bootstrap">
-    <div ng-dropdown-multiselect="" options="categories" selected-model="categoriesModel" extra-settings="categoriessettings" translation-texts="categoriescustomTexts"></div>
+	<div ng-dropdown-multiselect="" options="categories" selected-model="categoriesModel" extra-settings="categoriessettings" translation-texts="categoriescustomTexts"></div>
 </div>
+
+
+
+<input type="file" ngf-select ng-model="picFile" name="file"
+	   accept="image/*" ngf-max-size="122MB" required
+	   ngf-model-invalid="errorFile">
+
+<button ng-click="picFile = null" ng-show="picFile">Izbrisi sliku</button>
+<br>

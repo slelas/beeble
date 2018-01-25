@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
@@ -11,6 +12,8 @@ using Beeble.Data.Models;
 using Beeble.Domain.DTOs;
 using Microsoft.Owin.Security.Provider;
 using MoreLinq;
+using System.Data;
+using Newtonsoft.Json;
 
 namespace Beeble.Domain.Repositories
 {
@@ -370,5 +373,80 @@ namespace Beeble.Domain.Repositories
                     .ToList();
             }
         }
+
+	    public static string[] Convert(object input)
+	    {
+		    return input as string[];
+	    }
+
+		public void AddNewBook(NameValueCollection bookData, string blobUrl)
+	    {
+		    var authorName = bookData["author"];
+			var yearValue = bookData["year"];
+		    var languageValue = bookData["language"];
+		    var nationalityValue = bookData["nationality"];
+		    var categoriesValue = JsonConvert.DeserializeObject<Object[]>(bookData["categories"]);
+
+
+			using (var context = new AuthContext())
+			{
+				var bookCategories = context.Categories.ToList()
+					.Where(c => categoriesValue.Select(x => x.ToString()).Contains(c.Name)).ToList();
+
+				if (!context.Authors.Any(author => author.Name == authorName))
+				{
+					context.Authors.Add(new Author() { Name = authorName });
+					context.SaveChanges();
+				}
+
+			    if (!context.YearsOfIssue.Any(year => year.Year == yearValue))
+			    {
+				    context.YearsOfIssue.Add(new YearOfIssue() { Year = yearValue });
+				    context.SaveChanges();
+			    }
+
+			    if (!context.Languages.Any(language => language.Name == languageValue))
+			    {
+				    context.Languages.Add(new Language() { Name = languageValue });
+				    context.SaveChanges();
+			    }
+
+			    if (!context.Nationalities.Any(nationality => nationality.Name == nationalityValue))
+			    {
+				    context.Nationalities.Add(new Nationality() { Name = nationalityValue });
+				    context.SaveChanges();
+			    }
+
+				var bookAuthor = context.Authors.FirstOrDefault(author => author.Name == authorName);
+				var bookYearOfIssue = context.YearsOfIssue.FirstOrDefault(year => year.Year == yearValue);
+				var bookLanguage = context.Languages.FirstOrDefault(language => language.Name == languageValue);
+				var bookNationality = context.Nationalities.FirstOrDefault(nationality => nationality.Name == nationalityValue);
+
+
+				var bookToAdd = new Book()
+			    {
+				    Name = bookData["name"],
+				    NumOfPages = bookData["numOfPages"],
+				    ISBN = bookData["isbn"],
+				    Description = bookData["description"],
+				    Publisher = bookData["publisher"],
+				    IsBorrowed = false,
+				    IsReserved = false,
+					ImageUrl = blobUrl,
+					//novi barcode
+
+				    Author = bookAuthor,
+				    YearOfIssue = bookYearOfIssue,
+					Language = bookLanguage,
+					Nationality = bookNationality,
+					Categories = bookCategories
+
+				};
+
+			    context.Books.Add(bookToAdd);
+
+			    context.SaveChanges();
+		    }
+	    }
     }
 }

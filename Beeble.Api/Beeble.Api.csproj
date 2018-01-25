@@ -161,6 +161,7 @@
     <Compile Include="Scheduler\Actions.cs" />
     <Compile Include="Scheduler\SchedulerService.cs" />
     <Compile Include="Scheduler\TimerSchedule.cs" />
+    <Compile Include="Services\ExtractData.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="UserManager\ApplicationUserManager.cs" />
     <Compile Include="UserRoles\CreateRoles.cs" />
