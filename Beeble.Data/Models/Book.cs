@@ -10,8 +10,6 @@ namespace Beeble.Data.Models
 {
     public class Book
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
         public string Name { get; set; }
         public string NumOfPages { get; set; }
@@ -22,9 +20,10 @@ namespace Beeble.Data.Models
         public string ImageUrl { get; set; }
 	    public bool IsBorrowed { get; set; }
         public bool IsReserved { get; set; }
+		public string BarcodeNumber { get; set; }
 
 
-        public Author Author { get; set; }
+		public Author Author { get; set; }
         public YearOfIssue YearOfIssue { get; set; }
         public List<Category> Categories { get; set; }
         public LocalLibrary LocalLibrary { get; set; }

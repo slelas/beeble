@@ -105,6 +105,9 @@
     <Content Include="scripts\app\routes\addNewBook\addNewBook.controller.js" />
     <Content Include="scripts\app\routes\addNewBook\addNewBook.route.js" />
     <Content Include="scripts\app\routes\addNewBook\addNewBook.template.html" />
+    <Content Include="scripts\app\routes\addNewLibraryMember\addNewLibraryMember.controller.js" />
+    <Content Include="scripts\app\routes\addNewLibraryMember\addNewLibraryMember.route.js" />
+    <Content Include="scripts\app\routes\addNewLibraryMember\addNewLibraryMember.template.html" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.controller.js" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.route.js" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.template.html" />
@@ -131,6 +134,8 @@
     <Content Include="scripts\css\ngDialog.min.css" />
     <Content Include="scripts\vendor\angular-hidScanner.js" />
     <Content Include="scripts\vendor\angular-ui-bootstrap-modal.js" />
+    <Content Include="scripts\vendor\angularjs-dropdown-multiselect.js" />
+    <Content Include="scripts\vendor\ng-file-upload.js" />
     <Content Include="scripts\vendor\ngDialog.js" />
     <Content Include="scripts\vendor\ngDialog.min.js" />
     <Content Include="styles\.DS_Store" />
@@ -177,7 +182,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="scripts\app\routes\bookList\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

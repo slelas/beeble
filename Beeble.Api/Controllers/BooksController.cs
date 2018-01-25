@@ -13,7 +13,7 @@ namespace Beeble.Api.Controllers
 	[RoutePrefix("api/search")]
 	public class BooksController : AuthorizationController
 	{
-		private BooksRepository repo = null;
+        private BooksRepository repo = null;
 
 		public BooksController()
 		{
@@ -69,7 +69,35 @@ namespace Beeble.Api.Controllers
 			return repo.GetBookById(bookId);
 		}
 
-		/*[HttpGet]
+        [HttpGet]
+        [Route("get-authors")]
+        public List<string> GetAllAuthors()
+        {
+            return repo.GetAllAuthors();
+        }
+
+        [HttpGet]
+        [Route("get-categories")]
+        public List<string> GetAllCategories()
+        {
+            return repo.GetAllCategories();
+        }
+
+        [HttpGet]
+        [Route("get-nationalities")]
+        public List<string> GetAllNationalities()
+        {
+            return repo.GetAllNationalities();
+        }
+
+        [HttpGet]
+        [Route("get-languages")]
+        public List<string> GetAllLanguages()
+        {
+            return repo.GetAllLanguages();
+        }
+
+        /*[HttpGet]
 		[Authorize]
 		[Route("get-libraries")]
 		public List<LocalLibrary> GetLocalLibraries()
@@ -79,5 +107,5 @@ namespace Beeble.Api.Controllers
 			//OnlineUser user = RequestContext.Principal.Identity
 			//GetUserPrincipal
 		}*/
-	}
+    }
 }

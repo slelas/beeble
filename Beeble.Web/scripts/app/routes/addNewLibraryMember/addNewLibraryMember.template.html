@@ -1,0 +1,60 @@
+﻿<form name="memberForm" novalidate>
+	<div class="form-group">
+		<input type="text" placeholder="Ime" name="name" ng-model="member.name" required>
+		<div class="help-block" ng-messages="memberForm.name.$error" ng-if="memberForm.name.$touched">
+			<div ng-messages-include="validation-messages"></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<input type="text" placeholder="Prezime" name="lastname" ng-model="member.lastname" required />
+		<div class="help-block" ng-messages="memberForm.lastname.$error" ng-if="memberForm.lastname.$touched">
+			<div ng-messages-include="validation-messages"></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<input type="number" placeholder="OIB" name="oib" ng-model="member.oib" required />
+		<div class="help-block" ng-messages="memberForm.oib.$error" ng-if="memberForm.oib.$touched">
+			<div ng-messages-include="validation-messages"></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<span>E-MAIL ADRESA</span>
+		<input type="email" placeholder="E-mail" name="email" ng-model="member.email">
+		<div class="help-block" ng-messages="memberForm.email.$error" ng-if="memberForm.email.$touched">
+			<div ng-messages-include="validation-messages"></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<input type="text" placeholder="Adresa" name="address" ng-model="member.address" required>
+		<div class="help-block" ng-messages="memberForm.address.$error" ng-if="memberForm.address.$touched">
+			<div ng-messages-include="validation-messages"></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<input type="text" placeholder="Grad" name="city" ng-model="member.city" required />
+		<div class="help-block" ng-messages="memberForm.city.$error" ng-if="memberForm.city.$touched">
+			<div ng-messages-include="validation-messages"></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<input type="text" placeholder="Broj mobitela" name="phoneNumber" ng-model="member.phoneNumber" required />
+		<div class="help-block" ng-messages="memberForm.phoneNumber.$error" ng-if="memberForm.phoneNumber.$touched">
+			<div ng-messages-include="validation-messages"></div>
+		</div>
+	</div>
+	
+	<div>PROFILNA FOTO</div>
+
+	<button ng-click="save()" ng-disabled="memberForm.$invalid">Potvrdi</button>
+
+</form>
+
+<style>
+		/*STIPE: ubaci ovo u ostatak css-a, svrha je da sakrije one strelice sa strane za povecavanje broja*/
+	input[type=number]::-webkit-inner-spin-button,
+	input[type=number]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		margin: 0;
+	}
+</style>
