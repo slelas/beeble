@@ -651,8 +651,9 @@ a {
   color: white;
   padding: 10px;
   border-radius: 5px;
-  z-index: 10;
-  margin-right: 5px; }
+  z-index: 10; }
+  .library__button:nth-child(2) {
+    margin-left: 15px; }
 
 .library__button-one-time {
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
@@ -729,7 +730,7 @@ a {
     margin-top: 10px;
     display: block; } }
 
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 430px) {
   .library__button-wrapper {
     float: none;
     margin-top: 15px;
