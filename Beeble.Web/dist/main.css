@@ -541,6 +541,9 @@ a {
   .search-bar__button:hover {
     background-color: #333333; }
 
+.library__button-wrapper {
+  float: right; }
+
 .book-details__container {
   width: 100%;
   margin-top: 50px;
@@ -620,7 +623,7 @@ a {
   font-weight: 600; }
 
 .reserve__library {
-  margin-top: 15px;
+  margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -678,18 +681,7 @@ a {
 
 @media screen and (max-width: 770px) {
   .book-details .homepage__search-bar {
-    width: 70%; } }
-
-@media screen and (max-width: 630px) {
-  .book-details .homepage__search-bar {
-    width: 80%; }
-  .book-details__reserve {
-    margin-left: -40px;
-    margin-right: -40px;
-    width: calc(100% + 80px);
-    border-radius: 0; } }
-
-@media screen and (max-width: 480px) {
+    width: 70%; }
   .reserve__library {
     display: block;
     text-align: left;
@@ -703,9 +695,19 @@ a {
     left: auto;
     right: auto;
     display: inline-block; }
-  .book-details .library__button {
-    margin-top: -18px;
-    float: right; }
+  .library__button-wrapper {
+    margin-top: -6px; } }
+
+@media screen and (max-width: 630px) {
+  .book-details .homepage__search-bar {
+    width: 80%; }
+  .book-details__reserve {
+    margin-left: -40px;
+    margin-right: -40px;
+    width: calc(100% + 80px);
+    border-radius: 0; } }
+
+@media screen and (max-width: 480px) {
   .book-details__information {
     display: block;
     margin-left: 0;
@@ -725,6 +727,14 @@ a {
   .book-bar__author {
     margin-top: 10px;
     display: block; } }
+
+@media screen and (max-width: 415px) {
+  .library__button-wrapper {
+    float: none;
+    margin-top: 15px;
+    margin-bottom: 15px; }
+  .reserve__library {
+    margin-bottom: 30px; } }
 
 .navbar {
   width: 80%;
