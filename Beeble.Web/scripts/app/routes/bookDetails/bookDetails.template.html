@@ -30,7 +30,7 @@
                 </div>
             </div>
             <h1 class="book-details__content-second-header">OPIS KNJIGE</h1>
-            <p>{{book.description}}</p>
+            <p>Odaberete li samo poneku ideju iz ove knjige, počet ćete drukčije razmišljati o hrani i njezinoj moći da izravno utječe na vas, i tjelesno i mentalno, što će vas nadahnuti da pozitivno promijenite ne samo način na koji jedete, nego i, nadam se, prehrambene navike osoba koje vas okružuju. Hranu treba cijeniti, dijeliti je i u njoj uživati, a zdrava i hranjiva jela trebaju biti šarolika, ukusna i, što je najvažnije, zabavna.</p>
             <div class="book-details__reserve">
                 <div class="book-details__reserve-wrapper">
                     <div class="reserve__header">MOJE KNJIŽNICE</div>
@@ -39,7 +39,9 @@
                     <div class="reserve__library" ng-repeat="book in memberBooks">
                         <div class="library__name">{{book.localLibrary.name}}</div>
                         <div class="library__book-status">{{book.returnDeadline | convertBookStatusPartOne}}<span>{{book.returnDeadline | convertBookStatusPartTwo}}</span></div>
-                        <a class="library__button" ng-click="reserveBook(book.localLibrary.name, book.localLibrary.reservationDuration, book.localLibrary.id)">REZERVIRAJ</a>
+                        <div class="library__button-wrapper">
+                            <a class="library__button" ng-click="reserveBook(book.localLibrary.name, book.localLibrary.reservationDuration, book.localLibrary.id)">REZERVIRAJ</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,8 +73,8 @@
             <div class="library__info">
                 <div><span>Knjižnica:</span> {{book.localLibrary.name}}</div>
                 <div><span>Adresa:</span> {{book.localLibrary.address}}</div>
-                <div><span>Trajanje posudbe:</span> {{book.localLibrary.defaultLendDuration}}</div>
-                <div><span>Cijena:</span> {{book.localLibrary.guestBorrowPrice}}</div>
+                <div><span>Trajanje posudbe:</span> {{book.localLibrary.defaultLendDuration}} h</div>
+                <div><span>Cijena:</span> {{book.localLibrary.guestBorrowPrice}} kn</div>
                 <div>{{book.author}}</div>
                 <div>{{book.name}}</div>
             </div>
