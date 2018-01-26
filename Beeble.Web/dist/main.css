@@ -639,8 +639,8 @@ a {
   color: #8b8b8b;
   font-weight: 500;
   position: absolute;
-  left: 0;
-  right: 0; }
+  left: 300px;
+  right: 300px; }
   .library__book-status span {
     color: #333333; }
 
