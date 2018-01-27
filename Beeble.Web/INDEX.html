@@ -95,15 +95,14 @@
         <link rel="stylesheet" href="https://toert.github.io/Isolated-Bootstrap/versions/4.0.0-beta/iso_bootstrap4.0.0min.css">
 		
 	    <script type="text/ng-template" id="resolveDialog">
-			<div>
-				<h4>REZERVACIJA</h4>
-				<p>
-					Knjiga te čeka u <b>{{libraryName}}</b>
-				</p>
-				<p>
-					Rezervacija vrijedi <strong>{{reservationDuration}} </strong> sati
-				</p>
-			</div>
+            <div>
+                <h4>REZERVACIJA</h4>
+                <p>
+                    Knjiga te čeka u <b>{{libraryName}}</b>
+                    <br />
+                    Rezervacija vrijedi <strong>{{reservationDuration}} </strong> sati
+                </p>
+            </div>
 				<div class="ngdialog-buttons">
 					<button class="ngdialog-button" ng-click="confirm()">U redu</button>
 				</div>

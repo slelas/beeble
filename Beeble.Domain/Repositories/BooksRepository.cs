@@ -53,7 +53,11 @@ namespace Beeble.Domain.Repositories
 	            if (selectedFilters.Intersect(context.YearsOfIssue.Select(y => y.Year.ToString())).Any())
 		            searchResultsQuery = searchResultsQuery.Where((book => selectedFilters.Contains(book.YearOfIssue.Year)));
 
-				var books = searchResultsQuery.OrderBy(x => x.Name).Skip(_numberOfBooksPerSearchQuery * pageNumber)
+                // Languages
+                if (selectedFilters.Intersect(context.Languages.Select(y => y.Name)).Any())
+                    searchResultsQuery = searchResultsQuery.Where(book => selectedFilters.Contains(book.Language.Name));
+
+                var books = searchResultsQuery.OrderBy(x => x.Name).Skip(_numberOfBooksPerSearchQuery * pageNumber)
 					.Take(_numberOfBooksPerSearchQuery).ToList();
 
                 return books.Select(book => LongBookDTO.FromData(book, null))
@@ -95,12 +99,17 @@ namespace Beeble.Domain.Repositories
 	            if (selectedFilters.Intersect(context.YearsOfIssue.Select(y => y.Year.ToString())).Any())
 		            searchResultsQuery = searchResultsQuery.Where((book => selectedFilters.Contains(book.YearOfIssue.Year)));
 
-				var allFilters = new List<List<List<string>>>
+                // Languages
+                if (selectedFilters.Intersect(context.Languages.Select(y => y.Name)).Any())
+                    searchResultsQuery = searchResultsQuery.Where(book => selectedFilters.Contains(book.Language.Name));
+
+                var allFilters = new List<List<List<string>>>
 	            {
 		            GetFilters(searchResultsQuery, "Nationality"),
 		            GetFilters(searchResultsQuery, "Author"),
 		            GetFilters(searchResultsQuery, "Category"),
-		            GetFilters(searchResultsQuery, "Year")
+		            GetFilters(searchResultsQuery, "Year"),
+                    GetFilters(searchResultsQuery, "Language")
 	            };
 
                 return allFilters;
@@ -165,6 +174,19 @@ namespace Beeble.Domain.Repositories
             {
                 var filtersInBooks = searchResultsQuery
                     .Select(x => x.YearOfIssue.Year).ToList();
+
+                filtersInBooks.ForEach(x =>
+                {
+                    if (!filterCount.Keys.Contains(x))
+                        filterCount.Add(x, 1);
+                    else
+                        filterCount[x]++;
+                });
+            }
+            else if(filterName == "Language")
+            {
+                var filtersInBooks = searchResultsQuery
+                    .Select(x => x.Language.Name).ToList();
 
                 filtersInBooks.ForEach(x =>
                 {

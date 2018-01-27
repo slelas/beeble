@@ -38,6 +38,15 @@
 						</div>
 					</div>
 				</div>
+                <div class="search__filter-category" ng-show="searchFiltersLanguage[0].length">
+                    <img src="./images/circle.png" alt="">
+                    <div class="filter-category__all">
+                        <span>JEZIK</span>
+                        <div class="filter-category__select-filter" ng-repeat="filter in searchFiltersLanguage[0]" ng-click="applyAFilter(filter)">
+                            {{filter}} ({{searchFiltersLanguage[1][$index]}})
+                        </div>
+                    </div>
+                </div>
 				<div class="search__filter-category" ng-show="searchFiltersNationality[0].length">
 					<img src="./images/circle.png" alt="">
 					<div class="filter-category__all">
@@ -70,6 +79,8 @@
 						<img ng-src="{{book.imageUrl}}">
 						<div class="book-info-wrapper-second">
 							<div class="search__result-book-info">
+                                <span class="left">Jezik:</span>
+                                <span class="right">{{book.language}}</span><br>
 								<span class="left">Nakladnik:</span>
 								<span class="right">{{book.publisher}}</span><br>
 								<span class="left">Godina:</span>
@@ -83,7 +94,7 @@
 					</div>
 				</div>
 			</div>
-			<button class="search__result-more" ng-click="showMoreResults()" ng-show="currentBooks.length>0" ng-disabled="noMoreSearchResults">PRIKAŽI VIŠE REZULTATA</button>
+			<button class="search__result-more" ng-click="showMoreResults()" ng-hide="noMoreSearchResults">PRIKAŽI VIŠE REZULTATA</button>
 		</div>
 	</div>
 </div>

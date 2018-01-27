@@ -5,7 +5,7 @@
     var filterStatusList = new Array();
     var preloadedResults = new Array();
     $scope.selectedFilters = new Array();
-    $scope.noMoreSearchResults = false;
+    $scope.noMoreSearchResults = true;
 
 	$scope.searchButton = function () {
 		$scope.selectedFilters = new Array();
@@ -25,6 +25,7 @@
             $scope.searchFiltersAuthor = response.data[1];
             $scope.searchFiltersCategory = response.data[2];
             $scope.searchFiltersYear = response.data[3];
+            $scope.searchFiltersLanguage = response.data[4];
 
             // remove selected filters from available ones
             $scope.searchFiltersNationality[0] = $scope.searchFiltersNationality[0].filter(function (element) {
@@ -39,6 +40,9 @@
             $scope.searchFiltersYear[0] = $scope.searchFiltersYear[0].filter(function (element) {
                 return !($scope.selectedFilters.includes(element));
             });
+            $scope.searchFiltersLanguage[0] = $scope.searchFiltersLanguage[0].filter(function (element) {
+                return !($scope.selectedFilters.includes(element));
+            });
 
             pageNumber = 1;
             $scope.preloadMoreResults();
@@ -50,8 +54,7 @@
 
 		bookSearchService.search($scope.searchQuery, pageNumber, $scope.selectedFilters).then(function(response) {
 			preloadedResults = $scope.currentBooks.concat(response.data);
-
-			$scope.noMoreSearchResults = !response.data.length;
+            $scope.noMoreSearchResults = !response.data.length;
 		});
 
 	};

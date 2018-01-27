@@ -58,7 +58,7 @@ namespace Beeble.Domain.DTOs
                 Description = book.Description,
 				Language = book.Language.Name,
 				Isbn = book.ISBN,
-				Categories = book.Categories.Select(category => category.Name).Aggregate((sum, ele) => $"{sum} , {ele}"),
+				Categories = book.Categories.Select(category => category.Name).Aggregate((sum, ele) => $"{sum}, {ele}"),
 
 				LocalLibrary = new LocalLibrary()
 				{

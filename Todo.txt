@@ -16,3 +16,7 @@ sredit popup za rezervaciju
 paypal botun i detalji od knjige imaju nepotreban ng-click koji pretvara kursor u pointer, tria to nekako s cssom
 
 style iz index.html za ng-click negdi u css
+
+nebi bilo loše da imamo greyed out stil za botun kad je disablean
+
+odkomentirat locallb membere nakon snimanja s klarom u Seed.cs (ZD)

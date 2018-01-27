@@ -3,7 +3,7 @@
 		<div class="logo">Beeble</div>
 		<input class="login__username" type="text" placeholder="Username" ng-model="loginData.userName">
 		<div class="login__password-wrapper">
-			<input class="login__password-input" type="text" placeholder="Lozinka" ng-model="loginData.password">
+			<input class="login__password-input" type="password" placeholder="Lozinka" ng-model="loginData.password" ng-keyup="$event.keyCode == 13 && login()" />
 			<button class="login__button" ng-click="login()">PRIJAVA</button>
 		</div>
 		<div class="login__wrapper">

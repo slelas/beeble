@@ -26,7 +26,7 @@ namespace Beeble.Api
                         UserName = "zdelas",
                     };
 
-                    _userManager.Create(adminUser, "123456");
+                    _userManager.Create(adminUser, "123456nova");
                     _userManager.AddToRole(adminUser.Id, "Admin");
 
                     var regularUser = new OnlineUser()
@@ -43,10 +43,10 @@ namespace Beeble.Api
                         LocalLibraryMembers = new List<LocalLibraryMember>()
                     };
 
-                    _userManager.Create(regularUser, "123456");
+                    _userManager.Create(regularUser, "123456nova");
                     _userManager.AddToRole(regularUser.Id, "User");
 
-                    _userManager.Create(regularUser2, "123456");
+                    _userManager.Create(regularUser2, "123456nova");
                     _userManager.AddToRole(regularUser2.Id, "User");
 
                     #region Category seed
@@ -58,6 +58,8 @@ namespace Beeble.Api
                     var category6 = new Category() { Name = "Komedija" };
                     var category7 = new Category() { Name = "Kuharica" };
                     var category8 = new Category() { Name = "Programiranje" };
+                    var category9 = new Category() { Name = "Dizajn" };
+                    var category10 = new Category() { Name = "Biografija" };
                     #endregion
 
                     #region Language seed
@@ -98,6 +100,12 @@ namespace Beeble.Api
                     var author10 = new Author() { Name = "Joseph Albahari & Ben Albahari" };
                     var author11 = new Author() { Name = "Milan Gocić" };
                     var author12 = new Author() { Name = "Mark J. Price" };
+                    var author13 = new Author() { Name = "Robin Landa"};
+                    var author14 = new Author() { Name = "Charlotte & Peter Fiell" };
+                    var author15 = new Author() { Name = "Feđa Vukić" };
+                    var author16 = new Author() { Name = "Robert Bringhurst" };
+                    var author17 = new Author() { Name = "Gavin Ambrose" };
+                    var author18 = new Author() { Name = "Alina Wheeler" };
                     #endregion
 
                     #region Library seed
@@ -127,7 +135,7 @@ namespace Beeble.Api
                         IBAN = "456",
                         Members = null,
                         MembershipPrice = 20,
-                        Name = "GK Solin",
+                        Name = "GK Šibenik",
                         OIB = "2456",
                         OpenHours = "8-16",
                         ReservationDuration = 48,
@@ -147,7 +155,7 @@ namespace Beeble.Api
                         Name = "GK Zadar",
                         OIB = "2456",
                         OpenHours = "8-16",
-                        ReservationDuration = 48,
+                        ReservationDuration = 72,
                         Email = "test@test.hr",
                         Number = "0215678456"
                     };
@@ -161,7 +169,7 @@ namespace Beeble.Api
                         IBAN = "456",
                         Members = null,
                         MembershipPrice = 20,
-                        Name = "GK Kaštela",
+                        Name = "Knjižnica Vodice",
                         OIB = "2456",
                         OpenHours = "8-16",
                         ReservationDuration = 48,
@@ -799,36 +807,260 @@ namespace Beeble.Api
                     };
                     #endregion Programming books
 
+                    #region Design books
+                    var book33 = new Book()
+                    {
+                        Name = "Rješenja za grafički dizajn",
+                        NumOfPages = "250",
+                        Author = author13,
+                        YearOfIssue = year3,
+                        ISBN = "0230217869",
+                        DamageLevel = 2,
+                        Description = "U jednoj od najpopularnijih knjiga za grafički dizajn, Robin Landa predstavlja znanje i trikove koje je sakupio za vrijeme svoje karijere kao dizajner.",
+                        Publisher = "Profil",
+                        LocalLibrary = localLibrary1,
+                        Nationality = nationality2,
+                        Language = language1,
+                        Categories = new List<Category>() { category9, category10 },
+                        ImageUrl = "https://images.gr-assets.com/books/1347790482l/7758047.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        Keyword = "dizajn"
+                    };
+
+                    var book34 = new Book()
+                    {
+                        Name = "Dizajn danas!",
+                        NumOfPages = "250",
+                        Author = author14,
+                        YearOfIssue = year2,
+                        ISBN = "0230217869",
+                        DamageLevel = 2,
+                        Description = "Knjiga \"Dizajn danas!\" daje iscrpan pregled suvremene dizajnerske prakse, a istodobno poziva na stvaranje primjenjivijeg koncepta svih vrsta proizvodnog dizajna. Osim što očarava izgledom i pruža obilje informacija, knjiga \"Dizajn danas!\" predstavlja i najnovije radove 90 vodećih svjetskih dizajnera",
+                        Publisher = "Algoritam",
+                        LocalLibrary = localLibrary1,
+                        Nationality = nationality2,
+                        Language = language1,
+                        Categories = new List<Category>() { category9 },
+                        ImageUrl = "http://verbum.hr/images/artikli/velike/5518.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        Keyword = "dizajn"
+                    };
+
+
+                    var book35 = new Book()
+                    {
+                        Name = "Dizajn danas!",
+                        NumOfPages = "250",
+                        Author = author14,
+                        YearOfIssue = year2,
+                        ISBN = "0230217869",
+                        DamageLevel = 2,
+                        Description = "Knjiga \"Dizajn danas!\" daje iscrpan pregled suvremene dizajnerske prakse, a istodobno poziva na stvaranje primjenjivijeg koncepta svih vrsta proizvodnog dizajna. Osim što očarava izgledom i pruža obilje informacija, knjiga \"Dizajn danas!\" predstavlja i najnovije radove 90 vodećih svjetskih dizajnera",
+                        Publisher = "Algoritam",
+                        LocalLibrary = localLibrary2,
+                        Nationality = nationality2,
+                        Language = language1,
+                        Categories = new List<Category>() { category9 },
+                        ImageUrl = "http://verbum.hr/images/artikli/velike/5518.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        Keyword = "dizajn"
+                    };
+
+                    var book36 = new Book()
+                    {
+                        Name = "Dizajn danas!",
+                        NumOfPages = "250",
+                        Author = author14,
+                        YearOfIssue = year2,
+                        ISBN = "0230217869",
+                        DamageLevel = 2,
+                        Description = "Knjiga \"Dizajn danas!\" daje iscrpan pregled suvremene dizajnerske prakse, a istodobno poziva na stvaranje primjenjivijeg koncepta svih vrsta proizvodnog dizajna. Osim što očarava izgledom i pruža obilje informacija, knjiga \"Dizajn danas!\" predstavlja i najnovije radove 90 vodećih svjetskih dizajnera",
+                        Publisher = "Algoritam",
+                        LocalLibrary = localLibrary3,
+                        Nationality = nationality2,
+                        Language = language1,
+                        Categories = new List<Category>() { category9 },
+                        ImageUrl = "http://verbum.hr/images/artikli/velike/5518.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        Keyword = "dizajn"
+                    };
+
+                    var book37 = new Book()
+                    {
+                        Name = "Dizajn danas!",
+                        NumOfPages = "250",
+                        Author = author14,
+                        YearOfIssue = year2,
+                        ISBN = "0230217869",
+                        DamageLevel = 2,
+                        Description = "Knjiga \"Dizajn danas!\" daje iscrpan pregled suvremene dizajnerske prakse, a istodobno poziva na stvaranje primjenjivijeg koncepta svih vrsta proizvodnog dizajna. Osim što očarava izgledom i pruža obilje informacija, knjiga \"Dizajn danas!\" predstavlja i najnovije radove 90 vodećih svjetskih dizajnera",
+                        Publisher = "Algoritam",
+                        LocalLibrary = localLibrary4,
+                        Nationality = nationality2,
+                        Language = language1,
+                        Categories = new List<Category>() { category9 },
+                        ImageUrl = "http://verbum.hr/images/artikli/velike/5518.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        Keyword = "dizajn"
+                    };
+
+                    var book38 = new Book()
+                    {
+                        Name = "Teorija i povijest dizajna",
+                        NumOfPages = "250",
+                        Author = author15,
+                        YearOfIssue = year2,
+                        ISBN = "0230217869",
+                        DamageLevel = 2,
+                        Description = "Raspon tekstova u ovoj kritičkoj antologiji nije samo vremenski nego i tematski raširen, od osamnaestog stoljeća i fascinacije uporabnim u umjetnosti sve do suvremenog interdisciplinarnog propitivanja materijalnosti objekta.",
+                        Publisher = "Algoritam",
+                        LocalLibrary = localLibrary1,
+                        Nationality = nationality1,
+                        Language = language1,
+                        Categories = new List<Category>() { category9 },
+                        ImageUrl = "http://www.kgz.hr/UserDocsImages//Novi%20naslovi/2012/teorija_povijest_dizajna.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        Keyword = "dizajn"
+                    };
+
+                    var book39 = new Book()
+                    {
+                        Name = "Dizajn za početnike",
+                        NumOfPages = "250",
+                        Author = author15,
+                        YearOfIssue = year3,
+                        ISBN = "0230217869",
+                        DamageLevel = 2,
+                        Description = "Feđa Vukić u ovom djelu iznosi sve što trebate znati o dizajnu kako biste započeli sa svojom karijerom.",
+                        Publisher = "Mozaik",
+                        LocalLibrary = localLibrary1,
+                        Nationality = nationality1,
+                        Language = language2,
+                        Categories = new List<Category>() { category9 },
+                        ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/51GJpUx4uoL._SX367_BO1,204,203,200_.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        Keyword = "dizajn"
+                    };
+
+                    var book40 = new Book()
+                    {
+                        Name = "Elementi tipografskog stila",
+                        NumOfPages = "250",
+                        Author = author16,
+                        YearOfIssue = year3,
+                        ISBN = "0230217869",
+                        DamageLevel = 2,
+                        Description = "Autor ove knjige jedan je od najboljih tipografa na području cijele Kanade, a i šire.",
+                        Publisher = "Algoritam",
+                        LocalLibrary = localLibrary1,
+                        Nationality = nationality1,
+                        Language = language2,
+                        Categories = new List<Category>() { category9 },
+                        ImageUrl = "https://i.imgur.com/yN2PLV1.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        Keyword = "dizajn"
+                    };
+
+
+                    var book41 = new Book()
+                    {
+                        Name = "Temelji kreativnog dizajna",
+                        NumOfPages = "250",
+                        Author = author17,
+                        YearOfIssue = year3,
+                        ISBN = "0230217869",
+                        DamageLevel = 2,
+                        Description = "U ovoj knjizi Gary Ambrose upoznaje čitatelje s temeljima današnjeg kreativnog dizajna, poput formata, tipografije, printa...",
+                        Publisher = "Algoritam",
+                        LocalLibrary = localLibrary1,
+                        Nationality = nationality1,
+                        Language = language2,
+                        Categories = new List<Category>() { category9 },
+                        ImageUrl = "https://images.gr-assets.com/books/1312019743l/6330726.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        Keyword = "dizajn"
+                    };
+
+                    var book42 = new Book()
+                    {
+                        Name = "Dizajniranje brand identiteta",
+                        NumOfPages = "250",
+                        Author = author18,
+                        YearOfIssue = year3,
+                        ISBN = "0230217869",
+                        DamageLevel = 2,
+                        Description = "U dizajn identita za proizvod i tvrtku ulazi mnogo rada na dizajnu, no i puno pripreme. Alina Wheeler upravo Vas vodi kroz pripremu za jedan od najvećih izazova svakog dizajnera.",
+                        Publisher = "Profil",
+                        LocalLibrary = localLibrary1,
+                        Nationality = nationality2,
+                        Language = language2,
+                        Categories = new List<Category>() { category9 },
+                        ImageUrl = "https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAuaAAAAJGU0NmJlM2RjLWUzMmYtNDkwZS1iZmRiLTg5YTc4ZDEyMjIwZg.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        Keyword = "dizajn"
+                    };
+
+                    var book43 = new Book()
+                    {
+                        Name = "Industrijalni dizajn od A do Ž",
+                        NumOfPages = "225",
+                        Author = author14,
+                        YearOfIssue = year2,
+                        ISBN = "0230217869",
+                        DamageLevel = 2,
+                        Description = "Ako Vas imalo zanima dizajn Vaše četkice za zube, perilice za rublje ili telefona, knjiga Industrijalni dizajn bit će Vam neizmjerno zanimljiva.",
+                        Publisher = "Mozaik",
+                        LocalLibrary = localLibrary1,
+                        Nationality = nationality2,
+                        Language = language1,
+                        Categories = new List<Category>() { category9 },
+                        ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/514SxRAt20L._SX374_BO1,204,203,200_.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        Keyword = "dizajn"
+                    };
+                    #endregion
+
                     #region Library member seed
                     var localLibraryMember1 = new LocalLibraryMember()
                     {
-                        LocalLibrary = localLibrary1,
+                        LocalLibrary = localLibrary3,
                         OnlineUser = regularUser,
                         Id = 4654654654,
                         MembershipExpiryDate = new DateTime(2020, 5, 1)
                     };
 
-                    var localLibraryMember2 = new LocalLibraryMember()
-                    {
-                        Name = "Mate",
-                        LastName = "Matic",
-                        Email = "test@gmail.hr",
-                        PhoneNumber = "0915478522",
-                        Oib = "12345",
-                        Address = "adresa 123",
-                        LocalLibrary = localLibrary2,
-                        OnlineUser = regularUser,
-                        Id = 9999999999,
-                        MembershipExpiryDate = new DateTime(2025, 5, 1)
-                    };
+                    //var localLibraryMember2 = new LocalLibraryMember()
+                    //{
+                    //    Name = "Mate",
+                    //    LastName = "Matic",
+                    //    Email = "test@gmail.hr",
+                    //    PhoneNumber = "0915478522",
+                    //    Oib = "12345",
+                    //    Address = "adresa 123",
+                    //    LocalLibrary = localLibrary2,
+                    //    OnlineUser = regularUser,
+                    //    Id = 9999999999,
+                    //    MembershipExpiryDate = new DateTime(2025, 5, 1)
+                    //};
 
-                    var localLibraryMember3 = new LocalLibraryMember()
-                    {
-                        LocalLibrary = localLibrary2,
-                        OnlineUser = null,
-                        Id = 1234554321,
-                        MembershipExpiryDate = new DateTime(2025, 5, 1)
-                    };
+                    //var localLibraryMember3 = new LocalLibraryMember()
+                    //{
+                    //    LocalLibrary = localLibrary2,
+                    //    OnlineUser = null,
+                    //    Id = 1234554321,
+                    //    MembershipExpiryDate = new DateTime(2025, 5, 1)
+                    //};
                     #endregion
 
                     #region Borrowed and reserved seed
@@ -850,7 +1082,8 @@ namespace Beeble.Api
 
                     var batchOfBorrowedBooks3 = new BatchOfBorrowedBooks()
                     {
-                        LibraryMember = localLibraryMember2,
+                        // ODE VRATIT NA LB2 [DEBUG]
+                        LibraryMember = localLibraryMember1,
                         PickupDate = new DateTime(2018, 1, 2),
                         ReturnDeadline = new DateTime(2018, 3, 30),
                         Books = new List<Book> { book4, book19 },
@@ -920,6 +1153,17 @@ namespace Beeble.Api
                     context.Books.Add(book30);
                     context.Books.Add(book31);
                     context.Books.Add(book32);
+                    context.Books.Add(book33);
+                    context.Books.Add(book34);
+                    context.Books.Add(book35);
+                    context.Books.Add(book36);
+                    context.Books.Add(book37);
+                    context.Books.Add(book38);
+                    context.Books.Add(book39);
+                    context.Books.Add(book40);
+                    context.Books.Add(book41);
+                    context.Books.Add(book42);
+                    context.Books.Add(book43);
 
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);
@@ -929,8 +1173,8 @@ namespace Beeble.Api
                     context.Reservations.Add(reservation2);
 
                     context.LocalLibraryMembers.Add(localLibraryMember1);
-                    context.LocalLibraryMembers.Add(localLibraryMember2);
-                    context.LocalLibraryMembers.Add(localLibraryMember3);
+                    //context.LocalLibraryMembers.Add(localLibraryMember2);
+                    //context.LocalLibraryMembers.Add(localLibraryMember3);
 
                     context.SaveChanges();
                 }

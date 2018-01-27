@@ -39,8 +39,8 @@
 			$rootScope.libraryName = libraryName;
 			$rootScope.reservationDuration = reservationDuration;
 			console.log(reservationDuration);
-			$scope.showReservation = !$scope.showReservation;
-			/* ngDialog.openConfirm({
+			//$scope.showReservation = !$scope.showReservation;
+			ngDialog.openConfirm({
 				template: 'resolveDialog',
 				className: 'ngdialog-theme-default',
 				scope: $scope,
@@ -48,7 +48,7 @@
 				closeByEscape: true,
 				showClose: false,
 				closeByNavigation: true
-			}); */
+			});
             console.log(libraryId, $scope.book.name, reservationDuration, $scope.book.author);
             bookSearchService.makeAReservation(libraryId, $scope.book.name, $scope.book.author).then(function (result) {
 
