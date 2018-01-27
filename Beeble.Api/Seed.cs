@@ -95,7 +95,7 @@ namespace Beeble.Api
                     var author7 = new Author() { Name = "Ivan Buržan" };
                     var author8 = new Author() { Name = "Rob Miles" };
                     var author9 = new Author() { Name = "John Allwork" };
-                    var author10 = new Author() { Name = "Joseph Albahari" };
+                    var author10 = new Author() { Name = "Joseph Albahari & Ben Albahari" };
                     var author11 = new Author() { Name = "Milan Gocić" };
                     var author12 = new Author() { Name = "Mark J. Price" };
                     #endregion
@@ -590,19 +590,19 @@ namespace Beeble.Api
                     #region Programming books
                     var book22 = new Book()
                     {
-                        Name = "C# 5.0 za programere",
+                        Name = "C# 7.0 za programere",
                         NumOfPages = "960",
                         Author = author10,
-                        YearOfIssue = year2,
+                        YearOfIssue = year3,
                         ISBN = "0230217869",
                         DamageLevel = 2,
-                        Description = "U ovoj knjizi naći ćete odgovor na svako pitanje koje se odnosi na C# 5.0 ili .NET CLR. Organizacija knjige zasniva se na konceptima i primjerima upotrebe, a peto izdanje sadrži ažurirane materijale o istovremenosti, višenitnom radu i paralelnom programiranju - uključujući i detaljno razmatranje novih asinkronih funkcija jezika C# 5.0.",
+                        Description = "U ovoj knjizi naći ćete odgovor na svako pitanje koje se odnosi na C# 7.0 ili .NET CLR. Organizacija knjige zasniva se na konceptima i primjerima upotrebe, a peto izdanje sadrži ažurirane materijale o istovremenosti, višenitnom radu i paralelnom programiranju - uključujući i detaljno razmatranje asinkronih funkcija jezika C# 7.0.",
                         Publisher = "Profil",
                         LocalLibrary = localLibrary1,
                         Nationality = nationality2,
                         Language = language2,
                         Categories = new List<Category>() { category8 },
-                        ImageUrl = "http://www.kombib.rs/slike/knjige/C-SHARP-5-za-programere-KORICE.gif",
+                        ImageUrl = "https://covers.oreillystatic.com/images/0636920083634/lrg.jpg",
                         IsBorrowed = false,
                         IsReserved = false,
                         Keyword = "c#"
@@ -704,13 +704,13 @@ namespace Beeble.Api
                     };
                     var book28 = new Book()
                     {
-                        Name = "C# 5.0 za programere",
+                        Name = "C# 7.0 za programere",
                         NumOfPages = "256",
                         Author = author10,
-                        YearOfIssue = year2,
+                        YearOfIssue = year3,
                         ISBN = "0230217869",
                         DamageLevel = 2,
-                        Description = "U ovoj knjizi naći ćete odgovor na svako pitanje koje se odnosi na C# 5.0 ili .NET CLR. Organizacija knjige zasniva se na konceptima i primjerima upotrebe, a peto izdanje sadrži ažurirane materijale o istovremenosti, višenitnom radu i paralelnom programiranju - uključujući i detaljno razmatranje novih asinkronih funkcija jezika C# 5.0.",
+                        Description = "U ovoj knjizi naći ćete odgovor na svako pitanje koje se odnosi na C# 7.0 ili .NET CLR. Organizacija knjige zasniva se na konceptima i primjerima upotrebe, a peto izdanje sadrži ažurirane materijale o istovremenosti, višenitnom radu i paralelnom programiranju - uključujući i detaljno razmatranje asinkronih funkcija jezika C# 7.0.",
                         Publisher = "Mozaik",
                         LocalLibrary = localLibrary2,
                         Nationality = nationality2,
@@ -723,38 +723,38 @@ namespace Beeble.Api
                     };
                     var book29 = new Book()
                     {
-                        Name = "C# 5.0 za programere",
+                        Name = "C# 7.0 za programere",
                         NumOfPages = "960",
                         Author = author10,
-                        YearOfIssue = year2,
+                        YearOfIssue = year3,
                         ISBN = "0230217869",
                         DamageLevel = 2,
-                        Description = "U ovoj knjizi naći ćete odgovor na svako pitanje koje se odnosi na C# 5.0 ili .NET CLR. Organizacija knjige zasniva se na konceptima i primjerima upotrebe, a peto izdanje sadrži ažurirane materijale o istovremenosti, višenitnom radu i paralelnom programiranju - uključujući i detaljno razmatranje novih asinkronih funkcija jezika C# 5.0.",
+                        Description = "U ovoj knjizi naći ćete odgovor na svako pitanje koje se odnosi na C# 7.0 ili .NET CLR. Organizacija knjige zasniva se na konceptima i primjerima upotrebe, a peto izdanje sadrži ažurirane materijale o istovremenosti, višenitnom radu i paralelnom programiranju - uključujući i detaljno razmatranje asinkronih funkcija jezika C# 7.0.",
                         Publisher = "Profil",
                         LocalLibrary = localLibrary3,
                         Nationality = nationality2,
                         Language = language2,
                         Categories = new List<Category>() { category8 },
-                        ImageUrl = "http://www.kombib.rs/slike/knjige/C-SHARP-5-za-programere-KORICE.gif",
+                        ImageUrl = "https://covers.oreillystatic.com/images/0636920083634/lrg.jpg",
                         IsBorrowed = false,
                         IsReserved = false,
                         Keyword = "c#"
                     };
                     var book30 = new Book()
                     {
-                        Name = "C# 5.0 za programere",
+                        Name = "C# 7.0 za programere",
                         NumOfPages = "960",
                         Author = author10,
-                        YearOfIssue = year2,
+                        YearOfIssue = year3,
                         ISBN = "0230217869",
                         DamageLevel = 2,
-                        Description = "U ovoj knjizi naći ćete odgovor na svako pitanje koje se odnosi na C# 5.0 ili .NET CLR. Organizacija knjige zasniva se na konceptima i primjerima upotrebe, a peto izdanje sadrži ažurirane materijale o istovremenosti, višenitnom radu i paralelnom programiranju - uključujući i detaljno razmatranje novih asinkronih funkcija jezika C# 5.0.",
+                        Description = "U ovoj knjizi naći ćete odgovor na svako pitanje koje se odnosi na C# 7.0 ili .NET CLR. Organizacija knjige zasniva se na konceptima i primjerima upotrebe, a peto izdanje sadrži ažurirane materijale o istovremenosti, višenitnom radu i paralelnom programiranju - uključujući i detaljno razmatranje asinkronih funkcija jezika C# 7.0.",
                         Publisher = "Profil",
                         LocalLibrary = localLibrary4,
                         Nationality = nationality2,
                         Language = language2,
                         Categories = new List<Category>() { category8 },
-                        ImageUrl = "http://www.kombib.rs/slike/knjige/C-SHARP-5-za-programere-KORICE.gif",
+                        ImageUrl = "https://covers.oreillystatic.com/images/0636920083634/lrg.jpg",
                         IsBorrowed = false,
                         IsReserved = false,
                         Keyword = "c#"
