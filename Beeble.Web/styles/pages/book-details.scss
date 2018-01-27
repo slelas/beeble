@@ -214,6 +214,10 @@
     }
 }
 
+.library__info.reservation-popup {
+    margin-bottom: 0;
+}
+
 @media screen and (max-width: 980px) {
     .book-details {
         width: 90%;

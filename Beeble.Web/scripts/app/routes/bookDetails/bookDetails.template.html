@@ -54,7 +54,7 @@
                         <div class="library__book-status">odmah dostupno</div>
                         <div class="library__button-wrapper">
                             <a class="library__button" ng-click="togglePopup()">UČLANI SE</a>
-                            <a class="library__button" ng-click="togglePopup()">JEDNOKRATNO</a>
+                            <a class="library__button" ng-click="toggleOneTime()">JEDNOKRATNO</a>
                         </div>
                     </div>
                 </div>
@@ -63,11 +63,11 @@
     </div>
 </div>
 
-<div class="popup" ng-show="showPopup">
+<div class="popup" ng-show="showOneTime">
     <div class="popup__container">
         <div class="popup__header-wrapper">
             <div class="popup__header">JEDNOKRATNO POSUĐIVANJE</div>
-            <img ng-click="togglePopup()" src="./images/cross-icon-black.png">
+            <img ng-click="toggleOneTime()" src="./images/cross-icon-black.png">
         </div>
         <div ng-show="true">
             <div class="library__info">
@@ -79,6 +79,23 @@
                 <div>{{book.name}}</div>
             </div>
             <paypal></paypal>
+        </div>
+    </div>
+</div>
+
+<!-- ng-click="reserveBook(book.localLibrary.name, book.localLibrary.reservationDuration, book.localLibrary.id)" -->
+
+<div class="popup" ng-show="showReservation">
+    <div class="popup__container">
+        <div class="popup__header-wrapper">
+            <div class="popup__header">REZERVACIJA</div>
+            <img ng-click="toggleReservation()" src="./images/cross-icon-black.png">
+        </div>
+        <div ng-show="true">
+            <div class="library__info reservation-popup">
+                <div>Knjiga te čeka u <span>{{book.localLibrary.name}}.</span></div>
+                <div>Rezervacija vrijedi <span>{{book.localLibrary.reservationDuration}}</span> sati.</div>
+            </div>
         </div>
     </div>
 </div>

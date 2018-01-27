@@ -27,13 +27,20 @@
 		$scope.loadBooks();
 		$scope.getBookNumbers();
 
+		$scope.showReservation = false;
+
+		$scope.toggleReservation = function() {
+			$scope.showReservation = false;
+		}
+
         $scope.isLoggedIn = authService.authentication.isAuth;
 		$scope.reserveBook = function(libraryName, reservationDuration, libraryId) {
 
 			$rootScope.libraryName = libraryName;
 			$rootScope.reservationDuration = reservationDuration;
 			console.log(reservationDuration);
-			ngDialog.openConfirm({
+			$scope.showReservation = !$scope.showReservation;
+			/* ngDialog.openConfirm({
 				template: 'resolveDialog',
 				className: 'ngdialog-theme-default',
 				scope: $scope,
@@ -41,7 +48,7 @@
 				closeByEscape: true,
 				showClose: false,
 				closeByNavigation: true
-			});
+			}); */
             console.log(libraryId, $scope.book.name, reservationDuration, $scope.book.author);
             bookSearchService.makeAReservation(libraryId, $scope.book.name, $scope.book.author).then(function (result) {
 
@@ -49,12 +56,11 @@
             });
         };
 
-        $scope.showPopup = false;
+        $scope.showOneTime = false;
 
-        $scope.togglePopup = function () {
-            $scope.showPopup = !$scope.showPopup;
+        $scope.toggleOneTime = function () {
+            $scope.showOneTime = !$scope.showOneTime;
         }
-
 	});
 
 angular.module('myApp').controller('dialogController', function() {
