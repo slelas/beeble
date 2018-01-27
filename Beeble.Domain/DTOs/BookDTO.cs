@@ -34,7 +34,8 @@ namespace Beeble.Domain.DTOs
 		public string Name { get; set; }
 		public string Author { get; set; }
 		public string NumOfPages { get; set; }
-		public string Publisher { get; set; }
+        public string Description { get; set; }
+        public string Publisher { get; set; }
 		public string Language { get; set; }
 		public string Isbn { get; set; }
 		public string Categories { get; set; }
@@ -54,6 +55,7 @@ namespace Beeble.Domain.DTOs
                 YearOfIssue = book.YearOfIssue.Year,
                 NumOfPages = book.NumOfPages,
 				Publisher = book.Publisher,
+                Description = book.Description,
 				Language = book.Language.Name,
 				Isbn = book.ISBN,
 				Categories = book.Categories.Select(category => category.Name).Aggregate((sum, ele) => $"{sum} , {ele}"),

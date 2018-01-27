@@ -6,7 +6,7 @@
 			console.log(response.data);
 			$scope.memberBooks = response.data[0];
 			$scope.nonMemberBooks = response.data[1];
-			$scope.book = $scope.nonMemberBooks[0] || $scope.memberBooks[0];
+            $scope.book = $scope.nonMemberBooks[0] || $scope.memberBooks[0];
 			});
 		}
 

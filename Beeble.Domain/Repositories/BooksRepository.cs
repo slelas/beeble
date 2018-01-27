@@ -58,7 +58,7 @@ namespace Beeble.Domain.Repositories
 
                 return books.Select(book => LongBookDTO.FromData(book, null))
                     .OrderByDescending(book => book.YearOfIssue)
-                    .ThenByDescending(book => book.Name)
+                    //.ThenByDescending(book => book.Name)
                     .ToList();
             }
 

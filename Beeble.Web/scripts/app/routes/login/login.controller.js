@@ -6,9 +6,6 @@
     };
 
 	$scope.login = function () {
-        console.log($scope.isUserRemembered);
-        // debug only
-        $scope.isUserRemembered = true;
 		authService.login($scope.loginData, $scope.isUserRemembered);
 	};
 
