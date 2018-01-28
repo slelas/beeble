@@ -1,76 +1,78 @@
-﻿<form name="bookForm" novalidate>
-	<div class="form-group">
-		<input type="text" placeholder="Ime" name="name" ng-model="book.name" required>
-		<div class="help-block" ng-messages="bookForm.name.$error" ng-if="bookForm.name.$touched">
-			<div ng-messages-include="validation-messages"></div>
+﻿<div class="add-new-book">
+	<div class="add-new-book__header">Dodaj knjigu</div>
+	<form name="bookForm" novalidate>
+		<div class="add-new-book__info-wrapper">
+			<div class="form-group">
+				<label>NASLOV</label>
+				<input type="text" placeholder="Ime" name="name" ng-model="book.name" required>
+				<div class="help-block" ng-messages="bookForm.name.$error" ng-if="bookForm.name.$touched">
+					<div ng-messages-include="validation-messages"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>AUTOR</label>
+				<input type="text" placeholder="Autor" name="author" ng-model="book.author" list="authors" required />
+				<datalist id="authors">
+					<option ng-repeat="author in authors" value="{{author}}"></option>
+				</datalist>
+				<div class="help-block" ng-messages="bookForm.author.$error" ng-if="bookForm.author.$touched">
+					<div ng-messages-include="validation-messages"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>JEZIK</label>
+				<input type="text" placeholder="Jezik" name="language" ng-model="book.language" list="languages" required />
+				<datalist id="languages">
+					<option ng-repeat="language in languages" value="{{language}}"></option>
+				</datalist>
+				<div class="help-block" ng-messages="bookForm.language.$error" ng-if="bookForm.language.$touched">
+					<div ng-messages-include="validation-messages"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>NACIONALNOST</label>
+				<input type="text" placeholder="Nacionalnost" name="nationality" ng-model="book.nationality" list="nationalities" required />
+				<datalist id="nationalities">
+					<option ng-repeat="nationality in nationalities" value="{{nationality}}"></option>
+				</datalist>
+				<div class="help-block" ng-messages="bookForm.nationality.$error" ng-if="bookForm.nationality.$touched">
+					<div ng-messages-include="validation-messages"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>BROJ STRANICA</label>
+				<input type="number" placeholder="Number of pages" name="numOfPages" ng-model="book.numOfPages" required>
+				<div class="help-block" ng-messages="bookForm.numOfPages.$error" ng-if="bookForm.numOfPages.$touched">
+					<div ng-messages-include="validation-messages"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>STANDARDNI BROJ</label>
+				<input type="number" placeholder="ISBN" name="isbn" ng-model="book.isbn" required>
+				<div class="help-block" ng-messages="bookForm.isbn.$error" ng-if="bookForm.isbn.$touched">
+					<div ng-messages-include="validation-messages"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>OPIS</label>
+				<textarea placeholder="Opis" name="description" cols="40" rows="5" ng-model="book.description" required></textarea>
+				<div class="help-block" ng-messages="bookForm.description.$error" ng-if="bookForm.description.$touched">
+					<div ng-messages-include="validation-messages"></div>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="form-group">
-		<input type="text" placeholder="Autor" name="author" ng-model="book.author" list="authors" required />
-		<datalist id="authors">
-			<option ng-repeat="author in authors" value="{{author}}"></option>
-		</datalist>
-		<div class="help-block" ng-messages="bookForm.author.$error" ng-if="bookForm.author.$touched">
-			<div ng-messages-include="validation-messages"></div>
-		</div>
-	</div>
-	<div class="form-group">
-		<input type="text" placeholder="Jezik" name="language" ng-model="book.language" list="languages" required />
-		<datalist id="languages">
-			<option ng-repeat="language in languages" value="{{language}}"></option>
-		</datalist>
-		<div class="help-block" ng-messages="bookForm.language.$error" ng-if="bookForm.language.$touched">
-			<div ng-messages-include="validation-messages"></div>
-		</div>
-	</div>
-	<div class="form-group">
-		<input type="text" placeholder="Nacionalnost" name="nationality" ng-model="book.nationality" list="nationalities" required />
-		<datalist id="nationalities">
-			<option ng-repeat="nationality in nationalities" value="{{nationality}}"></option>
-		</datalist>
-		<div class="help-block" ng-messages="bookForm.nationality.$error" ng-if="bookForm.nationality.$touched">
-			<div ng-messages-include="validation-messages"></div>
-		</div>
-	</div>
-	<div class="form-group">
-		<input type="number" placeholder="Number of pages" name="numOfPages" ng-model="book.numOfPages" required>
-		<div class="help-block" ng-messages="bookForm.numOfPages.$error" ng-if="bookForm.numOfPages.$touched">
-			<div ng-messages-include="validation-messages"></div>
-		</div>
-	</div>
-	<div class="form-group">
-		<input type="number" placeholder="ISBN" name="isbn" ng-model="book.isbn" required>
-		<div class="help-block" ng-messages="bookForm.isbn.$error" ng-if="bookForm.isbn.$touched">
-			<div ng-messages-include="validation-messages"></div>
-		</div>
-	</div>
-	<div class="form-group">
-		<textarea placeholder="Opis" name="description" cols="40" rows="5" ng-model="book.description" required></textarea>
-		<div class="help-block" ng-messages="bookForm.description.$error" ng-if="bookForm.description.$touched">
-			<div ng-messages-include="validation-messages"></div>
-		</div>
-	</div>
+		<div class="add-new-book__right">
+			<div class="bootstrap">
+				<div ng-dropdown-multiselect="" options="categories" selected-model="categoriesModel" extra-settings="categoriessettings" translation-texts="categoriescustomTexts"></div>
+			</div>
+			<div class="add-new-book__upload">
+				<input type="file" ngf-select ng-model="picFile" name="file"
+					accept="image/*" ngf-max-size="122MB" required
+					ngf-model-invalid="errorFile">
 
-	<style>
-		/*STIPE: ubaci ovo u ostatak css-a, svrha je da sakrije one strelice sa strane za povecavanje broja*/
-		input[type=number]::-webkit-inner-spin-button,
-		input[type=number]::-webkit-outer-spin-button {
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			margin: 0;
-		}
-	</style>
-
-	<button ng-click="uploadPic()" ng-disabled="bookForm.$invalid">Potvrdi promjene</button>
-
-</form>
-<div class="bootstrap">
-	<div ng-dropdown-multiselect="" options="categories" selected-model="categoriesModel" extra-settings="categoriessettings" translation-texts="categoriescustomTexts"></div>
+				<button ng-click="picFile = null" ng-show="picFile">Izbriši sliku</button>
+			</div>
+		</div>
+	</form>
+	<button class="add-new-book__button-confirm" ng-click="uploadPic()" ng-disabled="bookForm.$invalid">POTVRDI</button>
 </div>
-
-<input type="file" ngf-select ng-model="picFile" name="file"
-	   accept="image/*" ngf-max-size="122MB" required
-	   ngf-model-invalid="errorFile">
-
-<button ng-click="picFile = null" ng-show="picFile">Izbrisi sliku</button>
-<br>
