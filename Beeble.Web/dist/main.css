@@ -2000,3 +2000,41 @@ a {
   .lend-and-return__user-info {
     margin-left: 0;
     margin-top: 10px; } }
+
+.add-new-member__button {
+  border: 0;
+  background-color: #b59a56;
+  padding: 10px 20px;
+  display: block;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px; }
+
+.add-new-member__profile-pic {
+  width: 150px;
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+@media screen and (min-width: 1024px) {
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 30.5%;
+    display: block; }
+  .add-new-member__profile-pic {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; }
+  .add-new-member__button {
+    margin-left: auto;
+    margin-right: auto; } }
+
+@media screen and (min-width: 1440px) {
+  .add-new-member {
+    display: block !important; }
+  .add-new-member__wrapper {
+    display: flex;
+    width: 100%; }
+    .add-new-member__wrapper .form-group {
+      width: 31%; } }

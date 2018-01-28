@@ -74,5 +74,7 @@
 			</div>
 		</div>
 	</form>
-	<button class="add-new-book__button-confirm" ng-click="uploadPic()" ng-disabled="bookForm.$invalid">POTVRDI</button>
+	<form name="bookForm" novalidate>
+		<button class="add-new-book__button-confirm" ng-click="uploadPic()" ng-disabled="bookForm.$invalid">POTVRDI</button>
+	</form>
 </div>
