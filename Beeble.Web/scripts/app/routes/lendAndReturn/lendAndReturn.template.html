@@ -2,15 +2,6 @@
 <button ng-click="changeScanOption('book')">SKENIRAJ KNJIGU</button>
 <button ng-click="changeScanOption('member')">SKENIRAJ KORISNIKA</button>
 
-<style>
-    .testzasakrit {
-        visibility:hidden
-    }
-
-</style>
-<input type="text" id="name" ng-model="testInput" class="testzasakrit"/>
-<button ng-click="setFocus()">KLIKNI ZA FOKUS</button>
-
 <div>KNJIGE</div>
 <div ng-repeat="book in books">
 	<div>{{book.name}} --- {{book.author.name}}</div>
@@ -24,3 +15,6 @@
 
 <div>Broj posudenih: {{member.numberOfBorrowedBooks}}</div>
 <div>Broj rezerviranih: {{member.numberOfReservedBooks}}</div>
+
+<button ng-click="confirmScannedItems()">Potvrdi</button>
+<div ng-show="message">{{message}}</div>

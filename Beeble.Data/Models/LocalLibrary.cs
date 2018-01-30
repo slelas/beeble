@@ -23,6 +23,7 @@ namespace Beeble.Data.Models
 	    public string Email { get; set; }
 
 		public List<LocalLibraryMember> Members { get; set; }
+        public List<OnlineUser> Administrators { get; set; }
 
     }
 }

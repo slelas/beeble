@@ -68,14 +68,13 @@ namespace Beeble.Domain.Repositories
 			}
 		}
 
-        public bool EnrollToLibraryWithBarcode(int libraryId, long barcodeNumber, Guid? userId)
+        public bool EnrollToLibraryWithBarcode(int libraryId, string barcodeNumber, Guid? userId)
         {
             using (var context = new AuthContext())
             {
                 var onlineUser = context.Users.FirstOrDefault(user => user.Id == userId.ToString());
 
-                // library members' id is the number his barcode represents
-                var localLibraryMember = context.LocalLibraryMembers.FirstOrDefault(member => member.Id == barcodeNumber && member.OnlineUser.Id != userId.ToString());
+                var localLibraryMember = context.LocalLibraryMembers.FirstOrDefault(member => member.BarcodeNumber == barcodeNumber && member.OnlineUser.Id != userId.ToString());
 
                 // if the barcode inputted is incorrect
                 if (localLibraryMember == null)
@@ -97,7 +96,7 @@ namespace Beeble.Domain.Repositories
             }
         }
 
-		public ShortLLMemberUserDTO GetMemberById(long memberId)
+		public ShortLLMemberUserDTO GetMemberByBarcode(string memberBarcode)
 		{
 			using (var context = new AuthContext())
 			{
@@ -105,11 +104,66 @@ namespace Beeble.Domain.Repositories
 					.Include(localLibraryMember => localLibraryMember.LocalLibrary)
 					.Include(localLibraryMember => localLibraryMember.BatchesOfBorrowedBooks)
 					.Include(localLibraryMember => localLibraryMember.Reservations)
-					.Where(member => member.Id == memberId)
+					.Where(member => member.BarcodeNumber == memberBarcode)
 					.Select(ShortLLMemberUserDTO.FromData)
 					.FirstOrDefault(); 
 			}
 		}
+
+        public bool LendAndReturnScanned(List<string> bookBarcodes, string memberBarcode, Guid? UserId)
+        {
+            using (var context = new AuthContext())
+            {
+                var libraryMember = context.LocalLibraryMembers.FirstOrDefault(member => member.BarcodeNumber == memberBarcode);
+
+                var localLibrary = context.LocalLibraries
+                    .Include(library => library.Administrators)
+                    .FirstOrDefault(library => library.Administrators
+                                                        .Select(onlineUser => onlineUser.Id).ToList()
+                                                        .Contains(UserId.ToString()));
+
+                var booksToBorrow = context.Books
+                    .Where(book => bookBarcodes.Contains(book.BarcodeNumber) && !book.IsBorrowed)
+                    .ToList();
+
+                var booksToReturn = context.Books
+                    .Where(book => bookBarcodes.Contains(book.BarcodeNumber) && book.IsBorrowed)
+                    .ToList();
+
+                if (bookBarcodes == null || libraryMember == null || localLibrary == null)
+                    return false;
+
+                context.BatchesOfBorrowedBooks.Add(new BatchOfBorrowedBooks()
+                {
+                    Books = booksToBorrow,
+                    PickupDate = DateTime.Now,
+                    LibraryMember = libraryMember,
+                    ReturnDeadline = DateTime.Now.AddDays(localLibrary.DefaultLendDuration),
+                    WasPreviouslyReserved = booksToBorrow.Any(book => book.IsReserved)
+                });
+
+                foreach (var book in booksToBorrow)
+                {
+                    book.IsBorrowed = true;
+                    context.Entry(book).State = EntityState.Modified;
+                }
+
+                foreach (var book in booksToReturn)
+                {
+                    var batchOfBorrowedBooks = context.BatchesOfBorrowedBooks
+                        .FirstOrDefault(batch => batch.Books.Contains(book));
+
+                    batchOfBorrowedBooks.Books.Remove(book);
+
+                    book.IsBorrowed = false;
+                    context.Entry(batchOfBorrowedBooks).State = EntityState.Modified;
+                }
+
+                context.SaveChanges();
+            }
+
+            return true;
+        }
 
     }
 }

@@ -35,12 +35,20 @@
         });
 	};
 
-	function getLibraryMember(memberId) {
+    function getLibraryMember(memberBarcode) {
 
-		return $http.get(serviceBase + 'api/libraries/get-member-by-id', { params: { memberId: memberId } }).then(function (results) {
+        return $http.get(serviceBase + 'api/libraries/get-member-by-barcode', { params: { memberBarcode: memberBarcode } }).then(function (results) {
 			return results;
 		});
-	}
+    }
+
+    function lendAndReturnScanned(bookBarcodes, memberBarcode) {
+        console.log(memberBarcode);
+        console.log(bookBarcodes);
+        return $http.get(serviceBase + 'api/libraries/lend-return', { params: { memberBarcode: memberBarcode, bookBarcodes: bookBarcodes } }).then(function (results) {
+            return results;
+        });
+    }
 
 	var getLibrariesServiceFactory = {};
 	getLibrariesServiceFactory.getLibraries = getLibraries;
@@ -48,7 +56,8 @@
 	getLibrariesServiceFactory.getLibraryByIdForMembership = getLibraryByIdForMembership;
     getLibrariesServiceFactory.getAllLibraries = getAllLibraries;
     getLibrariesServiceFactory.submitBarcode = submitBarcode;
-	getLibrariesServiceFactory.getLibraryMember = getLibraryMember;
+    getLibrariesServiceFactory.getLibraryMember = getLibraryMember;
+    getLibrariesServiceFactory.lendAndReturnScanned = lendAndReturnScanned;
 
 	return getLibrariesServiceFactory;
 

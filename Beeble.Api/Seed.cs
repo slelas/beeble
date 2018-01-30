@@ -123,7 +123,7 @@ namespace Beeble.Api
                         OpenHours = "8-16",
                         ReservationDuration = 48,
                         Email = "test@test.hr",
-                        Number = "0215678456"
+                        Number = "0215678456",
                     };
 
                     var localLibrary2 = new LocalLibrary()
@@ -157,7 +157,8 @@ namespace Beeble.Api
                         OpenHours = "8-16",
                         ReservationDuration = 72,
                         Email = "test@test.hr",
-                        Number = "0215678456"
+                        Number = "0215678456",
+                        Administrators = new List<OnlineUser>() { adminUser }
                     };
 
                     var localLibrary4 = new LocalLibrary()
@@ -366,7 +367,8 @@ namespace Beeble.Api
                         ImageUrl = "http://mozaik-knjiga.hr/wp-content/uploads/2017/10/Superhrana-za-svaki-dan-J.Oliver-234x300.jpg",
                         IsBorrowed = false,
                         IsReserved = false,
-                        Keyword = "kuhanje"
+                        Keyword = "kuhanje",
+                        BarcodeNumber = "12345678901"
                     }; // Super hrana by Jamie Oliver
 
                     var book11 = new Book()
@@ -1034,60 +1036,60 @@ namespace Beeble.Api
                     #region Library member seed
                     var localLibraryMember1 = new LocalLibraryMember()
                     {
-                        LocalLibrary = localLibrary3,
+                        LocalLibrary = localLibrary2,
                         OnlineUser = regularUser,
-                        Id = 4654654654,
+                        BarcodeNumber = "12345678902",
                         MembershipExpiryDate = new DateTime(2020, 5, 1)
                     };
 
-                    //var localLibraryMember2 = new LocalLibraryMember()
-                    //{
-                    //    Name = "Mate",
-                    //    LastName = "Matic",
-                    //    Email = "test@gmail.hr",
-                    //    PhoneNumber = "0915478522",
-                    //    Oib = "12345",
-                    //    Address = "adresa 123",
-                    //    LocalLibrary = localLibrary2,
-                    //    OnlineUser = regularUser,
-                    //    Id = 9999999999,
-                    //    MembershipExpiryDate = new DateTime(2025, 5, 1)
-                    //};
+                    var localLibraryMember2 = new LocalLibraryMember()
+                    {
+                        Name = "Mate",
+                        LastName = "Matic",
+                        Email = "test@gmail.hr",
+                        PhoneNumber = "0915478522",
+                        Oib = "12345",
+                        Address = "adresa 123",
+                        LocalLibrary = localLibrary3,
+                        OnlineUser = regularUser,
+                        BarcodeNumber = "12345678901",
+                        MembershipExpiryDate = new DateTime(2025, 5, 1)
+                    };
 
-                    //var localLibraryMember3 = new LocalLibraryMember()
-                    //{
-                    //    LocalLibrary = localLibrary2,
-                    //    OnlineUser = null,
-                    //    Id = 1234554321,
-                    //    MembershipExpiryDate = new DateTime(2025, 5, 1)
-                    //};
+                    var localLibraryMember3 = new LocalLibraryMember()
+                    {
+                        LocalLibrary = localLibrary2,
+                        OnlineUser = null,
+                        BarcodeNumber = "12345678903",
+                        MembershipExpiryDate = new DateTime(2025, 5, 1)
+                    };
                     #endregion
 
                     #region Borrowed and reserved seed
-                    var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
-                    {
-                        LibraryMember = localLibraryMember1,
-                        PickupDate = new DateTime(2018, 1, 2),
-                        ReturnDeadline = new DateTime(2018, 3, 2),
-                        Books = new List<Book> { book1, book2 },
-                    };
+                    //var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
+                    //{
+                    //    LibraryMember = localLibraryMember1,
+                    //    PickupDate = new DateTime(2018, 1, 2),
+                    //    ReturnDeadline = new DateTime(2018, 3, 2),
+                    //    Books = new List<Book> { book1, book2 },
+                    //};
 
-                    var batchOfBorrowedBooks2 = new BatchOfBorrowedBooks()
-                    {
-                        LibraryMember = localLibraryMember1,
-                        PickupDate = new DateTime(2018, 1, 2),
-                        ReturnDeadline = new DateTime(2020, 5, 5),
-                        Books = new List<Book> { book3 },
-                    };
+                    //var batchOfBorrowedBooks2 = new BatchOfBorrowedBooks()
+                    //{
+                    //    LibraryMember = localLibraryMember1,
+                    //    PickupDate = new DateTime(2018, 1, 2),
+                    //    ReturnDeadline = new DateTime(2020, 5, 5),
+                    //    Books = new List<Book> { book3 },
+                    //};
 
-                    var batchOfBorrowedBooks3 = new BatchOfBorrowedBooks()
-                    {
-                        // ODE VRATIT NA LB2 [DEBUG]
-                        LibraryMember = localLibraryMember1,
-                        PickupDate = new DateTime(2018, 1, 2),
-                        ReturnDeadline = new DateTime(2018, 3, 30),
-                        Books = new List<Book> { book4, book19 },
-                    };
+                    //var batchOfBorrowedBooks3 = new BatchOfBorrowedBooks()
+                    //{
+                    //    // ODE VRATIT NA LB2 [DEBUG]
+                    //    LibraryMember = localLibraryMember1,
+                    //    PickupDate = new DateTime(2018, 1, 2),
+                    //    ReturnDeadline = new DateTime(2018, 3, 30),
+                    //    Books = new List<Book> { book4, book19 },
+                    //};
 
                     var reservation1 = new Reservation()
                     {
@@ -1165,16 +1167,16 @@ namespace Beeble.Api
                     context.Books.Add(book42);
                     context.Books.Add(book43);
 
-                    context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
-                    context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);
-                    context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks3);
+                    //context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
+                    //context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);
+                    //context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks3);
 
                     context.Reservations.Add(reservation1);
                     context.Reservations.Add(reservation2);
 
                     context.LocalLibraryMembers.Add(localLibraryMember1);
-                    //context.LocalLibraryMembers.Add(localLibraryMember2);
-                    //context.LocalLibraryMembers.Add(localLibraryMember3);
+                    context.LocalLibraryMembers.Add(localLibraryMember2);
+                    context.LocalLibraryMembers.Add(localLibraryMember3);
 
                     context.SaveChanges();
                 }

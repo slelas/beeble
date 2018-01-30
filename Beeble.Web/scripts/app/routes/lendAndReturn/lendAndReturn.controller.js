@@ -25,17 +25,50 @@
             getLibrariesService.getLibraryMember(barcode).then(function (response) {
                 console.log(response.data);
                 $scope.member = response.data;
+                $scope.message = null;
             });
         }
         else if (scanOption === 'book') {
 
-            bookSearchService.getBookById(barcode).then(function (response) {
+            bookSearchService.getBookByBarcode(barcode).then(function (response) {
                 console.log(response.data);
 
+                var bookIds = $scope.books.map(function (item) {
+                    return item.id;
+                });
+
                 // check if book has already been scanned
-                if ($scope.books.indexOf(response.data) === -1)
+                if (bookIds.indexOf(response.data.id) === -1)
                     $scope.books.push(response.data);
             });
         }
     };
+
+    $scope.confirmScannedItems = function () {
+
+        if ($scope.member == null){
+            $scope.books.forEach(function (element) {
+                if (!element.isBorrowed) {
+                    $scope.message = "Molimo skenirajte člansku iskaznicu";
+                }
+            });
+        }
+
+        if ($scope.message)
+            return -1;
+
+        if ($scope.member)
+            memberBarcodeNumber = $scope.member.barcodeNumber;
+        else
+            memberBarcodeNumber = null;
+
+        var bookBarcodes = $scope.books.map(function (item) {
+            return item.barcodeNumber;
+        });
+
+        getLibrariesService.lendAndReturnScanned(bookBarcodes, memberBarcodeNumber).then(function (response) {
+            console.log(response.data);
+        });
+        
+    }
 });
