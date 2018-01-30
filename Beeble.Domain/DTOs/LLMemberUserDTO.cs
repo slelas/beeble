@@ -22,8 +22,9 @@ namespace Beeble.Domain.DTOs
 		public int NumberOfBorrowedBooks { get; set; }
 		public int NumberOfReservedBooks { get; set; }
 		public DateTime? LastBorrowDate { get; set; }
+        public string BarcodeNumber { get; set; }
 
-		public static ShortLLMemberUserDTO FromData(LocalLibraryMember member)
+        public static ShortLLMemberUserDTO FromData(LocalLibraryMember member)
 		{
 			return new ShortLLMemberUserDTO
 			{
@@ -37,7 +38,8 @@ namespace Beeble.Domain.DTOs
 				MembershipExpiryDate = member.MembershipExpiryDate,
 				NumberOfBorrowedBooks = member.BatchesOfBorrowedBooks.Count,
 				NumberOfReservedBooks = member.Reservations.Count,
-				LastBorrowDate = member.BatchesOfBorrowedBooks.OrderBy(book => book.PickupDate).LastOrDefault()?.PickupDate
+				LastBorrowDate = member.BatchesOfBorrowedBooks.OrderBy(book => book.PickupDate).LastOrDefault()?.PickupDate,
+                BarcodeNumber = member.BarcodeNumber
 			};
 		}
 
@@ -62,7 +64,7 @@ namespace Beeble.Domain.DTOs
 				LibraryName = member.LocalLibrary.Name,
 				LibraryId = member.LocalLibrary.Id,
 				MembershipExpiryDate = member.MembershipExpiryDate,
-				NumberOfBorrowedBooks = member.BatchesOfBorrowedBooks.SelectMany(batch => batch.Books).ToList().Count,
+				NumberOfBorrowedBooks = member.BatchesOfBorrowedBooks.Count,/*SelectMany(batch => batch.Books).ToList().Count,*/
 				NumberOfReservedBooks = member.Reservations.Count,
 				LastBorrowDate = member.BatchesOfBorrowedBooks.OrderBy(book => book.PickupDate).LastOrDefault()?.PickupDate,
 				LibraryOpenHours = member.LocalLibrary.OpenHours,

@@ -19,4 +19,3 @@ style iz index.html za ng-click negdi u css
 
 nebi bilo loše da imamo greyed out stil za botun kad je disablean
 
-odkomentirat locallb membere nakon snimanja s klarom u Seed.cs (ZD)

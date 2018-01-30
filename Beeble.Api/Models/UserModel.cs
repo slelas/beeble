@@ -43,5 +43,6 @@ namespace Beeble.Api.Models
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         public string ConfirmPassword { get; set; }
+
     }
 }

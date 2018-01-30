@@ -352,13 +352,13 @@ namespace Beeble.Domain.Repositories
 		    }
 	    }
 
-	    public Book GetBookById(long bookId)
+	    public Book GetBookByBarcode(string bookBarcode)
 	    {
 		    using (var context = new AuthContext())
 		    {
 			    return context.Books
 					.Include("Author")
-					.FirstOrDefault(book => book.Id == bookId);
+					.FirstOrDefault(book => book.BarcodeNumber == bookBarcode);
 		    }
 	    }
 

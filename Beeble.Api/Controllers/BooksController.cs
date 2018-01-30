@@ -63,10 +63,10 @@ namespace Beeble.Api.Controllers
 		}
 
 		[HttpGet]
-		[Route("get-by-id")]
-		public Book GetBookById(long bookId)
+		[Route("get-by-barcode")]
+		public Book GetBookByBarcode(string bookBarcode)
 		{
-			return repo.GetBookById(bookId);
+			return repo.GetBookByBarcode(bookBarcode);
 		}
 
         [HttpGet]

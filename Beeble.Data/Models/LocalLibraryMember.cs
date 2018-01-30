@@ -9,7 +9,6 @@ namespace Beeble.Data.Models
 {
     public class LocalLibraryMember
     {
-	    [DatabaseGenerated(DatabaseGeneratedOption.None)]
 		public long Id { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
@@ -19,6 +18,7 @@ namespace Beeble.Data.Models
         public bool IsGuest { get; set; }
 	    public string Oib { get; set; }
 	    public string Address { get; set; }
+        public string BarcodeNumber { get; set; }
 	    public DateTime? MembershipExpiryDate { get; set; }
 
 		public OnlineUser OnlineUser { get; set; }
