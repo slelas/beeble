@@ -1,4 +1,4 @@
-﻿<div>LEND AND RETURN</div>
+﻿<!-- <div>LEND AND RETURN</div>
 <button ng-click="changeScanOption('book')">SKENIRAJ KNJIGU</button>
 <button ng-click="changeScanOption('member')">SKENIRAJ KORISNIKA</button>
 
@@ -14,6 +14,47 @@
 <div>Adresa: {{member.memberAddress}}</div>
 
 <div>Broj posudenih: {{member.numberOfBorrowedBooks}}</div>
+
+<div>Broj rezerviranih: {{member.numberOfReservedBooks}}</div> -->
+
+<div class="lend-and-return">
+    <div class="lend-and-return__scan">
+        <div class="lend-and-return__button btn-black">
+            <img src="./images/scan-book.png">
+            <label>SKENIRAJ KNJIGU</label>
+        </div>
+        <span class="lend-and-return__scan-header">SKENIRANE KNJIGE</span>
+        <div class="lend-and-return__scanned-book">
+            <img src="./images/steve-jobs-cover.png">
+            <div class="scanned-book__info">
+                <div class="scanned-book__name book-bar__name">Steve Jobs</div>
+                <div class="scanned-book__author book-bar__author">Walter Isaacson</div>
+                <div class="scanned-book__status">Ovu knjigu <span class="scanned-book__status status status-green">vraćate</span> u knjižnicu.</div>
+            </div>
+        </div>
+    </div>
+    <div class="lend-and-return__scan">
+        <div class="lend-and-return__button btn-black">
+            <img src="./images/scan-user.png">
+            <label class="button__label">SKENIRAJ KORISNIKA</label>
+        </div>
+        <span class="lend-and-return__scan-header">SKENIRANI KORISNIK</span>
+        <div class="lend-and-return__user-container">
+            <img class="lend-and-return__user-photo" src="./images/profile-photo.jpg">
+            <div class="lend-and-return__user-info">
+                <span>Ime:</span> Stipe Lelas {{member.memberName}} {{member.memberLastName}}<br>
+                <span>E-mail:</span> {{member.memberEmail}}<br>
+                <span>OIB:</span> {{member.memberOib}}<br>
+                <span>Adresa:</span> {{member.memberAddress}}<br><br>
+                <span>Broj posuđenih:</span> {{member.numberOfBorrowedBooks}}<br>
+                <span>Broj rezerviranih:</span> {{member.numberOfReservedBooks}}<br>
+            </div>
+        </div>
+    </div>
+    <div class="lend-and-return__button btn-gold">POTVRDI</div>
+</div>
+
+<!-- IZ MASTERA -->
 <div>Broj rezerviranih: {{member.numberOfReservedBooks}}</div>
 
 <button ng-click="confirmScannedItems()">Potvrdi</button>
