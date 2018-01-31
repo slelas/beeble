@@ -38,7 +38,7 @@
                 });
 
                 // check if book has already been scanned
-                if (bookIds.indexOf(response.data.id) === -1)
+                //if (bookIds.indexOf(response.data.id) === -1)
                     $scope.books.push(response.data);
             });
         }
