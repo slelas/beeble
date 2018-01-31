@@ -8,7 +8,8 @@ using Beeble.Data.Models;
 
 namespace Beeble.Data
 {
-    public class BeebleInitializer : DropCreateDatabaseIfModelChanges<AuthContext>
+    public class BeebleInitializer : DropCreateDatabaseAlways<AuthContext>
+        // public class BeebleInitializer : DropCreateDatabaseIfModelChanges<AuthContext>
     {
         protected override void Seed(AuthContext context)
         {

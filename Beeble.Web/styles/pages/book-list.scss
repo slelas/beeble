@@ -65,7 +65,7 @@
 
 .book-list__item {
     text-align: center;
-    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .book-list__item:nth-of-type(1) {
