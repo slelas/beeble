@@ -1027,7 +1027,7 @@ namespace Beeble.Api
                         Categories = new List<Category>() { category9 },
                         ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/514SxRAt20L._SX374_BO1,204,203,200_.jpg",
                         IsBorrowed = false,
-                        IsReserved = false,
+                        IsReserved = true,
                         Keyword = "dizajn"
                     };
                     #endregion

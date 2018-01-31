@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="DTOs\BookDTO.cs" />
+    <Compile Include="DTOs\LibraryBookDTO.cs" />
     <Compile Include="DTOs\LLMemberUserDTO.cs" />
     <Compile Include="DTOs\OnlineUserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

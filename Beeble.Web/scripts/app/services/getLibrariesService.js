@@ -50,6 +50,17 @@
         });
     }
 
+    function getBookList(sortOption, descending, searchQuery, pageNumber) {
+        console.log(sortOption)
+
+        if (!searchQuery)
+            searchQuery = "";
+
+        return $http.get(serviceBase + 'api/libraries/get-book-list', { params: { sortOption: sortOption, descending: descending, searchQuery: searchQuery, pageNumber: pageNumber } }).then(function (results) {
+            return results;
+        });
+    }
+
 	var getLibrariesServiceFactory = {};
 	getLibrariesServiceFactory.getLibraries = getLibraries;
 	getLibrariesServiceFactory.getLibraryById = getLibraryById;
@@ -58,6 +69,7 @@
     getLibrariesServiceFactory.submitBarcode = submitBarcode;
     getLibrariesServiceFactory.getLibraryMember = getLibraryMember;
     getLibrariesServiceFactory.lendAndReturnScanned = lendAndReturnScanned;
+    getLibrariesServiceFactory.getBookList = getBookList;
 
 	return getLibrariesServiceFactory;
 

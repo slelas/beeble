@@ -28,23 +28,23 @@ namespace Beeble.Domain.DTOs
 		}
 	}
 
-	public class LongBookDTO
-	{
-		public string ImageUrl { get; set; }
-		public string Name { get; set; }
-		public string Author { get; set; }
-		public string NumOfPages { get; set; }
+    public class LongBookDTO
+    {
+        public string ImageUrl { get; set; }
+        public string Name { get; set; }
+        public string Author { get; set; }
+        public string NumOfPages { get; set; }
         public string Description { get; set; }
         public string Publisher { get; set; }
-		public string Language { get; set; }
-		public string Isbn { get; set; }
-		public string Categories { get; set; }
-		public long BookId { get; set; }
+        public string Language { get; set; }
+        public string Isbn { get; set; }
+        public string Categories { get; set; }
+        public long BookId { get; set; }
         public string YearOfIssue { get; set; }
         public LocalLibrary LocalLibrary { get; set; }
-		public DateTime? ReturnDeadline { get; set; }
+        public DateTime? ReturnDeadline { get; set; }
 
-		public static LongBookDTO FromData(Book book, DateTime? returnDeadline)
+        public static LongBookDTO FromData(Book book, DateTime? returnDeadline)
 		{
 			return new LongBookDTO()
 			{

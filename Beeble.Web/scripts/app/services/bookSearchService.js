@@ -118,7 +118,7 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
         return $http.get(serviceBase + 'api/search/get-languages').then(function (results) {
             return results;
         });
-	}
+    }
 
 	var bookSearchFactory = {};
 	bookSearchFactory.search = search;

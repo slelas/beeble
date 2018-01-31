@@ -165,5 +165,286 @@ namespace Beeble.Domain.Repositories
             return true;
         }
 
+        public List<LibraryBookDTO> GetBookList(string sortOption, bool descending, string searchQuery, int pageNumber, Guid? userId)
+        {
+            if (searchQuery == null)
+                searchQuery = "";
+
+            using (var context = new AuthContext())
+            {
+                var library = context.LocalLibraries
+                    .FirstOrDefault(localLibrary => localLibrary.Administrators.Select(admin => admin.Id).ToList().Contains(userId.ToString()));
+
+                var books = new List<Book>();
+
+                if (sortOption == "name")
+                {
+                    if (descending)
+                    {
+                        books = context.Books
+                            .Include(book => book.Author)
+                            .Include(book => book.LocalLibrary)
+                            .Where(book => book.Name.Contains(searchQuery))
+                            .GroupBy(book => book.Name)
+                    .Select(bookGroup => bookGroup.FirstOrDefault())
+                            .OrderByDescending(book => book.Name).Skip(pageNumber * 10)
+                                    //.Where(book => book.LocalLibrary == library)
+                                    .OrderByDescending(book => book.Name)
+                                    .Include(book => book.Author).Include(book => book.LocalLibrary).Take(10)
+                                    .ToList();
+                    }
+                    else
+                    {
+                        books = context.Books
+                            .Include(book => book.Author)
+                            .Include(book => book.LocalLibrary)
+                            .GroupBy(book => book.Name)
+                    .Select(bookGroup => bookGroup.FirstOrDefault())
+                            .Where(book => book.Name.Contains(searchQuery))
+                            .OrderBy(book => book.Name).Skip(pageNumber * 10)
+
+                                    //.Where(book => book.LocalLibrary == library)
+                                    .OrderBy(book => book.Name)
+                                    .Include(book => book.Author).Include(book => book.LocalLibrary).Take(10)
+                                    .Include(book => book.Author)
+                            .Include(book => book.LocalLibrary)
+                                    .ToList();
+                    }
+                }
+                else if (sortOption == "author")
+                {
+                    if (descending)
+                    {
+                        books = context.Books
+                            .Include(book => book.Author)
+                            .Include(book => book.LocalLibrary)
+                            .GroupBy(book => book.Name)
+                    .Select(bookGroup => bookGroup.FirstOrDefault())
+                            .Where(book => book.Name.Contains(searchQuery))
+                                                        .OrderByDescending(book => book.Author.Name).Skip(pageNumber * 10)
+                                    //.Where(book => book.LocalLibrary == library)
+                                    .OrderByDescending(book => book.Author.Name)
+                                    .Include(book => book.Author).Include(book => book.LocalLibrary).Take(10)
+                                    .ToList();
+                    }
+                    else
+                    {
+                        books = context.Books
+                            .Include(book => book.Author)
+                            .Include(book => book.LocalLibrary)
+                            .GroupBy(book => book.Name)
+                    .Select(bookGroup => bookGroup.FirstOrDefault())
+                             .Where(book => book.Name.Contains(searchQuery))
+                             .OrderBy(book => book.Author.Name).Skip(pageNumber * 10)
+                                    //.Where(book => book.LocalLibrary == library)
+                                    .OrderBy(book => book.Author.Name)
+                                    .Include(book => book.Author).Include(book => book.LocalLibrary).Take(10)
+                                    .ToList();
+                    }
+                }
+                else if (sortOption == "quantity")
+                {
+                    if (descending)
+                    {
+                        books = context.Books
+                            .Include(book => book.Author)
+                            .Include(book => book.LocalLibrary)
+                            .GroupBy(book => book.Name)
+                    .Select(bookGroup => bookGroup.FirstOrDefault())
+                             .Where(book => book.Name.Contains(searchQuery))
+                             .OrderByDescending(book =>
+                            context.Books
+                                   .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
+                                   .ToList()
+                                   .Count)
+                                   .Skip(pageNumber * 10)
+                            //.OrderByDescending(book => GetBooksInLibrary(book, library).Count)
+                            .OrderByDescending(book =>
+                            context.Books
+                                   .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
+                                   .ToList()
+                                   .Count)
+                                   .Include(book => book.Author).Include(book => book.LocalLibrary).Take(10)
+                            .ToList();
+                    }
+                    else
+                    {
+                        books = context.Books
+                            .Include(book => book.Author)
+                            .Include(book => book.LocalLibrary)
+                            .GroupBy(book => book.Name)
+                    .Select(bookGroup => bookGroup.FirstOrDefault())
+                             .Where(book => book.Name.Contains(searchQuery))
+                             .OrderBy(book =>
+                            context.Books
+                                   .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
+                                   .ToList()
+                                   .Count)
+                                   .Skip(pageNumber * 10)
+                            .OrderBy(book =>
+                            context.Books
+                                   .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
+                                   .ToList()
+                                   .Count)
+                                   .Include(book => book.Author).Include(book => book.LocalLibrary).Take(10)
+                            .ToList();
+                    }
+                }
+                else if (sortOption == "reserved")
+                {
+                    if (descending)
+                    {
+                        books = context.Books
+                            .Include(book => book.Author)
+                            .Include(book => book.LocalLibrary)
+                            .GroupBy(book => book.Name)
+                    .Select(bookGroup => bookGroup.FirstOrDefault())
+                             .Where(book => book.Name.Contains(searchQuery))
+                             .OrderByDescending(book =>
+                            context.Books
+                                   .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
+                                   .Where(_book => _book.IsReserved)
+                                   .ToList()
+                                   .Count)
+                                   .Skip(pageNumber * 10)
+                            //.OrderByDescending(book => GetBooksInLibrary(book, library).Count)
+                            .OrderByDescending(book =>
+                            context.Books
+                                   .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
+                                   .Where(_book => _book.IsReserved)
+                                   .ToList()
+                                   .Count)
+                                   .Include(book => book.Author).Include(book => book.LocalLibrary).Take(10)
+                            .ToList();
+                    }
+                    else
+                    {
+                        books = context.Books
+                            .Include(book => book.Author)
+                            .Include(book => book.LocalLibrary)
+                            .GroupBy(book => book.Name)
+                    .Select(bookGroup => bookGroup.FirstOrDefault())
+                             .Where(book => book.Name.Contains(searchQuery))
+                             .OrderBy(book =>
+                            context.Books
+                                   .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
+                                   .Where(_book => _book.IsReserved)
+                                   .ToList()
+                                   .Count)
+                                   .Skip(pageNumber * 10)
+                            .OrderBy(book =>
+                            context.Books
+                                   .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
+                                   .Where(_book => _book.IsReserved)
+                                   .ToList()
+                                   .Count)
+                                   .Include(book => book.Author).Include(book => book.LocalLibrary).Take(10)
+                            .ToList();
+                    }
+                }
+                else if (sortOption == "borrowed")
+                {
+                    if (descending)
+                    {
+                        books = context.Books
+                            .Include(book => book.Author)
+                            .Include(book => book.LocalLibrary)
+                            .GroupBy(book => book.Name)
+                    .Select(bookGroup => bookGroup.FirstOrDefault())
+                             .Where(book => book.Name.Contains(searchQuery))
+                             .OrderByDescending(book =>
+                            context.Books
+                                   .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
+                                   .Where(_book => _book.IsBorrowed)
+                                   .ToList()
+                                   .Count)
+                                   .Skip(pageNumber * 10)
+                            //.OrderByDescending(book => GetBooksInLibrary(book, library).Count)
+                            .OrderByDescending(book =>
+                            context.Books
+                                   .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
+                                   .Where(_book => _book.IsBorrowed)
+                                   .ToList()
+                                   .Count)
+                                   .Include(book => book.Author).Include(book => book.LocalLibrary).Take(10)
+                            .ToList();
+                    }
+                    else
+                    {
+                        books = context.Books
+                            .Include(book => book.Author)
+                            .Include(book => book.LocalLibrary)
+                            .GroupBy(book => book.Name)
+                    .Select(bookGroup => bookGroup.FirstOrDefault())
+                             .Where(book => book.Name.Contains(searchQuery))
+                             .OrderBy(book =>
+                            context.Books
+                                   .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
+                                   .Where(_book => _book.IsBorrowed)
+                                   .ToList()
+                                   .Count)
+                                   .Skip(pageNumber*10)
+                            .OrderBy(book =>
+                            context.Books
+                                   .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
+                                   .Where(_book => _book.IsBorrowed)
+                                   .ToList()
+                                   .Count)
+                                   .Include(book => book.Author).Include(book => book.LocalLibrary).Take(10)
+                            .ToList();
+                    }
+                }
+                else if (sortOption == "damage")
+                {
+                    if (descending)
+                    {
+                        books = context.Books
+                            .Include(book => book.Author)
+                            .Include(book => book.LocalLibrary)
+                            .GroupBy(book => book.Name)
+                    .Select(bookGroup => bookGroup.FirstOrDefault())
+                             .Where(book => book.Name.Contains(searchQuery))
+                             .OrderByDescending(book => book.DamageLevel)
+                             .Skip(pageNumber * 10)
+                            .OrderByDescending(book => book.DamageLevel)
+                            .Include(book => book.Author).Include(book => book.LocalLibrary).Take(10)
+                            .ToList();
+                    }
+                    else
+                    {
+                        books = context.Books
+                            .Include(book => book.Author)
+                            .Include(book => book.LocalLibrary)
+                            .GroupBy(book => book.Name)
+                    .Select(bookGroup => bookGroup.FirstOrDefault())
+                             .Where(book => book.Name.Contains(searchQuery))
+                             .OrderBy(book => book.DamageLevel)
+                             .Skip(pageNumber * 10)
+                            .OrderBy(book => book.DamageLevel)
+                            .Include(book => book.Author).Include(book => book.LocalLibrary).Take(10)
+                            .ToList();
+                    }
+                }
+
+                var test = context.Books.GroupBy(x => x.Name).Select(y => y.FirstOrDefault()).Count();
+                return books.
+                    GroupBy(book => book.Name)
+                    .Select(bookGroup => bookGroup.FirstOrDefault())
+                    .Select(book => LibraryBookDTO.FromData(GetBooksInLibrary(book, library))).ToList();
+            }
+        }
+
+        public List<Book> GetBooksInLibrary(Book book, LocalLibrary library)
+        {
+            using (var context = new AuthContext())
+            {
+                return context.Books
+                    .Include(_book => _book.Author)
+                    .Include(_book => _book.LocalLibrary)
+                    .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
+                    .ToList();
+            }
+        }
+
     }
 }

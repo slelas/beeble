@@ -72,5 +72,13 @@ namespace Beeble.Api.Controllers
         {
             return repo.LendAndReturnScanned(bookBarcodes, memberBarcode, UserId);
         }
+
+        [HttpGet]
+        //[Authorize(Roles = "Admin")]
+        [Route("get-book-list")]
+        public List<LibraryBookDTO> GetBookList(string sortOption, bool descending, string searchQuery, int pageNumber)
+        {
+            return repo.GetBookList(sortOption, descending, searchQuery, pageNumber, UserId);
+        }
     }
 }

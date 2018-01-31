@@ -6,8 +6,8 @@
         </div>
     </a>
     <div class="homepage__search-bar">
-        <input class="search-bar__input" type="text" placeholder="Pretraži..." />
-        <a class="search-bar__button">
+        <input class="search-bar__input" type="text" placeholder="Pretraži..." ng-model="searchQuery" ng-keyup="$event.keyCode == 13 && search()" ng-submit="search()" />
+        <a class="search-bar__button" ng-click="search()">
             <img src="./images/search-icon.png" alt="">
         </a>
     </div>
@@ -16,149 +16,25 @@
 <div class="book-list">
     <div class="book-list__header">
         <div class="book-list__item">#</div>
-        <div class="book-list__item">Naslov</div>
-        <div class="book-list__item">Autor</div>
-        <div class="book-list__item">Količina</div>
-        <div class="book-list__item">Posuđeno</div>
-        <div class="book-list__item">Rezervirano</div>
-        <div class="book-list__item">Stanje knjige</div>
+        <div class="book-list__item" ng-click="setSortOption('name')">Naslov</div>
+        <div class="book-list__item" ng-click="setSortOption('author')">Autor</div>
+        <div class="book-list__item" ng-click="setSortOption('quantity')">Količina</div>
+        <div class="book-list__item" ng-click="setSortOption('borrowed')">Posuđeno</div>
+        <div class="book-list__item" ng-click="setSortOption('reserved')">Rezervirano</div>
+        <div class="book-list__item" ng-click="setSortOption('damage')">Stanje knjige</div>
     </div>
     <div class="book-list__line"></div>
-    <div class="book-list__container">
+    <div class="book-list__container" ng-repeat="book in books">
         <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">Hamlet</div>
-            <div class="book-list__item">W. Shakespeare</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">C# programiranje 7.0: Novi početak</div>
-            <div class="book-list__item">Mato Lovrak</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">Hamlet</div>
-            <div class="book-list__item">W. Shakespeare</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">Hamlet</div>
-            <div class="book-list__item">W. Shakespeare</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">C# programiranje 7.0: Novi početak</div>
-            <div class="book-list__item">Mato Lovrak</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">Hamlet</div>
-            <div class="book-list__item">W. Shakespeare</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">Hamlet</div>
-            <div class="book-list__item">W. Shakespeare</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">C# programiranje 7.0: Novi početak</div>
-            <div class="book-list__item">Mato Lovrak</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">Hamlet</div>
-            <div class="book-list__item">W. Shakespeare</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">Hamlet</div>
-            <div class="book-list__item">W. Shakespeare</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">C# programiranje 7.0: Novi početak</div>
-            <div class="book-list__item">Mato Lovrak</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">Hamlet</div>
-            <div class="book-list__item">W. Shakespeare</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">Hamlet</div>
-            <div class="book-list__item">W. Shakespeare</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">C# programiranje 7.0: Novi početak</div>
-            <div class="book-list__item">Mato Lovrak</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item">1.</div>
-            <div class="book-list__item">Hamlet</div>
-            <div class="book-list__item">W. Shakespeare</div>
-            <div class="book-list__item">14</div>
-            <div class="book-list__item">3</div>
-            <div class="book-list__item">1</div>
-            <div class="book-list__item">Dobro</div>
+            <div class="book-list__item">{{$index+1}}.</div>
+            <div class="book-list__item">{{book.name}}</div>
+            <div class="book-list__item">{{book.author}}</div>
+            <div class="book-list__item">{{book.numberOfBooks}}</div>
+            <div class="book-list__item">{{book.numberOfBorrowedBooks}}</div>
+            <div class="book-list__item">{{book.numberOfReservedBooks}}</div>
+            <div class="book-list__item">{{book.damageLevel | convertBookDamage}}</div>
         </div>
     </div>
 </div>
+
+<button ng-click="loadMoreBooks()">show more results</button>

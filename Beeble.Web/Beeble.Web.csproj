@@ -96,6 +96,7 @@
     <Content Include="scripts\app\directives\customHeader\customHeader.controller.js" />
     <Content Include="scripts\app\directives\paypalButton\paypalButton.directive.js" />
     <Content Include="scripts\app\directives\paypalButton\paypalButton.template.html" />
+    <Content Include="scripts\app\filters\bookDamageFilter.js" />
     <Content Include="scripts\app\filters\bookStatusFilter.js" />
     <Content Include="scripts\app\filters\dateFilterShort.js" />
     <Content Include="scripts\app\filters\dateFilterLong.js" />
