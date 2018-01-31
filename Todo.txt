@@ -19,3 +19,7 @@ style iz index.html za ng-click negdi u css
 
 nebi bilo loše da imamo greyed out stil za botun kad je disablean
 
+tribalo bi dodat da kad stisnes na neki botun tj. rutu, da te vrati na vrh stranice
+Jer sta san primjetia na mobitelu, skrolas skroz doli, nades knjigu i onda ti odma pokaze dio sa "Moje knjiznice"
+Umisto da ide od gore
+I jos jedna stvar, kad se recimo vracas sa iste knjige (koristeci backward botun npr u chromeu), izgube se svi rezultati, tribas opet stisnit search da bi se prikazali
