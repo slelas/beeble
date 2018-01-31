@@ -59,7 +59,6 @@ namespace Beeble.Api
                     var category7 = new Category() { Name = "Kuharica" };
                     var category8 = new Category() { Name = "Programiranje" };
                     var category9 = new Category() { Name = "Dizajn" };
-                    var category10 = new Category() { Name = "Biografija" };
                     #endregion
 
                     #region Language seed
@@ -823,7 +822,7 @@ namespace Beeble.Api
                         LocalLibrary = localLibrary1,
                         Nationality = nationality2,
                         Language = language1,
-                        Categories = new List<Category>() { category9, category10 },
+                        Categories = new List<Category>() { category9, category2 },
                         ImageUrl = "https://images.gr-assets.com/books/1347790482l/7758047.jpg",
                         IsBorrowed = false,
                         IsReserved = false,

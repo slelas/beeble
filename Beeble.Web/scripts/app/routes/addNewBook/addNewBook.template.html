@@ -69,12 +69,20 @@
 				<input type="file" ngf-select ng-model="picFile" name="file"
 					accept="image/*" ngf-max-size="122MB" required
 					ngf-model-invalid="errorFile">
-
+                <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Remove</button>
 				<button ng-click="picFile = null" ng-show="picFile">Izbriši sliku</button>
 			</div>
 		</div>
 	</form>
-	<form name="bookForm" novalidate>
 		<button class="add-new-book__button-confirm" ng-click="uploadPic()" ng-disabled="bookForm.$invalid">POTVRDI</button>
-	</form>
 </div>
+
+<style>
+    .thumb {
+        /*width: 2400px;*/
+        height: 240px;
+        float: none;
+        position: relative;
+        top: 7px;
+    }
+</style>

@@ -17,11 +17,25 @@
 					});
 			}
 
-			$scope.tabName = 'profile';
+            $scope.tabName = 'profile';
+            $scope.profileTab = "activeTab";
 
-			$scope.switchTab = function(tabToSwitch) {
-				$scope.tabName = tabToSwitch;
-			};
+            $scope.switchTab = function (tabToSwitch) {
+
+                $scope.tabName = tabToSwitch;
+
+                $scope.profileTab = null;
+                $scope.borrowedTab = null;
+                $scope.reservedTab = null;
+
+                if ($scope.tabName === 'profile')
+                    $scope.profileTab = "activeTab";
+                else if ($scope.tabName === 'borrowedBooks')
+                    $scope.borrowedTab = "activeTab";
+                else if ($scope.tabName === 'reservedBooks')
+                    $scope.reservedTab = "activeTab";
+
+            };
 
 		}
 	]);

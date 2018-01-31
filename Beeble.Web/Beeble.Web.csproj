@@ -111,6 +111,9 @@
     <Content Include="scripts\app\routes\bookDetails\bookDetails.controller.js" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.route.js" />
     <Content Include="scripts\app\routes\bookDetails\bookDetails.template.html" />
+    <Content Include="scripts\app\routes\bookList\bookList.controller.js" />
+    <Content Include="scripts\app\routes\bookList\bookList.route.js" />
+    <Content Include="scripts\app\routes\bookList\bookList.template.html" />
     <Content Include="scripts\app\routes\getMembership\getMembership.controller.js" />
     <Content Include="scripts\app\routes\getMembership\getMembership.route.js" />
     <Content Include="scripts\app\routes\getMembership\getMembership.template.html" />
@@ -182,9 +185,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="scripts\app\routes\bookList\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
