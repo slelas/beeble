@@ -130,7 +130,7 @@ namespace Beeble.Domain.Repositories
                     .Where(book => bookBarcodes.Contains(book.BarcodeNumber) && book.IsBorrowed)
                     .ToList();
 
-                if (bookBarcodes == null || libraryMember == null || localLibrary == null)
+                if (bookBarcodes == null || localLibrary == null || (booksToBorrow.Count > 0 && libraryMember == null))
                     return false;
 
                 context.BatchesOfBorrowedBooks.Add(new BatchOfBorrowedBooks()
@@ -151,7 +151,7 @@ namespace Beeble.Domain.Repositories
                 foreach (var book in booksToReturn)
                 {
                     var batchOfBorrowedBooks = context.BatchesOfBorrowedBooks
-                        .FirstOrDefault(batch => batch.Books.Contains(book));
+                        .FirstOrDefault(batch => batch.Books.Select(_book => _book.Id).Contains(book.Id));
 
                     batchOfBorrowedBooks.Books.Remove(book);
 

@@ -45,7 +45,7 @@
     function lendAndReturnScanned(bookBarcodes, memberBarcode) {
         console.log(memberBarcode);
         console.log(bookBarcodes);
-        return $http.get(serviceBase + 'api/libraries/lend-return', { params: { memberBarcode: memberBarcode, bookBarcodes: bookBarcodes } }).then(function (results) {
+        return $http.get(serviceBase + 'api/libraries/lend-return', { params: { bookBarcodes: bookBarcodes, memberBarcode: memberBarcode } }).then(function (results) {
             return results;
         });
     }

@@ -17,9 +17,15 @@
 
 <div>Broj rezerviranih: {{member.numberOfReservedBooks}}</div> -->
 
+<style>
+    .activeButton {
+        background-color: #b59a56;
+    }
+</style>
+
 <div class="lend-and-return">
-    <div class="lend-and-return__scan" ng-click="changeScanOption('book')">
-        <div class="lend-and-return__button btn-black">
+    <div class="lend-and-return__scan">
+        <div class="lend-and-return__button btn-black" ng-class="bookScanButton" ng-click="changeScanOption('book')">
             <img src="./images/scan-book.png">
             <label>SKENIRAJ KNJIGU</label>
         </div>
@@ -33,7 +39,8 @@
         </div>
         <span class="lend-and-return__scan-header">SKENIRANE KNJIGE</span>
         <div class="lend-and-return__scanned-book" ng-repeat="book in books">
-            <img src="./images/steve-jobs-cover.png">
+            <img ng-src="{{book.imageUrl}}">
+            <button ng-click="removeBook($index)">Remove book</button>
             <div class="scanned-book__info">
                 <div class="scanned-book__name book-bar__name">{{book.name}}</div>
                 <div class="scanned-book__author book-bar__author">{{book.author.name}}</div>
@@ -42,8 +49,8 @@
             </div>
         </div>
     </div>
-    <div class="lend-and-return__scan" ng-click="changeScanOption('member')">
-        <div class="lend-and-return__button btn-black">
+    <div class="lend-and-return__scan">
+        <div class="lend-and-return__button btn-black" ng-class="memberScanButton" ng-click="changeScanOption('member')">
             <img src="./images/scan-user.png">
             <label class="button__label">SKENIRAJ KORISNIKA</label>
         </div>
@@ -57,7 +64,8 @@
         </div>
         <span class="lend-and-return__scan-header">SKENIRANI KORISNIK</span>
         <div class="lend-and-return__user-container">
-            <img class="lend-and-return__user-photo" src="./images/profile-photo.jpg">
+            <img class="lend-and-return__user-photo" ng-src="{{memberImageUrl}}">
+            <button ng-click="removeMember()" ng-show="member.memberName">Remove member</button>
             <div class="lend-and-return__user-info">
                 <span>Ime:</span> {{member.memberName}} {{member.memberLastName}}<br>
                 <span>E-mail:</span> {{member.memberEmail}}<br>
@@ -68,11 +76,9 @@
             </div>
         </div>
     </div>
-    <div class="lend-and-return__button btn-gold">POTVRDI</div>
+    <div class="lend-and-return__button btn-gold" ng-click="confirmScannedItems()">POTVRDI</div>
+    <div ng-show="errorMessage">{{errorMessage}}</div>
+    <div ng-show="returnMessage">{{returnMessage}}</div>
 </div>
 
-<!-- IZ MASTERA -->
-<div>Broj rezerviranih: {{member.numberOfReservedBooks}}</div>
-
-<button ng-click="confirmScannedItems()">Potvrdi</button>
-<div ng-show="message">{{message}}</div>
+<button ng-click="processScannedBarcode(12345678901)">SIMULACIJA SKENIRANJA BARKODA 12345678901</button>

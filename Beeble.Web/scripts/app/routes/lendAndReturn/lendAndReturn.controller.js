@@ -1,20 +1,28 @@
-﻿angular.module('myApp').controller('lendAndReturnController', function ($scope, bookSearchService, getLibrariesService, $window, hidScanner) {
+﻿angular.module('myApp').controller('lendAndReturnController', function ($scope, bookSearchService, getLibrariesService, $window, hidScanner, $timeout) {
 
 	//$scope.barcodeNumberTEST = '1';
 	//$scope.memberIdTEST = '9999999999';
 
     $scope.books = [];
-
-    var scanOption = "book";
+    $scope.member = [];
 
 	//$scope.getScannedBook($scope.barcodeNumberTEST);
  //   $scope.getScannedMember($scope.memberIdTEST);
 
     $scope.changeScanOption = function (option) {
         scanOption = option;
+
+        $scope.bookScanButton = null;
+        $scope.memberScanButton = null;
+
+        if (option === 'book') $scope.bookScanButton = 'activeButton';
+        if (option === 'member') $scope.memberScanButton = 'activeButton';
+
     };
 
     hidScanner.initialize($scope);
+
+    $scope.changeScanOption('book');
 
     $scope.processScannedBarcode = function (barcode) {
         console.log('BARCODE IS: ' + barcode);
@@ -25,7 +33,7 @@
             getLibrariesService.getLibraryMember(barcode).then(function (response) {
                 console.log(response.data);
                 $scope.member = response.data;
-                $scope.message = null;
+                $scope.errorMessage = null;
             });
         }
         else if (scanOption === 'book') {
@@ -44,20 +52,22 @@
         }
     };
 
+    $scope.memberImageUrl = $scope.member.imageUrl || 'https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png';
+
     $scope.confirmScannedItems = function () {
 
-        if ($scope.member == null){
+        if (!$scope.member.memberName){
             $scope.books.forEach(function (element) {
                 if (!element.isBorrowed) {
-                    $scope.message = "Molimo skenirajte člansku iskaznicu";
+                    $scope.errorMessage = "Molimo skenirajte člansku iskaznicu";
                 }
             });
         }
 
-        if ($scope.message)
+        if ($scope.errorMessage)
             return -1;
 
-        if ($scope.member)
+        if ($scope.member.memberName)
             memberBarcodeNumber = $scope.member.barcodeNumber;
         else
             memberBarcodeNumber = null;
@@ -65,10 +75,30 @@
         var bookBarcodes = $scope.books.map(function (item) {
             return item.barcodeNumber;
         });
-
+        console.log(memberBarcodeNumber)
         getLibrariesService.lendAndReturnScanned(bookBarcodes, memberBarcodeNumber).then(function (response) {
             console.log(response.data);
+            if (response.data) {
+                $scope.books = [];
+                $scope.member = [];
+            }
+
+            $scope.returnMessage = response.data ?
+                'Uspješno obavljeno posuđivanje/vraćanje.' :
+                'Došlo je do pogreške. Knjige nisu posuđene ni vraćene.';
+
+            $timeout(function () {
+                $scope.returnMessage = null;
+            }, 7000);
         });
         
+    }
+
+    $scope.removeBook = function (index) {
+        $scope.books.splice(index, 1);
+    }
+
+    $scope.removeMember = function () {
+        $scope.member = [];
     }
 });

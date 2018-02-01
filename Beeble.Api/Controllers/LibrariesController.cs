@@ -66,9 +66,9 @@ namespace Beeble.Api.Controllers
 	    }
 
         [HttpGet]
-        [Authorize(Roles="Admin")]
+        //[Authorize(Roles="Admin")]
         [Route("lend-return")]
-        public bool LendAndReturnScanned(string memberBarcode, [FromUri]List<string> bookBarcodes)
+        public bool LendAndReturnScanned([FromUri]List<string> bookBarcodes, string memberBarcode = null)
         {
             return repo.LendAndReturnScanned(bookBarcodes, memberBarcode, UserId);
         }
