@@ -14,8 +14,9 @@ namespace Beeble.Domain.DTOs
 		public string Author { get; set; }
         public DateTime? ReturnDeadline { get; set; }
 		public long BookId { get; set; }
+        public double LateReturnFee { get; set; }
 
-		public static ShortBookDTO FromData(Book book, DateTime? returnDeadline)
+        public static ShortBookDTO FromData(Book book, DateTime? returnDeadline)
 		{
             return new ShortBookDTO()
             {
@@ -23,7 +24,8 @@ namespace Beeble.Domain.DTOs
                 Name = book.Name,
 				Author = book.Author.Name,
 				ReturnDeadline = returnDeadline,
-				BookId = book.Id
+				BookId = book.Id,
+                LateReturnFee = book.LateReturnFee
 			};
 		}
 	}

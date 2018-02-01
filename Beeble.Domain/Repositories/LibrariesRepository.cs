@@ -11,62 +11,62 @@ using System.Web.Http.Results;
 
 namespace Beeble.Domain.Repositories
 {
-	public class LibrariesRepository
-	{
-		public List<ShortLLMemberUserDTO> GetLocalLibraries(Guid? userId)
-		{
-			using (var context = new AuthContext())
-			{
-				var localLibraryMembers = context.LocalLibraryMembers
-					.Include(localLibraryMember => localLibraryMember.LocalLibrary)
-					.Include(localLibraryMember => localLibraryMember.BatchesOfBorrowedBooks)
-					.Include(localLibraryMember => localLibraryMember.Reservations)
-					.Where(localLibraryMember => localLibraryMember.OnlineUser.Id == userId.ToString());
+    public class LibrariesRepository
+    {
+        public List<ShortLLMemberUserDTO> GetLocalLibraries(Guid? userId)
+        {
+            using (var context = new AuthContext())
+            {
+                var localLibraryMembers = context.LocalLibraryMembers
+                    .Include(localLibraryMember => localLibraryMember.LocalLibrary)
+                    .Include(localLibraryMember => localLibraryMember.BatchesOfBorrowedBooks)
+                    .Include(localLibraryMember => localLibraryMember.Reservations)
+                    .Where(localLibraryMember => localLibraryMember.OnlineUser.Id == userId.ToString());
 
-				var localLibraries = localLibraryMembers
-					.ToList()
-					.Select(ShortLLMemberUserDTO.FromData)
-					.ToList();
+                var localLibraries = localLibraryMembers
+                    .ToList()
+                    .Select(ShortLLMemberUserDTO.FromData)
+                    .ToList();
 
-				return localLibraries;
-			}
-		}
+                return localLibraries;
+            }
+        }
 
-		public LongLLMemberUserDTO GetLibraryById(int libraryId, Guid? userId)
-		{
-			using (var context = new AuthContext())
-			{
-				return context.LocalLibraryMembers
-					.Include("LocalLibrary")
-					.Include("BatchesOfBorrowedBooks")
-					.Include("Reservations")
-					.Include("BatchesOfBorrowedBooks.Books")
+        public LongLLMemberUserDTO GetLibraryById(int libraryId, Guid? userId)
+        {
+            using (var context = new AuthContext())
+            {
+                return context.LocalLibraryMembers
+                    .Include("LocalLibrary")
+                    .Include("BatchesOfBorrowedBooks")
+                    .Include("Reservations")
+                    .Include("BatchesOfBorrowedBooks.Books")
                     .Include("BatchesOfBorrowedBooks.Books.Author")
                     .Include("Reservations.Book")
                     .Where(localLibraryMember => localLibraryMember.OnlineUser.Id == userId.ToString() &&
-					                             localLibraryMember.LocalLibrary.Id == libraryId)
-					.ToList().Select(LongLLMemberUserDTO.FromData)
-					.FirstOrDefault();
-			}
-		}
+                                                 localLibraryMember.LocalLibrary.Id == libraryId)
+                    .ToList().Select(LongLLMemberUserDTO.FromData)
+                    .FirstOrDefault();
+            }
+        }
 
-		public LocalLibrary GetLibraryByIdForMembership(int libraryId, Guid? userId)
-		{
-			using (var context = new AuthContext())
-			{
-				return context.LocalLibraries.FirstOrDefault(library => library.Id == libraryId);
-			}
-		}
+        public LocalLibrary GetLibraryByIdForMembership(int libraryId, Guid? userId)
+        {
+            using (var context = new AuthContext())
+            {
+                return context.LocalLibraries.FirstOrDefault(library => library.Id == libraryId);
+            }
+        }
 
-		public List<LocalLibrary> GetAll(Guid? userId)
-		{
-			using (var context = new AuthContext())
-			{
-				return context.LocalLibraries
-					.Where(library => library.Members.All(member => member.OnlineUser.Id != userId.ToString()))
-					.ToList();
-			}
-		}
+        public List<LocalLibrary> GetAll(Guid? userId)
+        {
+            using (var context = new AuthContext())
+            {
+                return context.LocalLibraries
+                    .Where(library => library.Members.All(member => member.OnlineUser.Id != userId.ToString()))
+                    .ToList();
+            }
+        }
 
         public bool EnrollToLibraryWithBarcode(int libraryId, string barcodeNumber, Guid? userId)
         {
@@ -96,19 +96,19 @@ namespace Beeble.Domain.Repositories
             }
         }
 
-		public ShortLLMemberUserDTO GetMemberByBarcode(string memberBarcode)
-		{
-			using (var context = new AuthContext())
-			{
-				return context.LocalLibraryMembers
-					.Include(localLibraryMember => localLibraryMember.LocalLibrary)
-					.Include(localLibraryMember => localLibraryMember.BatchesOfBorrowedBooks)
-					.Include(localLibraryMember => localLibraryMember.Reservations)
-					.Where(member => member.BarcodeNumber == memberBarcode)
-					.Select(ShortLLMemberUserDTO.FromData)
-					.FirstOrDefault(); 
-			}
-		}
+        public ShortLLMemberUserDTO GetMemberByBarcode(string memberBarcode)
+        {
+            using (var context = new AuthContext())
+            {
+                return context.LocalLibraryMembers
+                    .Include(localLibraryMember => localLibraryMember.LocalLibrary)
+                    .Include(localLibraryMember => localLibraryMember.BatchesOfBorrowedBooks)
+                    .Include(localLibraryMember => localLibraryMember.Reservations)
+                    .Where(member => member.BarcodeNumber == memberBarcode)
+                    .Select(ShortLLMemberUserDTO.FromData)
+                    .FirstOrDefault();
+            }
+        }
 
         public bool LendAndReturnScanned(List<string> bookBarcodes, string memberBarcode, Guid? UserId)
         {
@@ -383,7 +383,7 @@ namespace Beeble.Domain.Repositories
                                    .Where(_book => _book.IsBorrowed)
                                    .ToList()
                                    .Count)
-                                   .Skip(pageNumber*10)
+                                   .Skip(pageNumber * 10)
                             .OrderBy(book =>
                             context.Books
                                    .Where(_book => _book.Name == book.Name && _book.Author.Name == book.Author.Name/* && book.LocalLibrary.Id == library.Id*/)
@@ -446,5 +446,119 @@ namespace Beeble.Domain.Repositories
             }
         }
 
+        public List<LocalLibraryMemberDTO> GetMemberList(string sortOption, bool descending, string searchQuery, int pageNumber, Guid? userId)
+        {
+
+            if (searchQuery == null)
+                searchQuery = "";
+
+            using (var context = new AuthContext())
+            {
+                var library = context.LocalLibraries
+                    .FirstOrDefault(localLibrary => localLibrary.Administrators.Select(admin => admin.Id).ToList().Contains(userId.ToString()));
+
+                var members = new List<LocalLibraryMemberDTO>();
+
+                var getMembersQuery = context.LocalLibraryMembers
+                            .Include("BatchesOfBorrowedBooks")
+                            .Include("BatchesOfBorrowedBooks.Books")
+                            .Include("Reservations")
+                            .Include("Reservations.Book")
+                            .Include("BatchesOfBorrowedBooks.Books.Author")
+                            //.Where(member => member.LocalLibrary == library)
+                            .Where(member => member.Name.Contains(searchQuery) || member.LastName.Contains(searchQuery));
+
+                if (sortOption == "name")
+                {
+                    if (descending)
+                    {
+                        getMembersQuery = getMembersQuery
+                            .OrderByDescending(member => member.Name);
+                    }
+                    else
+                    {
+                        getMembersQuery = getMembersQuery
+                            .OrderBy(member => member.Name);
+                    }
+                }
+                else if (sortOption == "lastName")
+                {
+                    if (descending)
+                    {
+                        getMembersQuery = getMembersQuery
+                            .OrderByDescending(member => member.LastName);
+                    }
+                    else
+                    {
+                        getMembersQuery = getMembersQuery
+                            .OrderBy(member => member.LastName);
+                    }
+                }
+                else if (sortOption == "borrowed")
+                {
+                    if (descending)
+                    {
+                        getMembersQuery = getMembersQuery
+                            .OrderByDescending(member => member.BatchesOfBorrowedBooks.SelectMany(batch => batch.Books).ToList().Count);
+                    }
+                    else
+                    {
+                        getMembersQuery = getMembersQuery
+                            .OrderBy(member => member.BatchesOfBorrowedBooks.SelectMany(batch => batch.Books).ToList().Count);
+                    }
+                }
+                else if (sortOption == "reserved")
+                {
+                    if (descending)
+                    {
+                        getMembersQuery = getMembersQuery
+                            .OrderByDescending(member => member.Reservations.Count);
+                    }
+                    else
+                    {
+                        getMembersQuery = getMembersQuery
+                            .OrderBy(member => member.Reservations.Count);
+                    }
+                }
+                else if (sortOption == "booksWithLateReturnFee")
+                {
+                    if (descending)
+                    {
+                        getMembersQuery = getMembersQuery
+                            .OrderByDescending(member => member.BatchesOfBorrowedBooks.SelectMany(batch => batch.Books).Where(book => book.LateReturnFee > 0).ToList().Count);
+                    }
+                    else
+                    {
+                        getMembersQuery = getMembersQuery
+                            .OrderBy(member => member.BatchesOfBorrowedBooks.SelectMany(batch => batch.Books).Where(book => book.LateReturnFee > 0).ToList().Count);
+                    }
+                }
+                //else if (sortOption == "lateReturnFee")
+                //{
+                //    if (descending)
+                //    {
+                //        getMembersQuery = getMembersQuery
+
+                //            //TotalLateReturnFee = borrowedBooks.Count == 0 ? 0 : borrowedBooks.Select(book => book.LateReturnFee).Aggregate((sum, ele) => sum += ele)
+
+                //            .OrderByDescending(member => member.BatchesOfBorrowedBooks.SelectMany(batch => batch.Books).Select(book => book.LateReturnFee).ToList().Aggregate((sum, ele) => sum += ele))
+                //    }
+                //    else
+                //    {
+                //        getMembersQuery = getMembersQuery
+                //            .OrderBy(member => member.BatchesOfBorrowedBooks.SelectMany(batch => batch.Books).Where(book => book.LateReturnFee > 0).ToList().Count);
+                //    }
+                //}
+
+                members = getMembersQuery
+                    .Skip(pageNumber * 10)
+                            .Take(10)
+                            .ToList()
+                            .Select(LocalLibraryMemberDTO.FromData)
+                            .ToList();
+
+                return members;
+            }
+        }
     }
 }

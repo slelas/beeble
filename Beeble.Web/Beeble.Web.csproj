@@ -130,6 +130,9 @@
     <Content Include="scripts\app\routes\libraryHub\libraryHub.controller.js" />
     <Content Include="scripts\app\routes\libraryHub\libraryHub.route.js" />
     <Content Include="scripts\app\routes\libraryHub\libraryHub.template.html" />
+    <Content Include="scripts\app\routes\members\members.controller.js" />
+    <Content Include="scripts\app\routes\members\members.route.js" />
+    <Content Include="scripts\app\routes\members\members.template.html" />
     <Content Include="scripts\app\routes\oneTimeBorrow\oneTimeBorrow.controller.js" />
     <Content Include="scripts\app\routes\oneTimeBorrow\oneTimeBorrow.route.js" />
     <Content Include="scripts\app\routes\oneTimeBorrow\oneTimeBorrow.template.html" />

@@ -1,13 +1,13 @@
 <div class="book-list__search">
-    <a ui-sref="addLibrary">
+    <a ui-sref="addNewMember">
         <div class="library-hub__add-button">
             <span>Dodaj novog člana</span>
             <img src="./images/add-icon.png" alt="">
         </div>
     </a>
     <div class="homepage__search-bar">
-        <input class="search-bar__input" type="text" placeholder="Pretraži..." />
-        <a class="search-bar__button">
+        <input class="search-bar__input" type="text" placeholder="Pretraži..." ng-model="searchQuery" ng-keyup="$event.keyCode == 13 && search()" ng-submit="search()"/>
+        <a class="search-bar__button" ng-click="search()">
             <img src="./images/search-icon.png" alt="">
         </a>
     </div>
@@ -16,140 +16,23 @@
 <div class="book-list">
     <div class="book-list__header">
         <div class="book-list__item members">#</div>
-        <div class="book-list__item members">Ime</div>
-        <div class="book-list__item members">Prezime</div>
-        <div class="book-list__item members">Posuđeno</div>
-        <div class="book-list__item members">Rezervirano</div>
-        <div class="book-list__item members">Zakašnjelo</div>
+        <div class="book-list__item members" ng-click="setSortOption('name')">Ime</div>
+        <div class="book-list__item members" ng-click="setSortOption('lastName')">Prezime</div>
+        <div class="book-list__item members" ng-click="setSortOption('borrowed')">Posuđeno</div>
+        <div class="book-list__item members" ng-click="setSortOption('reserved')">Rezervirano</div>
+        <div class="book-list__item members" ng-click="setSortOption('booksWithLateReturnFee')">Zakašnjelo</div>
         <div class="book-list__item members">Zakasnina [kn]</div>
     </div>
     <div class="book-list__line"></div>
-    <div class="book-list__container">
+    <div class="book-list__container" ng-repeat="member in members">
         <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
-        </div>
-        <div class="book-list__book">
-            <div class="book-list__item members">1.</div>
-            <div class="book-list__item members">Zvonimir</div>
-            <div class="book-list__item members">Stamenov</div>
-            <div class="book-list__item members">3</div>
-            <div class="book-list__item members">0</div>
-            <div class="book-list__item members">1</div>
-            <div class="book-list__item members">30</div>
+            <div class="book-list__item members">{{$index+1}}</div>
+            <div class="book-list__item members">{{member.name}}</div>
+            <div class="book-list__item members">{{member.lastName}}</div>
+            <div class="book-list__item members">{{member.borrowedBooks.length}}</div>
+            <div class="book-list__item members">{{member.reservations.length}}</div>
+            <div class="book-list__item members">{{numberOfLateReturnFees(member)}}</div>
+            <div class="book-list__item members">{{member.totalLateReturnFee}}</div>
         </div>
     </div>
 </div>

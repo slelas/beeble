@@ -195,6 +195,7 @@ namespace Beeble.Api
                         Nationality = nationality3,
                         Categories = new List<Category>() { category2 },
                         ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg",
+                        LateReturnFee = 0.5
                     };
 
                     var book2 = new Book()
@@ -212,7 +213,8 @@ namespace Beeble.Api
                         Language = language1,
                         Nationality = nationality2,
                         Categories = new List<Category>() { category1 },
-                        ImageUrl = "https://mojtv.hr//images/ff6b3c8b-ba33-4050-9f1f-34d3a35ffbd5.jpg"
+                        ImageUrl = "https://mojtv.hr//images/ff6b3c8b-ba33-4050-9f1f-34d3a35ffbd5.jpg",
+                        LateReturnFee = 1.5
                     };
 
                     var book3 = new Book()
@@ -230,7 +232,8 @@ namespace Beeble.Api
                         Nationality = nationality2,
                         Language = language1,
                         Categories = new List<Category>() { category5 },
-                        ImageUrl = "https://static.enotes.com/images/covers%2Fhamlet.jpg"
+                        ImageUrl = "https://static.enotes.com/images/covers%2Fhamlet.jpg",
+                        LateReturnFee = 2.5
                     };
 
                     var book4 = new Book()
@@ -248,7 +251,8 @@ namespace Beeble.Api
                         Nationality = nationality2,
                         Language = language1,
                         Categories = new List<Category>() { category5 },
-                        ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/419CMC5SR1L._SX308_BO1,204,203,200_.jpg"
+                        ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/419CMC5SR1L._SX308_BO1,204,203,200_.jpg",
+                        LateReturnFee = 2.5
                     };
 
                     var book5 = new Book()
@@ -1035,6 +1039,12 @@ namespace Beeble.Api
                     #region Library member seed
                     var localLibraryMember1 = new LocalLibraryMember()
                     {
+                        Name = "Jasna",
+                        LastName = "Horvat",
+                        Email = "test@gmail.hr",
+                        PhoneNumber = "0915478522",
+                        Oib = "12345",
+                        Address = "adresa 123",
                         LocalLibrary = localLibrary2,
                         OnlineUser = regularUser,
                         BarcodeNumber = "12345678902",
@@ -1065,41 +1075,40 @@ namespace Beeble.Api
                     #endregion
 
                     #region Borrowed and reserved seed
-                    //var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
-                    //{
-                    //    LibraryMember = localLibraryMember1,
-                    //    PickupDate = new DateTime(2018, 1, 2),
-                    //    ReturnDeadline = new DateTime(2018, 3, 2),
-                    //    Books = new List<Book> { book1, book2 },
-                    //};
+                    var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
+                    {
+                        LibraryMember = localLibraryMember1,
+                        PickupDate = new DateTime(2018, 1, 2),
+                        ReturnDeadline = new DateTime(2018, 3, 2),
+                        Books = new List<Book> { book1, book2 },
+                    };
 
-                    //var batchOfBorrowedBooks2 = new BatchOfBorrowedBooks()
-                    //{
-                    //    LibraryMember = localLibraryMember1,
-                    //    PickupDate = new DateTime(2018, 1, 2),
-                    //    ReturnDeadline = new DateTime(2020, 5, 5),
-                    //    Books = new List<Book> { book3 },
-                    //};
+                    var batchOfBorrowedBooks2 = new BatchOfBorrowedBooks()
+                    {
+                        LibraryMember = localLibraryMember1,
+                        PickupDate = new DateTime(2018, 1, 2),
+                        ReturnDeadline = new DateTime(2020, 5, 5),
+                        Books = new List<Book> { book3 },
+                    };
 
-                    //var batchOfBorrowedBooks3 = new BatchOfBorrowedBooks()
-                    //{
-                    //    // ODE VRATIT NA LB2 [DEBUG]
-                    //    LibraryMember = localLibraryMember1,
-                    //    PickupDate = new DateTime(2018, 1, 2),
-                    //    ReturnDeadline = new DateTime(2018, 3, 30),
-                    //    Books = new List<Book> { book4, book19 },
-                    //};
+                    var batchOfBorrowedBooks3 = new BatchOfBorrowedBooks()
+                    {
+                        LibraryMember = localLibraryMember2,
+                        PickupDate = new DateTime(2018, 1, 2),
+                        ReturnDeadline = new DateTime(2018, 3, 30),
+                        Books = new List<Book> { book4, book19 },
+                    };
 
                     var reservation1 = new Reservation()
                     {
-                        LibraryMember = localLibraryMember1,
+                        LibraryMember = localLibraryMember2,
                         PickupDeadline = new DateTime(2016, 1, 2),
                         Book = book2
                     };
 
                     var reservation2 = new Reservation()
                     {
-                        LibraryMember = localLibraryMember1,
+                        LibraryMember = localLibraryMember2,
                         PickupDeadline = new DateTime(2018, 1, 2),
                         Book = book7
                     };
@@ -1166,9 +1175,9 @@ namespace Beeble.Api
                     context.Books.Add(book42);
                     context.Books.Add(book43);
 
-                    //context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
-                    //context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);
-                    //context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks3);
+                    context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
+                    context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);
+                    context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks3);
 
                     context.Reservations.Add(reservation1);
                     context.Reservations.Add(reservation2);
