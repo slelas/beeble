@@ -19,7 +19,8 @@ namespace Beeble.Data.Models
 	    public string Oib { get; set; }
 	    public string Address { get; set; }
         public string BarcodeNumber { get; set; }
-	    public DateTime? MembershipExpiryDate { get; set; }
+        public string ImageUrl { get; set; }
+        public DateTime? MembershipExpiryDate { get; set; }
 
 		public OnlineUser OnlineUser { get; set; }
         public LocalLibrary LocalLibrary { get; set; }

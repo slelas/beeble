@@ -45,7 +45,8 @@
 			file.upload = Upload.upload({
 				url: uploadUrl,
 				data: {
-					file: $scope.picFile,
+                    file: $scope.picFile,
+                    containerName: 'books',
 					name: $scope.book.name,
 					author: $scope.book.author,
 					language: $scope.book.language,

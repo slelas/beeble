@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Web.Http.Results;
+using System.Collections.Specialized;
 
 namespace Beeble.Domain.Repositories
 {
@@ -558,6 +559,49 @@ namespace Beeble.Domain.Repositories
                             .ToList();
 
                 return members;
+            }
+        }
+
+        public void AddNewLibraryMember(NameValueCollection memberData, string blobUrl, Guid? userId)
+        {
+            using (var context = new AuthContext())
+            {
+                var library = context.LocalLibraries
+                                    .FirstOrDefault(localLibrary => localLibrary.Administrators.Select(admin => admin.Id).ToList().Contains(userId.ToString()));
+
+                var barcodeNumber = long.Parse(context.LocalLibraryMembers
+                    //.Where(book => book.LocalLibrary.Id == library.Id)
+                    .OrderBy(member => member.BarcodeNumber)
+                    .ToList()
+                    .LastOrDefault()
+                    .BarcodeNumber) + 1;
+
+                var name = memberData["name"];
+                var lastname = memberData["lastname"];
+                var oib = memberData["oib"];
+                var email = memberData["email"];
+                var address = memberData["address"];
+                var city = memberData["city"];
+                var phoneNumber = memberData["phoneNumber"];
+
+                var memberToAdd = new LocalLibraryMember()
+                {
+                    Name = name,
+                    LastName = lastname,
+                    Oib = oib,
+                    Email = email,
+                    Address = address + ", " + city,
+                    PhoneNumber = phoneNumber,
+                    BarcodeNumber = barcodeNumber.ToString(),
+                    ImageUrl = blobUrl,
+                    LocalLibrary = library,
+                    MembershipExpiryDate = DateTime.Now.AddYears(1),
+                    IsVerifiedLocal = true
+                };
+
+                context.LocalLibraryMembers.Add(memberToAdd);
+
+                context.SaveChanges();
             }
         }
     }

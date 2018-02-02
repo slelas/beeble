@@ -407,7 +407,7 @@ namespace Beeble.Domain.Repositories
 		    return input as string[];
 	    }
 
-		public void AddNewBook(NameValueCollection bookData, string blobUrl)
+		public void AddNewBook(NameValueCollection bookData, string blobUrl, Guid? userId)
 	    {
 		    var authorName = bookData["author"];
 			var yearValue = bookData["year"];
@@ -450,26 +450,35 @@ namespace Beeble.Domain.Repositories
 				var bookLanguage = context.Languages.FirstOrDefault(language => language.Name == languageValue);
 				var bookNationality = context.Nationalities.FirstOrDefault(nationality => nationality.Name == nationalityValue);
 
+                var library = context.LocalLibraries
+                                .FirstOrDefault(localLibrary => localLibrary.Administrators.Select(admin => admin.Id).ToList().Contains(userId.ToString()));
 
-				var bookToAdd = new Book()
-			    {
-				    Name = bookData["name"],
-				    NumOfPages = bookData["numOfPages"],
-				    ISBN = bookData["isbn"],
-				    Description = bookData["description"],
-				    Publisher = bookData["publisher"],
-				    IsBorrowed = false,
-				    IsReserved = false,
-					ImageUrl = blobUrl,
-					//novi barcode
+                var barcodeNumber = long.Parse(context.Books
+                    //.Where(book => book.LocalLibrary.Id == library.Id)
+                    .OrderBy(book => book.BarcodeNumber)
+                    .LastOrDefault()
+                    .BarcodeNumber) + 1;
 
-				    Author = bookAuthor,
-				    YearOfIssue = bookYearOfIssue,
-					Language = bookLanguage,
-					Nationality = bookNationality,
-					Categories = bookCategories
+                var bookToAdd = new Book()
+                {
+                    Name = bookData["name"],
+                    NumOfPages = bookData["numOfPages"],
+                    ISBN = bookData["isbn"],
+                    Description = bookData["description"],
+                    Publisher = bookData["publisher"],
+                    IsBorrowed = false,
+                    IsReserved = false,
+                    ImageUrl = blobUrl,
+                    LocalLibrary = library,
+                    BarcodeNumber = barcodeNumber.ToString(),
 
-				};
+                    Author = bookAuthor,
+                    YearOfIssue = bookYearOfIssue,
+                    Language = bookLanguage,
+                    Nationality = bookNationality,
+                    Categories = bookCategories
+
+                };
 
 			    context.Books.Add(bookToAdd);
 

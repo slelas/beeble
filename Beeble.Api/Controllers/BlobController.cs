@@ -19,11 +19,13 @@ namespace Beeble.Api.Controllers
     [RoutePrefix("blob")]
     public class BlobController : AuthorizationController
     {
-	    private readonly BooksRepository repo = null;
+	    private readonly BooksRepository booksRepo = null;
+        private readonly LibrariesRepository librariesRepo = null;
 
-		public BlobController()
+        public BlobController()
 	    {
-		    repo = new BooksRepository();
+		    booksRepo = new BooksRepository();
+            librariesRepo = new LibrariesRepository();
 	    }
 
 		[HttpPost]
@@ -49,12 +51,17 @@ namespace Beeble.Api.Controllers
                 var fileData = provider.FileData.FirstOrDefault();
 
                 var formData = provider.FormData;
+                var containerName = formData["containerName"];
 
-	            var blobUrl = SaveBlob(fileData).Url;
+	            var blobUrl = SaveBlob(fileData, containerName).Url;
 
-	            repo.AddNewBook(formData, blobUrl);
+                if (containerName == "books")
+                    booksRepo.AddNewBook(formData, blobUrl, UserId);
+                else if (containerName == "members")
+                    librariesRepo.AddNewLibraryMember(formData, blobUrl, UserId);
+                //exception u suptrotonm? //Debug
 			}
-            catch (Exception)
+            catch (Exception e)
             {
                 throw new HttpResponseException(HttpStatusCode.InternalServerError);
             }
@@ -62,9 +69,9 @@ namespace Beeble.Api.Controllers
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
-	    private CustomBlob SaveBlob(MultipartFileData fileData)
+	    private CustomBlob SaveBlob(MultipartFileData fileData, string containerName)
 	    {
-			var container = GetBlobContainer();
+			var container = GetBlobContainer(containerName);
 		    var guid = Guid.NewGuid();
 		    var fileName = guid.ToString();
 		    var extension = Path.GetExtension(fileData.Headers.ContentDisposition.FileName.Trim('"')).ToLower();
@@ -84,10 +91,10 @@ namespace Beeble.Api.Controllers
 		    return newBlob;
 	    }
 
-		private CloudBlobContainer GetBlobContainer()
+		private CloudBlobContainer GetBlobContainer(string containerName)
 	    {
 		    var blobStorageConnectionString = ConfigurationManager.AppSettings["BlobStorageConnectionString"];
-		    var blobStorageContainerName = ConfigurationManager.AppSettings["BlobStorageContainerName"];
+		    var blobStorageContainerName = containerName;
 
 			var blobStorageAccount = CloudStorageAccount.Parse(blobStorageConnectionString);
 		    var blobClient = blobStorageAccount.CreateCloudBlobClient();
