@@ -88,11 +88,49 @@
 
 .library__member {
     margin-top: 20px;
+
+    input {
+        border: 0;
+        border-radius: 5px;
+        box-shadow: 0 0 10px 1px rgba(0,0,0,.1);
+        width: calc(100% - 20px);
+        padding: 5px 10px;
+        margin-top: 10px;
+    }
+
+    button {
+        border: 0;
+        border-radius: 5px;
+        background-color: #b59a56;
+        padding: 5px 10px;
+        box-shadow: 0 0 10px 1px rgba(0,0,0,.1);
+        margin-top: 10px;
+        font-size: 14px;
+        color: white;
+    }
 }
 
 .library__member__description {
     line-height: 1.2;
-    font-size: 12px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+@media screen and (min-width: 425px) {
+    .library__member {
+        input {
+            width: 180px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        button {
+            height: 28px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            margin-left: -3px;
+        }
+    }
 }
 
 @media screen and (min-width: 768px) {

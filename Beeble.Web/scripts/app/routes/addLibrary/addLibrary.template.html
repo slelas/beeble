@@ -1,37 +1,38 @@
-﻿<button ng-click="togglePopup()" ng-show="!popupActive">Dodaj novu knjižnicu</button>
-<div class="popup" ng-show="popupActive">
+﻿<div class="popup" ng-show="popupActive">
 	<div class="popup__container">
 		<div class="popup__header-wrapper">
-			<div class="popup__header">DODAJ NOVU KNJIŽNICU</div>
+			<div class="popup__header">UČLANI SE</div>
 			<img ng-click="togglePopup()" src="./images/cross-icon-black.png">
 		</div>
-		<div ng-show="!paymentActive">
-			<div class="popup__description">
-				Odaberite knjižnicu koje ste već član ili želite postati član.
-			</div>
-			<input class="popup__input" type="text" ng-model="searchQuery" placeholder="Pretraga knjižnica...">
-			<div class="popup-library__container" ng-repeat="library in allSearchLibraries | filter:searchQuery">
-				<div class="popup-library__info">
-					<div class="popup-library__name">{{library.name}}</div>
-					<div class="popup-library__price"><span>Cijena članstva:</span> {{library.membershipPrice}}</div>
-				</div>
-				<button ng-click="togglePayment()">UČLANI SE</button>
-			</div>
+		<div class="library__info">
+			<div><span>Knjižnica:</span> Marko Marulić</div>
+			<div><span>Adresa:</span> Teslina 2, Split</div>
+			<div><span>Ograničenje posuđivanja:</span> 5</div>
+			<div><span>Cijena:</span> 50 kn</div>
 		</div>
-		<div ng-show="paymentActive">
-			<div class="library__info">
-				<div><span>Knjižnica:</span> Marko Marulić</div>
-				<div><span>Adresa:</span> Teslina 2, Split</div>
-				<div><span>Ograničenje posuđivanja:</span> 5</div>
-				<div><span>Cijena:</span> 50 kn</div>
+		<paypal></paypal>
+		<div class="library__member">
+			<div class="library__member__description">
+				Ukoliko ste već član ove knjižnice, upišite svoj broj iskaznice i besplatno digitalizirajte svoje članstvo.
 			</div>
-			<paypal></paypal>
-			<div class="library__member">
-				<div class="library__member__description">
-					Ukoliko ste već član ove knjižnice, upišite svoj broj iskaznice i besplatno digitalizirajte svoje članstvo.
-				</div>
-				<input type="text" ng-model="barcodeNumber">
-				<button ng-click="submitBarcode()">POTVRDI</button>
+			<input type="text" ng-model="barcodeNumber">
+			<button ng-click="submitBarcode()">POTVRDI</button>
+		</div>
+	</div>
+</div>
+
+<div class="add-library">
+	<input class="add-library__search" type="text" ng-model="searchQuery" placeholder="Pretraga knjižnica...">
+	<div class="add-library__library-list">
+		<div class="add-library__library" ng-repeat="library in allSearchLibraries | filter:searchQuery">
+			<div class="library__name">{{library.name}}</div>
+			<div class="library__price">Cijena članstva: <span>{{library.membershipPrice}} kn</span></div>
+			<div class="library__wrapper">
+				<div class="library__name">{{library.name}}</div>
+				<div class="library__price">Cijena članstva: <span>{{library.membershipPrice}} kn</span></div>
+			</div>
+			<div class="library__button-container">
+				<button class="library__sign-up" ng-click="togglePopup()">UČLANI SE</button>
 			</div>
 		</div>
 	</div>

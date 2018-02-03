@@ -10,3 +10,9 @@
     width: 7%;
     }
 }
+
+.book-list__triangle {
+    -webkit-filter: invert(100%);
+    max-width: 7px;
+    display: inline-block;
+}
