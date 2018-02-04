@@ -16,3 +16,63 @@
     max-width: 7px;
     display: inline-block;
 }
+
+.members__container {
+    .book-list__book {
+        display: block;
+    }
+
+    .book-list__wrapper {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+
+.book-list__book-expand {
+    background-color: white;
+    padding: 25px;
+    width: calc(100% - 50px);
+    height: 100%;
+    border-radius: 5px;
+    margin-top: 25px;
+    display: flex;
+
+    .book-expand__item {
+        width: 25%;
+
+        span {
+            font-weight: 600;
+        }
+    }
+
+    .book-expand__book {
+        margin-top: 15px;
+
+        .red {
+            color: red;
+        }
+
+        .green {
+            color: green;
+        }
+
+        .orange {
+            color: orange;
+        }
+
+        .book__name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .book__info {
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .book__author {
+            line-height: 1.5;
+        }
+    }
+}

@@ -13,26 +13,86 @@
     </div>
 </div>
 
-<div class="book-list">
-    <div class="book-list__header">
-        <div class="book-list__item members">#</div>
-        <div class="book-list__item members" ng-click="setSortOption('name')">Ime <img src="./images/triangle.png" class="book-list__triangle"></div>
-        <div class="book-list__item members" ng-click="setSortOption('lastName')">Prezime <img src="./images/triangle.png" class="book-list__triangle"></div>
-        <div class="book-list__item members" ng-click="setSortOption('borrowed')">Posuđeno <img src="./images/triangle.png" class="book-list__triangle"></div>
-        <div class="book-list__item members" ng-click="setSortOption('reserved')">Rezervirano <img src="./images/triangle.png" class="book-list__triangle"></div>
-        <div class="book-list__item members" ng-click="setSortOption('booksWithLateReturnFee')">Zakašnjelo <img src="./images/triangle.png" class="book-list__triangle"></div>
-        <div class="book-list__item members">Zakasnina [kn] <img src="./images/triangle.png" class="book-list__triangle"></div>
-    </div>
-    <div class="book-list__line"></div>
-    <div class="book-list__container">
-        <div class="book-list__book" ng-repeat="member in members">
-            <div class="book-list__item members">{{$index+1}}</div>
-            <div class="book-list__item members">{{member.name}}</div>
-            <div class="book-list__item members">{{member.lastName}}</div>
-            <div class="book-list__item members">{{member.borrowedBooks.length}}</div>
-            <div class="book-list__item members">{{member.reservations.length}}</div>
-            <div class="book-list__item members">{{numberOfLateReturnFees(member)}}</div>
-            <div class="book-list__item members">{{member.totalLateReturnFee}}</div>
+
+<div class="members__container">
+    <div class="book-list">
+        <div class="book-list__header">
+            <div class="book-list__item members">#</div>
+            <div class="book-list__item members" ng-click="setSortOption('name')">Ime <img src="./images/triangle.png" class="book-list__triangle"></div>
+            <div class="book-list__item members" ng-click="setSortOption('lastName')">Prezime <img src="./images/triangle.png" class="book-list__triangle"></div>
+            <div class="book-list__item members" ng-click="setSortOption('borrowed')">Posuđeno <img src="./images/triangle.png" class="book-list__triangle"></div>
+            <div class="book-list__item members" ng-click="setSortOption('reserved')">Rezervirano <img src="./images/triangle.png" class="book-list__triangle"></div>
+            <div class="book-list__item members" ng-click="setSortOption('booksWithLateReturnFee')">Zakašnjelo <img src="./images/triangle.png" class="book-list__triangle"></div>
+            <div class="book-list__item members">Zakasnina [kn] <img src="./images/triangle.png" class="book-list__triangle"></div>
+        </div>
+        <div class="book-list__line"></div>
+        <div class="book-list__container">
+            <div class="book-list__book" ng-repeat="member in members"  ng-click="showDetails($index)">
+                <div class="book-list__wrapper">
+                    <div class="book-list__item members">{{$index+1}}</div>
+                    <div class="book-list__item members">{{member.name}}</div>
+                    <div class="book-list__item members">{{member.lastName}}</div>
+                    <div class="book-list__item members">{{member.borrowedBooks.length}}</div>
+                    <div class="book-list__item members">{{member.reservations.length}}</div>
+                    <div class="book-list__item members">{{numberOfLateReturnFees(member)}}</div>
+                    <div class="book-list__item members">{{member.totalLateReturnFee}}</div>
+                </div>
+                <div class="book-list__book-expand" ng-show="member.isClicked">
+                    <div class="book-expand__item">
+                        <span>Posuđene knjige</span>
+                        <div class="book-expand__book">
+                            <div class="book__name">Steve Jobs</div>
+                            <div class="book__author">Walter Isaacson</div>
+                            <div class="book__info green">28.02.2018.</div>
+                        </div>
+                        <div class="book-expand__book">
+                            <div class="book__name">Steve Jobs</div>
+                            <div class="book__author">Walter Isaacson</div>
+                            <div class="book__info green">28.02.2018.</div>
+                        </div>
+                        <div class="book-expand__book">
+                            <div class="book__name">Steve Jobs</div>
+                            <div class="book__author">Walter Isaacson</div>
+                            <div class="book__info green">28.02.2018.</div>
+                        </div>
+                    </div>
+                    <div class="book-expand__item">
+                        <span>Rezervirane knjige</span>
+                        <div class="book-expand__book">
+                            <div class="book__name">Steve Jobs</div>
+                            <div class="book__author">Walter Isaacson</div>
+                            <div class="book__info orange">07.02.2018., 20:34</div>
+                        </div>
+                        <div class="book-expand__book">
+                            <div class="book__name">Steve Jobs</div>
+                            <div class="book__author">Walter Isaacson</div>
+                            <div class="book__info orange">07.02.2018., 20:34</div>
+                        </div>
+                    </div>
+                    <div class="book-expand__item">
+                        <span>Zakašnjele knjige</span>
+                        <div class="book-expand__book">
+                            <div class="book__name">Steve Jobs</div>
+                            <div class="book__author">Walter Isaacson</div>
+                            <div class="book__info red">31.01.2018.</div>
+                        </div>
+                        <div class="book-expand__book">
+                            <div class="book__name">Steve Jobs</div>
+                            <div class="book__author">Walter Isaacson</div>
+                            <div class="book__info red">31.01.2018.</div>
+                        </div>
+                    </div>
+                    <div class="book-expand__item">
+                        <span>Kontakt</span>
+                        <div class="book-expand__book">
+                            <div class="book__name">Jasna Horvat</div>
+                            <div class="book__author">+385 99 243 5432</div>
+                            <div class="book__author">jhorvat@gmail.com</div>
+                            <div class="book__author">Teslina 2, Split</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
