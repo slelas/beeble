@@ -55,6 +55,11 @@
     $scope.memberImageUrl = $scope.member.imageUrl || 'https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png';
 
     $scope.confirmScannedItems = function () {
+        //debug
+        $scope.books = [];
+        $scope.member = [];
+        $scope.returnMessage = 'Uspješno obavljeno posuđivanje/vraćanje.';
+        return 1;
 
         if (!$scope.member.memberName){
             $scope.books.forEach(function (element) {
@@ -101,4 +106,51 @@
     $scope.removeMember = function () {
         $scope.member = [];
     }
+
+
+
+    angular.element($window).on('keypress', function (e) {
+        console.log(e.key);
+
+        if (e.key == 'c') {
+            $scope.books.push(
+                {
+                    name: 'Superhrana',
+                    author: { name: 'Jamie Oliver' },
+                    imageUrl: 'http://mozaik-knjiga.hr/wp-content/uploads/2017/10/Superhrana-za-svaki-dan-J.Oliver-234x300.jpg'
+                });
+        }
+
+        if (e.key == 'v') {
+            $scope.books.push(
+                {
+                    name: 'C# 7.0 za programere',
+                    author: { name: 'Joseph Albahari & Ben Albahari' },
+                    imageUrl: 'https://covers.oreillystatic.com/images/0636920083634/lrg.jpg'
+                });
+        }
+
+        if (e.key == 'b') {
+            $scope.books.push(
+                {
+                    name: 'Dizajn danas!',
+                    author: { name: 'Charlotte & Peter Fiell' },
+                    imageUrl: 'http://verbum.hr/images/artikli/velike/5518.jpg'
+                });
+        }
+
+        if (e.key == 'n') {
+            $scope.member = {
+                memberName: 'Mate',
+                memberLastName: 'Matic',
+                memberEmail: 'mmate@gmail.com',
+                memberOib: '95874125896',
+                memberAddress: 'Kralja Tomisliava 54, Split',
+                numberOfBorrowedBooks: 2,
+                numberOfReservedBooks: 1
+            };
+        }
+
+        $scope.$apply();
+    });
 });
