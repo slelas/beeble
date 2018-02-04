@@ -141,9 +141,9 @@
 
         if (e.key == 'n') {
             $scope.member = {
-                memberName: 'Mate',
-                memberLastName: 'Matic',
-                memberEmail: 'mmate@gmail.com',
+                memberName: 'Josip',
+                memberLastName: 'Svalina',
+                memberEmail: 'josip@dump.hr',
                 memberOib: '95874125896',
                 memberAddress: 'Kralja Tomisliava 54, Split',
                 numberOfBorrowedBooks: 2,

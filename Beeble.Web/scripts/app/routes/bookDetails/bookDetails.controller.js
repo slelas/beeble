@@ -24,6 +24,29 @@
             }
         };
 
+        $scope.submitBarcode = function (library) {
+            console.log(library.id, $scope.barcodeNumber);
+            getLibrariesService.submitBarcode(library.id, $scope.barcodeNumber).then(function (response) {
+                console.log(response.data);
+            });
+        };
+
+        $scope.togglePopup = function (library) {
+            $scope.library = library;
+            $scope.popupActive = !$scope.popupActive;
+            $scope.paymentActive = false;
+
+            if ($scope.popupActive) {
+                // Paypal information
+                $scope.paymentName =
+                    'Library: ' + $scope.library.name +
+                    ' (ID: ' + $scope.library.id +
+                    ') - MEMBERSHIP';
+                $scope.price = $scope.library.membershipPrice;
+                $scope.price = 20; //debug
+            }
+        }
+
 		$scope.loadBooks();
 		$scope.getBookNumbers();
 

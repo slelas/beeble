@@ -1,4 +1,27 @@
-﻿<div class="book-details">
+﻿<div class="popup" ng-show="popupActive">
+    <div class="popup__container">
+        <div class="popup__header-wrapper">
+            <div class="popup__header">UČLANI SE</div>
+            <img ng-click="togglePopup()" src="./images/cross-icon-black.png">
+        </div>
+        <div class="library__info">
+            <div><span>Knjižnica:</span> {{library.name}}</div>
+            <div><span>Adresa:</span> {{library.address}}</div>
+            <div><span>Ograničenje posuđivanja:</span> <!--{{library.bookLendLimit}}-->4 knjige</div>
+            <div><span>Cijena:</span> <!--{{library.membershipPrice}}-->60 kn</div>
+        </div>
+        <paypal></paypal>
+        <div class="library__member">
+            <div class="library__member__description">
+                Ukoliko ste već član ove knjižnice, upišite svoj broj iskaznice i besplatno digitalizirajte svoje članstvo.
+            </div>
+            <input type="text" ng-model="barcodeNumber">
+            <button ng-click="submitBarcode(library)">POTVRDI</button>
+        </div>
+    </div>
+</div>
+
+<div class="book-details">
     <div class="homepage__search-bar">
         <input class="search-bar__input" type="text" placeholder="Pretraži..." ng-model="searchQuery" ng-keyup="$event.keyCode == 13 && search()" ng-submit="search()" />
         <a ng-click="search()" class="search-bar__button">
@@ -53,7 +76,7 @@
                         <div class="library__name">{{book.localLibrary.name}}</div>
                         <div class="library__book-status">odmah dostupno</div>
                         <div class="library__button-wrapper">
-                            <a class="library__button" ng-click="togglePopup()">UČLANI SE</a>
+                            <a class="library__button" ng-click="togglePopup(book.localLibrary)">UČLANI SE</a>
                             <a class="library__button" ng-click="toggleOneTime()">JEDNOKRATNO</a>
                         </div>
                     </div>

@@ -5,7 +5,10 @@
 			userService.getUser().then(function(response) {
 				$scope.user = response.data;
 				console.log(response.data);
-			});
+            });
+
+            $scope.user = [];
+            $scope.userImageUrl = $scope.user.imageUrl || 'https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png';
 
 			$scope.save = function() {
 

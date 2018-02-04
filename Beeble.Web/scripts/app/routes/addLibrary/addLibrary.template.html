@@ -5,10 +5,10 @@
 			<img ng-click="togglePopup()" src="./images/cross-icon-black.png">
 		</div>
 		<div class="library__info">
-			<div><span>Knjižnica:</span> Marko Marulić</div>
-			<div><span>Adresa:</span> Teslina 2, Split</div>
-			<div><span>Ograničenje posuđivanja:</span> 5</div>
-			<div><span>Cijena:</span> 50 kn</div>
+			<div><span>Knjižnica:</span> {{library.name}}</div>
+			<div><span>Adresa:</span> {{library.address}}</div>
+			<div><span>Ograničenje posuđivanja:</span> {{library.bookLendLimit}} knjige</div>
+			<div><span>Cijena:</span> {{library.membershipPrice}} kn</div>
 		</div>
 		<paypal></paypal>
 		<div class="library__member">
@@ -16,7 +16,7 @@
 				Ukoliko ste već član ove knjižnice, upišite svoj broj iskaznice i besplatno digitalizirajte svoje članstvo.
 			</div>
 			<input type="text" ng-model="barcodeNumber">
-			<button ng-click="submitBarcode()">POTVRDI</button>
+			<button ng-click="submitBarcode(library)">POTVRDI</button>
 		</div>
 	</div>
 </div>
@@ -32,7 +32,7 @@
 				<div class="library__price">Cijena članstva: <span>{{library.membershipPrice}} kn</span></div>
 			</div>
 			<div class="library__button-container">
-				<button class="library__sign-up" ng-click="togglePopup()">UČLANI SE</button>
+				<button class="library__sign-up" ng-click="togglePopup(library)">UČLANI SE</button>
 			</div>
 		</div>
 	</div>

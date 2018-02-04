@@ -4,10 +4,27 @@
 		var allLibraries = [];
 		var popupActive, paymentActive = false;
 
-		$scope.togglePopup = function() {
+        $scope.togglePopup = function (library) {
+            $scope.library = library;
 			$scope.popupActive = !$scope.popupActive;
-			$scope.paymentActive = false;
-		}
+            $scope.paymentActive = false;
+
+            if ($scope.popupActive) {
+                // Paypal information
+                $scope.paymentName =
+                    'Library: ' + $scope.library.name +
+                    ' (ID: ' + $scope.library.id +
+                    ') - MEMBERSHIP';
+                $scope.price = $scope.library.membershipPrice;
+            }
+        }
+
+        $scope.submitBarcode = function (library) {
+            console.log(library.id, $scope.barcodeNumber);
+            getLibrariesService.submitBarcode(library.id, $scope.barcodeNumber).then(function (response) {
+                console.log(response.data);
+            });
+        };
 
 		$scope.togglePayment = function() {
 			$scope.paymentActive = !$scope.paymentActive;
@@ -15,7 +32,7 @@
 
 		getLibrariesService.getAllLibraries().then(function(response) {
 			allLibraries = response.data;
-			$scope.allSearchLibraries = response.data;
+            $scope.allSearchLibraries = response.data;
 		});
 
 		$scope.$watch('searchQuery',

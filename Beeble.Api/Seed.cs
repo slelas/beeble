@@ -31,8 +31,14 @@ namespace Beeble.Api
 
                     var regularUser = new OnlineUser()
                     {
+                        Name = "Josip",
+                        LastName = "Svalina",
+                        Address  = "Kralja Tomislava 54",
+                        Oib = "95874125896",
+                        City = "Split",
+                        PhoneNumber = "095 4224 247",
                         Email = "josip@dump.hr",
-                        UserName = "jsvalina",
+                        UserName = "josip@dump.hr",
                         LocalLibraryMembers = new List<LocalLibraryMember>()
                     };
 
@@ -1039,12 +1045,12 @@ namespace Beeble.Api
                     #region Library member seed
                     var localLibraryMember1 = new LocalLibraryMember()
                     {
-                        Name = "Jasna",
-                        LastName = "Horvat",
-                        Email = "test@gmail.hr",
-                        PhoneNumber = "0915478522",
-                        Oib = "12345",
-                        Address = "adresa 123",
+                        Name = "Josip",
+                        LastName = "Svalina",
+                        Email = "josip@dump.hr",
+                        PhoneNumber = "095 4224 247",
+                        Oib = "95874125896",
+                        Address = "Kralja Tomislava 54",
                         LocalLibrary = localLibrary2,
                         OnlineUser = regularUser,
                         BarcodeNumber = "12345678902",
@@ -1053,12 +1059,12 @@ namespace Beeble.Api
 
                     var localLibraryMember2 = new LocalLibraryMember()
                     {
-                        Name = "Mate",
-                        LastName = "Matic",
-                        Email = "test@gmail.hr",
-                        PhoneNumber = "0915478522",
-                        Oib = "12345",
-                        Address = "adresa 123",
+                        Name = "Josip",
+                        LastName = "Svalina",
+                        Email = "josip@dump.hr",
+                        PhoneNumber = "095 4224 247",
+                        Oib = "95874125896",
+                        Address = "Kralja Tomislava 54",
                         LocalLibrary = localLibrary3,
                         OnlineUser = regularUser,
                         BarcodeNumber = "12345678901",
