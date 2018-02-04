@@ -1,4 +1,4 @@
-﻿angular.module('myApp').controller('statisticsController', function ($scope) {
+﻿angular.module('myApp').controller('statisticsController', function ($scope, serviceBase) {
     $scope.labels = ["Programiranje", "Dizajn", "Kuharica", "Drama", "Biografija", "Roman"];
     $scope.data = [4, 8, 6, 3, 1, 1];
 
@@ -34,4 +34,8 @@
         ]
         }
     };
+
+    $scope.export = function(){
+        window.location.href = serviceBase + "content/podatci.xlsx";
+    }
 });
