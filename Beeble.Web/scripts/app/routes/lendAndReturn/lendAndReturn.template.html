@@ -1,23 +1,4 @@
-﻿<!-- <div>LEND AND RETURN</div>
-<button ng-click="changeScanOption('book')">SKENIRAJ KNJIGU</button>
-<button ng-click="changeScanOption('member')">SKENIRAJ KORISNIKA</button>
-
-<div>KNJIGE</div>
-<div ng-repeat="book in books">
-	<div>{{book.name}} --- {{book.author.name}}</div>
-</div>
-
-<div>KORISNIK</div>
-<div>Ime: {{member.memberName}} {{member.memberLastName}}</div>
-<div>E-mail: {{member.memberEmail}}</div>
-<div>OIB: {{member.memberOib}}</div>
-<div>Adresa: {{member.memberAddress}}</div>
-
-<div>Broj posudenih: {{member.numberOfBorrowedBooks}}</div>
-
-<div>Broj rezerviranih: {{member.numberOfReservedBooks}}</div> -->
-
-<style>
+﻿<style>
     .activeButton {
         background-color: #b59a56;
     }
@@ -40,12 +21,12 @@
         <span class="lend-and-return__scan-header">SKENIRANE KNJIGE</span>
         <div class="lend-and-return__scanned-book" ng-repeat="book in books">
             <img ng-src="{{book.imageUrl}}">
-            <button ng-click="removeBook($index)">Remove book</button>
             <div class="scanned-book__info">
                 <div class="scanned-book__name book-bar__name">{{book.name}}</div>
                 <div class="scanned-book__author book-bar__author">{{book.author.name}}</div>
                 <div class="scanned-book__status" ng-show="book.isBorrowed">Ovu knjigu <span class="scanned-book__status status status-green">vraćate</span> u knjižnicu.</div>
                 <div class="scanned-book__status" ng-hide="book.isBorrowed">Ovu knjigu <span class="scanned-book__status status status-yellow">posuđujete</span> iz knjižnice.</div>
+                <button ng-click="removeBook($index)" class="scanned-book__remove-button">MAKNI KNJIGU</button>
             </div>
         </div>
     </div>
@@ -65,7 +46,6 @@
         <span class="lend-and-return__scan-header">SKENIRANI KORISNIK</span>
         <div class="lend-and-return__user-container">
             <img class="lend-and-return__user-photo" ng-src="{{memberImageUrl}}">
-            <button ng-click="removeMember()" ng-show="member.memberName">Remove member</button>
             <div class="lend-and-return__user-info">
                 <span>Ime:</span> {{member.memberName}} {{member.memberLastName}}<br>
                 <span>E-mail:</span> {{member.memberEmail}}<br>
@@ -73,6 +53,7 @@
                 <span>Adresa:</span> {{member.memberAddress}}<br><br>
                 <span>Broj posuđenih:</span> {{member.numberOfBorrowedBooks}}<br>
                 <span>Broj rezerviranih:</span> {{member.numberOfReservedBooks}}<br>
+                <button ng-click="removeMember()" class="scanned-book__remove-button" ng-show="member.memberName">MAKNI KORISNIKA</button>
             </div>
         </div>
     </div>

@@ -1,0 +1,29 @@
+﻿<div class="statistics">
+  <h1 class="statistics__header">GK Marko Marulić</h1>
+  <button class="statistics__button" ng-click="export()">EKSPORT PODATAKA</button>
+  <div class="statistics__general">
+    <div><span>611 posuđenih knjiga</span><br>U POSLJEDNJIH 7 DANA</div>
+    <div><span>328 korisnika</span><br>U POSLJEDNJIH 7 DANA</div>
+  </div>
+  <div class="statistics__wrapper">
+    <div class="statistics__item">
+      <span class="statistics__description">UDIO KNJIGA PO KATEGORIJAMA</span>
+      <canvas id="pie" class="chart chart-pie"
+        chart-data="data" chart-labels="labels" chart-options="options" chart-colors="colours">
+      </canvas>
+    </div>
+
+    <div class="statistics__item">
+      <span class="statistics__description">BROJ POSUĐENIH I REZERVIRANIH KNJIGA PO MJESECIMA</span>
+      <canvas id="bar" class="chart chart-bar"
+        chart-data="data2" chart-labels="labels2" chart-series="series" chart-colors="colours" >
+      </canvas>
+    </div>
+
+    <div class="statistics__item">
+      <span class="statistics__description">BROJ UKUPNO POSUĐENIH KNJIGA PO DANU ZADNJIH TJEDAN DANA</span>
+      <canvas id="line" class="chart chart-line" chart-data="data3" chart-labels="labels3" chart-series="series3" chart-options="options3" chart-dataset-override="datasetOverride" chart-click="onClick" chart-colors="colours">
+      </canvas>
+    </div>
+  </div>
+</div>

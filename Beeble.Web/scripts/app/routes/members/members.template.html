@@ -16,16 +16,16 @@
 <div class="book-list">
     <div class="book-list__header">
         <div class="book-list__item members">#</div>
-        <div class="book-list__item members" ng-click="setSortOption('name')">Ime</div>
-        <div class="book-list__item members" ng-click="setSortOption('lastName')">Prezime</div>
-        <div class="book-list__item members" ng-click="setSortOption('borrowed')">Posuđeno</div>
-        <div class="book-list__item members" ng-click="setSortOption('reserved')">Rezervirano</div>
-        <div class="book-list__item members" ng-click="setSortOption('booksWithLateReturnFee')">Zakašnjelo</div>
-        <div class="book-list__item members">Zakasnina [kn]</div>
+        <div class="book-list__item members" ng-click="setSortOption('name')">Ime <img src="./images/triangle.png" class="book-list__triangle"></div>
+        <div class="book-list__item members" ng-click="setSortOption('lastName')">Prezime <img src="./images/triangle.png" class="book-list__triangle"></div>
+        <div class="book-list__item members" ng-click="setSortOption('borrowed')">Posuđeno <img src="./images/triangle.png" class="book-list__triangle"></div>
+        <div class="book-list__item members" ng-click="setSortOption('reserved')">Rezervirano <img src="./images/triangle.png" class="book-list__triangle"></div>
+        <div class="book-list__item members" ng-click="setSortOption('booksWithLateReturnFee')">Zakašnjelo <img src="./images/triangle.png" class="book-list__triangle"></div>
+        <div class="book-list__item members">Zakasnina [kn] <img src="./images/triangle.png" class="book-list__triangle"></div>
     </div>
     <div class="book-list__line"></div>
-    <div class="book-list__container" ng-repeat="member in members">
-        <div class="book-list__book">
+    <div class="book-list__container">
+        <div class="book-list__book" ng-repeat="member in members">
             <div class="book-list__item members">{{$index+1}}</div>
             <div class="book-list__item members">{{member.name}}</div>
             <div class="book-list__item members">{{member.lastName}}</div>
