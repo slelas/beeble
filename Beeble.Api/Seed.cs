@@ -1120,28 +1120,717 @@ namespace Beeble.Api
                     };
                     #endregion
 
+                    #region Reserved for stats seed
                     var listOfAllReservedBooks = new List<ReservedBooksAll>()
                     {
                         new ReservedBooksAll()
                         {
                             LocalLibrary = localLibrary1,
-                            TimeStamp = DateTime.Now
+                            TimeStamp = new DateTime(2017, 1, 25)
                         },
                         new ReservedBooksAll()
                         {
                             LocalLibrary = localLibrary1,
-                            TimeStamp = DateTime.Now
+                            TimeStamp = new DateTime(2017, 1, 25)
                         },
                         new ReservedBooksAll()
                         {
                             LocalLibrary = localLibrary1,
-                            TimeStamp = DateTime.Now
+                            TimeStamp = new DateTime(2017, 1, 25)
                         },
                         new ReservedBooksAll()
                         {
                             LocalLibrary = localLibrary1,
-                            TimeStamp = DateTime.Now
+                            TimeStamp = new DateTime(2017, 1, 25)
                         },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 1, 25)
+                        },
+
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 3, 25)
+                        },
+
+
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                                                new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2017, 4, 25)
+                        },
+                    };
+                    #endregion
+
+                    var listOfAllBorrowedBooks = new List<BorrowedBooksAll>()
+                    {
+                        new BorrowedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = new DateTime(2018,1,29)
+                        }
                     };
 
                     context.Categories.Add(category1);
@@ -1215,6 +1904,9 @@ namespace Beeble.Api
                     context.LocalLibraryMembers.Add(localLibraryMember1);
                     context.LocalLibraryMembers.Add(localLibraryMember2);
                     context.LocalLibraryMembers.Add(localLibraryMember3);
+
+                    context.BorrowedBooksAll.AddRange(listOfAllBorrowedBooks);
+                    context.ReservedBooksAll.AddRange(listOfAllReservedBooks);
 
                     context.SaveChanges();
                 }

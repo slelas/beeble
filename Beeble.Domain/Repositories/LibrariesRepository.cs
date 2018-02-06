@@ -624,9 +624,6 @@ namespace Beeble.Domain.Repositories
         {
             using (var context = new AuthContext())
             {
-                //var categoriesGroups = context.Categories
-                //    .GroupBy(category => category.Name)
-                //    .ToList();
 
                 var categoriesGroups = context.Books
                     .Select(book => book.Categories)
@@ -634,13 +631,53 @@ namespace Beeble.Domain.Repositories
                     .Select(category => category.Name)
                     .GroupBy(category => category)
                     .ToList();
-                    
-                    
+
+
 
                 var categoriesNames = categoriesGroups.Select(group => group.Key).ToList();
                 var categoriesData = categoriesGroups.Select(group => group.Count().ToString()).ToList();
 
-                return new List<List<string>>(){categoriesNames, categoriesData};
+                return new List<List<string>>() { categoriesNames, categoriesData };
+            }
+        }
+
+        public List<List<string>> GetBorrowedReservedStats()
+        {
+            using (var context = new AuthContext())
+            {
+                var allBorrowedStats = context.BorrowedBooksAll.ToList();
+                var allReservedStats = context.ReservedBooksAll.ToList();
+
+                var allBorrowedStatsCount = new List<string>();
+                var allReservedStatsCount = new List<string>();
+
+                var year = DateTime.Now.Year - 1;
+
+                for (int i = 0; i < 12; i++)
+                {
+                    allBorrowedStatsCount.Add(
+                        allBorrowedStats.Where(book =>
+                        book.TimeStamp > new DateTime(DateTime.Now.Year, i + 1, 1) &&
+                        book.TimeStamp < new DateTime(DateTime.Now.Year, i + 1, DateTime.DaysInMonth(year, i + 1)))
+                        .ToList()
+                        .Count
+                        .ToString()
+                        );
+                }
+
+                for (int i = 0; i < 12; i++)
+                {
+                    allReservedStatsCount.Add(
+                        allReservedStats.Where(book =>
+                        book.TimeStamp > new DateTime(DateTime.Now.Year, i + 1, 1) &&
+                        book.TimeStamp < new DateTime(DateTime.Now.Year, i + 1, DateTime.DaysInMonth(year, i + 1)))
+                        .ToList()
+                        .Count
+                        .ToString()
+                        );
+                }
+
+                return new List<List<string>>() { allBorrowedStatsCount, allReservedStatsCount };
             }
         }
     }

@@ -8,9 +8,17 @@
             });
         }
 
+        function getBorrowedReservedStats() {
+
+            return $http.get(serviceBase + 'api/libraries/get-borrowed-reserved-monthly').then(function (results) {
+                return results;
+            });
+        }
+
 
         var statisticsFactory = {};
         statisticsFactory.getCategoriesStats = getCategoriesStats;
+        statisticsFactory.getBorrowedReservedStats = getBorrowedReservedStats;
 
         return statisticsFactory;
     });

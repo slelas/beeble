@@ -97,5 +97,12 @@ namespace Beeble.Api.Controllers
         {
             return repo.GetCategoriesStats();
         }
+
+        [HttpGet]
+        [Route("get-borrowed-reserved-monthly")]
+        public List<List<string>> GetBorrowedReservedStats()
+        {
+            return repo.GetBorrowedReservedStats();
+        }
     }
 }

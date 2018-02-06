@@ -8,6 +8,11 @@
         $scope.data = response.data[1];
     });
 
+    statisticsService.getBorrowedReservedStats().then(function (response) {
+        console.log(response.data);
+        $scope.data2 = response.data;
+    });
+
     $scope.labels2 = ['Siječanj', 'Veljača', 'Ožujak', 'Travanj', 'Svibanj', 'Lipanj', 'Srpanj', 'Kolovoz', 'Rujan', 'Listopad', 'Studeni', 'Prosinac'];
     $scope.series = ['Posuđene knjige', 'Rezervirane knjige'];
 
