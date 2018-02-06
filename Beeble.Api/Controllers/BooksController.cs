@@ -52,7 +52,7 @@ namespace Beeble.Api.Controllers
         [Route("reserve")]
         public void MakeAReservation(int libraryId, string bookName, string authorName)
         {
-            //repo.MakeAReservation(libraryId, bookName, authorName);
+            repo.MakeAReservation(libraryId, bookName, authorName);
         }
 
 		[HttpGet]

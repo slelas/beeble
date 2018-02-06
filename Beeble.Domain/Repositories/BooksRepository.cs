@@ -329,6 +329,12 @@ namespace Beeble.Domain.Repositories
                     IsGuestMember = libraryMember == null
                 });
 
+		        context.ReservedBooksAll.Add(new ReservedBooksAll()
+		        {
+		            LocalLibrary = libraryMember.LocalLibrary,
+		            TimeStamp = DateTime.Now
+		        });
+
 			    bookToReserve.IsReserved = true;
 
                 context.SaveChanges();

@@ -1,6 +1,12 @@
-﻿angular.module('myApp').controller('statisticsController', function ($scope, serviceBase) {
+﻿angular.module('myApp').controller('statisticsController', function ($scope, serviceBase, statisticsService) {
     $scope.labels = ["Programiranje", "Dizajn", "Kuharica", "Drama", "Biografija", "Roman"];
     $scope.data = [4, 8, 6, 3, 1, 1];
+
+    statisticsService.getCategoriesStats().then(function (response) {
+        console.log(response.data);
+        $scope.labels = response.data[0];
+        $scope.data = response.data[1];
+    });
 
     $scope.labels2 = ['Siječanj', 'Veljača', 'Ožujak', 'Travanj', 'Svibanj', 'Lipanj', 'Srpanj', 'Kolovoz', 'Rujan', 'Listopad', 'Studeni', 'Prosinac'];
     $scope.series = ['Posuđene knjige', 'Rezervirane knjige'];

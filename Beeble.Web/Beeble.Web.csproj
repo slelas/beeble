@@ -137,6 +137,10 @@
     <Content Include="scripts\app\routes\oneTimeBorrow\oneTimeBorrow.route.js" />
     <Content Include="scripts\app\routes\oneTimeBorrow\oneTimeBorrow.template.html" />
     <Content Include="scripts\app\routes\search\search.template.html" />
+    <Content Include="scripts\app\routes\statistics\statistics.controller.js" />
+    <Content Include="scripts\app\routes\statistics\statistics.route.js" />
+    <Content Include="scripts\app\routes\statistics\statistics.template.html" />
+    <Content Include="scripts\app\services\statisticsService.js" />
     <Content Include="scripts\css\ngDialog-theme-default.css" />
     <Content Include="scripts\css\ngDialog.min.css" />
     <Content Include="scripts\vendor\angular-hidScanner.js" />

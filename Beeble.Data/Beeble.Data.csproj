@@ -99,6 +99,7 @@
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BatchOfBorrowedBooks.cs" />
     <Compile Include="Models\BatchOfBorrowedBooksHistory.cs" />
+    <Compile Include="Models\BorrowedBooksAll.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\LocalLibrary.cs" />
@@ -106,6 +107,8 @@
     <Compile Include="Models\Nationality.cs" />
     <Compile Include="Models\OnlineUser.cs" />
     <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\ReservedBooksAll.cs" />
+    <Compile Include="Models\ReturnedBooksAll.cs" />
     <Compile Include="Models\YearOfIssue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

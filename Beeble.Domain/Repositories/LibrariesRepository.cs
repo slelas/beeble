@@ -128,6 +128,7 @@ namespace Beeble.Domain.Repositories
                     .ToList();
 
                 var booksToReturn = context.Books
+                    .Include(book => book.LocalLibrary)
                     .Where(book => bookBarcodes.Contains(book.BarcodeNumber) && book.IsBorrowed)
                     .ToList();
 
@@ -147,6 +148,13 @@ namespace Beeble.Domain.Repositories
                 {
                     book.IsBorrowed = true;
                     context.Entry(book).State = EntityState.Modified;
+
+                    context.BorrowedBooksAll.Add(new BorrowedBooksAll()
+                    {
+                        LocalLibrary = localLibrary,
+                        TimeStamp = DateTime.Now,
+                        WasBookReserved = book.IsReserved
+                    });
                 }
 
                 foreach (var book in booksToReturn)
@@ -158,6 +166,13 @@ namespace Beeble.Domain.Repositories
 
                     book.IsBorrowed = false;
                     context.Entry(batchOfBorrowedBooks).State = EntityState.Modified;
+
+                    context.ReturnedBooksAll.Add(new ReturnedBooksAll()
+                    {
+                        LocalLibrary = localLibrary,
+                        TimeStamp = DateTime.Now,
+                        WasReturnedLate = book.LateReturnFee > 0
+                    });
                 }
 
                 context.SaveChanges();
@@ -602,6 +617,30 @@ namespace Beeble.Domain.Repositories
                 context.LocalLibraryMembers.Add(memberToAdd);
 
                 context.SaveChanges();
+            }
+        }
+
+        public List<List<string>> GetCategoriesStats()
+        {
+            using (var context = new AuthContext())
+            {
+                //var categoriesGroups = context.Categories
+                //    .GroupBy(category => category.Name)
+                //    .ToList();
+
+                var categoriesGroups = context.Books
+                    .Select(book => book.Categories)
+                    .SelectMany(category => category)
+                    .Select(category => category.Name)
+                    .GroupBy(category => category)
+                    .ToList();
+                    
+                    
+
+                var categoriesNames = categoriesGroups.Select(group => group.Key).ToList();
+                var categoriesData = categoriesGroups.Select(group => group.Count().ToString()).ToList();
+
+                return new List<List<string>>(){categoriesNames, categoriesData};
             }
         }
     }

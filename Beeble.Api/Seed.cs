@@ -1120,6 +1120,30 @@ namespace Beeble.Api
                     };
                     #endregion
 
+                    var listOfAllReservedBooks = new List<ReservedBooksAll>()
+                    {
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = DateTime.Now
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = DateTime.Now
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = DateTime.Now
+                        },
+                        new ReservedBooksAll()
+                        {
+                            LocalLibrary = localLibrary1,
+                            TimeStamp = DateTime.Now
+                        },
+                    };
+
                     context.Categories.Add(category1);
                     context.Categories.Add(category2);
                     context.Categories.Add(category3);

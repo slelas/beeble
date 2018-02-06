@@ -7,47 +7,47 @@ using Beeble.Domain.DTOs;
 
 namespace Beeble.Api.Controllers
 {
-	[RoutePrefix("api/libraries")]
-	public class LibrariesController : AuthorizationController
+    [RoutePrefix("api/libraries")]
+    public class LibrariesController : AuthorizationController
     {
-		private LibrariesRepository repo = null;
+        private LibrariesRepository repo = null;
 
-		public LibrariesController()
-		{
-			repo = new LibrariesRepository();
-		}
+        public LibrariesController()
+        {
+            repo = new LibrariesRepository();
+        }
 
-		[HttpGet]
-		[Authorize]
-		[Route("get")]
-		public List<ShortLLMemberUserDTO> GetLocalLibraries()
-		{
-			return repo.GetLocalLibraries(userId: UserId);
-		}
+        [HttpGet]
+        [Authorize]
+        [Route("get")]
+        public List<ShortLLMemberUserDTO> GetLocalLibraries()
+        {
+            return repo.GetLocalLibraries(userId: UserId);
+        }
 
-	    [HttpGet]
-	    [Authorize]
-	    [Route("get-byid")]
-	    public LongLLMemberUserDTO GetLibraryById(int libraryId)
-	    {
-			return repo.GetLibraryById(libraryId, UserId);
-	    }
+        [HttpGet]
+        [Authorize]
+        [Route("get-byid")]
+        public LongLLMemberUserDTO GetLibraryById(int libraryId)
+        {
+            return repo.GetLibraryById(libraryId, UserId);
+        }
 
-	    [HttpGet]
-	    [Authorize]
-	    [Route("get-byid-membership")]
-	    public LocalLibrary GetLibraryByIdForMembership(int libraryId)
-	    {
-		    return repo.GetLibraryByIdForMembership(libraryId, UserId);
-	    }
+        [HttpGet]
+        [Authorize]
+        [Route("get-byid-membership")]
+        public LocalLibrary GetLibraryByIdForMembership(int libraryId)
+        {
+            return repo.GetLibraryByIdForMembership(libraryId, UserId);
+        }
 
-	    [HttpGet]
-	    [Authorize]
-	    [Route("get-all")]
-	    public List<LocalLibrary> GetAll()
-	    {
-		    return repo.GetAll(UserId);
-	    }
+        [HttpGet]
+        [Authorize]
+        [Route("get-all")]
+        public List<LocalLibrary> GetAll()
+        {
+            return repo.GetAll(UserId);
+        }
 
         [HttpGet]
         [Authorize]
@@ -57,18 +57,18 @@ namespace Beeble.Api.Controllers
             return repo.EnrollToLibraryWithBarcode(libraryId, barcodeNumber, UserId);
         }
 
-	    [HttpGet]
-	    //[Authorize]
-	    [Route("get-member-by-barcode")]
-		public ShortLLMemberUserDTO getMemberById(string memberBarcode)
-	    {
-		    return repo.GetMemberByBarcode(memberBarcode);
-	    }
+        [HttpGet]
+        //[Authorize]
+        [Route("get-member-by-barcode")]
+        public ShortLLMemberUserDTO getMemberById(string memberBarcode)
+        {
+            return repo.GetMemberByBarcode(memberBarcode);
+        }
 
         [HttpGet]
         //[Authorize(Roles="Admin")]
         [Route("lend-return")]
-        public bool LendAndReturnScanned([FromUri]List<string> bookBarcodes, string memberBarcode = null)
+        public bool LendAndReturnScanned([FromUri] List<string> bookBarcodes, string memberBarcode = null)
         {
             return repo.LendAndReturnScanned(bookBarcodes, memberBarcode, UserId);
         }
@@ -84,9 +84,18 @@ namespace Beeble.Api.Controllers
         [HttpGet]
         //[Authorize(Roles = "Admin")]
         [Route("get-member-list")]
-        public List<LocalLibraryMemberDTO> GetMemberList(string sortOption, bool descending, string searchQuery, int pageNumber)
+        public List<LocalLibraryMemberDTO> GetMemberList(string sortOption, bool descending, string searchQuery,
+            int pageNumber)
         {
             return repo.GetMemberList(sortOption, descending, searchQuery, pageNumber, UserId);
+        }
+
+        [HttpGet]
+        //[Authorize(Roles = "Admin")]
+        [Route("get-categories-stats")]
+        public List<List<string>> GetCategoriesStats()
+        {
+            return repo.GetCategoriesStats();
         }
     }
 }

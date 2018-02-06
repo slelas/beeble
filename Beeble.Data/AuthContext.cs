@@ -23,6 +23,9 @@ namespace Beeble.Data
 	    public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<YearOfIssue> YearsOfIssue { get; set; }
+        public virtual DbSet<ReservedBooksAll> ReservedBooksAll { get; set; }
+        public virtual DbSet<ReturnedBooksAll> ReturnedBooksAll { get; set; }
+        public virtual DbSet<BorrowedBooksAll> BorrowedBooksAll { get; set; }
 
     }
 }
