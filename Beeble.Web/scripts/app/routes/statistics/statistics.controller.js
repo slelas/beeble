@@ -2,16 +2,41 @@
     $scope.labels = ["Programiranje", "Dizajn", "Kuharica", "Drama", "Biografija", "Roman"];
     $scope.data = [4, 8, 6, 3, 1, 1];
 
-    statisticsService.getCategoriesStats().then(function (response) {
-        console.log(response.data);
-        $scope.labels = response.data[0];
-        $scope.data = response.data[1];
-    });
+    $scope.updateYear = function (year) {
 
-    statisticsService.getBorrowedReservedStats().then(function (response) {
-        console.log(response.data);
-        $scope.data2 = response.data;
-    });
+
+        statisticsService.getCategoriesStats().then(function (response) {
+            console.log(response.data);
+            $scope.labels = response.data[0];
+            $scope.data = response.data[1];
+        });
+
+        statisticsService.getBorrowedReservedStats(year).then(function (response) {
+            console.log(response.data);
+            $scope.data2 = response.data;
+        });
+
+        statisticsService.getBorrowedInWeek().then(function (response) {
+            $scope.labels3 = response.data[0];
+            $scope.data3 = [response.data[1]];
+
+            $scope.borrowedInWeekCount = 0;
+
+            for (var i = 0; i < response.data[1].length; i++) {
+                $scope.borrowedInWeekCount += parseInt(response.data[1][i]);
+            };
+            console.log($scope.borrowedInWeekCount);
+
+        });
+
+        statisticsService.GetLibraryActiveYears().then(function (response) {
+            console.log(response.data);
+            $scope.years = response.data;
+        });
+
+    }
+
+    $scope.updateYear(2017); //debug u current year
 
     $scope.labels2 = ['Siječanj', 'Veljača', 'Ožujak', 'Travanj', 'Svibanj', 'Lipanj', 'Srpanj', 'Kolovoz', 'Rujan', 'Listopad', 'Studeni', 'Prosinac'];
     $scope.series = ['Posuđene knjige', 'Rezervirane knjige'];

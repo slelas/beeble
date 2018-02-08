@@ -33,7 +33,7 @@ namespace Beeble.Api
                     {
                         Name = "Josip",
                         LastName = "Svalina",
-                        Address  = "Kralja Tomislava 54",
+                        Address = "Kralja Tomislava 54",
                         Oib = "95874125896",
                         City = "Split",
                         PhoneNumber = "095 4224 247",
@@ -105,7 +105,7 @@ namespace Beeble.Api
                     var author10 = new Author() { Name = "Joseph Albahari & Ben Albahari" };
                     var author11 = new Author() { Name = "Milan Gocić" };
                     var author12 = new Author() { Name = "Mark J. Price" };
-                    var author13 = new Author() { Name = "Robin Landa"};
+                    var author13 = new Author() { Name = "Robin Landa" };
                     var author14 = new Author() { Name = "Charlotte & Peter Fiell" };
                     var author15 = new Author() { Name = "Feđa Vukić" };
                     var author16 = new Author() { Name = "Robert Bringhurst" };
@@ -129,6 +129,7 @@ namespace Beeble.Api
                         ReservationDuration = 48,
                         Email = "test@test.hr",
                         Number = "0215678456",
+                        YearEnrolled = 2016
                     };
 
                     var localLibrary2 = new LocalLibrary()
@@ -145,7 +146,8 @@ namespace Beeble.Api
                         OpenHours = "8-16",
                         ReservationDuration = 48,
                         Email = "test@test.hr",
-                        Number = "0215678456"
+                        Number = "0215678456",
+                        YearEnrolled = 2016
                     };
 
                     var localLibrary3 = new LocalLibrary()
@@ -163,7 +165,8 @@ namespace Beeble.Api
                         ReservationDuration = 72,
                         Email = "test@test.hr",
                         Number = "0215678456",
-                        Administrators = new List<OnlineUser>() { adminUser }
+                        Administrators = new List<OnlineUser>() { adminUser },
+                        YearEnrolled = 2016
                     };
 
                     var localLibrary4 = new LocalLibrary()
@@ -180,7 +183,8 @@ namespace Beeble.Api
                         OpenHours = "8-16",
                         ReservationDuration = 48,
                         Email = "test@test.hr",
-                        Number = "0215678456"
+                        Number = "0215678456",
+                        YearEnrolled = 2016
                     };
                     #endregion
 
@@ -1824,14 +1828,68 @@ namespace Beeble.Api
                     };
                     #endregion
 
-                    var listOfAllBorrowedBooks = new List<BorrowedBooksAll>()
+                    var random = new Random();
+
+                    var listOfAllBorrowedBooks = new List<BorrowedBooksAll>();
+
+                    for (int i = 0; i < 12; i++)
                     {
-                        new BorrowedBooksAll()
+                        var numberOfBooksInMonth = random.Next(55, 250);
+
+                        for (int j = 0; j < numberOfBooksInMonth; j++)
                         {
-                            LocalLibrary = localLibrary1,
-                            TimeStamp = new DateTime(2018,1,29)
+                            listOfAllReservedBooks.Add(
+                                new ReservedBooksAll()
+                                {
+                                    LocalLibrary = localLibrary1,
+                                    TimeStamp = new DateTime(2017, 12, 31).AddMonths(-i)
+                                });
+
+                            listOfAllBorrowedBooks.Add(
+                                new BorrowedBooksAll()
+                                {
+                                    LocalLibrary = localLibrary1,
+                                    TimeStamp = new DateTime(2017, 12, 31).AddMonths(-i)
+                                });
                         }
-                    };
+                    }
+
+//                    var listOfAllBorrowedBooks = new List<BorrowedBooksAll>()
+//                    {
+//                        new BorrowedBooksAll()
+//                        {
+//                            LocalLibrary = localLibrary1,
+//                            TimeStamp = new DateTime(2018,1,29)
+//                        },
+//new BorrowedBooksAll()
+//                        {
+//                            LocalLibrary = localLibrary1,
+//                            TimeStamp = DateTime.Now
+//                        }
+//                    };
+
+                    for (int i = 0; i < 7; i++)
+                    {
+
+                        var numberOfBooksOnDay = random.Next(7, 25);
+
+                        for (int j = 0; j < numberOfBooksOnDay; j++)
+                        {
+                            listOfAllBorrowedBooks.Add(
+                                new BorrowedBooksAll()
+                                {
+                                    LocalLibrary = localLibrary1,
+                                    TimeStamp = DateTime.Now.AddDays(-i).AddYears(-1),
+                                });
+
+                            listOfAllBorrowedBooks.Add(
+                                new BorrowedBooksAll()
+                                {
+                                    LocalLibrary = localLibrary1,
+                                    TimeStamp = DateTime.Now.AddDays(-i),
+                                });
+                        }
+                    }
 
                     context.Categories.Add(category1);
                     context.Categories.Add(category2);

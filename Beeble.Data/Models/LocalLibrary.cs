@@ -21,8 +21,9 @@ namespace Beeble.Data.Models
         public int ReservationDuration { get; set; }
 	    public string Number { get; set; }
 	    public string Email { get; set; }
+        public int YearEnrolled { get; set; }
 
-		public List<LocalLibraryMember> Members { get; set; }
+        public List<LocalLibraryMember> Members { get; set; }
         public List<OnlineUser> Administrators { get; set; }
 
     }

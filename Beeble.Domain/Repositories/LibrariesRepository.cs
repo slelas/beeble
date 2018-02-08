@@ -641,7 +641,7 @@ namespace Beeble.Domain.Repositories
             }
         }
 
-        public List<List<string>> GetBorrowedReservedStats()
+        public List<List<string>> GetBorrowedReservedStats(int year)
         {
             using (var context = new AuthContext())
             {
@@ -651,14 +651,14 @@ namespace Beeble.Domain.Repositories
                 var allBorrowedStatsCount = new List<string>();
                 var allReservedStatsCount = new List<string>();
 
-                var year = DateTime.Now.Year - 1;
+                //var year = DateTime.Now.Year - 1;
 
                 for (int i = 0; i < 12; i++)
                 {
                     allBorrowedStatsCount.Add(
                         allBorrowedStats.Where(book =>
-                        book.TimeStamp > new DateTime(DateTime.Now.Year, i + 1, 1) &&
-                        book.TimeStamp < new DateTime(DateTime.Now.Year, i + 1, DateTime.DaysInMonth(year, i + 1)))
+                        book.TimeStamp >= new DateTime(year, i + 1, 1) &&
+                        book.TimeStamp <= new DateTime(year, i + 1, DateTime.DaysInMonth(year, i + 1)))
                         .ToList()
                         .Count
                         .ToString()
@@ -669,8 +669,8 @@ namespace Beeble.Domain.Repositories
                 {
                     allReservedStatsCount.Add(
                         allReservedStats.Where(book =>
-                        book.TimeStamp > new DateTime(DateTime.Now.Year, i + 1, 1) &&
-                        book.TimeStamp < new DateTime(DateTime.Now.Year, i + 1, DateTime.DaysInMonth(year, i + 1)))
+                        book.TimeStamp >= new DateTime(year, i + 1, 1) &&
+                        book.TimeStamp <= new DateTime(year, i + 1, DateTime.DaysInMonth(year, i + 1)))
                         .ToList()
                         .Count
                         .ToString()
@@ -679,6 +679,63 @@ namespace Beeble.Domain.Repositories
 
                 return new List<List<string>>() { allBorrowedStatsCount, allReservedStatsCount };
             }
+        }
+
+        public List<List<string>> GetBorrowedInWeek()
+        {
+            using (var context = new AuthContext())
+            {
+
+                var weekDays = new List<string>();
+                var borrowedCountByDay = new List<string>();
+
+                var culture = new System.Globalization.CultureInfo("hr-HR");
+
+                for (int i = 6; i > 0; i--)
+                {
+                    var dateOfBorrowing = DateTime.Now.AddDays(-i);
+
+                    weekDays.Add(culture.DateTimeFormat.GetDayName(dateOfBorrowing.DayOfWeek).ToString());
+
+                   var numberOfBooksBorrowedOnDate = context.BorrowedBooksAll
+                        .Where(book => 
+                        book.TimeStamp.Day == dateOfBorrowing.Day &&
+                        book.TimeStamp.Month == dateOfBorrowing.Month &&
+                        book.TimeStamp.Year == dateOfBorrowing.Year)
+                        .ToList()
+                        .Count();
+
+                    borrowedCountByDay.Add(numberOfBooksBorrowedOnDate.ToString());
+                }
+
+                return new List<List<string>>()
+                {
+                    weekDays,
+                    borrowedCountByDay
+                };
+            }
+        }
+
+        public List<int> GetLibraryActiveYears(Guid? userId)
+        {
+            var activeYears = new List<int>();
+
+            using (var context = new AuthContext())
+            {
+                //var library = context.LocalLibraries
+                //                        .FirstOrDefault(localLibrary => localLibrary.Administrators.Select(admin => admin.Id).ToList().Contains(userId.ToString()));
+
+                //debug
+                var library = context.LocalLibraries.FirstOrDefault(lib => lib.Name == "Marko Marulic");
+
+                for (int i = library.YearEnrolled; i <= DateTime.Now.Year; i++)
+                {
+                    activeYears.Add(i);
+                }
+
+                return activeYears;
+            }
+
         }
     }
 }

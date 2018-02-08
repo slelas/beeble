@@ -100,9 +100,23 @@ namespace Beeble.Api.Controllers
 
         [HttpGet]
         [Route("get-borrowed-reserved-monthly")]
-        public List<List<string>> GetBorrowedReservedStats()
+        public List<List<string>> GetBorrowedReservedStats(int year)
         {
-            return repo.GetBorrowedReservedStats();
+            return repo.GetBorrowedReservedStats(year);
+        }
+
+        [HttpGet]
+        [Route("get-borrowed-week")]
+        public List<List<string>> GetBorrowedInWeek()
+        {
+            return repo.GetBorrowedInWeek();
+        }
+
+        [HttpGet]
+        [Route("get-active-years")]
+        public List<int> GetLibraryActiveYears()
+        {
+            return repo.GetLibraryActiveYears(UserId);
         }
     }
 }
