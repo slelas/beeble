@@ -2158,12 +2158,9 @@ a {
 
 .book-list__header {
   display: flex;
-  width: calc(100% - 67px);
   padding: 25px;
-  margin-right: 18px;
   justify-content: space-between;
   align-items: center;
-  /* box-shadow: 0px 10px 20px 0px rgba(0,0,0,.1); */
   font-weight: 600; }
 
 .book-list__book {
@@ -2183,12 +2180,30 @@ a {
   text-align: center;
   overflow-wrap: break-word; }
 
-.book-list__item:nth-of-type(1) {
-  width: 5%; }
+/* .book-list__item:nth-of-type(1) {
+    width: 5%;
+}
 
 .book-list__item:nth-of-type(2),
 .book-list__item:nth-of-type(3) {
-  width: 27.5%; }
+    width: 27.5%;
+}
+
+.book-list__item:nth-of-type(4),
+.book-list__item:nth-of-type(5),
+.book-list__item:nth-of-type(6) {
+    width: 10%;
+}
+
+.book-list__item:nth-of-type(7) {
+    width: 15%;
+} */
+.book-list__item:nth-of-type(1) {
+  width: 10%; }
+
+.book-list__item:nth-of-type(2),
+.book-list__item:nth-of-type(3) {
+  width: 20%; }
 
 .book-list__item:nth-of-type(4),
 .book-list__item:nth-of-type(5),
@@ -2196,18 +2211,61 @@ a {
   width: 10%; }
 
 .book-list__item:nth-of-type(7) {
-  width: 15%; }
+  width: 20%; }
+
+.members:nth-of-type(1) {
+  width: 10%; }
 
 .members:nth-of-type(2), .members:nth-of-type(3) {
   width: 20%; }
 
 .members:nth-of-type(4), .members:nth-of-type(5), .members:nth-of-type(6) {
-  width: 7%; }
+  width: 10%; }
+
+.members:nth-of-type(7) {
+  width: 20%; }
 
 .book-list__triangle {
   -webkit-filter: invert(100%);
   max-width: 7px;
   display: inline-block; }
+
+.members__container .book-list__book {
+  display: block; }
+
+.members__container .book-list__wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }
+
+.book-list__book-expand {
+  background-color: white;
+  padding: 25px;
+  width: calc(100% - 50px);
+  height: 100%;
+  border-radius: 5px;
+  margin-top: 25px;
+  display: flex; }
+  .book-list__book-expand .book-expand__item {
+    width: 25%; }
+    .book-list__book-expand .book-expand__item span {
+      font-weight: 600; }
+  .book-list__book-expand .book-expand__book {
+    margin-top: 15px; }
+    .book-list__book-expand .book-expand__book .red {
+      color: red; }
+    .book-list__book-expand .book-expand__book .green {
+      color: green; }
+    .book-list__book-expand .book-expand__book .orange {
+      color: orange; }
+    .book-list__book-expand .book-expand__book .book__name {
+      font-weight: 600;
+      margin-bottom: 5px; }
+    .book-list__book-expand .book-expand__book .book__info {
+      font-weight: 600;
+      margin-top: 5px; }
+    .book-list__book-expand .book-expand__book .book__author {
+      line-height: 1.5; }
 
 .add-library {
   background-color: white;

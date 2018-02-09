@@ -48,4 +48,12 @@
             return member.borrowedBooks.filter(book => book.lateReturnFee > 0).length;
         }
 
+        $scope.showDetails = function(memberId){
+            // var member = $scope.members.find(member => member.id == memberId);
+            console.log(memberId);
+            var member = $scope.members[memberId];
+            console.log(member);
+            member.isClicked = !member.isClicked;
+
+        }
 	});

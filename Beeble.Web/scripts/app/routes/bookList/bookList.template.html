@@ -24,8 +24,8 @@
         <div class="book-list__item" ng-click="setSortOption('damage')">Stanje knjige</div>
     </div>
     <div class="book-list__line"></div>
-    <div class="book-list__container" ng-repeat="book in books">
-        <div class="book-list__book">
+    <div class="book-list__container">
+        <div class="book-list__book" ng-repeat="book in books">
             <div class="book-list__item">{{$index+1}}.</div>
             <div class="book-list__item">{{book.name}}</div>
             <div class="book-list__item">{{book.author}}</div>
