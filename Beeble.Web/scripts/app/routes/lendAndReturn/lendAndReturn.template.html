@@ -57,8 +57,9 @@
             </div>
         </div>
     </div>
-    <div class="lend-and-return__button btn-gold" ng-click="confirmScannedItems()">POTVRDI</div>
+    <div class="lend-and-return__bottom-wrapper">
+        <div class="lend-and-return__button btn-gold" ng-click="confirmScannedItems()">POTVRDI</div>
+        <div class="lend-and-return__error-message error-message__red" ng-show="errorMessage">{{errorMessage}}</div>
+        <div class="lend-and-return__error-message" ng-show="returnMessage">{{returnMessage}}</div>
+    </div>
 </div>
-
-<div ng-show="errorMessage">{{errorMessage}}</div>
-<div ng-show="returnMessage">{{returnMessage}}</div>

@@ -1,5 +1,8 @@
 ﻿angular.module('myApp').controller('lendAndReturnController', function ($scope, bookSearchService, getLibrariesService, $window, hidScanner, $timeout, hotkeys) {
 
+    $scope.errorMessage = "Test";
+    $scope.returnMessage = "Test";
+
     // when you bind it to the controller's scope, it will automatically unbind
     // the hotkey when the scope is destroyed (due to ng-if or something that changes the DOM)
     hotkeys.bindTo($scope)
