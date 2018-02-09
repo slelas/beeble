@@ -111,6 +111,7 @@ namespace Beeble.Api
                     var author16 = new Author() { Name = "Robert Bringhurst" };
                     var author17 = new Author() { Name = "Gavin Ambrose" };
                     var author18 = new Author() { Name = "Alina Wheeler" };
+                    var author19 = new Author() { Name = "Jonathan Swift" };
                     #endregion
 
                     #region Library seed
@@ -359,6 +360,26 @@ namespace Beeble.Api
                         ImageUrl = "https://static.enotes.com/images/covers%2Fhamlet.jpg",
                         IsBorrowed = false,
                         IsReserved = false
+                    };
+
+                    var book44 = new Book()
+                    {
+                        Name = "Gulliverova putovanja",
+                        NumOfPages = "115",
+                        Author = author19,
+                        YearOfIssue = year2,
+                        ISBN = "0230217867",
+                        DamageLevel = 2,
+                        Description = "Gulliverova putovanja zanimljiv je pustolovni roman književnika Jonathana Swifta. Swift je u svom djelu iznio svoje osobno mišljenje o Engleskoj i njezinoj politici.",
+                        Publisher = "Cambridge Press",
+                        LocalLibrary = localLibrary1,
+                        Nationality = nationality2,
+                        Language = language1,
+                        Categories = new List<Category>() { category1 },
+                        ImageUrl = "https://www.superknjizara.hr/photo/knjige/m_100054563.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        BarcodeNumber = "9789537160357"
                     };
                     #endregion Miscellaneous books seed
 
@@ -1951,6 +1972,7 @@ namespace Beeble.Api
                     context.Books.Add(book41);
                     context.Books.Add(book42);
                     context.Books.Add(book43);
+                    context.Books.Add(book44);
 
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);

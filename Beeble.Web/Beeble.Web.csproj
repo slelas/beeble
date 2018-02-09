@@ -144,8 +144,11 @@
     <Content Include="scripts\css\ngDialog-theme-default.css" />
     <Content Include="scripts\css\ngDialog.min.css" />
     <Content Include="scripts\vendor\angular-hidScanner.js" />
+    <Content Include="scripts\vendor\angular-mousetrap-service.js" />
     <Content Include="scripts\vendor\angular-ui-bootstrap-modal.js" />
     <Content Include="scripts\vendor\angularjs-dropdown-multiselect.js" />
+    <Content Include="scripts\vendor\hotkeys.js" />
+    <Content Include="scripts\vendor\hotkeys.min.css" />
     <Content Include="scripts\vendor\ng-file-upload.js" />
     <Content Include="scripts\vendor\ngDialog.js" />
     <Content Include="scripts\vendor\ngDialog.min.js" />

@@ -34,8 +34,6 @@
                         if (e.which >= 48 && e.which <= 57) {
                             chars.push(String.fromCharCode(e.which));
                         }
-                        else
-                            chars = [];
 
                         var c = chars;
 
