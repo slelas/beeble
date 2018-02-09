@@ -10,28 +10,28 @@
             <img src="./images/book-icon.png" alt="">
             <div class="benefit__content">
                 <div class="benefit__header">STATUS KNJIGA</div>
-                <div class="benefit__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                <div class="benefit__description">Brzo i jednostavno saznaj je li knjiga koju želiš posuditi rezervirana, posuđena ili slobodna.</div>
             </div>
         </div>
         <div class="signup__benefit">
-            <img src="./images/book-icon.png" alt="">
+            <img src="./images/paypal-icon.png" alt="">
             <div class="benefit__content">
-                <div class="benefit__header">STATUS KNJIGA</div>
-                <div class="benefit__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                <div class="benefit__header">ONLINE PLAĆANJE</div>
+                <div class="benefit__description">Kroz online plaćanje učlani se u bilo koju knjižnicu, podmiri zakasninu ili jednokratno posudi knjigu.</div>
             </div>
         </div>
         <div class="signup__benefit">
-            <img src="./images/book-icon.png" alt="">
+            <img src="./images/light-bulb-icon.png" alt="">
             <div class="benefit__content">
-                <div class="benefit__header">STATUS KNJIGA</div>
-                <div class="benefit__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                <div class="benefit__header">JEDNOKRATNO POSUĐIVANJE</div>
+                <div class="benefit__description">Ne moraš više biti član knjižnice da bi posudio knjigu, plati za posudbu knjige jednokratno.</div>
             </div>
         </div>
         <div class="signup__benefit">
-            <img src="./images/book-icon.png" alt="">
+            <img src="./images/magnifier-icon.png" alt="">
             <div class="benefit__content">
-                <div class="benefit__header">STATUS KNJIGA</div>
-                <div class="benefit__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                <div class="benefit__header">PRETRAGA SVIH KNJIŽNICA</div>
+                <div class="benefit__description">Pretraži knjige u više knjižnica odjednom.</div>
             </div>
         </div>
     </div>
@@ -39,8 +39,7 @@
 <form class="signup" name="signUpForm" novalidate>
     <div class="signup__form">
         <div class="signup__form-header">Registracija</div>
-        <div class="signup__form-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-
+        <div class="signup__form-description">Upišite svoje podatke kako biste se registrirali u sustav.</div>
 
         <div class="signup__container">
             <div class="form-group">
@@ -53,7 +52,7 @@
 
             <div class="form-group">
                 <span>LOZINKA</span>
-                <input type="text" placeholder="Password" name="password" ng-model="registration.password" ng-minlength="6">
+                <input type="text" placeholder="Lozinka" name="password" ng-model="registration.password" ng-minlength="6">
                 <div class="help-block" ng-messages="signUpForm.password.$error">
                     <div ng-messages-include="validation-messages"></div>
                 </div>
@@ -61,7 +60,7 @@
 
             <div class="form-group">
                 <span>PONOVI LOZINKU</span>
-                <input type="text" placeholder="Confirm password" name="confirmPassword" ng-model="registration.confirmPassword" ng-pattern="{{registration.password}}">
+                <input type="text" placeholder="Ponovi lozinku" name="confirmPassword" ng-model="registration.confirmPassword" ng-pattern="{{registration.password}}">
                 <div class="help-block" ng-messages="signUpForm.confirmPassword.$error" ng-if="signUpForm.confirmPassword.$touched">
                     <div ng-messages-include="validation-messages"></div>
                 </div>

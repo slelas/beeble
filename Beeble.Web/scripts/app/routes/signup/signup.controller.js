@@ -1,19 +1,7 @@
 ﻿angular.module('myApp').controller('signupController', ['$scope', '$location', '$timeout', 'authService', function ($scope, $location, $timeout, authService) {
 
-    // currently unused
+    // currently unused //debug
     $scope.savedSuccessfully = false;
-
-	$scope.registration = {
-		username: "test@test.hr",
-        password: "123456",
-		confirmPassword: "123456",
-		name: "test ime",
-		lastname: "test prezime",
-		oib: "123456789",
-		address: "test adresa",
-		city: "test grad",
-		phoneNumber: "123456"
-    };
 
     $scope.signUp = function () {
 
