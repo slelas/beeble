@@ -1145,14 +1145,56 @@ namespace Beeble.Api
 
                     var localLibraryMember2 = new LocalLibraryMember()
                     {
-                        Name = "Josip",
-                        LastName = "Svalina",
+                        Name = "Mate",
+                        LastName = "Matic",
                         Email = "josip@dump.hr",
                         PhoneNumber = "095 4224 247",
                         Oib = "95874125896",
                         Address = "Kralja Tomislava 54",
                         LocalLibrary = localLibrary3,
                         OnlineUser = regularUser,
+                        BarcodeNumber = "12345678901",
+                        MembershipExpiryDate = new DateTime(2025, 5, 1)
+                    };
+
+                    var localLibraryMember4 = new LocalLibraryMember()
+                    {
+                        Name = "Ante",
+                        LastName = "Antic",
+                        Email = "josip@dump.hr",
+                        PhoneNumber = "095 4224 247",
+                        Oib = "95874125896",
+                        Address = "Kralja Tomislava 54",
+                        LocalLibrary = localLibrary3,
+                        //OnlineUser = regularUser,
+                        BarcodeNumber = "12345678901",
+                        MembershipExpiryDate = new DateTime(2025, 5, 1)
+                    };
+
+                    var localLibraryMember5 = new LocalLibraryMember()
+                    {
+                        Name = "Stipe",
+                        LastName = "Lelas",
+                        Email = "josip@dump.hr",
+                        PhoneNumber = "095 4224 247",
+                        Oib = "95874125896",
+                        Address = "Kralja Tomislava 54",
+                        LocalLibrary = localLibrary3,
+                        //OnlineUser = regularUser,
+                        BarcodeNumber = "12345678901",
+                        MembershipExpiryDate = new DateTime(2025, 5, 1)
+                    };
+
+                    var localLibraryMember6 = new LocalLibraryMember()
+                    {
+                        Name = "Zvonimir",
+                        LastName = "Delas",
+                        Email = "josip@dump.hr",
+                        PhoneNumber = "095 4224 247",
+                        Oib = "95874125896",
+                        Address = "Kralja Tomislava 54",
+                        LocalLibrary = localLibrary3,
+                        //OnlineUser = regularUser,
                         BarcodeNumber = "12345678901",
                         MembershipExpiryDate = new DateTime(2025, 5, 1)
                     };
@@ -1196,7 +1238,7 @@ namespace Beeble.Api
                         LibraryMember = localLibraryMember2,
                         PickupDate = new DateTime(2018, 3, 2),
                         ReturnDeadline = new DateTime(2018, 3, 30),
-                        Books = new List<Book> { book4, book19, book46 },
+                        Books = new List<Book> { book4, book19, book47 },
                     };
 
                     var reservation1 = new Reservation()
@@ -2049,6 +2091,7 @@ namespace Beeble.Api
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks3);
+                    context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks4);
 
                     context.Reservations.Add(reservation1);
                     //context.Reservations.Add(reservation2);
@@ -2056,6 +2099,9 @@ namespace Beeble.Api
                     context.LocalLibraryMembers.Add(localLibraryMember1);
                     context.LocalLibraryMembers.Add(localLibraryMember2);
                     context.LocalLibraryMembers.Add(localLibraryMember3);
+                    context.LocalLibraryMembers.Add(localLibraryMember4);
+                    context.LocalLibraryMembers.Add(localLibraryMember5);
+                    context.LocalLibraryMembers.Add(localLibraryMember6);
 
                     context.BorrowedBooksAll.AddRange(listOfAllBorrowedBooks);
                     context.ReservedBooksAll.AddRange(listOfAllReservedBooks);

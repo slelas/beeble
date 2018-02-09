@@ -144,6 +144,9 @@ namespace Beeble.Domain.Repositories
                     WasPreviouslyReserved = booksToBorrow.Any(book => book.IsReserved)
                 });
 
+                //debug
+                booksToBorrow = booksToBorrow.GroupBy(x => x.Name).Select(y => y.FirstOrDefault()).ToList();
+
                 foreach (var book in booksToBorrow)
                 {
                     book.IsBorrowed = true;

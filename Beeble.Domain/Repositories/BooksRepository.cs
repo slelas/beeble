@@ -461,9 +461,7 @@ namespace Beeble.Domain.Repositories
 
                 var barcodeNumber = long.Parse(context.Books
                     //.Where(book => book.LocalLibrary.Id == library.Id)
-                    .OrderBy(book => book.BarcodeNumber)
-                    .LastOrDefault()
-                    .BarcodeNumber) + 1;
+                    .Max(book => book.BarcodeNumber)) + 1;
 
                 var bookToAdd = new Book()
                 {
