@@ -12,8 +12,8 @@
         </div>
         <div class="lend-and-return__barcode">
             <div class="homepage__search-bar">
-                <input class="search-bar__input" type="text" placeholder="Upiši barcode..." />
-                <a class="search-bar__button">
+                <input class="search-bar__input" type="text" placeholder="Upiši barcode..." ng-model="barcodeBook" ng-keyup="$event.keyCode == 13 && search()" ng-submit="search()" />
+                <a class="search-bar__button" ng-click="processScannedBarcode(barcodeBook)">
                     <img src="./images/search-icon.png" alt="">
                 </a>
             </div>
@@ -37,8 +37,8 @@
         </div>
         <div class="lend-and-return__barcode">
             <div class="homepage__search-bar">
-                <input class="search-bar__input" type="text" placeholder="Upiši barcode..." />
-                <a class="search-bar__button">
+                <input class="search-bar__input" type="text" placeholder="Upiši barcode..."  ng-model="barcodeMember" ng-keyup="$event.keyCode == 13 && search()" ng-submit="search()" />
+                <a class="search-bar__button" ng-click="processScannedBarcode(barcodeMember)">
                     <img src="./images/search-icon.png" alt="">
                 </a>
             </div>

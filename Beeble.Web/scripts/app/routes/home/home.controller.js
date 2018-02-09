@@ -8,6 +8,7 @@ var app = angular.module('myApp').controller("homeController", function ($scope,
     };
 
     $scope.isLoggedIn = authService.authentication.isAuth;
+    $scope.role = authService.authentication.role;
 
     $scope.logOut = function () {
         authService.logOut();

@@ -63,7 +63,7 @@ namespace Beeble.Api
 			user.Address = userModel.Address;
 		    user.City = userModel.City;
 		    user.LastName = userModel.Lastname;
-		    user.Name = userModel.Lastname;
+		    user.Name = userModel.Name;
 		    user.PhoneNumber = userModel.PhoneNumber;
 		    user.Oib = userModel.Oib;
 
@@ -100,7 +100,8 @@ namespace Beeble.Api
 					.Include("LocalLibraryMembers.BatchesOfBorrowedBooks.Books.Author")
 					.Include("LocalLibraryMembers.Reservations")
 					.Include("LocalLibraryMembers.Reservations.Book")
-					.SingleOrDefault(onlineUser => onlineUser.Id == userId.ToString());
+                    .Include("LocalLibraryMembers.Reservations.Book.Author")
+                    .SingleOrDefault(onlineUser => onlineUser.Id == userId.ToString());
 
 				return OnlineUserDTO.FromData(user);
 			}

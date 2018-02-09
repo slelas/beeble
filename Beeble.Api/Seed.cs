@@ -112,6 +112,7 @@ namespace Beeble.Api
                     var author17 = new Author() { Name = "Gavin Ambrose" };
                     var author18 = new Author() { Name = "Alina Wheeler" };
                     var author19 = new Author() { Name = "Jonathan Swift" };
+                    var author20 = new Author() { Name = "Simon Sinek" };
                     #endregion
 
                     #region Library seed
@@ -380,6 +381,66 @@ namespace Beeble.Api
                         IsBorrowed = false,
                         IsReserved = false,
                         BarcodeNumber = "9789537160357"
+                    };
+
+                    var book45 = new Book()
+                    {
+                        Name = "Gulliverova putovanja",
+                        NumOfPages = "115",
+                        Author = author19,
+                        YearOfIssue = year2,
+                        ISBN = "0230217867",
+                        DamageLevel = 2,
+                        Description = "Gulliverova putovanja zanimljiv je pustolovni roman književnika Jonathana Swifta. Swift je u svom djelu iznio svoje osobno mišljenje o Engleskoj i njezinoj politici.",
+                        Publisher = "Cambridge Press",
+                        LocalLibrary = localLibrary2,
+                        Nationality = nationality2,
+                        Language = language1,
+                        Categories = new List<Category>() { category1 },
+                        ImageUrl = "https://www.superknjizara.hr/photo/knjige/m_100054563.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        BarcodeNumber = "9789537160357"
+                    };
+
+                    var book46 = new Book()
+                    {
+                        Name = "Gulliverova putovanja",
+                        NumOfPages = "115",
+                        Author = author19,
+                        YearOfIssue = year2,
+                        ISBN = "0230217867",
+                        DamageLevel = 2,
+                        Description = "Gulliverova putovanja zanimljiv je pustolovni roman književnika Jonathana Swifta. Swift je u svom djelu iznio svoje osobno mišljenje o Engleskoj i njezinoj politici.",
+                        Publisher = "Cambridge Press",
+                        LocalLibrary = localLibrary3,
+                        Nationality = nationality2,
+                        Language = language1,
+                        Categories = new List<Category>() { category1 },
+                        ImageUrl = "https://www.superknjizara.hr/photo/knjige/m_100054563.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        BarcodeNumber = "9789537160357"
+                    };
+
+                    var book47 = new Book()
+                    {
+                        Name = "Leaders Eat Last",
+                        NumOfPages = "115",
+                        Author = author20,
+                        YearOfIssue = year2,
+                        ISBN = "0230217867",
+                        DamageLevel = 2,
+                        Description = "Zašto neki timovi uspijevaju, an neki ne? Zašto vjerno slijedimo neke vođe, a drugima okrećemo leđa čim naiđe bolja prilika? Simon Sinek u ovom bestselleru otkriva odgovore na ova, ali i mnoga druga pitanja.",
+                        Publisher = "Cambridge Press",
+                        LocalLibrary = localLibrary3,
+                        Nationality = nationality2,
+                        Language = language1,
+                        Categories = new List<Category>() { category1 },
+                        ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/51ejdeSXFjL.jpg",
+                        IsBorrowed = true,
+                        IsReserved = false,
+                        BarcodeNumber = "9780670923175"
                     };
                     #endregion Miscellaneous books seed
 
@@ -1128,6 +1189,14 @@ namespace Beeble.Api
                         PickupDate = new DateTime(2018, 1, 2),
                         ReturnDeadline = new DateTime(2018, 3, 30),
                         Books = new List<Book> { book4, book19 },
+                    };
+
+                    var batchOfBorrowedBooks4 = new BatchOfBorrowedBooks()
+                    {
+                        LibraryMember = localLibraryMember2,
+                        PickupDate = new DateTime(2018, 3, 2),
+                        ReturnDeadline = new DateTime(2018, 3, 30),
+                        Books = new List<Book> { book4, book19, book46 },
                     };
 
                     var reservation1 = new Reservation()
@@ -1973,13 +2042,16 @@ namespace Beeble.Api
                     context.Books.Add(book42);
                     context.Books.Add(book43);
                     context.Books.Add(book44);
+                    context.Books.Add(book45);
+                    context.Books.Add(book46);
+                    context.Books.Add(book47);
 
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks3);
 
                     context.Reservations.Add(reservation1);
-                    context.Reservations.Add(reservation2);
+                    //context.Reservations.Add(reservation2);
 
                     context.LocalLibraryMembers.Add(localLibraryMember1);
                     context.LocalLibraryMembers.Add(localLibraryMember2);
