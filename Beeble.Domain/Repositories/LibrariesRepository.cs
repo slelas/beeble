@@ -145,12 +145,17 @@ namespace Beeble.Domain.Repositories
                 });
 
                 //debug
-                booksToBorrow = booksToBorrow.GroupBy(x => x.Name).Select(y => y.FirstOrDefault()).ToList();
+                //booksToBorrow = booksToBorrow.GroupBy(x => x.Name).Select(y => y.FirstOrDefault()).ToList();
 
                 foreach (var book in booksToBorrow)
                 {
                     book.IsBorrowed = true;
+                    book.IsReserved = false;
                     context.Entry(book).State = EntityState.Modified;
+
+                    var reservation = context.Reservations.FirstOrDefault(res => res.Book.Id == book.Id);
+                    if (reservation != null)
+                        context.Entry(reservation).State = EntityState.Deleted;
 
                     context.BorrowedBooksAll.Add(new BorrowedBooksAll()
                     {

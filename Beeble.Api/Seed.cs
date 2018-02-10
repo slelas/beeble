@@ -400,7 +400,7 @@ namespace Beeble.Api
                         ImageUrl = "https://www.superknjizara.hr/photo/knjige/m_100054563.jpg",
                         IsBorrowed = false,
                         IsReserved = false,
-                        BarcodeNumber = "9789537160357"
+                        BarcodeNumber = "9789537160350"
                     };
 
                     var book46 = new Book()
@@ -420,7 +420,7 @@ namespace Beeble.Api
                         ImageUrl = "https://www.superknjizara.hr/photo/knjige/m_100054563.jpg",
                         IsBorrowed = false,
                         IsReserved = false,
-                        BarcodeNumber = "9789537160357"
+                        BarcodeNumber = "9789537160351"
                     };
 
                     var book47 = new Book()
