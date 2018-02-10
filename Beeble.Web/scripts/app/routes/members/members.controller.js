@@ -5,6 +5,8 @@
         var lastPickedOption = null;
         var pageNumber = 0;
 
+        $scope.disableMoreResults = false;
+
         $scope.setSortOption = function (sortName) {
 
             if (lastPickedOption !== sortName)
@@ -28,6 +30,8 @@
                 $scope.members = response.data;
             });
 
+            $scope.disableMoreResults = false;
+
         }
 
         $scope.setSortOption('name');
@@ -37,6 +41,9 @@
 
             getLibrariesService.getMemberList(sortOption, descending, $scope.searchQuery, ++pageNumber).then(function (response) {
                 $scope.members = $scope.members.concat(response.data);
+
+                if (response.data.length === 0)
+                    $scope.disableMoreResults = true;
             });
         }
 

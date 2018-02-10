@@ -615,6 +615,26 @@ namespace Beeble.Api
                         IsReserved = false,
                         Keyword = "kuhanje"
                     };
+
+                    var book48 = new Book()
+                    {
+                        Name = "Deserti",
+                        NumOfPages = "60",
+                        Author = author7,
+                        YearOfIssue = year3,
+                        ISBN = "02302456788",
+                        DamageLevel = 2,
+                        Description = "Gotovo svi deserti u ovoj knjizi najbolje su od svake regije, deserti koji su s godinama prerasli u poslastice cijeloga talijanskog naroda – poput cannola – remek-djela sicilijanskoga umijeća izrade slatkoga tijesta",
+                        Publisher = "Mozaik",
+                        LocalLibrary = localLibrary4,
+                        Nationality = nationality1,
+                        Language = language1,
+                        Categories = new List<Category>() { category7 },
+                        ImageUrl = "http://mozaik-knjiga.hr/wp-content/uploads/archive/images/Barilla_-_deserti-230x300.jpg",
+                        IsBorrowed = false,
+                        IsReserved = false,
+                        Keyword = "kuhanje"
+                    };
                     #endregion Array of cooking books by the same author
 
                     #region Books by Jamie Oliver
@@ -1174,7 +1194,6 @@ namespace Beeble.Api
                         Oib = "95874125896",
                         Address = "Kralja Tomislava 54",
                         LocalLibrary = localLibrary3,
-                        //OnlineUser = regularUser,
                         BarcodeNumber = "12345678901",
                         MembershipExpiryDate = new DateTime(2025, 5, 1)
                     };
@@ -1188,8 +1207,7 @@ namespace Beeble.Api
                         Oib = "95874125896",
                         Address = "Kralja Tomislava 54",
                         LocalLibrary = localLibrary3,
-                        //OnlineUser = regularUser,
-                        BarcodeNumber = "12345678901",
+                        BarcodeNumber = "12345678905",
                         MembershipExpiryDate = new DateTime(2025, 5, 1)
                     };
 
@@ -1202,8 +1220,7 @@ namespace Beeble.Api
                         Oib = "95874125896",
                         Address = "Kralja Tomislava 54",
                         LocalLibrary = localLibrary3,
-                        //OnlineUser = regularUser,
-                        BarcodeNumber = "12345678901",
+                        BarcodeNumber = "12345678906",
                         MembershipExpiryDate = new DateTime(2025, 5, 1)
                     };
 
@@ -1211,7 +1228,7 @@ namespace Beeble.Api
                     {
                         LocalLibrary = localLibrary2,
                         OnlineUser = null,
-                        BarcodeNumber = "12345678903",
+                        BarcodeNumber = "12345678907",
                         MembershipExpiryDate = new DateTime(2025, 5, 1)
                     };
                     #endregion
@@ -1422,6 +1439,7 @@ namespace Beeble.Api
                     context.Books.Add(book45);
                     context.Books.Add(book46);
                     context.Books.Add(book47);
+                    context.Books.Add(book48);
 
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks1);
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks2);

@@ -4,8 +4,11 @@
 	    $scope.isLoggedIn = authService.authentication.isAuth;
 
 		$scope.loadBooks = function () {
-			bookSearchService.getBooksByName($stateParams.bookName, true).then(function (response) {
-			$scope.memberBooks = response.data[0];
+            bookSearchService.getBooksByName($stateParams.bookName, true).then(function (response) {
+                if (response.data[0])
+                    $scope.memberBooks = response.data[0];
+                else
+                    $scope.memberBooks = [];
 			$scope.nonMemberBooks = response.data[1];
             $scope.book = $scope.nonMemberBooks[0] || $scope.memberBooks[0];
 			});

@@ -26,7 +26,7 @@
 				<img ng-src="{{book.imageUrl}}">
 				<div class="borrowed-book__name">{{book.name}}</div>
 				<div class="borrowed-book__author">{{book.author}}</div>
-				<div class="borrowed-book__return-date">Posuđeno do <span>{{book.returnDeadline | convertDateLong}}</span></div>
+				<div class="borrowed-book__return-date">Posuđeno do <span>{{book.returnDeadline}}</span></div>
 			</div>
 		</div>
 		<div class="library-details__borrowed" ng-show="library.reservations">
@@ -35,7 +35,7 @@
 				<img ng-src="{{reservation.book.imageUrl}}" alt="">
 				<div class="borrowed-book__name">{{reservation.book.name}}</div>
 				<div class="borrowed-book__author">{{reservation.book.author.name}}</div>
-				<div class="borrowed-book__return-date">Posuđeno do <span>{{reservation.pickupDeadline | convertDateLong}}</span></div>
+				<div class="borrowed-book__return-date">Posuđeno do <span>{{reservation.pickupDeadline | date:'yyyy-MM-dd, HH:mm'}}</span></div>
 			</div>
 		</div>
 	</div>

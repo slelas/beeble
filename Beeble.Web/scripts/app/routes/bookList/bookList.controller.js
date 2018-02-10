@@ -4,6 +4,7 @@
         var descending = false;
         var lastPickedOption = null;
         var pageNumber = 0;
+        $scope.disableMoreResults = false;
 
         $scope.setSortOption = function (sortName) {
 
@@ -28,6 +29,8 @@
                 $scope.books = response.data;
             });
 
+            $scope.disableMoreResults = false;
+
         }
 
         $scope.setSortOption('name');
@@ -37,6 +40,9 @@
 
             getLibrariesService.getBookList(sortOption, descending, $scope.searchQuery, ++pageNumber).then(function (response) {
                 $scope.books = $scope.books.concat(response.data);
+                if (response.data.length === 0)
+                    $scope.disableMoreResults = true;
+
             });
         }
        

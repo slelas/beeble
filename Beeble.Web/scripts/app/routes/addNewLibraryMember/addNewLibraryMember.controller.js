@@ -19,6 +19,9 @@
                     phoneNumber: $scope.member.city
                 }
             });
+
+            $scope.member = null;
+            $scope.picFile = null;
         }
        
 	});
