@@ -21,10 +21,17 @@
                 return results;
             });
         }
-
+        // debug case camel
         function GetLibraryActiveYears() {
 
             return $http.get(serviceBase + 'api/libraries/get-active-years').then(function (results) {
+                return results;
+            });
+        }
+
+        function getLibraryId() {
+
+            return $http.get(serviceBase + 'api/libraries/get-library-id').then(function (results) {
                 return results;
             });
         }
@@ -35,6 +42,7 @@
         statisticsFactory.getBorrowedReservedStats = getBorrowedReservedStats;
         statisticsFactory.getBorrowedInWeek = getBorrowedInWeek;
         statisticsFactory.GetLibraryActiveYears = GetLibraryActiveYears;
+        statisticsFactory.getLibraryId = getLibraryId;
 
         return statisticsFactory;
     });

@@ -40,58 +40,47 @@
                 <div class="book-list__book-expand" ng-show="member.isClicked">
                     <div class="book-expand__item">
                         <span>Posuđene knjige</span>
-                        <div class="book-expand__book">
-                            <div class="book__name">Steve Jobs</div>
-                            <div class="book__author">Walter Isaacson</div>
-                            <div class="book__info green">28.02.2018.</div>
-                        </div>
-                        <div class="book-expand__book">
-                            <div class="book__name">Steve Jobs</div>
-                            <div class="book__author">Walter Isaacson</div>
-                            <div class="book__info green">28.02.2018.</div>
-                        </div>
-                        <div class="book-expand__book">
-                            <div class="book__name">Steve Jobs</div>
-                            <div class="book__author">Walter Isaacson</div>
-                            <div class="book__info green">28.02.2018.</div>
+                        <div ng-hide="member.borrowedBooks.length">Nema posuđenih knjiga.</div>
+                        <div ng-repeat="book in member.borrowedBooks">
+                            <div class="book-expand__book">
+                                <div class="book__name">{{book.name}}</div>
+                                <div class="book__author">{{book.author}}</div>
+                                <div class="book__info green">{{book.returnDeadline}}</div>
+                            </div>
                         </div>
                     </div>
                     <div class="book-expand__item">
                         <span>Rezervirane knjige</span>
-                        <div class="book-expand__book">
-                            <div class="book__name">Steve Jobs</div>
-                            <div class="book__author">Walter Isaacson</div>
-                            <div class="book__info orange">07.02.2018., 20:34</div>
+                        <div ng-hide="member.reservations.length">Nema rezervacija.</div>
+                        <div ng-repeat="reservation in member.reservations">
+                            <div class="book-expand__book">
+                                <div class="book__name">{{reservation.book.name}}</div>
+                                <div class="book__author">{{reservation.book.author.name}}</div>
+                                <div class="book__info orange">{{reservation.pickupDeadline | date:'yyyy-MM-dd, HH:mm'}}</div>
+                            </div>
                         </div>
-                        <div class="book-expand__book">
-                            <div class="book__name">Steve Jobs</div>
-                            <div class="book__author">Walter Isaacson</div>
-                            <div class="book__info orange">07.02.2018., 20:34</div>
                         </div>
-                    </div>
                     <div class="book-expand__item">
                         <span>Zakašnjele knjige</span>
-                        <div class="book-expand__book">
-                            <div class="book__name">Steve Jobs</div>
-                            <div class="book__author">Walter Isaacson</div>
-                            <div class="book__info red">31.01.2018.</div>
-                        </div>
-                        <div class="book-expand__book">
-                            <div class="book__name">Steve Jobs</div>
-                            <div class="book__author">Walter Isaacson</div>
-                            <div class="book__info red">31.01.2018.</div>
+                        <div ng-hide="member.lateBooks.length">Nema zakašnjelih knjiga.</div>
+                        <div ng-repeat="book in member.lateBooks">
+                            <div class="book-expand__book">
+                                <div class="book__name">{{book.name}}</div>
+                                <div class="book__author">{{book.author}}</div>
+                                <div class="book__info red">{{book.returnDeadline}}</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="book-expand__item">
-                        <span>Kontakt</span>
-                        <div class="book-expand__book">
-                            <div class="book__name">Jasna Horvat</div>
-                            <div class="book__author">+385 99 243 5432</div>
-                            <div class="book__author">jhorvat@gmail.com</div>
-                            <div class="book__author">Teslina 2, Split</div>
+                        <div class="book-expand__item">
+                            <span>Kontakt</span>
+                            <div class="book-expand__book">
+                                <div class="book__name">{{member.name}} {{member.lastName}}</div>
+                                <div class="book__author">{{member.phoneNumber}}</div>
+                                <div class="book__author">{{member.email}}</div>
+                                <div class="book__author">{{member.address}}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
             <div class="book-list__book" ng-click="showDetails($index)">
                 <div class="book-list__wrapper">

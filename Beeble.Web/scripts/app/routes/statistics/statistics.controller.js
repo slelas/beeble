@@ -72,6 +72,14 @@
     };
 
     $scope.export = function(){
-        window.location.href = serviceBase + "content/podatci.xlsx";
+        //window.location.href = serviceBase + "content/podatci.xlsx";
+        statisticsService.getLibraryId().then(function (response) {
+            console.log(response.data);
+            getExportData(1);
+        });
+    }
+
+    function getExportData(libraryId) {
+        window.location = serviceBase + "api/export/books?libraryId=" + libraryId; 
     }
 });

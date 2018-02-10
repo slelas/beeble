@@ -207,7 +207,9 @@ namespace Beeble.Api
                         Nationality = nationality3,
                         Categories = new List<Category>() { category2 },
                         ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg",
-                        LateReturnFee = 0.5
+                        LateReturnFee = 0.5,
+                        BorrowCount = 25,
+                        ReserveCount = 20
                     };
 
                     var book2 = new Book()
@@ -226,7 +228,9 @@ namespace Beeble.Api
                         Nationality = nationality2,
                         Categories = new List<Category>() { category1 },
                         ImageUrl = "https://mojtv.hr//images/ff6b3c8b-ba33-4050-9f1f-34d3a35ffbd5.jpg",
-                        LateReturnFee = 1.5
+                        LateReturnFee = 1.5,
+                        BorrowCount = 45,
+                        ReserveCount = 43
                     };
 
                     var book3 = new Book()
@@ -245,7 +249,9 @@ namespace Beeble.Api
                         Language = language1,
                         Categories = new List<Category>() { category5 },
                         ImageUrl = "https://static.enotes.com/images/covers%2Fhamlet.jpg",
-                        LateReturnFee = 2.5
+                        LateReturnFee = 2.5,
+                        BorrowCount = 55,
+                        ReserveCount = 48
                     };
 
                     var book4 = new Book()
@@ -264,7 +270,9 @@ namespace Beeble.Api
                         Language = language1,
                         Categories = new List<Category>() { category5 },
                         ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/419CMC5SR1L._SX308_BO1,204,203,200_.jpg",
-                        LateReturnFee = 2.5
+                        LateReturnFee = 2.5,
+                        BorrowCount = 89,
+                        ReserveCount = 75
                     };
 
                     var book5 = new Book()
@@ -1229,8 +1237,8 @@ namespace Beeble.Api
                     {
                         LibraryMember = localLibraryMember2,
                         PickupDate = new DateTime(2018, 1, 2),
-                        ReturnDeadline = new DateTime(2018, 3, 30),
-                        Books = new List<Book> { book4, book19 },
+                        ReturnDeadline = new DateTime(2018, 1, 30),
+                        Books = new List<Book> { book43, book32 },
                     };
 
                     var batchOfBorrowedBooks4 = new BatchOfBorrowedBooks()
@@ -1252,6 +1260,13 @@ namespace Beeble.Api
                     {
                         LibraryMember = localLibraryMember2,
                         PickupDeadline = new DateTime(2018, 1, 2),
+                        Book = book7
+                    };
+
+                    var reservation3 = new Reservation()
+                    {
+                        LibraryMember = localLibraryMember2,
+                        PickupDeadline = new DateTime(2018, 4, 2),
                         Book = book7
                     };
                     #endregion
@@ -2094,7 +2109,8 @@ namespace Beeble.Api
                     context.BatchesOfBorrowedBooks.Add(batchOfBorrowedBooks4);
 
                     context.Reservations.Add(reservation1);
-                    //context.Reservations.Add(reservation2);
+                    context.Reservations.Add(reservation2);
+                    context.Reservations.Add(reservation3);
 
                     context.LocalLibraryMembers.Add(localLibraryMember1);
                     context.LocalLibraryMembers.Add(localLibraryMember2);

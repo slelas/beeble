@@ -118,5 +118,13 @@ namespace Beeble.Api.Controllers
         {
             return repo.GetLibraryActiveYears(UserId);
         }
+
+        [HttpGet]
+        //[Authorize(Roles = "Admin")]
+        [Route("get-library-id")]
+        public int GetLibraryId()
+        {
+            return repo.GetLibraryId(UserId);
+        }
     }
 }

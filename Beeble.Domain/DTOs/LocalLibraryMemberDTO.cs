@@ -23,6 +23,7 @@ namespace Beeble.Domain.DTOs
         public DateTime? MembershipExpiryDate { get; set; }
 
         public List<ShortBookDTO> BorrowedBooks { get; set; }
+        public List<ShortBookDTO> LateBooks { get; set; }
         public double TotalLateReturnFee { get; set; }
 
 
@@ -30,9 +31,16 @@ namespace Beeble.Domain.DTOs
         public static LocalLibraryMemberDTO FromData(LocalLibraryMember member)
         {
             var borrowedBooks = member.BatchesOfBorrowedBooks
-                    .Select(batchOfBorrowedBooks => batchOfBorrowedBooks.Books.Select(book => ShortBookDTO.FromData(book, batchOfBorrowedBooks.ReturnDeadline)))
-                   .SelectMany(book => book)
-                   .ToList();
+                .Where(batch => batch.ReturnDeadline > DateTime.Now)
+                .Select(batchOfBorrowedBooks => batchOfBorrowedBooks.Books.Select(book => ShortBookDTO.FromData(book, batchOfBorrowedBooks.ReturnDeadline)))
+                .SelectMany(book => book)
+                .ToList();
+
+            var lateBooks = member.BatchesOfBorrowedBooks
+                .Where(batch => batch.ReturnDeadline < DateTime.Now)
+                .Select(batchOfBorrowedBooks => batchOfBorrowedBooks.Books.Select(book => ShortBookDTO.FromData(book, batchOfBorrowedBooks.ReturnDeadline)))
+                .SelectMany(book => book)
+                .ToList();
 
             return new LocalLibraryMemberDTO()
             {
@@ -48,6 +56,8 @@ namespace Beeble.Domain.DTOs
                 MembershipExpiryDate = member.MembershipExpiryDate,
 
                 BorrowedBooks = borrowedBooks,
+
+                LateBooks = lateBooks,
 
                 Reservations = member.Reservations,
 

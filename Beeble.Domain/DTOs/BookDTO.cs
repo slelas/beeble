@@ -12,7 +12,7 @@ namespace Beeble.Domain.DTOs
 		public string ImageUrl { get; set; }
 		public string Name { get; set; }
 		public string Author { get; set; }
-        public DateTime? ReturnDeadline { get; set; }
+        public string ReturnDeadline { get; set; }
 		public long BookId { get; set; }
         public double LateReturnFee { get; set; }
 
@@ -23,7 +23,7 @@ namespace Beeble.Domain.DTOs
                 ImageUrl = book.ImageUrl,
                 Name = book.Name,
 				Author = book.Author.Name,
-				ReturnDeadline = returnDeadline,
+				ReturnDeadline = returnDeadline.Value.ToShortDateString(),
 				BookId = book.Id,
                 LateReturnFee = book.LateReturnFee
 			};

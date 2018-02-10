@@ -71,7 +71,6 @@
             return results;
         });
     }
-
     
 	var getLibrariesServiceFactory = {};
 	getLibrariesServiceFactory.getLibraries = getLibraries;

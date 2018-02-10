@@ -14,6 +14,8 @@ using Microsoft.Owin.Security.Provider;
 using MoreLinq;
 using System.Data;
 using Newtonsoft.Json;
+using Beeble.Domain.MailService;
+
 
 namespace Beeble.Domain.Repositories
 {
@@ -489,5 +491,60 @@ namespace Beeble.Domain.Repositories
 			    context.SaveChanges();
 		    }
 	    }
+
+        public void GetBookBorrowExpirations()
+        {
+            using (var context = new AuthContext())
+            {
+                var expirationDate = DateTime.Now.AddDays(1);
+
+                    context.BatchesOfBorrowedBooks
+                        .Include("LibraryMember")
+                        .Include("LibraryMember.LocalLibrary")
+                        .Include("Books")
+                        .Where(batch => batch.ReturnDeadline.Value < expirationDate)
+                        .ToList()
+                        .ForEach(batch =>
+                        {
+                            MailService.MailService.SendBookReturnReminder(batch.LibraryMember.Email, batch.LibraryMember.Name, batch.LibraryMember.LocalLibrary.Name, batch.Books.FirstOrDefault()?.Name, expirationDate);
+                        });
+            }
+        }
+
+        public void GetBookReservationExpirations()
+        {
+            using (var context = new AuthContext())
+            {
+                var expirationDate = DateTime.Now.AddHours(12);
+                var test = context.Reservations.ToList();
+                context.Reservations
+                    .Include("LibraryMember")
+                    .Include("LibraryMember.LocalLibrary")
+                    .Include("Book")
+                    .Where(reservation => reservation.PickupDeadline.Value < expirationDate)
+                    .ToList()
+                    .ForEach(reservation =>
+                    {
+                        MailService.MailService.SendBookReservationReminder(reservation.LibraryMember.Email, reservation.LibraryMember.Name, reservation.LibraryMember.LocalLibrary.Name, reservation.Book.Name, expirationDate);
+                    });
+            }
+        }
+
+        public List<ExportObjectDTO> BookExportObject(int libraryId)
+        {
+            using (var context = new AuthContext())
+            {
+
+                var books = context.Books
+                    .Include("Author")
+                    .Where(book => book.LocalLibrary.Id == libraryId)
+                    .ToList()
+                    .GroupBy(book => book.Name)
+                    .Select(ExportObjectDTO.FromData)
+                    .ToList();
+
+                return books;
+            }
+        }
     }
 }

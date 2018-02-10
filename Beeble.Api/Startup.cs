@@ -9,6 +9,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using Beeble.Api.Scheduler;
+using Beeble.Domain.Repositories;
 
 [assembly: OwinStartup(typeof(Beeble.Api.Startup))]
 namespace Beeble.Api
@@ -42,8 +43,16 @@ namespace Beeble.Api
             CreateRoles.Execute();
             Seed.Execute();
 
-            // One minute = 60 000 milliseconds
-            //SchedulerService.StartAction(60000, Actions.DeleteExpiredRegistrations);
+            var bookRepo = new BooksRepository();
+            //repo.GetBookBorrowExpirations();
+            //SchedulerService.StartAction(24, repo.GetBookBorrowExpirations);
+
+            var libraryRepo = new LibrariesRepository();
+            //libraryRepo.GetMembershipExpirations();
+            //SchedulerService.StartAction(24, libraryRepo.GetMembershipExpirations);
+
+            //bookRepo.GetBookReservationExpirations();
+            //SchedulerService.StartAction(2, libraryRepo.GetMembershipExpirations);
         }
 
     }

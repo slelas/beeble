@@ -23,6 +23,8 @@ namespace Beeble.Data.Models
 		public string BarcodeNumber { get; set; }
         public double LateReturnFee { get; set; }
         public string Keyword { get; set; }
+        public int BorrowCount { get; set; }
+        public int ReserveCount { get; set; }
 
 
 		public Author Author { get; set; }

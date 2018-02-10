@@ -745,5 +745,36 @@ namespace Beeble.Domain.Repositories
             }
 
         }
+
+        public int GetLibraryId(Guid? userId)
+        {
+            using (var context = new AuthContext())
+            {
+                return context.LocalLibraries
+                    .FirstOrDefault(localLibrary => localLibrary.Administrators.Select(admin => admin.Id)
+                        .ToList()
+                        .Contains(userId.ToString()))
+                    .Id;
+            }
+        }
+
+        public void GetMembershipExpirations()
+        {
+            using (var context = new AuthContext())
+            {
+                var expirationDate = DateTime.Now.AddDays(14);
+
+                context.LocalLibraryMembers
+                    .Include("LocalLibrary")
+                    .Where(member => member.MembershipExpiryDate < expirationDate)
+                    .ToList()
+                    .ForEach(member =>
+                    {
+                        MailService.MailService.SendMembershipExpiryReminder(member.Email, member.Name, member.LocalLibrary.Name, member.MembershipExpiryDate);
+                    });
+            }
+
+
+        }
     }
 }
