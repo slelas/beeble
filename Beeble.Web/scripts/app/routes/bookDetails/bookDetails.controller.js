@@ -1,5 +1,7 @@
 ﻿angular.module('myApp').controller('bookDetailsController',
-	function($scope, $stateParams, $state, bookSearchService, ngDialog, $rootScope, authService) {
+	function($scope, $stateParams, $state, bookSearchService, ngDialog, $rootScope, authService, getLibrariesService) {
+
+	    $scope.isLoggedIn = authService.authentication.isAuth;
 
 		$scope.loadBooks = function () {
 			bookSearchService.getBooksByName($stateParams.bookName, true).then(function (response) {
@@ -23,11 +25,13 @@
                 $state.go('search', { searchQuery: $scope.searchQuery });
             }
         };
-
         $scope.submitBarcode = function (library) {
             console.log(library.id, $scope.barcodeNumber);
+            if (!authService.authentication.isAuth) {
+                $scope.barcodeMessage = "Molimo da se prvo prijavite."
+            }
             getLibrariesService.submitBarcode(library.id, $scope.barcodeNumber).then(function (response) {
-                console.log(response.data);
+                $scope.barcodeMessage = response.data ? "Uspješno učlanjivanje." : "Barkod broj nije u redu";
             });
         };
 

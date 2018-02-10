@@ -22,104 +22,105 @@
             <span>REZERVIRANO</span>
         </button>
     </div>
-	<div class="profile__information" ng-show="tabName == 'profile'">
-		<div class="profile__information-wrapper">
-			<div class="information__photo">
-				<div class="profile__information-header">PROFILNA SLIKA</div>
-				<img ng-src="{{userImageUrl}}" alt="">
-			</div>
-			<div class="information__container">
-				<div class="information__basic">
-					<form name="userForm_personal" novalidate>
-						<div class="profile__information-header">OSOBNI PODATCI</div>
-						<label>IME</label>
-						<div class="form-group">
-							<input type="text" name="name" ng-model="user.name" required>
-							<div class="help-block" ng-messages="userForm_personal.name.$error" ng-if="userForm_personal.name.$touched">
-								<div ng-messages-include="validation-messages"></div>
-							</div>
-						</div>
-						<label>PREZIME</label>
-						<div class="form-group">
-							<input type="text" name="lastname" ng-model="user.lastName" required>
-							<div class="help-block" ng-messages="userForm_personal.lastname.$error" ng-if="userForm_personal.lastname.$touched">
-								<div ng-messages-include="validation-messages"></div>
-							</div>
-						</div>
-						<label>OIB</label>
-						<div class="form-group">
-							<input type="text" name="oib" ng-model="user.oib" required>
-							<div class="help-block" ng-messages="userForm_personal.oib.$error" ng-if="userForm_personal.oib.$touched">
-								<div ng-messages-include="validation-messages"></div>
-							</div>
-						</div>
-						<label>ADRESA</label>
-						<div class="form-group">
-							<input type="text" name="address" ng-model="user.address" required>
-							<div class="help-block" ng-messages="userForm_personal.address.$error" ng-if="userForm_personal.address.$touched">
-								<div ng-messages-include="validation-messages"></div>
-							</div>
-						</div>
-						<label>GRAD</label>
-						<div class="form-group">
-							<input type="text" name="city" ng-model="user.city" required>
-							<div class="help-block" ng-messages="userForm_personal.city.$error" ng-if="userForm_personal.city.$touched">
-								<div ng-messages-include="validation-messages"></div>
-							</div>
-						</div>
-						<label>BROJ MOBITELA</label>
-						<div class="form-group">
-							<input type="text" name="number" ng-model="user.phoneNumber" required>
-							<div class="help-block" ng-messages="userForm_personal.number.$error" ng-if="userForm_personal.number.$touched">
-								<div ng-messages-include="validation-messages"></div>
-							</div>
-						</div>
-						<button ng-click="save()" ng-disabled="userForm_personal.$invalid">POTVRDI</button>
-					</form>
-				</div>
-				<div class="information__account">
-					<form name="userForm_account" novalidate>
-						<div class="profile__information-header">E-MAIL ADRESA I PROMJENA LOZINKE</div>
-						<label>E-MAIL ADRESA</label>
-						<input type="email" placeholder="E-mail" name="email" ng-model="user.email" readonly>
-						<label>NOVA LOZINKA</label>
-						<div class="form-group">
-							<input type="text" name="password" ng-model="user.password" ng-minlength="6">
-							<div class="help-block" ng-messages="userForm_account.password.$error">
-								<div ng-messages-include="validation-messages"></div>
-							</div>
-						</div>
-						<label>PONOVI LOZINKU</label>
-						<div class="form-group">
-							<input type="text" name="confirmPassword" ng-model="user.confirmPassword" ng-pattern="{{user.password}}">
-							<div class="help-block" ng-messages="userForm_account.confirmPassword.$error" ng-if="userForm_account.confirmPassword.$touched">
-								<div ng-messages-include="validation-messages"></div>
-							</div>
-						</div>
-						<button ng-click="save()">POTVRDI</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="library-details__borrowed" ng-show="tabName == 'borrowedBooks'">
-		<span class="library-details__library-name">POSUĐENO</span>
-		<div class="library-details__borrowed-book" ng-repeat="book in user.borrowedBooks">
-			<img ng-src="{{book.imageUrl}}">
-			<div class="borrowed-book__name">{{book.name}}</div>
-			<div class="borrowed-book__author">{{book.author}}</div>
-			<div class="borrowed-book__return-date">Posuđeno do <span>{{book.returnDeadline}}</span></div>
-		</div>
-	</div>
-	
-	<div class="library-details__borrowed" ng-show="tabName == 'reservedBooks'">
-		<span class="library-details__library-name">REZERVIRANO</span>
-		<div class="library-details__borrowed-book" ng-repeat="reservation in user.reservations">
-			<img ng-src="{{reservation.book.imageUrl}}">
-			<div class="borrowed-book__name">{{reservation.book.name}}</div>
-			<div class="borrowed-book__author">{{reservation.book.author.name}}</div>
-			<div class="borrowed-book__return-date">Rezervirano do {{reservation.pickupDeadline | convertDateLong}}</div>
-		</div>
-	</div>
+    <div class="profile__information" ng-show="tabName == 'profile'">
+        <div class="profile__information-wrapper">
+            <div class="information__photo">
+                <div class="profile__information-header">PROFILNA SLIKA</div>
+                <img ng-src="{{userImageUrl}}" alt="">
+            </div>
+            <div class="information__container">
+                <div class="information__basic">
+                    <form name="userForm_personal" novalidate>
+                        <div class="profile__information-header">OSOBNI PODATCI</div>
+                        <label>IME</label>
+                        <div class="form-group">
+                            <input type="text" name="name" ng-model="user.name" required>
+                            <div class="help-block" ng-messages="userForm_personal.name.$error" ng-if="userForm_personal.name.$touched">
+                                <div ng-messages-include="validation-messages"></div>
+                            </div>
+                        </div>
+                        <label>PREZIME</label>
+                        <div class="form-group">
+                            <input type="text" name="lastname" ng-model="user.lastName" required>
+                            <div class="help-block" ng-messages="userForm_personal.lastname.$error" ng-if="userForm_personal.lastname.$touched">
+                                <div ng-messages-include="validation-messages"></div>
+                            </div>
+                        </div>
+                        <label>OIB</label>
+                        <div class="form-group">
+                            <input type="text" name="oib" ng-model="user.oib" required>
+                            <div class="help-block" ng-messages="userForm_personal.oib.$error" ng-if="userForm_personal.oib.$touched">
+                                <div ng-messages-include="validation-messages"></div>
+                            </div>
+                        </div>
+                        <label>ADRESA</label>
+                        <div class="form-group">
+                            <input type="text" name="address" ng-model="user.address" required>
+                            <div class="help-block" ng-messages="userForm_personal.address.$error" ng-if="userForm_personal.address.$touched">
+                                <div ng-messages-include="validation-messages"></div>
+                            </div>
+                        </div>
+                        <label>GRAD</label>
+                        <div class="form-group">
+                            <input type="text" name="city" ng-model="user.city" required>
+                            <div class="help-block" ng-messages="userForm_personal.city.$error" ng-if="userForm_personal.city.$touched">
+                                <div ng-messages-include="validation-messages"></div>
+                            </div>
+                        </div>
+                        <label>BROJ MOBITELA</label>
+                        <div class="form-group">
+                            <input type="text" name="number" ng-model="user.phoneNumber" required>
+                            <div class="help-block" ng-messages="userForm_personal.number.$error" ng-if="userForm_personal.number.$touched">
+                                <div ng-messages-include="validation-messages"></div>
+                            </div>
+                        </div>
+                        <button ng-click="save()" ng-disabled="userForm_personal.$invalid">POTVRDI</button>
+                    </form>
+                </div>
+                <div class="information__account">
+                    <form name="userForm_account" novalidate>
+                        <div class="profile__information-header">E-MAIL ADRESA I PROMJENA LOZINKE</div>
+                        <label>E-MAIL ADRESA</label>
+                        <input type="email" placeholder="E-mail" name="email" ng-model="user.email" readonly>
+                        <label>NOVA LOZINKA</label>
+                        <div class="form-group">
+                            <input type="password" name="password" ng-model="user.password" ng-minlength="6">
+                            <div class="help-block" ng-messages="userForm_account.password.$error">
+                                <div ng-messages-include="validation-messages"></div>
+                            </div>
+                        </div>
+                        <label>PONOVI LOZINKU</label>
+                        <div class="form-group">
+                            <input type="password" name="confirmPassword" ng-model="user.confirmPassword" ng-pattern="{{user.password}}">
+                            <div class="help-block" ng-messages="userForm_account.confirmPassword.$error" ng-if="userForm_account.confirmPassword.$touched">
+                                <div ng-messages-include="validation-messages"></div>
+                            </div>
+                        </div>
+                        <button ng-click="save()">POTVRDI</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div>{{message}}</div>
+    </div>
+
+    <div class="library-details__borrowed" ng-show="tabName == 'borrowedBooks'">
+        <span class="library-details__library-name">POSUĐENO</span>
+        <div class="library-details__borrowed-book" ng-repeat="book in user.borrowedBooks">
+            <img ng-src="{{book.imageUrl}}">
+            <div class="borrowed-book__name">{{book.name}}</div>
+            <div class="borrowed-book__author">{{book.author}}</div>
+            <div class="borrowed-book__return-date">Posuđeno do <span>{{book.returnDeadline}}</span></div>
+        </div>
+    </div>
+
+    <div class="library-details__borrowed" ng-show="tabName == 'reservedBooks'">
+        <span class="library-details__library-name">REZERVIRANO</span>
+        <div class="library-details__borrowed-book" ng-repeat="reservation in user.reservations">
+            <img ng-src="{{reservation.book.imageUrl}}">
+            <div class="borrowed-book__name">{{reservation.book.name}}</div>
+            <div class="borrowed-book__author">{{reservation.book.author.name}}</div>
+            <div class="borrowed-book__return-date">Rezervirano do {{reservation.pickupDeadline | convertDateLong}}</div>
+        </div>
+    </div>
 </div>

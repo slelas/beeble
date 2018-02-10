@@ -113,7 +113,7 @@
 
             $timeout(function () {
                 $scope.returnMessage = null;
-            }, 7000);
+            }, 3000);
         });
         
     }
