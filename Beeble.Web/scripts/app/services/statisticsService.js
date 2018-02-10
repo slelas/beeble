@@ -28,7 +28,6 @@
                 return results;
             });
         }
-        // debug case camel
         function GetLibraryActiveYears() {
 
             return $http.get(serviceBase + 'api/libraries/get-active-years').then(function (results) {

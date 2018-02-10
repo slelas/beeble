@@ -96,16 +96,5 @@ namespace Beeble.Api.Controllers
         {
             return repo.GetAllLanguages();
         }
-
-        /*[HttpGet]
-		[Authorize]
-		[Route("get-libraries")]
-		public List<LocalLibrary> GetLocalLibraries()
-		{
-			var a = UserId;
-			return null;
-			//OnlineUser user = RequestContext.Principal.Identity
-			//GetUserPrincipal
-		}*/
     }
 }

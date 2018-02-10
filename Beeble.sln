@@ -1,14 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beeble.Web", "Beeble.Web\Beeble.Web.csproj", "{2F2F8D30-AEAA-45BD-A489-C9DC001427F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{81C09405-6710-41D7-9914-F693FD8F5841}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		Todo.txt = Todo.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beeble.Api", "Beeble.Api\Beeble.Api.csproj", "{A0D08310-F518-4CCD-AAA5-EEFF2F0D37E8}"

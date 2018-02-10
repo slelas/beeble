@@ -144,8 +144,6 @@ namespace Beeble.Domain.Repositories
                     WasPreviouslyReserved = booksToBorrow.Any(book => book.IsReserved)
                 });
 
-                //debug
-                //booksToBorrow = booksToBorrow.GroupBy(x => x.Name).Select(y => y.FirstOrDefault()).ToList();
 
                 foreach (var book in booksToBorrow)
                 {
@@ -754,10 +752,6 @@ namespace Beeble.Domain.Repositories
 
             using (var context = new AuthContext())
             {
-                //var library = context.LocalLibraries
-                //                        .FirstOrDefault(localLibrary => localLibrary.Administrators.Select(admin => admin.Id).ToList().Contains(userId.ToString()));
-
-                //debug
                 var library = context.LocalLibraries.FirstOrDefault(lib => lib.Name == "Marko Marulic");
 
                 for (int i = library.YearEnrolled; i <= DateTime.Now.Year; i++)

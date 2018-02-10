@@ -59,7 +59,6 @@ namespace Beeble.Api.Controllers
                     booksRepo.AddNewBook(formData, blobUrl, UserId);
                 else if (containerName == "members")
                     librariesRepo.AddNewLibraryMember(formData, blobUrl, UserId);
-                //exception u suptrotonm? //Debug
 			}
             catch (Exception e)
             {

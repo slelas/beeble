@@ -58,7 +58,7 @@ namespace Beeble.Api.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         [Route("get-member-by-barcode")]
         public ShortLLMemberUserDTO getMemberById(string memberBarcode)
         {
@@ -66,7 +66,7 @@ namespace Beeble.Api.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles="Admin")]
+        [Authorize(Roles="Admin")]
         [Route("lend-return")]
         public bool LendAndReturnScanned([FromUri] List<string> bookBarcodes, string memberBarcode = null)
         {
@@ -74,7 +74,7 @@ namespace Beeble.Api.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [Route("get-book-list")]
         public List<LibraryBookDTO> GetBookList(string sortOption, bool descending, string searchQuery, int pageNumber)
         {
@@ -82,7 +82,7 @@ namespace Beeble.Api.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [Route("get-member-list")]
         public List<LocalLibraryMemberDTO> GetMemberList(string sortOption, bool descending, string searchQuery,
             int pageNumber)
@@ -91,7 +91,7 @@ namespace Beeble.Api.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [Route("get-categories-stats")]
         public List<List<string>> GetCategoriesStats()
         {
@@ -99,6 +99,7 @@ namespace Beeble.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("get-borrowed-reserved-monthly")]
         public List<List<string>> GetBorrowedReservedStats(int year)
         {
@@ -106,6 +107,7 @@ namespace Beeble.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("get-borrowed-week")]
         public List<List<string>> GetBorrowedInWeek()
         {
@@ -113,6 +115,7 @@ namespace Beeble.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("get-reserved-week")]
         public int GetReservedCountInWeek()
         {
@@ -120,6 +123,7 @@ namespace Beeble.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("get-library-name")]
         public string GetLibraryName()
         {
@@ -127,6 +131,7 @@ namespace Beeble.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("get-active-years")]
         public List<int> GetLibraryActiveYears()
         {
@@ -134,7 +139,7 @@ namespace Beeble.Api.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [Route("get-library-id")]
         public int GetLibraryId()
         {
