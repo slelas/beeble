@@ -1,12 +1,5 @@
 ﻿<customheader></customheader>
 
-<!-- Stipe, s ovin u css. U klasi profile__bar-category izbrisi background color, ali ostavi border-top-left-radius -->
-<style>
-    .activeTab {
-        background-color: #b59a56;
-    }
-</style>
-
 <div class="profile__container">
     <div class="profile__bar">
         <button ng-click="switchTab('profile')" class="profile__bar-category" ng-class="profileTab">
@@ -28,6 +21,7 @@
                 <div class="profile__information-header">PROFILNA SLIKA</div>
                 <img ng-src="{{userImageUrl}}" alt="">
             </div>
+            <div class="error-message">{{message}}</div>
             <div class="information__container">
                 <div class="information__basic">
                     <form name="userForm_personal" novalidate>
@@ -101,7 +95,6 @@
                 </div>
             </div>
         </div>
-        <div>{{message}}</div>
     </div>
 
     <div class="library-details__borrowed" ng-show="tabName == 'borrowedBooks'">

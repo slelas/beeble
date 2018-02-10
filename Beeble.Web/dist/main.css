@@ -1032,12 +1032,18 @@ a {
     margin-bottom: 10px;
     display: block; }
 
+.activeTab {
+  background-color: #b59a56; }
+
 .profile__information-wrapper {
   margin: 25px; }
+  .profile__information-wrapper .error-message {
+    margin-top: 10px;
+    font-weight: 500;
+    color: red; }
 
 .profile__information-header {
   font-size: 18px;
-  color: #b59a56;
   font-weight: 600; }
 
 .information__photo .profile__information-header {
