@@ -3,6 +3,7 @@ angular.module('myApp').config(function ($stateProvider) {
         .state('statistics', {
             url: '/statistics',
             controller: 'statisticsController',
-            templateUrl: 'scripts/app/routes/statistics/statistics.template.html'
+            templateUrl: 'scripts/app/routes/statistics/statistics.template.html',
+            parent: 'userLoggedIn'
         });
 });

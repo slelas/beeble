@@ -21,6 +21,13 @@
                 return results;
             });
         }
+
+        function getReservedCountInWeek() {
+
+            return $http.get(serviceBase + 'api/libraries/get-reserved-week').then(function (results) {
+                return results;
+            });
+        }
         // debug case camel
         function GetLibraryActiveYears() {
 
@@ -36,6 +43,13 @@
             });
         }
 
+        function getLibraryName() {
+
+            return $http.get(serviceBase + 'api/libraries/get-library-name').then(function (results) {
+                return results;
+            });
+        }
+
 
         var statisticsFactory = {};
         statisticsFactory.getCategoriesStats = getCategoriesStats;
@@ -43,6 +57,8 @@
         statisticsFactory.getBorrowedInWeek = getBorrowedInWeek;
         statisticsFactory.GetLibraryActiveYears = GetLibraryActiveYears;
         statisticsFactory.getLibraryId = getLibraryId;
+        statisticsFactory.getReservedCountInWeek = getReservedCountInWeek;
+        statisticsFactory.getLibraryName = getLibraryName;
 
         return statisticsFactory;
     });

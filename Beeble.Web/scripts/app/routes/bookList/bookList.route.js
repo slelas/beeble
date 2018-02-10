@@ -3,6 +3,7 @@
 		.state('bookList', {
 			url: '/book-list',
 			controller: 'bookListController',
-			templateUrl: 'scripts/app/routes/bookList/bookList.template.html'
+            templateUrl: 'scripts/app/routes/bookList/bookList.template.html',
+			parent: 'userLoggedIn'
 		});
 });

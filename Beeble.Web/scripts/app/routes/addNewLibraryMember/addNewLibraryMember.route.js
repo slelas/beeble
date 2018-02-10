@@ -3,6 +3,7 @@
 		.state('addNewMember', {
 			url: '/new-member',
 			controller: 'addNewLibraryMemberController',
-			templateUrl: 'scripts/app/routes/addNewLibraryMember/addNewLibraryMember.template.html'
+            templateUrl: 'scripts/app/routes/addNewLibraryMember/addNewLibraryMember.template.html',
+			parent: 'userLoggedIn'
 		});
 });

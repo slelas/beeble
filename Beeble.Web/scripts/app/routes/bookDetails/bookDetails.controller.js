@@ -9,7 +9,7 @@
             $scope.book = $scope.nonMemberBooks[0] || $scope.memberBooks[0];
 			});
 		}
-
+        window.scrollTo(0, 0);
 		$scope.getBookNumbers = function() {
 			bookSearchService.getBookNumbers($stateParams.bookName).then(function (response) {
 

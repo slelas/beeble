@@ -1,9 +1,9 @@
 ﻿<div class="statistics">
-  <h1 class="statistics__header">GK Marko Marulić</h1>
+    <h1 class="statistics__header">{{libraryName}}</h1>
   <button class="statistics__button" ng-click="export()">EKSPORT PODATAKA</button>
   <div class="statistics__general">
     <div><span>{{borrowedInWeekCount}} posuđenih knjiga</span><br>U POSLJEDNJIH 7 DANA</div>
-    <div><span>328 korisnika</span><br>U POSLJEDNJIH 7 DANA</div>
+    <div><span>{{borrowedInWeekCount}} korisnika</span><br>U POSLJEDNJIH 30 DANA</div>
   </div>
     <div ng-repeat="year in years">
         <div ng-click="updateYear(year)">{{year}}</div>

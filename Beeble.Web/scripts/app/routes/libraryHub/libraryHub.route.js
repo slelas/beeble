@@ -3,6 +3,7 @@
 		.state('libraryHub', {
 			url: '/libraryhub',
 			controller: 'libraryHubController',
-			templateUrl: 'scripts/app/routes/libraryHub/libraryHub.template.html'
+            templateUrl: 'scripts/app/routes/libraryHub/libraryHub.template.html',
+			parent: 'userLoggedIn'
 		});
 });

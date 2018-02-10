@@ -4,6 +4,7 @@
             url: '/signup',
             controller: 'signupController',
             templateUrl: 'scripts/app/routes/signup/signup.template.html',
+            parent: 'userNotLoggedIn',
             onEnter: function ($rootScope) {
                 $rootScope.isPageWithValidation = true;
             },

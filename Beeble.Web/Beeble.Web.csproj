@@ -88,6 +88,7 @@
     <Content Include="images\register-icon.png" />
     <Content Include="images\search-icon.png" />
     <Content Include="images\steve-jobs-cover.png" />
+    <Content Include="scripts\app\abstract\user.notloggedin.js" />
     <Content Include="scripts\app\abstract\user.loggedin.js" />
     <Content Include="scripts\app\constants\barcodeGeneratorBase.js" />
     <Content Include="scripts\app\constants\serviceBase.js" />

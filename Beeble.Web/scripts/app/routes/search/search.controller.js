@@ -10,7 +10,7 @@
 	$scope.searchButton = function () {
 		$scope.selectedFilters = new Array();
 		$scope.search();
-	};
+    };
 
 	$scope.search = function() {
 
@@ -48,7 +48,9 @@
             $scope.preloadMoreResults();
         });
 
-    };
+	    localStorage.setItem('searchQuery', $scope.searchQuery);
+
+	};
 
 	$scope.preloadMoreResults = function() {
 
@@ -79,17 +81,13 @@
 		$scope.search();
 	};
 
-	// invoked upon route loading
-	($scope.init = function () {
+    window.scrollTo(0, 0);
+    if ($stateParams.searchQuery) {
+        $scope.searchQuery = $stateParams.searchQuery;
+    }
+    else if (!$scope.searchQuery) {
+        $scope.searchQuery = localStorage.getItem('searchQuery');
+    }
+    $scope.search();
 
-		if ($stateParams.searchQuery) {
-			$scope.searchQuery = $stateParams.searchQuery;
-            $scope.search();
-		}
-		// for debugging purposes:
-		else {
-			$scope.searchQuery = 'A';
-		}
-
-	})();
 }]);

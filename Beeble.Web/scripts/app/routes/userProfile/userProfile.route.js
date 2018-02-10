@@ -4,6 +4,7 @@
             url: '/profile',
 			controller: 'userProfileController',
             templateUrl: 'scripts/app/routes/userProfile/userProfile.template.html',
+            parent: 'userLoggedIn',
             onEnter: function ($rootScope) {
                 $rootScope.isPageWithValidation = true;
             },
