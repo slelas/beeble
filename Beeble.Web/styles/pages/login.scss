@@ -3,10 +3,12 @@
     height: 100vh;
     justify-content: center;
     align-items: center;
+    overflow-y: hidden;
 }
 
 .login .logo {
     font-size: 52px;
+    cursor: default;
 }
 
 .login__content {

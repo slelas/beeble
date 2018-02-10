@@ -40,7 +40,7 @@
                 <div class="book-list__book-expand" ng-show="member.isClicked">
                     <div class="book-expand__item">
                         <span>Posuđene knjige</span>
-                        <div ng-hide="member.borrowedBooks.length">Nema posuđenih knjiga.</div>
+                        <div class="book-expand__book" ng-hide="member.borrowedBooks.length">Nema posuđenih knjiga.</div>
                         <div ng-repeat="book in member.borrowedBooks">
                             <div class="book-expand__book">
                                 <div class="book__name">{{book.name}}</div>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="book-expand__item">
                         <span>Rezervirane knjige</span>
-                        <div ng-hide="member.reservations.length">Nema rezervacija.</div>
+                        <div class="book-expand__book" ng-hide="member.reservations.length">Nema rezervacija.</div>
                         <div ng-repeat="reservation in member.reservations">
                             <div class="book-expand__book">
                                 <div class="book__name">{{reservation.book.name}}</div>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="book-expand__item">
                         <span>Zakašnjele knjige</span>
-                        <div ng-hide="member.lateBooks.length">Nema zakašnjelih knjiga.</div>
+                        <div class="book-expand__book" ng-hide="member.lateBooks.length">Nema zakašnjelih knjiga.</div>
                         <div ng-repeat="book in member.lateBooks">
                             <div class="book-expand__book">
                                 <div class="book__name">{{book.name}}</div>
@@ -82,8 +82,7 @@
                     </div>
                 </div>
             </div>
+            <button class="show-more__button" ng-click="loadMoreMembers()">Prikaži više rezultata</button>
         </div>
     </div>
 </div>
-
-<button ng-click="loadMoreMembers()">show more results</button>

@@ -16,6 +16,7 @@
 
 .homepage .logo {
     margin-bottom: 30px;
+    cursor: default;
 }
 
 .homepage__container {
@@ -112,6 +113,15 @@
 
     &:hover {
         background-color: #c9ae6b;
+    }
+}
+
+.homepage__login-info {
+    line-height: 2;
+    margin-top: 25px;
+
+    span {
+        font-weight: 600;
     }
 }
 

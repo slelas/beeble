@@ -23,3 +23,10 @@ a {
     font-size: 80px;
     font-weight: 900;
 }
+
+[ng-click],
+[data-ng-click],
+[x-ng-click],
+[ui-sref] {
+    cursor: pointer;
+}
