@@ -6,11 +6,19 @@
 			<input class="login__password-input" type="password" placeholder="Lozinka" ng-model="loginData.password" ng-keyup="$event.keyCode == 13 && login()" />
 			<button class="login__button" ng-click="login()">PRIJAVA</button>
 		</div>
-		<div class="login__wrapper">
-			<div class="login__remember-me">
-				<input type="checkbox" ng-model="isUserRemembered" />
-				<span>Zapamti me</span>
-			</div>
-		</div>
+	    <div class="login__wrapper">
+	        <div class="login__remember-me">
+	            <input type="checkbox" ng-model="isUserRemembered" />
+	            <span>Zapamti me</span>
+	        </div>
+	    </div>
+    <br/><div>
+        Hvala što isprobavate Beeble. U svrhe testiranja, predlažemo da iskoristite sljedeće pristupne podatke:
+        <div><br />
+            KORISNIK PODATCI: email: josip@dump.hr, lozinka: password123456
+            <br /><br />
+            ADMIN PODATCI: email: zvonimird@dump.hr, lozinka: password123456
+        </div>
+    </div>
 	</div>
 </div>
