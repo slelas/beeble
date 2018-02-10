@@ -5,9 +5,9 @@
     <div><span>{{borrowedInWeekCount}} posuđenih knjiga</span><br>U POSLJEDNJIH 7 DANA</div>
     <div><span>{{borrowedInWeekCount}} korisnika</span><br>U POSLJEDNJIH 30 DANA</div>
   </div>
-    <div ng-repeat="year in years">
-        <div ng-click="updateYear(year)">{{year}}</div>
-    </div>
+  <div class="statistics__years" ng-repeat="year in years">
+    <div class="statistics__year" ng-click="updateYear(year)">{{year}}</div>
+  </div>
   <div class="statistics__wrapper">
     <div class="statistics__item">
       <span class="statistics__description">UDIO KNJIGA PO KATEGORIJAMA</span>

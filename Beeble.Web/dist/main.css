@@ -2437,6 +2437,12 @@ a {
 .statistics__button {
   display: none; }
 
+.statistics__years {
+  margin-top: 25px;
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: 500; }
+
 @media screen and (min-width: 1024px) {
   .statistics__button {
     display: inline-block;
