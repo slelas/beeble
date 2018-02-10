@@ -47,13 +47,13 @@ namespace Beeble.Api
             var libraryRepo = new LibrariesRepository();
 
 
-            //bookRepo.GetBookBorrowExpirations();
+            bookRepo.GetBookBorrowExpirations();
             SchedulerService.StartAction(24, bookRepo.GetBookBorrowExpirations);
 
-            //libraryRepo.GetMembershipExpirations();
+            libraryRepo.GetMembershipExpirations();
             SchedulerService.StartAction(24, libraryRepo.GetMembershipExpirations);
 
-            //bookRepo.GetBookReservationExpirations();
+            bookRepo.GetBookReservationExpirations();
             SchedulerService.StartAction(2, bookRepo.GetBookReservationExpirations);
         }
 
