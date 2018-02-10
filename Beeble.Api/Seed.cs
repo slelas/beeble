@@ -23,10 +23,10 @@ namespace Beeble.Api
                     var adminUser = new OnlineUser()
                     {
                         Email = "zvonimird@dump.hr",
-                        UserName = "zdelas",
+                        UserName = "zvonimird@dump.hr",
                     };
 
-                    _userManager.Create(adminUser, "123456nova");
+                    _userManager.Create(adminUser, "password123456");
                     _userManager.AddToRole(adminUser.Id, "Admin");
 
                     var regularUser = new OnlineUser()
@@ -49,10 +49,10 @@ namespace Beeble.Api
                         LocalLibraryMembers = new List<LocalLibraryMember>()
                     };
 
-                    _userManager.Create(regularUser, "123456nova");
+                    _userManager.Create(regularUser, "password123456");
                     _userManager.AddToRole(regularUser.Id, "User");
 
-                    _userManager.Create(regularUser2, "123456nova");
+                    _userManager.Create(regularUser2, "password123456");
                     _userManager.AddToRole(regularUser2.Id, "User");
 
                     #region Category seed
