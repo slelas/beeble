@@ -10,7 +10,6 @@
 		bookSearchService.getAllCategories().then(function(response) {
 
 			$scope.categories = response.data;
-			console.log($scope.categories);
 		});
 
 		bookSearchService.getAllNationalities().then(function(response) {

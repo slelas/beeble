@@ -78,15 +78,12 @@ app.factory('bookSearchService', function ($http, $q, serviceBase) {
 	}
 
 	function getBookForOneTime(libraryId, bookName, authorName) {
-		console.log(libraryId, bookName, authorName);
 		return $http.get(serviceBase + 'api/search/get-one-time-borrow', { params: { libraryId: libraryId, bookName: bookName, authorName: authorName } }).then(function (results) {
 			return results;
 		});
 	}
 
     function getBookByBarcode(bookBarcode) {
-        console.log('testtt');
-		console.log('bookid ' + bookBarcode);
 		return $http.get(serviceBase + 'api/search/get-by-barcode', { params: { bookBarcode: bookBarcode } }).then(function (results) {
 			return results;
 		});

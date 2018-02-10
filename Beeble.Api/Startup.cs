@@ -44,15 +44,17 @@ namespace Beeble.Api
             Seed.Execute();
 
             var bookRepo = new BooksRepository();
-            //repo.GetBookBorrowExpirations();
-            //SchedulerService.StartAction(24, repo.GetBookBorrowExpirations);
-
             var libraryRepo = new LibrariesRepository();
+
+
+            //bookRepo.GetBookBorrowExpirations();
+            SchedulerService.StartAction(24, bookRepo.GetBookBorrowExpirations);
+
             //libraryRepo.GetMembershipExpirations();
-            //SchedulerService.StartAction(24, libraryRepo.GetMembershipExpirations);
+            SchedulerService.StartAction(24, libraryRepo.GetMembershipExpirations);
 
             //bookRepo.GetBookReservationExpirations();
-            //SchedulerService.StartAction(2, libraryRepo.GetMembershipExpirations);
+            SchedulerService.StartAction(2, bookRepo.GetBookReservationExpirations);
         }
 
     }

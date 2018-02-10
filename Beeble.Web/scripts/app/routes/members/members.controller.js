@@ -13,10 +13,8 @@
                 descending = !descending;
 
             lastPickedOption = sortName;
-            console.log($scope.searchQuery)
             pageNumber = 0;
             getLibrariesService.getMemberList(sortName, descending, $scope.searchQuery, pageNumber).then(function (response) {
-                console.log(response.data);
                 $scope.members = response.data;
             });
 
@@ -27,7 +25,6 @@
             var sortOption = lastPickedOption || 'name';
             pageNumber = 0;
             getLibrariesService.getMemberList(sortOption, descending, $scope.searchQuery, pageNumber).then(function (response) {
-                console.log(response.data);
                 $scope.members = response.data;
             });
 
@@ -39,7 +36,6 @@
             var sortOption = lastPickedOption || 'name';
 
             getLibrariesService.getMemberList(sortOption, descending, $scope.searchQuery, ++pageNumber).then(function (response) {
-                console.log(response.data);
                 $scope.members = $scope.members.concat(response.data);
             });
         }
@@ -49,10 +45,7 @@
         }
 
         $scope.showDetails = function(memberId){
-            // var member = $scope.members.find(member => member.id == memberId);
-            console.log(memberId);
             var member = $scope.members[memberId];
-            console.log(member);
             member.isClicked = !member.isClicked;
 
         }

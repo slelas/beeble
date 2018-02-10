@@ -111,6 +111,8 @@
             <div class="borrowed-book__name">{{book.name}}</div>
             <div class="borrowed-book__author">{{book.author}}</div>
             <div class="borrowed-book__return-date">Posuđeno do <span>{{book.returnDeadline}}</span></div>
+            <br/>
+            <paypal ng-show="date - book.returnDeadline.setHours(0, 0, 0, 0) < 0"></paypal>
         </div>
     </div>
 

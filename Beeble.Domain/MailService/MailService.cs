@@ -38,7 +38,7 @@ namespace Beeble.Domain.MailService
                 Name = name,
                 LibraryName = libraryName,
                 BookName = bookName ?? "(Pogledajte profil)",
-                RemainingDays = (int)((expiryDate - DateTime.Now).Value.TotalDays)
+                RemainingDays = (int)((expiryDate - DateTime.Now).Value.TotalDays)+1
             };
 
             email.To(emailAddress)

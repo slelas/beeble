@@ -10,13 +10,11 @@
 
 
         statisticsService.getCategoriesStats().then(function (response) {
-            console.log(response.data);
             $scope.labels = response.data[0];
             $scope.data = response.data[1];
         });
 
         statisticsService.getBorrowedReservedStats(year).then(function (response) {
-            console.log(response.data);
             $scope.data2 = response.data;
 
         });
@@ -40,13 +38,12 @@
         });
 
         statisticsService.GetLibraryActiveYears().then(function (response) {
-            console.log(response.data);
             $scope.years = response.data;
         });
 
     }
 
-    $scope.updateYear(2017); //debug u current year
+    $scope.updateYear((new Date()).getFullYear()-1);
 
     $scope.labels2 = ['Siječanj', 'Veljača', 'Ožujak', 'Travanj', 'Svibanj', 'Lipanj', 'Srpanj', 'Kolovoz', 'Rujan', 'Listopad', 'Studeni', 'Prosinac'];
     $scope.series = ['Posuđene knjige', 'Rezervirane knjige'];
@@ -56,7 +53,6 @@
     $scope.series3 = ['Broj ukupno posuđenih knjiga'];
 
     $scope.onClick = function (points, evt) {
-        console.log(points, evt);
     };
     $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
     $scope.options3 = {
@@ -74,7 +70,6 @@
 
     $scope.export = function(){
         statisticsService.getLibraryId().then(function (response) {
-            console.log(response.data);
             getExportData(1);
         });
     }

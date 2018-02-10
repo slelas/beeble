@@ -4,7 +4,6 @@
         var uploadUrl = serviceBase + 'blob';
 
         $scope.save = function () {
-            console.log('test');
             var file = $scope.picFile;
             file.upload = Upload.upload({
                 url: uploadUrl,

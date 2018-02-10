@@ -3,6 +3,9 @@
  * License: MIT
  * Date: June 23, 2014
  */
+
+// this directive is custom written, but built on top of an existing vendor file
+
 (function (window, angular) {
     'use strict';
 

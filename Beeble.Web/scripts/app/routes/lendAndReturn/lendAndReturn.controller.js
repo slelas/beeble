@@ -48,12 +48,10 @@
 
     $scope.processScannedBarcode = function (barcode) {
         console.log('BARCODE IS: ' + barcode);
-        console.log(typeof (barcode));
 
         if (scanOption === 'member') {
 
             getLibrariesService.getLibraryMember(barcode).then(function (response) {
-                console.log(response.data);
                 $scope.member = response.data;
                 $scope.errorMessage = null;
                 $scope.changeScanOption('book');
@@ -62,7 +60,6 @@
         else if (scanOption === 'book') {
 
             bookSearchService.getBookByBarcode(barcode).then(function (response) {
-                console.log(response.data);
 
                 var bookIds = $scope.books.map(function (item) {
                     return item.id;
@@ -99,9 +96,7 @@
         var bookBarcodes = $scope.books.map(function (item) {
             return item.barcodeNumber;
         });
-        console.log(memberBarcodeNumber)
         getLibrariesService.lendAndReturnScanned(bookBarcodes, memberBarcodeNumber).then(function (response) {
-            console.log(response.data);
             if (response.data) {
                 $scope.books = [];
                 $scope.member = [];
@@ -126,36 +121,8 @@
         $scope.member = [];
     }
 
-
+    // for testing purposes
     angular.element($window).on('keypress', function (e) {
-        console.log(e.key);
-
-        if (e.key == 'c') {
-            $scope.books.push(
-                {
-                    name: 'Superhrana',
-                    author: { name: 'Jamie Oliver' },
-                    imageUrl: 'http://mozaik-knjiga.hr/wp-content/uploads/2017/10/Superhrana-za-svaki-dan-J.Oliver-234x300.jpg'
-                });
-        }
-
-        if (e.key == 'v') {
-            $scope.books.push(
-                {
-                    name: 'C# 7.0 za programere',
-                    author: { name: 'Joseph Albahari & Ben Albahari' },
-                    imageUrl: 'https://covers.oreillystatic.com/images/0636920083634/lrg.jpg'
-                });
-        }
-
-        if (e.key == 'b') {
-            $scope.books.push(
-                {
-                    name: 'Dizajn danas!',
-                    author: { name: 'Charlotte & Peter Fiell' },
-                    imageUrl: 'http://verbum.hr/images/artikli/velike/5518.jpg'
-                });
-        }
 
         if (e.key == 'n') {
             $scope.processScannedBarcode(12345678901);

@@ -11,7 +11,6 @@ var app = angular.module('myApp').controller("oneTimeBorrowController", function
                 ') - ONE-TIME BORROWING';
             $scope.price = $scope.book.localLibrary.guestBorrowPrice;
 
-            console.log($scope.book);
 		});
 
 });

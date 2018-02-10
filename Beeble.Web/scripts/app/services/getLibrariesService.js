@@ -43,15 +43,12 @@
     }
 
     function lendAndReturnScanned(bookBarcodes, memberBarcode) {
-        console.log(memberBarcode);
-        console.log(bookBarcodes);
         return $http.get(serviceBase + 'api/libraries/lend-return', { params: { bookBarcodes: bookBarcodes, memberBarcode: memberBarcode } }).then(function (results) {
             return results;
         });
     }
 
     function getBookList(sortOption, descending, searchQuery, pageNumber) {
-        console.log(sortOption)
 
         if (!searchQuery)
             searchQuery = "";
@@ -62,7 +59,6 @@
     }
 
     function getMemberList(sortOption, descending, searchQuery, pageNumber) {
-        console.log(sortOption)
 
         if (!searchQuery)
             searchQuery = "";

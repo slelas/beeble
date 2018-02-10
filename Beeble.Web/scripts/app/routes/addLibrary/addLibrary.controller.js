@@ -20,9 +20,7 @@
         }
 
         $scope.submitBarcode = function (library) {
-            console.log(library.id, $scope.barcodeNumber);
             getLibrariesService.submitBarcode(library.id, $scope.barcodeNumber).then(function (response) {
-                console.log(response.data);
             });
         };
 

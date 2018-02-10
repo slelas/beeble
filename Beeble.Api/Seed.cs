@@ -1220,8 +1220,8 @@ namespace Beeble.Api
                     var batchOfBorrowedBooks1 = new BatchOfBorrowedBooks()
                     {
                         LibraryMember = localLibraryMember1,
-                        PickupDate = new DateTime(2018, 1, 2),
-                        ReturnDeadline = new DateTime(2018, 3, 2),
+                        PickupDate = new DateTime(2018, 1, 15),
+                        ReturnDeadline = new DateTime(2018, 2, 15),
                         Books = new List<Book> { book1, book2 },
                     };
 
@@ -1267,10 +1267,11 @@ namespace Beeble.Api
                     {
                         LibraryMember = localLibraryMember2,
                         PickupDeadline = new DateTime(2018, 4, 2),
-                        Book = book7
+                        Book = book8
                     };
                     #endregion
 
+                    #region Stats seed
                     var random = new Random();
 
                     var listOfAllBorrowedBooks = new List<BorrowedBooksAll>();
@@ -1355,6 +1356,7 @@ namespace Beeble.Api
                                 });
                         }
                     }
+                    #endregion
 
                     context.Categories.Add(category1);
                     context.Categories.Add(category2);
