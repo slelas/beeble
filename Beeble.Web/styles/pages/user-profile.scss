@@ -69,13 +69,22 @@
     }
 }
 
+.activeTab {
+    background-color: #b59a56;
+}
+
 .profile__information-wrapper {
     margin: 25px;
+
+    .error-message {
+        margin-top: 10px;
+        font-weight: 500;
+        color: red
+    }
 }
 
 .profile__information-header {
     font-size: 18px;
-    color: #b59a56;
     font-weight: 600;
 }
 

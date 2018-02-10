@@ -34,7 +34,6 @@
             <div class="book-list__item">{{book.numberOfReservedBooks}}</div>
             <div class="book-list__item">{{book.damageLevel | convertBookDamage}}</div>
         </div>
+        <button class="show-more__button" ng-click="loadMoreBooks()">Prikaži više rezultata</button>
     </div>
 </div>
-
-<button ng-click="loadMoreBooks()">show more results</button>
