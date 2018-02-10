@@ -15,8 +15,13 @@
             <div class="library__member__description">
                 Ukoliko ste već član ove knjižnice, upišite svoj broj iskaznice i besplatno digitalizirajte svoje članstvo.
             </div>
+            <br/>
+            <div ng-hide="isLoggedIn">Molimo da se prvo prijavite.</div>
             <input type="text" ng-model="barcodeNumber">
-            <button ng-click="submitBarcode(library)">POTVRDI</button>
+            <button ng-click="submitBarcode(library)" ng-disabled="!isLoggedIn">POTVRDI</button>
+            <br/>
+            <br/>
+            <div>{{barcodeMessage}}</div>
         </div>
     </div>
 </div>
@@ -105,8 +110,6 @@
         </div>
     </div>
 </div>
-
-<!-- ng-click="reserveBook(book.localLibrary.name, book.localLibrary.reservationDuration, book.localLibrary.id)" -->
 
 <div class="popup" ng-show="showReservation">
     <div class="popup__container">

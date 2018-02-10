@@ -724,6 +724,30 @@ namespace Beeble.Domain.Repositories
             }
         }
 
+        public int GetReservedCountInWeek()
+        {
+            var lastWeekDate = DateTime.Now.AddDays(-7);
+
+            using (var context = new AuthContext())
+            {
+                return context.ReservedBooksAll
+                    .Count(reservation => reservation.TimeStamp > lastWeekDate);
+            }
+        }
+
+        public string GetLibraryName(Guid? userId)
+        {
+            using (var context = new AuthContext())
+            {
+                return context.LocalLibraries
+                    .FirstOrDefault(library => library.Administrators
+                        .Select(admin => admin.Id)
+                        .ToList()
+                        .Contains(userId.ToString()))
+                    .Name;
+            }
+        }
+
         public List<int> GetLibraryActiveYears(Guid? userId)
         {
             var activeYears = new List<int>();

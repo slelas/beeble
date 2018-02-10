@@ -3,7 +3,7 @@
         .state('userLoggedIn', {
             abstract: true,
             template: '<ui-view/>',
-            onEnter: function (authService, $location, $trace) {
+            onEnter: function (authService, $location) {
                 if (!authService.authentication.isAuth)
                     $location.path('login');
             }

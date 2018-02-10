@@ -113,6 +113,20 @@ namespace Beeble.Api.Controllers
         }
 
         [HttpGet]
+        [Route("get-reserved-week")]
+        public int GetReservedCountInWeek()
+        {
+            return repo.GetReservedCountInWeek();
+        }
+
+        [HttpGet]
+        [Route("get-library-name")]
+        public string GetLibraryName()
+        {
+            return repo.GetLibraryName(UserId);
+        }
+
+        [HttpGet]
         [Route("get-active-years")]
         public List<int> GetLibraryActiveYears()
         {

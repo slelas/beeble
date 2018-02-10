@@ -1,7 +1,7 @@
 ﻿angular.module('myApp').controller('userProfileController',
 	[
-		'$scope', '$state', '$location', 'authService', 'userService',
-		function($scope, $state, $location, authService, userService) {
+		'$scope', '$state', '$location', 'authService', 'userService','$timeout',
+		function($scope, $state, $location, authService, userService, $timeout) {
 			userService.getUser().then(function(response) {
 				$scope.user = response.data;
 				console.log(response.data);
@@ -16,8 +16,12 @@
 
 				userService.editUser($scope.user)
 					.then(function(result) {
-						console.log(result);
-					});
+				        $scope.message = result.data ? "Podatci su uspješno promijenjeni." : "Podatci nisu promijenjeni. Pokušajte osvježiti stranicu.";
+                    });
+
+			    $timeout(function () {
+			        $scope.message = null;
+			    }, 3000);
 			}
 
             $scope.tabName = 'profile';

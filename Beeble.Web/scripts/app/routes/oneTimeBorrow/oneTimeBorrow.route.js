@@ -5,7 +5,8 @@ app.config(function($stateProvider) {
 		{
 			url: '/one-time-borrow/:libraryId/:bookAuthor-:bookName',
 			controller: 'oneTimeBorrowController',
-			templateUrl: 'scripts/app/routes/oneTimeBorrow/oneTimeBorrow.template.html',
+            templateUrl: 'scripts/app/routes/oneTimeBorrow/oneTimeBorrow.template.html',
+			parent: 'userLoggedIn',
 			params: {
 				libraryId: null,
 				bookAuthor: null,

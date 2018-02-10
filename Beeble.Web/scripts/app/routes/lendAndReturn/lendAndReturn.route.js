@@ -3,6 +3,7 @@
         .state('lendAndReturn', {
             url: '/lend-return',
             controller: 'lendAndReturnController',
-			templateUrl: 'scripts/app/routes/lendAndReturn/lendAndReturn.template.html'
+            templateUrl: 'scripts/app/routes/lendAndReturn/lendAndReturn.template.html',
+            parent: 'userLoggedIn'
         });
 });

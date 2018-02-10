@@ -5,7 +5,8 @@ app.config(function($stateProvider) {
 		{
 			url: '/enroll/:libraryId',
 			controller: 'getMembershipController',
-			templateUrl: 'scripts/app/routes/getMembership/getMembership.template.html',
+            templateUrl: 'scripts/app/routes/getMembership/getMembership.template.html',
+			parent: 'userLoggedIn',
 			params: {
 				libraryId: null
 			}

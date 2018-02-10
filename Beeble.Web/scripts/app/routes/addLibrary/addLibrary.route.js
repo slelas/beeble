@@ -3,6 +3,7 @@
 		.state('addLibrary', {
 			url: '/add-library',
 			controller: 'addLibraryController',
-			templateUrl: 'scripts/app/routes/addLibrary/addLibrary.template.html',
+            templateUrl: 'scripts/app/routes/addLibrary/addLibrary.template.html',
+			parent: 'userLoggedIn'
 		});
 });
